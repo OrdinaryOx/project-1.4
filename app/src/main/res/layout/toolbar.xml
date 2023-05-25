@@ -3,7 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/teal_700">
+    android:background="#00A651">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,22 +13,27 @@
             android:layout_width="120px"
             android:layout_height="120px"
             android:layout_centerVertical="true"
-            android:src="@drawable/baseline_arrow_back_ios_24" />
+            android:src="@drawable/arrow_back" />
 
         <ImageView
+            android:id="@+id/MWG_logo_IV"
             android:layout_width="200px"
             android:layout_height="200px"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/MWG_Logo_White" />
+            android:src="@drawable/mwg_logo" />
 
         <ImageView
             android:layout_width="120px"
             android:layout_height="120px"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
             android:src="@drawable/cogwheel" />
 
     </RelativeLayout>
+
+
+
+
 </androidx.appcompat.widget.Toolbar>
