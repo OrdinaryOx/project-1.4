@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00A651">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="120px"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow_back" />
+
+        <ImageView
+            android:id="@+id/MWG_logo_IV"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:translationX="-10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/mwg_logo" />
+
+        <ImageView
+            android:id="@+id/options_button"
+            android:layout_width="120px"
+            android:layout_height="120px"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/cogwheel" />
+
+    </RelativeLayout>
+
+
+
+
+</androidx.appcompat.widget.Toolbar>
