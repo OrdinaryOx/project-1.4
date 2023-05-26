@@ -4,34 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/MWG_Light">
+    android:background="@color/MWG_Light"
+    tools:context=".MainActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"></include>
 
-
     <ImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="800px"
         android:layout_below="@id/toolbar"
-        android:src="@drawable/homescreen_image"
-        android:padding="20px"
-        />
+        android:paddingTop="20px"
+        android:src="@drawable/homescreen_image" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Heb je een kamer nodig of een kamer vrij en ben je op zoek naar een leuke huisgenoot? Dan is Mijn Woongenoot de ideale keuze voor jou!"
+        android:layout_below="@id/image"/>
 
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/MWG_Basic"
-            android:text="Ga Verder" />
 
 
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/MWG_Basic">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/MWG_Dark"
+                android:text="Ga Verder" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>
