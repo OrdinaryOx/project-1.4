@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/MWG_Light">
 
     <include
         android:id="@+id/toolbar"
@@ -15,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="800px"
         android:layout_below="@id/toolbar"
-        android:src="@drawable/homescreen_image" />
+        android:src="@drawable/homescreen_image"
+        android:padding="20px"
+        />
 
 
 
