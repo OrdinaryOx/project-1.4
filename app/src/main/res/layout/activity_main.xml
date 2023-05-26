@@ -17,19 +17,76 @@
         android:layout_height="800px"
         android:layout_below="@id/toolbar"
         android:paddingTop="20px"
+
         android:src="@drawable/homescreen_image" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Heb je een kamer nodig of een kamer vrij en ben je op zoek naar een leuke huisgenoot? Dan is Mijn Woongenoot de ideale keuze voor jou!"
-        android:layout_below="@id/image"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_below="@id/image"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/MWG_Light"
+        android:elevation="8dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/header1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Op zoek naar een leuke huisgenoot?"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                />
 
 
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Heb je een kamer nodig of een kamer vrij en ben je op zoek naar een leuke huisgenoot? Dan is Mijn Woongenoot de ideale keuze voor jou!"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/moreInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Wil je meer informatie?"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/clickableText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/moreInformation"
+                android:layout_centerHorizontal="true"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="Klik dan hier!"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
+    </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
