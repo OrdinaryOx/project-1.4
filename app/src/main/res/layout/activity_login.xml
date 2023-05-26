@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/MWG_Light">
+
+<include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLogin"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/MWG_Light"
+        android:elevation="200dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:text="Welkom!"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewInputData"
+                android:layout_below="@id/textViewWelcome"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voer hier uw gegevens in:"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="180dp"
+                android:hint="E-mailadres"
+                android:gravity="center_horizontal"
+                android:drawableStart="@drawable/email_icon"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:layout_below="@id/editTextTextEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="Wachtwoord"
+                android:gravity="center_horizontal"
+                android:drawableStart="@drawable/password_icon"
+                />
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="70dp"
+                android:layout_below="@id/editTextTextPassword"
+                android:layout_centerHorizontal="true"
+                android:text="Login"
+                android:backgroundTint="@color/MWG_Basic"/>
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewAlternative"
+        android:layout_below="@id/cardViewLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Of:"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAlternative"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Maak een account aan"
+        android:width="230dp"
+        android:backgroundTint="@color/MWG_Basic"/>
+
+
+</RelativeLayout>
