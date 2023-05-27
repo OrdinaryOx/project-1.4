@@ -9,9 +9,14 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="test"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_matches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"/>
+        android:layout_below="@id/toolbar"
+        tools:listitem="@layout/item_match"/>
 </RelativeLayout>
