@@ -1,10 +1,12 @@
-package com.example.project14;
+package com.example.project14.Chats;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.project14.R;
 
 public class AllChats extends AppCompatActivity {
 

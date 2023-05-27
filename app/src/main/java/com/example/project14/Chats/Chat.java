@@ -1,4 +1,4 @@
-package com.example.project14;
+package com.example.project14.Chats;
 
 public class Chat {
     private String username;
