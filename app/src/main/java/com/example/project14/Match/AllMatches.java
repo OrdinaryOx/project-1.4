@@ -22,7 +22,10 @@ public class AllMatches extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_matches);
         recyclerView.setAdapter(matchAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
     }
 }

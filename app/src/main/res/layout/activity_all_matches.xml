@@ -4,19 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/MWG_Light"
     tools:context=".Match.AllMatches">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="test"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_matches"
+        layout="@layout/toolbar" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/recyclerView_matches"
         android:layout_below="@id/toolbar"
-        tools:listitem="@layout/item_match"/>
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@id/filter_icon"
+        android:text="Filter"
+        android:textStyle="bold"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/filter_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/toolbar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_filter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_matches"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/filter_icon"
+        android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_match" />
 </RelativeLayout>
