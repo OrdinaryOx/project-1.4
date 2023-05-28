@@ -43,26 +43,21 @@ public class AllChats extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                // Get the last visible item position
-                int lastVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+                // Check if the RecyclerView can scroll vertically
+                boolean canScrollVertically = recyclerView.canScrollVertically(1);
 
-                // Check if it's the last item in the list
-                if (lastVisibleItemPosition == allChatAdapter.getItemCount() - 1) {
-                    arrowImageView.setVisibility(View.GONE);
-                    darkBorder.setVisibility(View.GONE);
-
-                } else {
-                    arrowImageView.setVisibility(View.VISIBLE);
-                    darkBorder.setVisibility(View.VISIBLE);
-                }
+                // Show or hide the arrow and dark border based on the vertical scroll position
+                arrowImageView.setVisibility(canScrollVertically ? View.VISIBLE : View.GONE);
+                darkBorder.setVisibility(canScrollVertically ? View.VISIBLE : View.GONE);
             }
+            
         });
 
         darkBorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Scroll to the bottom of the RecyclerView
-                recyclerView.smoothScrollToPosition(allChatAdapter.getItemCount() - 1);
+                recyclerView.smoothScrollBy(0, 800);
             }
         });
     }
