@@ -11,6 +11,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,9 +20,9 @@
         android:layout_marginTop="15dp"
         android:layout_toStartOf="@id/filter_icon"
         android:text="Filter"
-        android:textStyle="bold"
         android:textAlignment="textEnd"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/filter_icon"
@@ -34,15 +35,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_filter" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bekijk hier uw mogelijke matches"
         android:layout_below="@id/filter_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textStyle="bold"
-        android:textSize="22sp"/>
+        android:text="Bekijk hier uw mogelijke matches"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,4 +55,51 @@
         android:layout_marginTop="100dp"
         android:paddingBottom="50dp"
         tools:listitem="@layout/item_match" />
+
+
+    <ImageView
+        android:id="@+id/img_green_left"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/dark_border"
+        android:src="@drawable/green_circle"
+        android:translationY="93dp" />
+
+
+    <ImageView
+        android:id="@+id/img_arrow_left"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/arrow_left"
+        android:translationY="93dp" />
+
+
+    <ImageView
+        android:id="@+id/img_green_right"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/dark_border"
+        android:src="@drawable/green_circle"
+        android:translationY="93dp" />
+
+
+    <ImageView
+        android:id="@+id/img_arrow_right"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/arrow_right"
+        android:translationY="93dp" />
 </RelativeLayout>
