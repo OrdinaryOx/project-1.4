@@ -50,6 +50,18 @@ public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatVi
         dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
         dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
         dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
+        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
+        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
+        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
+        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
+        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
+        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
+        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
+        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
+        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
+        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
+        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
+        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
         // Add more dummy data as needed
 
         return dummyData;
