@@ -47,7 +47,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         Match match = matches.get(position);
 
         holder.username.setText(match.getName());
-        holder.age.setText(" - " + String.valueOf(match.getAge()));
+        holder.age.setText(String.valueOf(match.getAge()));
         Glide.with(holder.profileImage)
                 .load(match.getImageURL())
                 .centerCrop()
