@@ -36,6 +36,7 @@ public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatVi
 
         holder.chatUsername.setText(chat.getUsername());
         holder.chatTest.setText(chat.getTest());
+        holder.chatAge.setText(String.valueOf(chat.getAge()));
     }
 
     @Override
