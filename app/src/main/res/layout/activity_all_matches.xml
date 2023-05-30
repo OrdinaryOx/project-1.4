@@ -37,13 +37,14 @@
         android:src="@drawable/ic_filter" />
 
     <TextView
+        android:id="@+id/matchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/filter_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textColor="@color/black"
         android:text="Bekijk hier uw mogelijke matches"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -52,56 +53,90 @@
         android:id="@+id/recyclerView_matches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/filter_icon"
-        android:layout_marginTop="100dp"
-        android:paddingBottom="50dp"
+        android:layout_above="@id/bottom_bar"
+        android:layout_below="@id/matchText"
+        android:padding="5dp"
         tools:listitem="@layout/item_match" />
 
 
-
-    <ImageView
-        android:id="@+id/img_green_left"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/dark_border"
-        android:src="@drawable/green_circle"
-        android:translationY="93dp" />
-
-
-    <ImageView
-        android:id="@+id/img_arrow_left"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/arrow_left"
-        android:translationY="93dp" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/img_green_left"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_alignParentLeft="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:background="@drawable/dark_border"-->
+    <!--        android:src="@drawable/green_circle"-->
+    <!--        android:translationY="93dp" />-->
 
 
-    <ImageView
-        android:id="@+id/img_green_right"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/dark_border"
-        android:src="@drawable/green_circle"
-        android:translationY="93dp" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/img_arrow_left"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_alignParentLeft="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:src="@drawable/arrow_left"-->
+    <!--        android:translationY="93dp" />-->
 
 
-    <ImageView
-        android:id="@+id/img_arrow_right"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/arrow_right"
-        android:translationY="93dp" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/img_green_right"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:background="@drawable/dark_border"-->
+    <!--        android:src="@drawable/green_circle"-->
+    <!--        android:translationY="93dp" />-->
+
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/img_arrow_right"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:src="@drawable/arrow_right"-->
+    <!--        android:translationY="93dp" />-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/MWG_Basic">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/scrollButtonL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/MWG_Dark"
+                android:text="Scroll Links" />
+
+            <Button
+                android:id="@+id/scrollButtonR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/MWG_Dark"
+                android:text="Scroll rechts" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
