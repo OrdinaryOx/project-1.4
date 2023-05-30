@@ -27,6 +27,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/match_pfp"
                 android:text="Username"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
 
             <TextView
@@ -36,6 +37,7 @@
                 android:layout_below="@id/match_username"
                 android:layout_centerHorizontal="true"
                 android:text="Age"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
 
 
