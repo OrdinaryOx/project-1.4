@@ -26,8 +26,9 @@
         android:layout_height="200dp"
         android:layout_below="@id/image"
         android:layout_margin="30dp"
-        android:backgroundTint="@color/MWG_Light"
+        android:backgroundTint="#8acda1"
         android:elevation="8dp"
+        android:translationY="10dp"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
@@ -42,8 +43,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
 
             <TextView
