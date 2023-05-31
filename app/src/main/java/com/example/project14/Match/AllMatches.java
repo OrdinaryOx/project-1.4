@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.project14.MainActivity;
+import com.example.project14.OptionsActivity;
 import com.example.project14.R;
+import com.example.project14.RoleActivity;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -58,6 +60,14 @@ public class AllMatches extends AppCompatActivity {
                 Intent intent = new Intent(AllMatches.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMatches.this, OptionsActivity.class);
+                startActivity(intent);
             }
         });
 

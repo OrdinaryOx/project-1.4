@@ -45,6 +45,13 @@ public class ActivitiesScreen extends AppCompatActivity {
                 finish();
             }
         });
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivitiesScreen.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

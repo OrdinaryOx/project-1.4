@@ -42,5 +42,13 @@ public class ProfileUser extends AppCompatActivity {
                 finish();
             }
         });
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileUser.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

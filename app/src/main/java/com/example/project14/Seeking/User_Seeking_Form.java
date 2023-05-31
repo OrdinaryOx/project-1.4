@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.project14.LoginActivity;
 import com.example.project14.MainActivity;
+import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
 
@@ -66,6 +67,16 @@ public class User_Seeking_Form extends AppCompatActivity {
                 Intent intent = new Intent(User_Seeking_Form.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+
+
+        });
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(User_Seeking_Form.this, OptionsActivity.class);
+                startActivity(intent);
             }
         });
 

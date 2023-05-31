@@ -45,6 +45,13 @@ public class RoleActivity extends AppCompatActivity {
             }
         });
 
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoleActivity.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void Verhuurder(View view) {

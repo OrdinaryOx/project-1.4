@@ -12,7 +12,9 @@ import android.widget.ImageView;
 
 import com.example.project14.MainActivity;
 import com.example.project14.Match.AllMatches;
+import com.example.project14.OptionsActivity;
 import com.example.project14.R;
+import com.example.project14.RoleActivity;
 
 import java.nio.file.Files;
 
@@ -52,6 +54,14 @@ public class AllChats extends AppCompatActivity {
                 Intent intent = new Intent(AllChats.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllChats.this, OptionsActivity.class);
+                startActivity(intent);
             }
         });
 

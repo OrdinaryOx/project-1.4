@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
