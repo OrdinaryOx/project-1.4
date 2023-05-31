@@ -59,7 +59,8 @@ public class AllMatches extends AppCompatActivity {
                 boolean canScrollRight = recyclerView.canScrollHorizontally(1);
 
                 int grayColor = Color.parseColor("#5A5A5A");
-                int defaultColor = Color.parseColor("#000000");
+                int defaultColor = Color.parseColor("#006430");
+
 
                 buttonLeft.setBackgroundColor(canScrollLeft ? defaultColor : grayColor);
                 buttonRight.setBackgroundColor(canScrollRight ? defaultColor : grayColor);
