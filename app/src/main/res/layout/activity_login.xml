@@ -21,7 +21,7 @@
         android:layout_marginTop="50dp"
         android:paddingBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/MWG_Light"
+        android:backgroundTint="#8acda1"
         android:elevation="200dp">
 
         <RelativeLayout
