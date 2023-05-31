@@ -115,6 +115,7 @@
         android:layout_centerHorizontal="true"
         android:text="Maak een account aan"
         android:width="230dp"
+        android:onClick="CreateAccount"
         android:backgroundTint="@color/MWG_Basic"/>
 
 

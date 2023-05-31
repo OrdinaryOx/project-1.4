@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.project14.ActivitiesScreen;
 import com.example.project14.R;
 
 /**
@@ -64,7 +66,23 @@ public class ProviderNineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_seeking_ten, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_provider_nine, container, false);
+
+
+
+
+
+        // Set click listener for the button
+        Button button = rootView.findViewById(R.id.opsturenButtonProvider);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle button click event
+                Intent intent = new Intent(getActivity(), ActivitiesScreen.class);
+                startActivity(intent);
+            }
+        });
+
 
         TextView textViewTerms = rootView.findViewById(R.id.textViewTerms);
         textViewTerms.setText("Klik hier voor de algemene voorwaarden");
