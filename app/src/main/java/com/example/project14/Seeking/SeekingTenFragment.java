@@ -1,5 +1,7 @@
 package com.example.project14.Seeking;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.project14.R;
 
@@ -56,33 +59,40 @@ public class SeekingTenFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-//        TextView textViewTerms = findViewById(R.id.textViewTerms);
-//        textViewTerms.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Uri uri = Uri.parse("https://mijnwoongenoot.nl/info-algemenevoorwaarden/");
-//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                startActivity(intent);
-//            }
-//        });
-//
-//
-//        TextView textViewCookies = findViewById(R.id.textViewCookies);
-//        textViewCookies.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Uri uri = Uri.parse("https://mijnwoongenoot.nl/info-privacybeleid/");
-//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seeking_ten, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_seeking_ten, container, false);
+
+        TextView textViewTerms = rootView.findViewById(R.id.textViewTerms);
+        textViewTerms.setText("Klik hier voor de algemene voorwaarden");
+        textViewTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://mijnwoongenoot.nl/info-algemenevoorwaarden/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        TextView textViewCookies = rootView.findViewById(R.id.textViewCookies);
+        textViewCookies.setText("Klik hier voor de cookieverklaring");
+        textViewCookies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://mijnwoongenoot.nl/privacy/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+
+
+        return rootView;
     }
 }
