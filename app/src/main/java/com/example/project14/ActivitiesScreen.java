@@ -23,10 +23,10 @@ public class ActivitiesScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void startProfile(View view) {
-//        Intent intent = new Intent(this, ProfileActivity.class);
-//        startActivity(intent);
-//    }
+    public void startProfile(View view) {
+        Intent intent = new Intent(this, ProfileUser.class);
+        startActivity(intent);
+    }
 
     public void startChats(View view) {
         Intent intent = new Intent(this, AllChats.class);

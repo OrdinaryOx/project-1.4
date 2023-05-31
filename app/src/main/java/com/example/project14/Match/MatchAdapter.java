@@ -30,6 +30,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         this.matches = createDummyData();
     }
 
+    
     @NonNull
     @Override
     public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
