@@ -14,11 +14,11 @@
 
     <ImageView
         android:id="@+id/ProfilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ProfilePicture"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop='10dp'
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:textSize="60px"
         android:text="Barend de Jong" />
@@ -40,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/ProfilePicture"
         android:layout_toEndOf="@id/username"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:text="Hier beschrijving over de gebruiker, bijvoorbeeld hobby's likes en dislikes etc."
         android:textSize="60px"
         android:textColor="@color/black"/>
@@ -60,18 +60,19 @@
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gender"
+        android:layout_below="@id/ProfilePicture"
         android:layout_marginLeft="10dp"
         android:layout_marginTop='10dp'
+        android:layout_toRightOf="@id/username"
+        android:text="(78)"
         android:textColor="@color/black"
-        android:textSize="60px"
-        android:text="Age: 78" />
+        android:textSize="60px" />
 
     <TextView
         android:id="@+id/postCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/age"
+        android:layout_below="@id/gender"
         android:layout_marginLeft="10dp"
         android:layout_marginTop='10dp'
         android:textColor="@color/black"
@@ -127,9 +128,10 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/remarks"
         android:layout_marginTop="10dp"
         android:text="Edit Profile"
+        android:backgroundTint="@color/MWG_Dark"
         android:textSize="60px"/>
 
 </RelativeLayout>
