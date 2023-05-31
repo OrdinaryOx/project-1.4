@@ -3,6 +3,7 @@ package com.example.project14;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = new Intent(this, User_Seeking_Form.class);
+        startActivity(intent);
 
     }
 }
