@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:text="Log uit"
         android:textSize="30sp"
+        android:backgroundTint="@color/MWG_Dark"
         android:layout_below="@id/themeRadioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
