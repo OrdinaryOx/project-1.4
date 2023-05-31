@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="languages" />
+        <string name="language_english">English</string>
+        <string name="language_Dutch">Nederlands</string>
+</resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <string-array name="salutation_options">
         <item>Dhr</item>
         <item>Mvr</item>
