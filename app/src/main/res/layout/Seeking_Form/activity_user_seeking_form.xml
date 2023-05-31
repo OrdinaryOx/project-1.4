@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/MWG_Light"
     android:orientation="vertical"
-    tools:context=".User_Seeking_Form"
-    android:background="@color/MWG_Light">
+    tools:context=".User_Seeking_Form">
 
 
     <androidx.cardview.widget.CardView
@@ -66,10 +66,10 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.example.project14.ProviderOneFragment"
+            android:name="com.example.project14.Seeking.SeekingOneFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_provider_one"/>
+            tools:layout="@layout/fragment_seeking_one" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

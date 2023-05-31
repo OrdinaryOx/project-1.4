@@ -1,4 +1,4 @@
-package com.example.project14;
+package com.example.project14.Seeking;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.project14.R;
 
 public class User_Seeking_Form extends AppCompatActivity {
 

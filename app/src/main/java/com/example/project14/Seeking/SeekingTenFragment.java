@@ -1,4 +1,4 @@
-package com.example.project14;
+package com.example.project14.Seeking;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.project14.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SeekingEightFragment#newInstance} factory method to
+ * Use the {@link SeekingTenFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SeekingEightFragment extends Fragment {
+public class SeekingTenFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class SeekingEightFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SeekingEightFragment() {
+    public SeekingTenFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class SeekingEightFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SeekingEightFragment.
+     * @return A new instance of fragment SeekingTenFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SeekingEightFragment newInstance(String param1, String param2) {
-        SeekingEightFragment fragment = new SeekingEightFragment();
+    public static SeekingTenFragment newInstance(String param1, String param2) {
+        SeekingTenFragment fragment = new SeekingTenFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,12 +55,34 @@ public class SeekingEightFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+//        TextView textViewTerms = findViewById(R.id.textViewTerms);
+//        textViewTerms.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Uri uri = Uri.parse("https://mijnwoongenoot.nl/info-algemenevoorwaarden/");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        TextView textViewCookies = findViewById(R.id.textViewCookies);
+//        textViewCookies.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Uri uri = Uri.parse("https://mijnwoongenoot.nl/info-privacybeleid/");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seeking_eight, container, false);
+        return inflater.inflate(R.layout.fragment_seeking_ten, container, false);
     }
 }
