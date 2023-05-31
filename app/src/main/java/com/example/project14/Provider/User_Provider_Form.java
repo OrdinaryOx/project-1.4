@@ -1,14 +1,19 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.project14.MainActivity;
 import com.example.project14.R;
+import com.example.project14.RoleActivity;
 
 public class User_Provider_Form extends AppCompatActivity {
 
@@ -30,6 +35,42 @@ public class User_Provider_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_seeking_form);
+
+
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ImageView backButton = toolbar.findViewById(R.id.back_button);
+        ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
+        ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+        // Set click listener for the back button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle back button click
+                Intent intent = new Intent(User_Provider_Form.this, RoleActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // Set click listener for the logo button
+        logoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MainActivity when logo button is clicked
+                Intent intent = new Intent(User_Provider_Form.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+
 
         fragmentManager = getSupportFragmentManager();
 

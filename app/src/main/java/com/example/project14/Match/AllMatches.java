@@ -2,10 +2,12 @@ package com.example.project14.Match;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.project14.MainActivity;
 import com.example.project14.R;
 
 public class AllMatches extends AppCompatActivity {
@@ -30,6 +33,40 @@ public class AllMatches extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ImageView backButton = toolbar.findViewById(R.id.back_button);
+        ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
+        ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+        // Set click listener for the back button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle back button click
+                onBackPressed();
+            }
+        });
+
+        // Set click listener for the logo button
+        logoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MainActivity when logo button is clicked
+                Intent intent = new Intent(AllMatches.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+
+
+
 
 //        imgArrowLeft = findViewById(R.id.img_arrow_left);
 //        imgArrowRight = findViewById(R.id.img_arrow_right);

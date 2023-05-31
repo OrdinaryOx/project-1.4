@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
         // Set click listener for the back button
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle back button click
-                onBackPressed();
-            }
-        });
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Handle back button click
+//                onBackPressed();
+//            }
+//        });
 
         // Set click listener for the logo button
         logoButton.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 // Start MainActivity when logo button is clicked
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

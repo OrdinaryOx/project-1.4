@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Start MainActivity when logo button is clicked
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
