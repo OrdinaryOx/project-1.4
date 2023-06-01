@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Chats.InsideChat">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/chatbackground" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
+
+    <TextView
+        android:id="@+id/chat_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/usernameLine"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/chat_username"
+        android:layout_marginTop="5dp"
+        android:background="@color/MWG_Basic" />
+
+
+
+    <TextView
+        android:id="@+id/insideChat1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomCVchats"
+        android:layout_margin="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="right"
+        android:text="Hallo, hoe gaat het?" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/insideChat1"
+        android:layout_marginStart="20dp"
+
+
+        android:gravity="left"
+        android:text="Hallo, met mij gaat het goed!" />
+
+
+    <TextView
+        android:id="@+id/bottomCVchats"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/MWG_Basic" />
+
+</RelativeLayout>
