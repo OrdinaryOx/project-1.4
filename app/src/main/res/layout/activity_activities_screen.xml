@@ -77,9 +77,10 @@
 
             <ImageView
                 android:id="@+id/imageViewProfile"
-                android:layout_width="93dp"
-                android:layout_height="97dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/account_icon" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -103,6 +104,7 @@
                 android:id="@+id/imageViewChat"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/chat_icon" />
 
