@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languages" />
+        <string name="language_english">English</string>
+        <string name="language_Dutch">Nederlands</string>
+
+    <string-array name="salutation_options">
+        <item>Dhr</item>
+        <item>Mvr</item>
+        <item>Anders</item>
+    </string-array>
+
+    <string-array name="living_options">
+        <item>Alleenstaand</item>
+        <item>Met partner</item>
+        <item>Met huisgenoot</item>
+        <item>Met kinderen</item>
+        <item>Anders</item>
+    </string-array>
+
+    <string-array name="city_options">
+        <item>Amsterdam</item>
+        <item>Rotterdam</item>
+        <item>Den Haag</item>
+        <item>Utrecht</item>
+        <item>Eindhoven</item>
+        <item>Tilburg</item>
+        <item>Groningen</item>
+        <item>Almere</item>
+        <item>Breda</item>
+        <item>Nijmegen</item>
+        <item>Enschede</item>
+        <item>Haarlem</item>
+        <item>Arnhem</item>
+        <item>Zaanstad</item>
+        <item>Amersfoort</item>
+        <item>Hertogenbosch</item>
+        <item>Zwolle</item>
+        <item>Zoetermeer</item>
+        <item>Leiden</item>
+        <item>Maastricht</item>
+        <item>Dordrecht</item>
+        <item>Ede</item>
+        <item>Leeuwarden</item>
+        <item>Emmen</item>
+        <item>Alkmaar</item>
+        <item>Venlo</item>
+        <item>Deventer</item>
+        <item>Spijkenisse</item>
+        <item>Gouda</item>
+        <item>Helmond</item>
+        <item>Alphen aan den Rijn</item>
+        <item>Hilversum</item>
+        <item>Amstelveen</item>
+        <item>Hengelo</item>
+        <item>Vlaardingen</item>
+        <item>Apeldoorn</item>
+        <item>Velsen</item>
+        <item>Schiedam</item>
+        <item>Terneuzen</item>
+        <item>Hoorn</item>
+        <item>Zutphen</item>
+        <item>Heerlen</item>
+        <item>Hoogeveen</item>
+        <item>Nieuwegein</item>
+        <item>Kerkrade</item>
+        <item>Oss</item>
+        <item>Heerenveen</item>
+        <item>Weert</item>
+        <item>Hilvarenbeek</item>
+        <item>Houten</item>
+        <item>Sneek</item>
+        <item>Den Helder</item>
+        <item>Roermond</item>
+        <item>Doetinchem</item>
+        <item>Barneveld</item>
+        <item>Goes</item>
+        <item>Harderwijk</item>
+        <item>Maassluis</item>
+        <item>Wageningen</item>
+        <item>Culemborg</item>
+        <item>Gemert-Bakel</item>
+        <item>Winterswijk</item>
+        <item>Pijnacker-Nootdorp</item>
+        <item>Rijswijk</item>
+        <item>Leidschendam-Voorburg</item>
+        <item>Smallingerland</item>
+        <item>Veendam</item>
+        <item>Veenendaal</item>
+        <item>Groningen</item>
+        <item>Zoetermeer</item>
+        <item>Kerkrade</item>
+        <item>Heerlen</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <string-array name="month_options">
+        <item>1 maand(en)</item>
+        <item>2 maand(en)</item>
+        <item>3 maand(en)</item>
+        <item>4 maand(en)</item>
+        <item>5 maand(en)</item>
+        <item>6 maand(en)</item>
+        <item>7 maand(en)</item>
+        <item>8 maand(en)</item>
+        <item>9 maand(en)</item>
+        <item>10 maand(en)</item>
+        <item>11 maand(en)</item>
+        <item>12 maand(en)</item>
+    </string-array>
+
+    <string-array name="day_options">
+        <item>1 dag</item>
+        <item>2 dagen</item>
+        <item>3 dagen</item>
+        <item>4 dagen</item>
+        <item>5 dagen</item>
+        <item>6 dagen</item>
+        <item>7 dagen</item>
+    </string-array>
+
+    <string-array name="reason_options">
+        <item>Studie</item>
+        <item>Starter</item>
+        <item>Scheiding</item>
+        <item>Anders</item>
+    </string-array>
+
+
+</resources>
