@@ -20,26 +20,40 @@
                 android:layout_height="130dp"
                 android:src="@drawable/profile" />
 
-            <TextView
-                android:id="@+id/match_username"
+            <LinearLayout
+                android:id="@+id/match_info_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
                 android:layout_below="@id/match_pfp"
-                android:text="Username"
-                android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/match_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/match_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/match_age"
+                android:id="@+id/match_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/match_username"
+                android:layout_below="@id/match_info_layout"
                 android:layout_centerHorizontal="true"
-                android:text="Age"
+                android:text="City"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
-
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

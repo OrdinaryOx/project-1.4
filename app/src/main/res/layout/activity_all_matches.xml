@@ -59,51 +59,7 @@
         tools:listitem="@layout/item_match" />
 
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_green_left"-->
-    <!--        android:layout_width="50dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_alignParentLeft="true"-->
-    <!--        android:layout_centerVertical="true"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:background="@drawable/dark_border"-->
-    <!--        android:src="@drawable/green_circle"-->
-    <!--        android:translationY="93dp" />-->
 
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_arrow_left"-->
-    <!--        android:layout_width="50dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_alignParentLeft="true"-->
-    <!--        android:layout_centerVertical="true"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:src="@drawable/arrow_left"-->
-    <!--        android:translationY="93dp" />-->
-
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_green_right"-->
-    <!--        android:layout_width="50dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_alignParentRight="true"-->
-    <!--        android:layout_centerVertical="true"-->
-    <!--        android:layout_marginRight="10dp"-->
-    <!--        android:background="@drawable/dark_border"-->
-    <!--        android:src="@drawable/green_circle"-->
-    <!--        android:translationY="93dp" />-->
-
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_arrow_right"-->
-    <!--        android:layout_width="50dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_alignParentRight="true"-->
-    <!--        android:layout_centerVertical="true"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:layout_marginRight="10dp"-->
-    <!--        android:src="@drawable/arrow_right"-->
-    <!--        android:translationY="93dp" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_bar"
@@ -114,29 +70,51 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="70dp">
 
-            <Button
-                android:id="@+id/scrollButtonL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/img_green_left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/MWG_Dark"
-                android:text="Scroll Links" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/dark_border"
+                android:src="@drawable/green_circle"
+         />
 
-            <Button
-                android:id="@+id/scrollButtonR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/img_arrow_left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/arrow_left"
+         />
+
+            <ImageView
+                android:id="@+id/img_green_right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/MWG_Dark"
-                android:text="Scroll rechts" />
+                android:layout_marginRight="10dp"
+                android:background="@drawable/dark_border"
+                android:src="@drawable/green_circle"
+             />
+
+
+            <ImageView
+                android:id="@+id/img_arrow_right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_right"
+    />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

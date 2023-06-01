@@ -2,10 +2,12 @@ package com.example.project14.Match;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
@@ -13,7 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.project14.MainActivity;
+import com.example.project14.OptionsActivity;
 import com.example.project14.R;
+import com.example.project14.RoleActivity;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -31,13 +36,49 @@ public class AllMatches extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
 
-//        imgArrowLeft = findViewById(R.id.img_arrow_left);
-//        imgArrowRight = findViewById(R.id.img_arrow_right);
-//        imgGreenLeft = findViewById(R.id.img_green_left);
-//        imgGreenRight = findViewById(R.id.img_green_right);
 
-        buttonLeft = findViewById(R.id.scrollButtonL);
-        buttonRight = findViewById(R.id.scrollButtonR);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ImageView backButton = toolbar.findViewById(R.id.back_button);
+        ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
+        ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+        // Set click listener for the back button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle back button click
+                onBackPressed();
+            }
+        });
+
+        // Set click listener for the logo button
+        logoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MainActivity when logo button is clicked
+                Intent intent = new Intent(AllMatches.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMatches.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        imgArrowLeft = findViewById(R.id.img_arrow_left);
+        imgArrowRight = findViewById(R.id.img_arrow_right);
+        imgGreenLeft = findViewById(R.id.img_green_left);
+        imgGreenRight = findViewById(R.id.img_green_right);
+//
+//        buttonLeft = findViewById(R.id.scrollButtonL);
+//        buttonRight = findViewById(R.id.scrollButtonR);
 
         recyclerView = findViewById(R.id.recyclerView_matches);
 
@@ -59,14 +100,19 @@ public class AllMatches extends AppCompatActivity {
                 boolean canScrollRight = recyclerView.canScrollHorizontally(1);
 
                 int grayColor = Color.parseColor("#5A5A5A");
-                int defaultColor = Color.parseColor("#000000");
+                int defaultColor = Color.parseColor("#006430");
+                imgArrowLeft.setVisibility(canScrollLeft ? View.VISIBLE : View.GONE);
+                imgGreenLeft.setVisibility(canScrollLeft ? View.VISIBLE : View.GONE);
 
-                buttonLeft.setBackgroundColor(canScrollLeft ? defaultColor : grayColor);
-                buttonRight.setBackgroundColor(canScrollRight ? defaultColor : grayColor);
+                imgArrowRight.setVisibility(canScrollRight ? View.VISIBLE : View.GONE);
+                imgGreenRight.setVisibility(canScrollRight ? View.VISIBLE : View.GONE);
+
+//                buttonLeft.setBackgroundColor(canScrollLeft ? defaultColor : grayColor);
+//                buttonRight.setBackgroundColor(canScrollRight ? defaultColor : grayColor);
             }
         });
 
-        buttonLeft.setOnClickListener(new View.OnClickListener() {
+        imgGreenLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Scroll the RecyclerView to the left
@@ -74,7 +120,7 @@ public class AllMatches extends AppCompatActivity {
             }
         });
 
-        buttonRight.setOnClickListener(new View.OnClickListener() {
+        imgGreenRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Scroll the RecyclerView to the right

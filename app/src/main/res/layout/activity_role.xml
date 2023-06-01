@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RoleActivity"
+    android:background="@color/MWG_Light"
+    >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <Button
+        android:id="@+id/verhuurderButton"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:text="Ik heb een woonruimte beschikbaar"
+        android:onClick="Verhuurder"
+        android:backgroundTint="@color/MWG_Basic"
+        android:layout_centerVertical="true"
+        android:translationY="-110dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/huurderButton"
+        android:layout_below="@id/verhuurderButton"
+        android:text="Ik zoek een woonruimte"
+        android:backgroundTint="@color/MWG_Basic"
+        android:onClick="Huurder"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+
+
+</RelativeLayout>

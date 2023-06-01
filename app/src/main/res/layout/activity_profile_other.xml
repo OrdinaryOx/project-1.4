@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MWG_Light">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
+    <ImageView
+        android:id="@+id/ProfilePicture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ProfilePicture"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Barend de Jong"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/userDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:layout_toEndOf="@id/username"
+        android:layout_toRightOf="@id/ProfilePicture"
+        android:text="Hier beschrijving over de gebruiker, bijvoorbeeld hobby's likes en dislikes etc."
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Geslacht: Man, Vrouw, Anders"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ProfilePicture"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:layout_toRightOf="@id/username"
+        android:text="(78)"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+
+    <TextView
+        android:id="@+id/postCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gender"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Postcode: 4941EP"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/placeOfResidence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postCode"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Woonplaats: Raamsdonksveer"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/rentalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/placeOfResidence"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Huurprijs: €700 p/m excl"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/livingSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rentalPrice"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='10dp'
+        android:text="Woonoppervlakte: 16m2"
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+    <TextView
+        android:id="@+id/remarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/livingSpace"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop='30dp'
+        android:text="Hier kunnen overige opmerkingen van de user worden weergegeven."
+        android:textColor="@color/black"
+        android:textSize="60px" />
+
+
+    <ImageView
+        android:id="@+id/imageViewChat"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/remarks"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="100dp"
+        android:src="@drawable/chat_icon" />
+
+</RelativeLayout>
