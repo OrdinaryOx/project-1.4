@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.project14.R;
+
 public class InsideChat extends AppCompatActivity {
 
     @Override

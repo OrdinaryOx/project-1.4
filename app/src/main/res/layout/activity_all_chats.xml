@@ -4,40 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Chats.AllChats"
-    android:background="@color/MWG_Light">
+    android:background="@color/MWG_Light"
+    tools:context=".Chats.AllChats">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
+
+
+
+    <TextView
+        android:id="@+id/bottomCVchats"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/MWG_Basic"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_all_chats"
+        android:layout_above="@id/bottomCVchats"
         android:layout_below="@id/toolbar"
         android:requiresFadingEdge="vertical"
-        />
+        tools:listitem="@layout/item_all_chats" />
+
 
     <ImageView
         android:id="@+id/img_green"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_below="@id/recyclerViewChat"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:src="@drawable/green_circle"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/dark_border" />
+        android:background="@drawable/dark_border"
+        android:src="@drawable/green_circle" />
 
 
     <ImageView
         android:id="@+id/img_arrow"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/recyclerViewChat"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/arrow_down" />
 
 
