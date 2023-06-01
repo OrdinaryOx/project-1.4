@@ -47,10 +47,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         Match match = matches.get(position);
 
-        String name = match.getName();
-        //Array String on spaces. use array[0] maxlength = x, if name(x) = " ", remove " ".
-        String firstName = name.substring(0, Math.min(name.length(), 6));
-        holder.username.setText(firstName);
+
+        String[] split = match.getName().split(" ");
+        String firstName = split[0];
+        String userName = firstName.substring(0, Math.min(firstName.length(), 8));
+        holder.username.setText(userName);
 
 
         holder.age.setText(String.valueOf(" (" + match.getAge() + ")"));
