@@ -38,14 +38,15 @@
         android:background="@color/MWG_Basic" />
 
 
-
     <TextView
         android:id="@+id/insideChat1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottomCVchats"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="right"
         android:text="Hallo, hoe gaat het?" />
 

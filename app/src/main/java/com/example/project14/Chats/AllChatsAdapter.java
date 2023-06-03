@@ -1,12 +1,18 @@
 package com.example.project14.Chats;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project14.R;
@@ -72,12 +78,38 @@ public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatVi
         public TextView chatUsername;
         public TextView chatAge;
         public TextView chatTest;
+        public ImageView chatIcon;
+        public ImageView phoneIcon;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
             this.chatAge = itemView.findViewById(R.id.chat_age);
             this.chatUsername = itemView.findViewById(R.id.chat_username);
             this.chatTest = itemView.findViewById(R.id.chat_test);
+            this.chatIcon = itemView.findViewById(R.id.chat_icon);
+            this.phoneIcon = itemView.findViewById(R.id.phone_icon);
+
+            // Set click listeners for chatIcon and phoneIcon
+            chatIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Open an email intent
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    intent.setData(Uri.parse("mailto:your-email@example.com"));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Chat Inquiry");
+                    v.getContext().startActivity(intent);
+                }
+            });
+
+            phoneIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Initiate a phone call
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:1234567890"));
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
