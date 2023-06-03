@@ -43,6 +43,9 @@
             android:name=".Match.AllMatches"
             android:exported="false" />
         <activity
+            android:name=".Chats.InsideChat"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

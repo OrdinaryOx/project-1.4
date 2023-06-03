@@ -47,6 +47,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:padding="3dp"
+        android:background="@color/white"
         android:gravity="right"
         android:text="Hallo, hoe gaat het?" />
 
@@ -55,17 +57,38 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/insideChat1"
         android:layout_marginStart="20dp"
-
-
+        android:layout_marginEnd="20dp"
+        android:padding="3dp"
+        android:background="@color/white"
         android:gravity="left"
-        android:text="Hallo, met mij gaat het goed!" />
+        android:text="Hallo, met mij gaat het goed!"
+     />
 
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:id="@+id/bottomCVchats"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/MWG_Basic" />
+        android:backgroundTint="@color/MWG_Basic">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="20dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/arrow_right"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

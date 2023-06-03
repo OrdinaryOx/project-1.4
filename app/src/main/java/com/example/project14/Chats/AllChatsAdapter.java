@@ -23,10 +23,12 @@ import java.util.List;
 public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatViewHolder> {
     private LayoutInflater layoutInflater;
     private List<Chat> chats;
+    private Context context;
 
     public AllChatsAdapter(Context context) {
         this.layoutInflater = LayoutInflater.from(context);
         this.chats = createDummyData(); // Create dummy data
+        this.context = context;
     }
 
     @NonNull
@@ -43,6 +45,16 @@ public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatVi
         holder.chatUsername.setText(chat.getUsername());
         holder.chatTest.setText(chat.getTest());
         holder.chatAge.setText(String.valueOf(chat.getAge()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the InsideChatActivity with the appropriate data
+                Intent intent = new Intent(context, InsideChat.class);
+                intent.putExtra("username", chat.getUsername());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,59 +69,24 @@ public class AllChatsAdapter extends RecyclerView.Adapter<AllChatsAdapter.ChatVi
         dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
         dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
         dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
-        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
-        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
-        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
-        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
-        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
-        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
-        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
-        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
-        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
-        dummyData.add(new Chat("David", 86, "Hello, I saw that you were interested in chess, I am too!"));
-        dummyData.add(new Chat("Jenny", 79, "Hi there! I'm a nurse myself, maybe I can give you some pointers :)"));
-        dummyData.add(new Chat("Mikey", 92, "I'm Mikey"));
         // Add more dummy data as needed
 
         return dummyData;
     }
 
+
+
+
     class ChatViewHolder extends RecyclerView.ViewHolder {
         public TextView chatUsername;
         public TextView chatAge;
         public TextView chatTest;
-        public ImageView chatIcon;
-        public ImageView phoneIcon;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
             this.chatAge = itemView.findViewById(R.id.chat_age);
             this.chatUsername = itemView.findViewById(R.id.chat_username);
             this.chatTest = itemView.findViewById(R.id.chat_test);
-            this.chatIcon = itemView.findViewById(R.id.chat_icon);
-            this.phoneIcon = itemView.findViewById(R.id.phone_icon);
-
-            // Set click listeners for chatIcon and phoneIcon
-            chatIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Open an email intent
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setData(Uri.parse("mailto:your-email@example.com"));
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Chat Inquiry");
-                    v.getContext().startActivity(intent);
-                }
-            });
-
-            phoneIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Initiate a phone call
-                    Intent intent = new Intent(Intent.ACTION_CALL);
-                    intent.setData(Uri.parse("tel:1234567890"));
-                    v.getContext().startActivity(intent);
-                }
-            });
         }
     }
 }
