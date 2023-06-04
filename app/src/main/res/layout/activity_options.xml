@@ -20,7 +20,7 @@
         android:textStyle="bold"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="10dp"/>
 
     <RadioGroup
         android:id="@+id/languageRadioGroup"
@@ -57,7 +57,7 @@
         android:textStyle="bold"
         android:layout_below="@id/languageRadioGroup"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="10dp"/>
 
     <RadioGroup
         android:id="@+id/themeRadioGroup"
@@ -90,8 +90,54 @@
         android:text="Log uit"
         android:textSize="30sp"
         android:backgroundTint="@color/MWG_Dark"
-        android:layout_below="@id/themeRadioGroup"
+        android:layout_below="@id/Privacyverklaring"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="10dp"/>
+
+    <Switch
+        android:id="@+id/PrivacySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textForSwitchPrivacy2"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="5sp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textForSwitchPrivacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/themeRadioGroup"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="Telefoonnummer zichtbaar" />
+
+    <TextView
+        android:id="@+id/textForSwitchPrivacy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textForSwitchPrivacy"
+        android:layout_marginTop="0dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="voor anderen" />
+
+    <TextView
+        android:id="@+id/Privacyverklaring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/PrivacySwitch"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:text="Privacyverklaring" />
 
 </RelativeLayout>
