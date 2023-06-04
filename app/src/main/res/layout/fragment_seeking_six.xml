@@ -1,0 +1,212 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MWG_Light"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="25dp"
+        android:max="10"
+        android:progress="6"
+        android:progressBackgroundTint="@color/ProgressBar"
+        android:progressTint="@color/ProgressTint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:text="Heb je beschikking over:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+
+    <RadioButton
+        android:id="@+id/radio_button_ehbo"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:text="EHBO"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <RadioButton
+        android:id="@+id/radio_button_bhv"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/white"
+        android:text="BHV"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_button_ehbo" />
+
+    <RadioButton
+        android:id="@+id/radio_button_reanimation"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/white"
+        android:text="Reanimatie"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_button_bhv" />
+
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Heb je werk?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_button_reanimation" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_seeking_work"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+
+        <RadioButton
+            android:id="@+id/radio_button_seeking_work_yes"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:text="Ja"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_seeking_work_no"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:text="Nee"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Zo ja, wat en hoeveel uur per week?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_button_reanimation" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Zo ja, wat?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_health" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Zijn er gezondheidszaken van belang om te weten voor de matching?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_seeking_work" />
+
+    <EditText
+        android:id="@+id/editTextWork"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:hint=" Bijvoorbeeld: programmeur"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+
+    <EditText
+        android:id="@+id/editTextOffer"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:hint=" Bijvoorbeeld: asthma"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_health"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+
+        <RadioButton
+            android:id="@+id/radio_button_health_yes"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:text="Ja"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_health_no"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:text="Nee"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

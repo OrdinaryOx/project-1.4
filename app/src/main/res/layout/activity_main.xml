@@ -17,7 +17,6 @@
         android:layout_height="800px"
         android:layout_below="@id/toolbar"
         android:paddingTop="20px"
-
         android:src="@drawable/homescreen_image" />
 
 
@@ -106,6 +105,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="20dp"
+                android:onClick="Continue"
                 android:backgroundTint="@color/MWG_Dark"
                 android:text="Ga Verder" />
         </RelativeLayout>
