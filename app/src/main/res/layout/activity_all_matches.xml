@@ -75,32 +75,32 @@
 
             <ImageView
                 android:id="@+id/img_green_left"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="50dp"
                 android:background="@drawable/dark_border"
                 android:src="@drawable/green_circle"
          />
 
             <ImageView
                 android:id="@+id/img_arrow_left"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="50dp"
                 android:src="@drawable/arrow_left"
          />
 
             <ImageView
                 android:id="@+id/img_green_right"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/dark_border"
                 android:src="@drawable/green_circle"
              />
@@ -108,12 +108,11 @@
 
             <ImageView
                 android:id="@+id/img_arrow_right"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="50dp"
                 android:src="@drawable/arrow_right"
     />
         </RelativeLayout>
