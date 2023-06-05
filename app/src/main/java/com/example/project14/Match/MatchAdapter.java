@@ -31,6 +31,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     public MatchAdapter(Context context) {
         this.layoutInflater = LayoutInflater.from(context);
         this.matches = createDummyData();
+        this.context = context;
     }
 
 
@@ -72,6 +73,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                 // Start the InsideChatActivity with the appropriate data
                 Intent intent = new Intent(context, ProfileOther.class);
                 intent.putExtra("username", userName);
+                intent.putExtra("profileImageURL", match.getImageURL());
                 context.startActivity(intent);
             }
         });
