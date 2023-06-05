@@ -2,6 +2,7 @@ package com.example.project14.Match;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.project14.ProfileOther;
 import com.example.project14.R;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
+    private Context context;
     private LayoutInflater layoutInflater;
     private List<Match> matches;
 
@@ -61,6 +64,17 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                 .centerCrop()
                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into(holder.profileImage);
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the InsideChatActivity with the appropriate data
+                Intent intent = new Intent(context, ProfileOther.class);
+                intent.putExtra("username", userName);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
