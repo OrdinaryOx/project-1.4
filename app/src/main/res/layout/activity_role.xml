@@ -4,35 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoleActivity"
     android:background="@color/MWG_Light"
-    >
+    tools:context=".RoleActivity">
+
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
-    <Button
+    <!--    <Button-->
+    <!--        android:id="@+id/verhuurderButton"-->
+    <!--        android:layout_width="190dp"-->
+    <!--        android:layout_height="190dp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:backgroundTint="@color/MWG_Basic"-->
+    <!--        android:drawableTop="@drawable/search_icon"-->
+    <!--        android:onClick="Verhuurder"-->
+    <!--        android:text="Ik heb een woonruimte beschikbaar"-->
+    <!--        android:translationY="-110dp" />-->
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/verhuurderButton"
+        android:onClick="Verhuurder"
         android:layout_width="190dp"
         android:layout_height="190dp"
-        android:text="Ik heb een woonruimte beschikbaar"
-        android:onClick="Verhuurder"
-        android:backgroundTint="@color/MWG_Basic"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:translationY="-110dp"
-        android:layout_centerHorizontal="true"/>
+        android:backgroundTint="@color/MWG_Basic"
+        android:translationY="-110dp">
 
-    <Button
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon_house"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/icon_house" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon_house"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:text="IK HEB EEN WOONRUIMTE BESCHIKBAAR"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+<!--    <Button-->
+<!--        android:id="@+id/huurderButton"-->
+<!--        android:layout_width="190dp"-->
+<!--        android:layout_height="190dp"-->
+<!--        android:layout_below="@id/verhuurderButton"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:backgroundTint="@color/MWG_Basic"-->
+<!--        android:onClick="Huurder"-->
+<!--        android:text="Ik zoek een woonruimte" />-->
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/huurderButton"
         android:layout_below="@id/verhuurderButton"
-        android:text="Ik zoek een woonruimte"
-        android:backgroundTint="@color/MWG_Basic"
-        android:onClick="Huurder"
         android:layout_width="190dp"
+        android:onClick="Huurder"
         android:layout_height="190dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/MWG_Basic">
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon_search"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/search_icon" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon_search"
+                android:layout_centerHorizontal="true"
+                android:text="IK ZOEK EEN WOONRUIMTE"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
