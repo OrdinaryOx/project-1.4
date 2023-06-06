@@ -29,7 +29,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Schets een beeld over je zelf en geef toelichting over je thuissituatie/ gezinssituatie;"
+        android:text="Schets een beeld over je zelf en geef toelichting over je thuissituatie/gezinssituatie;"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
