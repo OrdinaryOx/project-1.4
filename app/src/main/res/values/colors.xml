@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0000FF</color>
 
     <color name="ProgressTint">#006430</color>
     <color name="ProgressBar">#FFFFFFFF</color>
@@ -14,5 +15,6 @@
     <color name="MWG_Basic">#00A651</color>
     <color name="MWG_Light">#8fcdad</color>
     <color name="MWG_Dark">#006430</color>
+    <color name="CardView_Light">#8acda1</color>
 
 </resources>

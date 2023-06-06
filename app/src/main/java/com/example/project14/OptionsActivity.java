@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,5 +56,18 @@ public class OptionsActivity extends AppCompatActivity {
 //                finish();
             }
         });
+
+        findViewById(R.id.Privacyverklaring).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://mijnwoongenoot.nl/privacy/";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData((Uri.parse(url)));
+                startActivity(i);
+            }
+        });
+
+
     }
 }
