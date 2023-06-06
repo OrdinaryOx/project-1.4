@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
@@ -30,6 +34,8 @@ public class AllMatches extends AppCompatActivity {
     private Button buttonLeft;
     private Button buttonRight;
     private RecyclerView recyclerView;
+
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,16 @@ public class AllMatches extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //FILTER
+        ImageView filter = findViewById(R.id.filter_icon);
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow(v);
+            }
+        });
+        //
 
 
         imgArrowLeft = findViewById(R.id.img_arrow_left);
@@ -128,4 +144,45 @@ public class AllMatches extends AppCompatActivity {
             }
         });
     }
+
+    private void showPopupWindow(View anchorView) {
+        // Inflate the popup layout
+        View popupView = getLayoutInflater().inflate(R.layout.filter_popup, null);
+
+        // Create the popup window
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // Set the background drawable for the popup window
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+        // Disable interaction with views outside the popup
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(false);
+
+        // Show the popup window anchored to the filter button
+        popupWindow.showAsDropDown(anchorView);
+
+        // Dismiss the popup window when the user clicks a close button
+        ImageView closeButton = popupView.findViewById(R.id.filter_close);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+        // Enable interaction with views outside the popup
+        popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
 }
