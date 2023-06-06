@@ -143,11 +143,48 @@
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Wat is uw motivatie om een kamer aan te bieden aan een woningzoekende/ student?"
+        android:text="Wat is uw motivatie om een kamer aan te bieden aan een woningzoekende/student?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextFound" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView"
+        app:layout_constraintLeft_toRightOf="@id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView7"
+        app:layout_constraintLeft_toRightOf="@id/textView7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView16"
+        app:layout_constraintLeft_toRightOf="@id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView18"
+        app:layout_constraintLeft_toRightOf="@id/textView18"
+        android:translationX="-155dp"
+        android:translationY="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

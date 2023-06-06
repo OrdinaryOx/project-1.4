@@ -141,4 +141,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView"
+        app:layout_constraintLeft_toRightOf="@id/textView"
+        android:translationX="-197dp"
+        android:translationY="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView16"
+        app:layout_constraintLeft_toRightOf="@id/textView16"
+        android:translationY="20dp"
+        android:translationX="-295dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView18"
+        app:layout_constraintLeft_toRightOf="@id/textView18"
+        android:translationY="20dp"
+        android:translationX="-120dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
