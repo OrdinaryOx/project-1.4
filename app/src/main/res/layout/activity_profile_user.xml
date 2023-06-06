@@ -126,7 +126,7 @@
                 android:layout_below="@id/Pets"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Hier taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."
+                android:text="Hiers taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </RelativeLayout>
