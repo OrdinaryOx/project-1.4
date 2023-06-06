@@ -15,5 +15,6 @@
     <color name="MWG_Basic">#00A651</color>
     <color name="MWG_Light">#8fcdad</color>
     <color name="MWG_Dark">#006430</color>
+    <color name="CardView_Light">#8acda1</color>
 
 </resources>

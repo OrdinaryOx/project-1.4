@@ -10,134 +10,167 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/languageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Taal:"
-        android:textSize="35sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_CV"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-
-    <RadioGroup
-        android:id="@+id/languageRadioGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/languageTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/CardView_Light"
+        >
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/language_Dutch"
-            android:textSize="30sp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/language_english"
-            android:textSize="30sp"
-            android:gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/languageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Taal:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    </RadioGroup>
+            <RadioGroup
+                android:id="@+id/languageRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/languageTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/themeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thema:"
-        android:textSize="35sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_below="@id/languageRadioGroup"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/language_Dutch"
+                    android:textSize="25sp" />
 
-    <RadioGroup
-        android:id="@+id/themeRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/themeTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/language_english"
+                    android:textSize="25sp"
+                    android:translationY="-20dp" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Licht"
-            android:textSize="30sp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"/>
+            </RadioGroup>
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Donker"
-            android:textSize="30sp"
-            android:gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/themeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/languageRadioGroup"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:text="Thema:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    </RadioGroup>
+            <RadioGroup
+                android:id="@+id/themeRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/themeTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="Licht"
+                    android:textSize="25sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Donker"
+                    android:textSize="25sp"
+                    android:translationY="-20dp" />
+
+            </RadioGroup>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log uit"
-        android:textSize="30sp"
-        android:backgroundTint="@color/MWG_Dark"
         android:layout_below="@id/Privacyverklaring"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/MWG_Dark"
+        android:padding="10dp"
+        android:text="Log uit"
+        android:textSize="22sp" />
 
     <Switch
         android:id="@+id/PrivacySwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textForSwitchPrivacy2"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/textForSwitchPrivacy"
         android:layout_centerHorizontal="true"
-        android:textSize="5sp"
+        android:layout_marginTop="10dp"
         android:scaleX="2"
         android:scaleY="2"
-        android:text="" />
+        android:text=""
+        android:textSize="5sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textForSwitchPrivacy"
+        android:layout_marginTop="8dp"
+        android:layout_toLeftOf="@id/PrivacySwitch"
+        android:text="Wel"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:translationX="-28dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textForSwitchPrivacy"
+        android:layout_toRightOf="@id/PrivacySwitch"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        android:translationX="12dp"
+        android:textColor="@color/black"
+        android:text="Niet"/>
+
 
     <TextView
         android:id="@+id/textForSwitchPrivacy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/options_CV"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/themeRadioGroup"
         android:layout_marginTop="10dp"
-        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:text="Telefoonnummer zichtbaar voor anderen"
         android:textColor="@color/black"
-        android:text="Telefoonnummer zichtbaar" />
+        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/textForSwitchPrivacy2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textForSwitchPrivacy"
-        android:layout_marginTop="0dp"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:text="voor anderen" />
 
     <TextView
         android:id="@+id/Privacyverklaring"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/PrivacySwitch"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textSize="48dp"
-        android:textColor="@color/blue"
         android:clickable="true"
-        android:text="Privacyverklaring" />
+        android:gravity="center_horizontal"
+        android:text="Klik hier voor de Privacyverklaring"
+        android:textColor="@color/blue"
+        android:textSize="25dp" />
 
 </RelativeLayout>
