@@ -7,18 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.example.project14.Provider.User_Provider_Form;
-import com.example.project14.Seeking.User_Seeking_Form;
-
-public class RoleActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_role);
+        setContentView(R.layout.activity_login);
 
 
+
+        //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,31 +39,25 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(RoleActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RoleActivity.this, OptionsActivity.class);
+                Intent intent = new Intent(LoginActivity.this, OptionsActivity.class);
                 startActivity(intent);
             }
         });
+
+
+
     }
 
-    public void Verhuurder(View view) {
-        Intent intent = new Intent(this, User_Provider_Form.class);
+    public void CreateAccount(View view) {
+        Intent intent = new Intent(this, RoleActivity.class);
         startActivity(intent);
-        finish();
-    }
-
-
-    public void Huurder(View view) {
-        Intent intent = new Intent(this, User_Seeking_Form.class);
-        startActivity(intent);
-        finish();
     }
 }

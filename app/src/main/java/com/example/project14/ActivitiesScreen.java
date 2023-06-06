@@ -8,16 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.project14.Provider.User_Provider_Form;
-import com.example.project14.Seeking.User_Seeking_Form;
+import com.example.project14.Chats.AllChats;
+import com.example.project14.Match.AllMatches;
 
-public class RoleActivity extends AppCompatActivity {
+public class ActivitiesScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_role);
-
+        setContentView(R.layout.activity_activities_screen);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -30,7 +29,9 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle back button click
-                onBackPressed();
+                Intent intent = new Intent(ActivitiesScreen.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -39,31 +40,33 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(RoleActivity.this, MainActivity.class);
+                Intent intent = new Intent(ActivitiesScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RoleActivity.this, OptionsActivity.class);
+                Intent intent = new Intent(ActivitiesScreen.this, OptionsActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void Verhuurder(View view) {
-        Intent intent = new Intent(this, User_Provider_Form.class);
+
+    public void startMatches(View view) {
+        Intent intent = new Intent(this, AllMatches.class);
         startActivity(intent);
-        finish();
     }
 
-
-    public void Huurder(View view) {
-        Intent intent = new Intent(this, User_Seeking_Form.class);
+    public void startProfile(View view) {
+        Intent intent = new Intent(this, ProfileUser.class);
         startActivity(intent);
-        finish();
+    }
+
+    public void startChats(View view) {
+        Intent intent = new Intent(this, AllChats.class);
+        startActivity(intent);
     }
 }

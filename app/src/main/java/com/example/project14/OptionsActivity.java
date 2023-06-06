@@ -6,17 +6,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
-import com.example.project14.Provider.User_Provider_Form;
-import com.example.project14.Seeking.User_Seeking_Form;
-
-public class RoleActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_role);
+        setContentView(R.layout.activity_options);
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,7 +40,7 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(RoleActivity.this, MainActivity.class);
+                Intent intent = new Intent(OptionsActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -48,22 +49,11 @@ public class RoleActivity extends AppCompatActivity {
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RoleActivity.this, OptionsActivity.class);
-                startActivity(intent);
+//                // Start MainActivity when logo button is clicked
+//                Intent intent = new Intent(OptionsActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
-    }
-
-    public void Verhuurder(View view) {
-        Intent intent = new Intent(this, User_Provider_Form.class);
-        startActivity(intent);
-        finish();
-    }
-
-
-    public void Huurder(View view) {
-        Intent intent = new Intent(this, User_Seeking_Form.class);
-        startActivity(intent);
-        finish();
     }
 }
