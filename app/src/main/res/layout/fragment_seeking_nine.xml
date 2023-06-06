@@ -45,17 +45,17 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOffer" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBelief" />
 
     <EditText
-        android:id="@+id/editTextOffer"
+        android:id="@+id/editTextBelief"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,14 +63,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <EditText
-        android:id="@+id/editTextComment"
+        android:id="@+id/editTextOther"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

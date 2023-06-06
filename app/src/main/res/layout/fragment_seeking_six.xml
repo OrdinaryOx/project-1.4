@@ -35,12 +35,12 @@
 
 
     <RadioButton
-        android:id="@+id/radio_button_ehbo"
+        android:id="@+id/radioButtonEhbo"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:text="EHBO"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -48,28 +48,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <RadioButton
-        android:id="@+id/radio_button_bhv"
+        android:id="@+id/radioButtonBhv"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:text="BHV"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_button_ehbo" />
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonEhbo" />
 
     <RadioButton
-        android:id="@+id/radio_button_reanimation"
+        android:id="@+id/radioButtonReanimation"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:text="Reanimatie"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_button_bhv" />
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonBhv" />
 
 
     <TextView
@@ -82,10 +82,10 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_button_reanimation" />
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonReanimation" />
 
     <RadioGroup
-        android:id="@+id/radio_group_seeking_work"
+        android:id="@+id/radioGroupSeekingWork"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -98,7 +98,7 @@
             android:id="@+id/radio_button_seeking_work_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -107,7 +107,7 @@
             android:id="@+id/radio_button_seeking_work_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -124,7 +124,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_button_reanimation" />
+        app:layout_constraintTop_toBottomOf="@+id/radioButtonReanimation" />
 
     <TextView
         android:id="@+id/textView27"
@@ -136,7 +136,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_health" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupHealth" />
 
     <TextView
         android:id="@+id/textView24"
@@ -151,34 +151,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_seeking_work" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupSeekingWork" />
 
     <EditText
         android:id="@+id/editTextWork"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: programmeur"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: programmeur"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
 
     <EditText
-        android:id="@+id/editTextOffer"
+        android:id="@+id/editTextHealth"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: asthma"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: asthma"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <RadioGroup
-        android:id="@+id/radio_group_health"
+        android:id="@+id/radioGroupHealth"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -191,7 +191,7 @@
             android:id="@+id/radio_button_health_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -200,7 +200,7 @@
             android:id="@+id/radio_button_health_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />

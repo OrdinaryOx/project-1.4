@@ -7,60 +7,50 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.example.project14.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProviderFourFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ProviderFourFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Spinner spinnerProviderMonth;
+    private Spinner spinnerProviderDays;
+    private EditText editTextTypeRoom;
 
     public ProviderFourFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProviderFourFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProviderFourFragment newInstance(String param1, String param2) {
-        ProviderFourFragment fragment = new ProviderFourFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_provider_four, container, false);
+
+        // Initialize the EditText views
+        spinnerProviderMonth = view.findViewById(R.id.spinnerProviderMonth);
+        spinnerProviderDays = view.findViewById(R.id.spinnerProviderDays);
+        editTextTypeRoom = view.findViewById(R.id.editTextTypeRoom);
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void saveData() {
+        // Get the data from the fragment
+        String providerMonth = getProviderMonth();
+        String providerDays = getProviderDays();
+        String typeRoom = getTypeRoom();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_provider_four, container, false);
+    public String getProviderMonth() {
+        return spinnerProviderMonth.getSelectedItem().toString();
     }
+    public String getProviderDays() {
+        return spinnerProviderDays.getSelectedItem().toString();
+    }
+    public String getTypeRoom() {
+        return editTextTypeRoom.getText().toString();
+    }
+
 }

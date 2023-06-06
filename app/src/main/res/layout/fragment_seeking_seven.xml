@@ -45,7 +45,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOffer" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextYourself" />
 
     <TextView
         android:id="@+id/textView29"
@@ -59,7 +59,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescribe" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextKeyword" />
 
     <TextView
         android:id="@+id/textView30"
@@ -74,17 +74,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSituation3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRoom" />
 
     <EditText
-        android:id="@+id/editTextOffer"
+        android:id="@+id/editTextYourself"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,13 +92,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <EditText
-        android:id="@+id/editTextSituation3"
+        android:id="@+id/editTextRoom"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:hint=" Bijvoorbeeld: een slaapkamer waar ik kan leren"
         android:gravity="top|left"
         android:textSize="16sp"
@@ -108,14 +108,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <EditText
-        android:id="@+id/editTextSituation4"
+        android:id="@+id/editTextMean"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: klusjes doen"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: klusjes doen"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,14 +123,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <EditText
-        android:id="@+id/editTextDescribe"
+        android:id="@+id/editTextKeyword"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: slim, grappig"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: slim, grappig"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

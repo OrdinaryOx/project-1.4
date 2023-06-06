@@ -28,8 +28,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" M2"
+        android:background="@drawable/border"
+        android:hint="  M2"
         android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +44,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: Bed, bank"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: Bed, bank"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +60,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" €1000,-"
+        android:background="@drawable/border"
+        android:hint="  €1000,-"
         android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <RadioGroup
-        android:id="@+id/radio_group_furnish"
+        android:id="@+id/radioGroupFurnish"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:textColor="@color/black"
@@ -84,7 +84,7 @@
             android:id="@+id/radio_button_furnish_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:textColor="@color/black"
             android:text="Ja"
             android:textSize="16sp" />
@@ -93,7 +93,7 @@
             android:id="@+id/radio_button_furnish_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:textColor="@color/black"
             android:text="Nee"
             android:textSize="16sp" />
@@ -139,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_furnish" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupFurnish" />
 
     <TextView
         android:id="@+id/textView34"

@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/combined_spinner_drawable"
         android:entries="@array/living_options"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_house" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupHouse" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerSituation" />
 
     <RadioGroup
-        android:id="@+id/radio_group_house"
+        android:id="@+id/radioGroupHouse"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -85,7 +85,7 @@
             android:id="@+id/radio_button_house_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -94,7 +94,7 @@
             android:id="@+id/radio_button_house_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -108,8 +108,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: via vrienden"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: via vrienden"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -117,14 +117,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
-        android:id="@+id/editTextTypeRoom"
+        android:id="@+id/editTextProviderMotivation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: om meer gezelschap te hebben"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: om meer gezelschap te hebben"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

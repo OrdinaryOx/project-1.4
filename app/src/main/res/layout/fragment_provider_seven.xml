@@ -22,14 +22,14 @@
         />
 
     <EditText
-        android:id="@+id/editTextDescribe2"
+        android:id="@+id/editTextKeyword"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: grappig, slim"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: grappig, slim"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -46,7 +46,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_provder_work" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupProviderWork" />
 
     <TextView
         android:id="@+id/textView36"
@@ -58,7 +58,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescribe2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextKeyword" />
 
     <TextView
         android:id="@+id/textView15"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <RadioGroup
-        android:id="@+id/radio_group_provder_work"
+        android:id="@+id/radioGroupProviderWork"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -86,7 +86,7 @@
             android:id="@+id/radio_button_provider_work_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -95,7 +95,7 @@
             android:id="@+id/radio_button_provider_work_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -115,25 +115,25 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <EditText
-        android:id="@+id/editTextWork"
+        android:id="@+id/editTextProviderWork"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginStart="144dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: programmeur"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: programmeur"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
-        android:id="@+id/editTextDescribe4"
+        android:id="@+id/editTextHobby"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:hint=" Bijvoorbeld: wandelen"
         android:gravity="top|left"
         android:textSize="16sp"
@@ -144,14 +144,14 @@
 
 
     <EditText
-        android:id="@+id/editTextFound"
+        android:id="@+id/editTextPets"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: hond"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: hond"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,10 +167,10 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_self_pets" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupSelfPets" />
 
     <RadioGroup
-        android:id="@+id/radio_group_self_pets"
+        android:id="@+id/radioGroupSelfPets"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -185,7 +185,7 @@
             android:id="@+id/radio_button_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -194,7 +194,7 @@
             android:id="@+id/radio_button_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -211,7 +211,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescribe4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextHobby" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

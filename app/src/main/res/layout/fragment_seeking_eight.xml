@@ -44,7 +44,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOffer" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextOtherOffer" />
 
     <TextView
         android:id="@+id/textView29"
@@ -68,17 +68,17 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_volunteer" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupVolunteer" />
 
     <EditText
-        android:id="@+id/editTextOffer"
+        android:id="@+id/editTextOtherOffer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: advies geven"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: advies geven"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,8 +91,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: notenallergie"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: notenallergie"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,14 +100,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <EditText
-        android:id="@+id/editTextComment"
+        android:id="@+id/editTextVolunteer"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <RadioGroup
-        android:id="@+id/radio_group_volunteer"
+        android:id="@+id/radioGroupVolunteer"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -129,7 +129,7 @@
             android:id="@+id/radio_button_volunteer_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -138,7 +138,7 @@
             android:id="@+id/radio_button_volunteer_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />

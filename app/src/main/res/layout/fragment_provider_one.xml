@@ -29,9 +29,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
         android:calendarViewShown="false"
-        android:hint=" ********"
+        android:background="@drawable/border"
+        android:hint="  ********"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -43,21 +43,21 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
         android:calendarViewShown="false"
-        android:hint=" ********"
+        android:background="@drawable/border"
+        android:hint="  ********"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Spinner
-        android:id="@+id/spinnerSituation"
+        android:id="@+id/spinnerSalutation"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@drawable/combined_spinner_drawable"
         android:textColor="@color/black"
         android:entries="@array/salutation_options"
         android:textSize="16sp"
@@ -71,8 +71,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Achternaam"
+        android:background="@drawable/border"
+        android:hint="  Achternaam"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,13 +80,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
-        android:id="@+id/editTextFound"
+        android:id="@+id/editTextFirstName"
         android:layout_width="170dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:hint=" Voornaam"
+        android:background="@drawable/border"
+        android:hint="  Voornaam"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -99,8 +99,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Tussenvoegsel"
+        android:background="@drawable/border"
+        android:hint="  Tussenvoegsel"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -111,7 +111,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:text="Upload Foto"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +166,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerSituation" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSalutation" />
 
     <TextView
         android:id="@+id/textView8"
@@ -190,7 +190,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFound" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
     <TextView
         android:id="@+id/textView10"

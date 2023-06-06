@@ -43,7 +43,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartDate" />
 
     <TextView
         android:id="@+id/textView23"
@@ -55,7 +55,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerBirthdate2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
 
     <TextView
         android:id="@+id/textView20"
@@ -82,30 +82,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextStartDate"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:calendarViewShown="false"
-        android:hint=" DD-MM-JJJJ"
+        android:hint="  DD-MM-JJJJ"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/datePickerBirthdate2"
+        android:id="@+id/editTextEndDate"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:calendarViewShown="false"
-        android:hint=" DD-MM-JJJJ"
+        android:hint="  DD-MM-JJJJ"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -118,7 +118,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@drawable/combined_spinner_drawable"
         android:entries="@array/reason_options"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,31 +146,31 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFound" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextGrade" />
 
     <EditText
-        android:id="@+id/editTextFound"
+        android:id="@+id/editTextGrade"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Middelbare school"
+        android:background="@drawable/border"
+        android:hint="  Middelbare school"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <EditText
-        android:id="@+id/editTextPets3"
+        android:id="@+id/editTextCourse"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" HBO Informatica"
+        android:background="@drawable/border"
+        android:hint="  HBO Informatica"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

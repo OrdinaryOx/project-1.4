@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.Seeking.User_Seeking_Form;
 
 import android.graphics.Paint;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = new Intent(this, User_Seeking_Form.class);
+        Intent intent = new Intent(this, User_Provider_Form.class);
         startActivity(intent);
 
     }
