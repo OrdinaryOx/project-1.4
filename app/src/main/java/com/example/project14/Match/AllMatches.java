@@ -72,19 +72,13 @@ public class AllMatches extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-//        imgArrowLeft = findViewById(R.id.img_arrow_left);
-//        imgArrowRight = findViewById(R.id.img_arrow_right);
-//        imgGreenLeft = findViewById(R.id.img_green_left);
-//        imgGreenRight = findViewById(R.id.img_green_right);
-
-        buttonLeft = findViewById(R.id.scrollButtonL);
-        buttonRight = findViewById(R.id.scrollButtonR);
+        imgArrowLeft = findViewById(R.id.img_arrow_left);
+        imgArrowRight = findViewById(R.id.img_arrow_right);
+        imgGreenLeft = findViewById(R.id.img_green_left);
+        imgGreenRight = findViewById(R.id.img_green_right);
+//
+//        buttonLeft = findViewById(R.id.scrollButtonL);
+//        buttonRight = findViewById(R.id.scrollButtonR);
 
         recyclerView = findViewById(R.id.recyclerView_matches);
 
@@ -107,14 +101,18 @@ public class AllMatches extends AppCompatActivity {
 
                 int grayColor = Color.parseColor("#5A5A5A");
                 int defaultColor = Color.parseColor("#006430");
+                imgArrowLeft.setVisibility(canScrollLeft ? View.VISIBLE : View.GONE);
+                imgGreenLeft.setVisibility(canScrollLeft ? View.VISIBLE : View.GONE);
 
+                imgArrowRight.setVisibility(canScrollRight ? View.VISIBLE : View.GONE);
+                imgGreenRight.setVisibility(canScrollRight ? View.VISIBLE : View.GONE);
 
-                buttonLeft.setBackgroundColor(canScrollLeft ? defaultColor : grayColor);
-                buttonRight.setBackgroundColor(canScrollRight ? defaultColor : grayColor);
+//                buttonLeft.setBackgroundColor(canScrollLeft ? defaultColor : grayColor);
+//                buttonRight.setBackgroundColor(canScrollRight ? defaultColor : grayColor);
             }
         });
 
-        buttonLeft.setOnClickListener(new View.OnClickListener() {
+        imgGreenLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Scroll the RecyclerView to the left
@@ -122,7 +120,7 @@ public class AllMatches extends AppCompatActivity {
             }
         });
 
-        buttonRight.setOnClickListener(new View.OnClickListener() {
+        imgGreenRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Scroll the RecyclerView to the right
