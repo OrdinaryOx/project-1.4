@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 
 public class SeekingFiveFragment extends Fragment {
@@ -40,27 +43,24 @@ public class SeekingFiveFragment extends Fragment {
         editTextGrade = view.findViewById(R.id.editTextGrade);
         editTextCourse = view.findViewById(R.id.editTextCourse);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 5", " " + fragmentDataList);
+
         return view;
     }
 
     public void saveData() {
-        String startDate = getStartDate();
-        String endDate = getEndDate();
-        String reason = getReason();
-        String grade = getGrade();
-        String course = getCourse();
-
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingSixFragment.class);
-        intent.putExtra("startDate", startDate);
-        intent.putExtra("endDate", endDate);
-        intent.putExtra("reason", reason);
-        intent.putExtra("grade", grade);
-        intent.putExtra("course", course);
-
-        // Pass the intent to the next fragment
-    //    passDataToNextFragment(intent);
-    }
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getStartDate());
+            fragmentDataList.add(getEndDate());
+            fragmentDataList.add(getReason());
+            fragmentDataList.add(getGrade());
+            fragmentDataList.add(getCourse());
+        }
+       }
 
     public void passDataToNextFragment(Bundle data) {
         if (getActivity() instanceof User_Seeking_Form) {

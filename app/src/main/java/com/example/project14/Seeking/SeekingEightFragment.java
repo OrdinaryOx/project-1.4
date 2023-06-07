@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.RadioGroup;
 
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 public class SeekingEightFragment extends Fragment {
     private EditText editTextOtherOffer;
@@ -36,6 +39,9 @@ public class SeekingEightFragment extends Fragment {
         radioGroupVolunteer = view.findViewById(R.id.radioGroupVolunteer);
         editTextVolunteer = view.findViewById(R.id.editTextVolunteer);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 8", " " + fragmentDataList);
         return view;
     }
 
@@ -45,15 +51,14 @@ public class SeekingEightFragment extends Fragment {
         String volunteerSelection = getVolunteerSelection();
         String volunteer = getVolunteer();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingNineFragment.class);
-        intent.putExtra("otherOffer", otherOffer);
-        intent.putExtra("importantNote", importantNote);
-        intent.putExtra("volunteerSelection", volunteerSelection);
-        intent.putExtra("volunteer", volunteer);
-
-        // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getOtherOffer());
+            fragmentDataList.add(getImportantNote());
+            fragmentDataList.add(getVolunteerSelection());
+            fragmentDataList.add(getVolunteer());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

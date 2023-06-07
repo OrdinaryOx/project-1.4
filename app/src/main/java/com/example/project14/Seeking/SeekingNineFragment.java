@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.RadioGroup;
 
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 public class SeekingNineFragment extends Fragment {
     private EditText editTextBelief;
@@ -32,20 +35,21 @@ public class SeekingNineFragment extends Fragment {
         editTextBelief = view.findViewById(R.id.editTextBelief);
         editTextOther = view.findViewById(R.id.editTextOther);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 9", " " + fragmentDataList);
         return view;
     }
 
     public void saveData() {
-        String belief = getBelief();
-        String other = getOther();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingTenFragment.class);
-        intent.putExtra("belief", belief);
-        intent.putExtra("other", other);
 
-        // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getBelief());
+            fragmentDataList.add(getOther());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

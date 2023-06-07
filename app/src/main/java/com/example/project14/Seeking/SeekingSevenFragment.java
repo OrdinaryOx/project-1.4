@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.RadioGroup;
 
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 public class SeekingSevenFragment extends Fragment {
     private EditText editTextYourself;
@@ -36,24 +39,21 @@ public class SeekingSevenFragment extends Fragment {
         editTextRoom = view.findViewById(R.id.editTextRoom);
         editTextMean = view.findViewById(R.id.editTextMean);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 7", " " + fragmentDataList);
         return view;
     }
 
     public void saveData() {
-        String yourself = getYourself();
-        String keyword = getKeyword();
-        String room = getRoom();
-        String mean = getMean();
-
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingEightFragment.class);
-        intent.putExtra("yourself", yourself);
-        intent.putExtra("keyword", keyword);
-        intent.putExtra("room", room);
-        intent.putExtra("mean", mean);
-
-        // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getYourself());
+            fragmentDataList.add(getKeyword());
+            fragmentDataList.add(getRoom());
+            fragmentDataList.add(getMean());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

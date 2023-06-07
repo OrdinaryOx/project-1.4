@@ -16,6 +16,7 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.io.Console;
+import java.util.ArrayList;
 
 public class SeekingTwoFragment extends Fragment {
     private EditText editTextAddress;
@@ -25,6 +26,15 @@ public class SeekingTwoFragment extends Fragment {
     private EditText editTextPhoneNumber;
     private EditText editTextBirthDate;
 
+    private Bundle bundleFragmentOne;
+    private String salutation;
+    private String firstName;
+    private String infix;
+    private String lastName;
+    private String password;
+    private String passwordAgain;
+    private int test = 0;
+
     public SeekingTwoFragment() {
         // Required empty public constructor
     }
@@ -33,8 +43,13 @@ public class SeekingTwoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seeking_two, container, false);
 
-        // Initialize the EditText views
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 2", " " + fragmentDataList);
+
+
+        // Initialize the EditText views
         editTextAddress = view.findViewById(R.id.editTextAddress);
         editTextCity = view.findViewById(R.id.editTextCity);
         editTextPostalCode = view.findViewById(R.id.editTextPostalCode);
@@ -43,39 +58,20 @@ public class SeekingTwoFragment extends Fragment {
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
 
 
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            String salutation = arguments.getString("salutation");
-            String firstName = arguments.getString("firstName");
-            String infix = arguments.getString("infix");
-            String lastName = arguments.getString("lastName");
-            String password = arguments.getString("password");
-            String passwordAgain = arguments.getString("passwordAgain");
-        }
-
         return view;
     }
 
     public void saveData() {
-        String address = getAddress();
-        String city = getCity();
-        String postalCode = getPostalCode();
-        String country = getCountry();
-        String phoneNumber = getPhoneNumber();
-        String birthDate = getBirthDate();
-
-        // Create an intent and add the data as extras
-
-        Intent intent = new Intent(getContext(), SeekingThreeFragment.class);
-        intent.putExtra("address", address);
-        intent.putExtra("city", city);
-        intent.putExtra("postalCode", postalCode);
-        intent.putExtra("country", country);
-        intent.putExtra("phoneNumber", phoneNumber);
-        intent.putExtra("birthDate", birthDate);
-        // Pass the intent to the next fragment
-        //passDataToNextFragment(intent);
-
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getAddress());
+            fragmentDataList.add(getCity());
+            fragmentDataList.add(getPostalCode());
+            fragmentDataList.add(getCountry());
+            fragmentDataList.add(getPhoneNumber());
+            fragmentDataList.add(getBirthDate());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

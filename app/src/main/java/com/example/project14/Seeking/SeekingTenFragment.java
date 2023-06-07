@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import android.widget.TextView;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
-public class SeekingTenFragment extends Fragment {
+import java.util.ArrayList;
 
+public class SeekingTenFragment extends Fragment {
+//TODO: ADD OPSTUREN METHOD INSTEAD OF SAVEDATA
     private CheckBox checkBoxTruth;
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
@@ -39,6 +42,9 @@ public class SeekingTenFragment extends Fragment {
         checkBoxTerms = view.findViewById(R.id.checkBoxTerms);
         editTextComment = view.findViewById(R.id.editTextComment);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 10", " " + fragmentDataList);
         return view;
     }
 

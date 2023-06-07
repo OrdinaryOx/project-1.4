@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 
 public class SeekingSixFragment extends Fragment {
@@ -44,31 +47,39 @@ public class SeekingSixFragment extends Fragment {
         radioGroupHealth = view.findViewById(R.id.radioGroupHealth);
         editTextHealth = view.findViewById(R.id.editTextHealth);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 6", " " + fragmentDataList);
+
         return view;
     }
 
     public void saveData() {
-        boolean ehboSelected = isEhboSelected();
-        boolean bhvSelected = isBhvSelected();
-        boolean reanimationSelected = isReanimationSelected();
-        String seekingWork = getSeekingWork();
-        String work = getWork();
-        String health = getHealth();
-        String healthInfo = getHealthInfo();
+        int EHBO = 0;
+        int BHV = 0;
+        int Reanimation = 0;
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingSevenFragment.class);
-        intent.putExtra("ehboSelected", ehboSelected);
-        intent.putExtra("bhvSelected", bhvSelected);
-        intent.putExtra("reanimationSelected", reanimationSelected);
-        intent.putExtra("seekingWork", seekingWork);
-        intent.putExtra("work", work);
-        intent.putExtra("health", health);
-        intent.putExtra("healthInfo", healthInfo);
+        if (isEhboSelected()) {
+            EHBO = 1;
+        }
+        if (isBhvSelected()) {
+            BHV = 1;
+        }
+        if (isReanimationSelected()) {
+            Reanimation = 1;
+        }
 
-        // Pass the intent to the next fragment
-      //  passDataToNextFragment(intent);
-
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(" " + EHBO);
+            fragmentDataList.add(" " + BHV);
+            fragmentDataList.add(" " + Reanimation);
+            fragmentDataList.add(getSeekingWork());
+            fragmentDataList.add(getWork());
+            fragmentDataList.add(getHealth());
+            fragmentDataList.add(getHealthInfo());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

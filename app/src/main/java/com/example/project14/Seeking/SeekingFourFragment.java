@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 public class SeekingFourFragment extends Fragment {
     private Spinner spinnerDay;
@@ -37,26 +40,27 @@ public class SeekingFourFragment extends Fragment {
         radioGroupSelfPets = view.findViewById(R.id.radioGroupSelfPets);
         editTextPets = view.findViewById(R.id.editTextPets);
 
+
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 4", " " + fragmentDataList);
+
+
+
         return view;
     }
 
-    public void saveData() {
-        String day = getDay();
-        String pets = getPets();
-        String selfPets = getSelfPets();
-        String petsComment = getPetsComment();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingFiveFragment.class);
-        intent.putExtra("day", day);
-        intent.putExtra("pets", pets);
-        intent.putExtra("selfPets", selfPets);
-        intent.putExtra("petsComment", petsComment);
-
-        // Pass the intent to the next fragment
-       // passDataToNextFragment(intent);
-    }
-
+        public void saveData() {
+            User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+            if (activity != null) {
+                ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+                fragmentDataList.add(getDay());
+                fragmentDataList.add(getPets());
+                fragmentDataList.add(getSelfPets());
+                fragmentDataList.add(getPetsComment());
+            }
+        }
     public void passDataToNextFragment(Bundle data) {
         if (getActivity() instanceof User_Seeking_Form) {
             ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);

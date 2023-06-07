@@ -17,6 +17,8 @@ import com.example.project14.Provider.ProviderTwoFragment;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
+import java.util.ArrayList;
+
 public class SeekingOneFragment extends Fragment {
 
     private Spinner spinnerSalutation;
@@ -47,23 +49,20 @@ public class SeekingOneFragment extends Fragment {
     }
 
     public void saveData() {
-        Bundle data = new Bundle();
-        data.putString("salutation", getSalutation());
-        data.putString("firstName", getFirstName());
-        data.putString("infix", getInfix());
-        data.putString("lastName", getLastName());
-        data.putString("password", getPassword());
-        data.putString("passwordAgain", getPasswordAgain());
-
-        // Pass the data bundle to the next fragment
-        passDataToNextFragment(data);
-    }
-
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Seeking_Form) {
-            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getSalutation());
+            fragmentDataList.add(getFirstName());
+            fragmentDataList.add(getInfix());
+            fragmentDataList.add(getLastName());
+            fragmentDataList.add(getPassword());
+            fragmentDataList.add(getPasswordAgain());
         }
+        // Pass the data bundle to the next fragment
     }
+
+
 
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getSalutation()) &&

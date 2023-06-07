@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
+
+import java.util.ArrayList;
 
 
 public class SeekingThreeFragment extends Fragment {
@@ -39,24 +42,40 @@ public class SeekingThreeFragment extends Fragment {
         editTextBudget = view.findViewById(R.id.editTextBudget);
         spinnerMonth = view.findViewById(R.id.spinnerMonth);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 3", " " + fragmentDataList);
+
+
+//        Bundle arguments = getArguments();
+//        Log.d("TAG", arguments.toString());
+
         return view;
     }
 
     public void saveData() {
-        String city = getCity();
-        String preference = getPreference();
-        String budget = getBudget();
-        String month = getMonth();;
+//        String city = getCity();
+//        String preference = getPreference();
+//        String budget = getBudget();
+//        String month = getMonth();;
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingFourFragment.class);
-        intent.putExtra("city", city);
-        intent.putExtra("preference", preference);
-        intent.putExtra("budget", budget);
-        intent.putExtra("month", month);
+//        // Create an intent and add the data as extras
+//        Intent intent = new Intent(getContext(), SeekingFourFragment.class);
+//        intent.putExtra("city", city);
+//        intent.putExtra("preference", preference);
+//        intent.putExtra("budget", budget);
+//        intent.putExtra("month", month);
 
         // Pass the intent to the next fragment
-      //  passDataToNextFragment(intent);
+     //   passDataToNextFragment(intent);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.add(getCity());
+            fragmentDataList.add(getPreference());
+            fragmentDataList.add(getBudget());
+            fragmentDataList.add(getMonth());
+        }
     }
 
     public void passDataToNextFragment(Bundle data) {

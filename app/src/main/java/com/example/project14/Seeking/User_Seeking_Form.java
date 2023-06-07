@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import com.example.project14.R;
 
+import java.util.ArrayList;
+
 public class User_Seeking_Form extends AppCompatActivity {
 
+
+    private ArrayList<String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
     private Class<?>[] fragmentClasses = {
@@ -34,6 +38,8 @@ public class User_Seeking_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_seeking_form);
+
+        fragmentDataList = new ArrayList<>();
 
         fragmentManager = getSupportFragmentManager();
 
@@ -89,45 +95,67 @@ public class User_Seeking_Form extends AppCompatActivity {
 
         if (currentFragment instanceof SeekingOneFragment) {
             SeekingOneFragment fragment = (SeekingOneFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingTwoFragment) {
             SeekingTwoFragment fragment = (SeekingTwoFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingThreeFragment) {
             SeekingThreeFragment fragment = (SeekingThreeFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingFourFragment) {
             SeekingFourFragment fragment = (SeekingFourFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingFiveFragment) {
             SeekingFiveFragment fragment = (SeekingFiveFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingSixFragment) {
             SeekingSixFragment fragment = (SeekingSixFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingSevenFragment) {
             SeekingSevenFragment fragment = (SeekingSevenFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingEightFragment) {
             SeekingEightFragment fragment = (SeekingEightFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingNineFragment) {
             SeekingNineFragment fragment = (SeekingNineFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingTenFragment) {
             SeekingTenFragment fragment = (SeekingTenFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()){
+                fragment.saveData();
+            };
             return fragment.isDataValid();
         }
+
+
 
         return true; // Default case: allow proceeding if fragment type is unknown
     }
@@ -151,5 +179,11 @@ public class User_Seeking_Form extends AppCompatActivity {
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
+    }
+
+
+
+    public ArrayList<String> getFragmentDataList() {
+        return fragmentDataList;
     }
 }
