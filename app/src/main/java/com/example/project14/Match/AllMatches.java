@@ -23,6 +23,7 @@ import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
+import com.google.android.material.slider.Slider;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -181,6 +182,18 @@ public class AllMatches extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+
+
+        //SLIDER
+        Slider slider = findViewById(R.id.slider);
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(Slider slider, float value, boolean fromUser) {
+                // Handle value change event
+                // Update your UI or perform any actions based on the new value
             }
         });
     }
