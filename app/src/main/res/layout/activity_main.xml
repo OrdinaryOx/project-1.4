@@ -14,20 +14,21 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="800px"
+        android:layout_height="860px"
         android:layout_below="@id/toolbar"
-        android:paddingTop="20px"
-        android:src="@drawable/homescreen_image" />
+        android:src="@drawable/homescreen_smaller"
+        />
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_below="@id/image"
-        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#8acda1"
         android:elevation="8dp"
-        android:translationY="10dp"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
