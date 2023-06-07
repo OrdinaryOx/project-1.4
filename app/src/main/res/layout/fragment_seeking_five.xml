@@ -23,6 +23,7 @@
 
     <TextView
         android:id="@+id/textView17"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -37,30 +38,33 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Gewenste einddatum:"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartDate" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Wat is de reden dat je een woonruimte zoekt?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerBirthdate2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Vanaf:"
@@ -75,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:textStyle="bold"
         android:text="Tot:"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -82,30 +87,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextStartDate"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:calendarViewShown="false"
-        android:hint=" DD-MM-JJJJ"
+        android:hint="  DD-MM-JJJJ"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/datePickerBirthdate2"
+        android:id="@+id/editTextEndDate"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:calendarViewShown="false"
-        android:hint=" DD-MM-JJJJ"
+        android:hint="  DD-MM-JJJJ"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -118,7 +123,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white"
+        android:background="@drawable/combined_spinner_drawable"
         android:entries="@array/reason_options"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,8 +134,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Welke opleiding/ diploma's heb je afgerond?"
+        android:text="Welke opleiding/diploma's heb je afgerond?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,39 +148,67 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Welke opleiding volg je nu/ ga je volgen?"
+        android:textStyle="bold"
+        android:text="Welke opleiding volg je nu/ga je volgen?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFound" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextGrade" />
 
     <EditText
-        android:id="@+id/editTextFound"
+        android:id="@+id/editTextGrade"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Middelbare school"
+        android:background="@drawable/border"
+        android:hint="  Middelbare school"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <EditText
-        android:id="@+id/editTextPets3"
+        android:id="@+id/editTextCourse"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" HBO Informatica"
+        android:background="@drawable/border"
+        android:hint="  HBO Informatica"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView21"
+        app:layout_constraintLeft_toRightOf="@id/textView21" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView23"
+        app:layout_constraintLeft_toRightOf="@id/textView23" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,10 +25,11 @@
         android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Schets een beeld over je zelf en geef toelichting over je thuissituatie/ gezinssituatie;"
+        android:text="Schets een beeld over je zelf en geef toelichting over je thuissituatie/gezinssituatie:"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,27 +40,29 @@
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Omschrijf jezelf in enkele steekwoorden"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOffer" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextYourself" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Hoe ziet jouw ideale kamer/ woonplek/ woonsituatie eruit?"
+        android:text="Hoe ziet jouw ideale kamer/woonplek/woonsituatie eruit?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescribe" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextKeyword" />
 
     <TextView
         android:id="@+id/textView30"
@@ -68,23 +71,24 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:textStyle="bold"
         android:text="Wat zou jij willen betekenen voor je woongenoot (koppel)?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSituation3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRoom" />
 
     <EditText
-        android:id="@+id/editTextOffer"
+        android:id="@+id/editTextYourself"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,13 +96,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <EditText
-        android:id="@+id/editTextSituation3"
+        android:id="@+id/editTextRoom"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:hint=" Bijvoorbeeld: een slaapkamer waar ik kan leren"
         android:gravity="top|left"
         android:textSize="16sp"
@@ -108,14 +112,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <EditText
-        android:id="@+id/editTextSituation4"
+        android:id="@+id/editTextMean"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: klusjes doen"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: klusjes doen"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,19 +127,58 @@
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <EditText
-        android:id="@+id/editTextDescribe"
+        android:id="@+id/editTextKeyword"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: slim, grappig"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: slim, grappig"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17"
+        android:translationY="20dp"
+        android:translationX="-125dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        android:translationY="20dp"
+        android:translationX="-338dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView29"
+        app:layout_constraintLeft_toRightOf="@id/textView29" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView28"
+        app:layout_constraintLeft_toRightOf="@id/textView28" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView30"
+        app:layout_constraintLeft_toRightOf="@id/textView30"
+        android:translationY="20dp"
+        android:translationX="-311dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

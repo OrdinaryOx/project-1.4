@@ -6,111 +6,82 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project14.ActivitiesScreen;
 import com.example.project14.R;
+import com.example.project14.Seeking.SeekingTwoFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProviderNineFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class ProviderNineFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private CheckBox checkBoxTruth;
+    private CheckBox checkBoxPermission;
+    private CheckBox checkBoxTerms;
+    private EditText editTextComment;
 
     public ProviderNineFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProviderNineFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProviderNineFragment newInstance(String param1, String param2) {
-        ProviderNineFragment fragment = new ProviderNineFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_provider_nine, container, false);
+
+        // Initialize the EditText views
+        checkBoxTruth = view.findViewById(R.id.checkBoxTruth);
+        checkBoxPermission = view.findViewById(R.id.checkBoxPermission);
+        checkBoxTerms = view.findViewById(R.id.checkBoxTerms);
+        editTextComment = view.findViewById(R.id.editTextComment);
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void saveData() {
+        boolean truthChecked = isTruthChecked();
+        boolean permissionChecked = isPermissionChecked();
+        boolean termsChecked = isTermsChecked();
+        String comment = getComment();
+
+
+    }
+
+
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_provider_nine, container, false);
-
-
-
-
-
-        // Set click listener for the button
-        Button button = rootView.findViewById(R.id.opsturenButtonProvider);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle button click event
-                Intent intent = new Intent(getActivity(), ActivitiesScreen.class);
-                startActivity(intent);
-            }
-        });
-
-
-        TextView textViewTerms = rootView.findViewById(R.id.textViewTerms);
-        textViewTerms.setText("Klik hier voor de algemene voorwaarden");
-        textViewTerms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://mijnwoongenoot.nl/info-algemenevoorwaarden/";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
-        TextView textViewCookies = rootView.findViewById(R.id.textViewCookies);
-        textViewCookies.setText("Klik hier voor de cookieverklaring");
-        textViewCookies.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://mijnwoongenoot.nl/privacy/";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
-
-
-        return rootView;
-
+    public boolean isDataValid() {
+        return isTruthChecked() &&
+                isPermissionChecked() &&
+                isTermsChecked() &&
+                !TextUtils.isEmpty(getComment());
     }
+
+    public boolean isTruthChecked() {
+        return checkBoxTruth.isChecked();
+    }
+
+    public boolean isPermissionChecked() {
+        return checkBoxPermission.isChecked();
+    }
+
+    public boolean isTermsChecked() {
+        return checkBoxTerms.isChecked();
+    }
+
+    public String getComment() {
+        return editTextComment.getText().toString();
+    }
+
 }

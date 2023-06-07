@@ -1,66 +1,131 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.project14.R;
+import com.example.project14.Seeking.User_Seeking_Form;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProviderTwoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProviderTwoFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText editTextAddress;
+    private EditText editTextCity;
+    private EditText editTextPostalCode;
+    private EditText editTextCountry;
+    private EditText editTextPhoneNumber;
+    private EditText editTextBirthDate;
 
     public ProviderTwoFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProviderTwoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProviderTwoFragment newInstance(String param1, String param2) {
-        ProviderTwoFragment fragment = new ProviderTwoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_provider_two, container, false);
+
+        // Initialize the EditText views
+
+        editTextAddress = view.findViewById(R.id.editTextAddress);
+        editTextCity = view.findViewById(R.id.editTextCity);
+        editTextPostalCode = view.findViewById(R.id.editTextPostalCode);
+        editTextCountry = view.findViewById(R.id.editTextCountry);
+        editTextPhoneNumber = view.findViewById(R.id.editTextPhoneNumber);
+        editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Address")) {
+                String address = fragmentDataList.get("Address");
+                editTextAddress.setText(address);
+            }
+            if (fragmentDataList.containsKey("CityPersonal")) {
+                String city = fragmentDataList.get("CityPersonal");
+                editTextCity.setText(city);
+            }
+            if (fragmentDataList.containsKey("PostalCode")) {
+                String postalCode = fragmentDataList.get("PostalCode");
+                editTextPostalCode.setText(postalCode);
+            }
+            if (fragmentDataList.containsKey("Country")) {
+                String country = fragmentDataList.get("Country");
+                editTextCountry.setText(country);
+            }
+            if (fragmentDataList.containsKey("PhoneNumber")) {
+                String phoneNumber = fragmentDataList.get("PhoneNumber");
+                editTextPhoneNumber.setText(phoneNumber);
+            }
+            if (fragmentDataList.containsKey("BirthDate")) {
+                String birthDate = fragmentDataList.get("BirthDate");
+                editTextBirthDate.setText(birthDate);
+            }
+        }
+
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void saveData() {
+        String address = getAddress();
+        String city = getCity();
+        String postalCode = getPostalCode();
+        String country = getCountry();
+        String phoneNumber = getPhoneNumber();
+        String birthDate = getBirthDate();
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Address", getAddress());
+            fragmentDataList.put("CityPersonal", getCity());
+            fragmentDataList.put("PostalCode", getPostalCode());
+            fragmentDataList.put("Country", getCountry());
+            fragmentDataList.put("PhoneNumber", getPhoneNumber());
+            fragmentDataList.put("BirthDate", getBirthDate());
+
+        }
+
+        // Pass the intent to the next fragment
+     //   passDataToNextFragment(intent);
+    }
+
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_provider_two, container, false);
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getAddress()) &&
+                !TextUtils.isEmpty(getCity()) &&
+                !TextUtils.isEmpty(getPostalCode()) &&
+                !TextUtils.isEmpty(getCountry()) &&
+                !TextUtils.isEmpty(getPhoneNumber()) &&
+                !TextUtils.isEmpty(getBirthDate());
     }
+
+    public String getAddress() { return editTextAddress.getText().toString();}
+
+    public String getCity() { return editTextCity.getText().toString();}
+
+    public String getPostalCode() { return editTextPostalCode.getText().toString();}
+
+    public String getCountry() { return editTextCountry.getText().toString();}
+
+    public String getPhoneNumber() {return editTextPhoneNumber.getText().toString();}
+
+    public String getBirthDate() {return editTextBirthDate.getText().toString();}
+
 }

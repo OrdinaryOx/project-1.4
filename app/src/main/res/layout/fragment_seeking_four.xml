@@ -25,8 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Voorkeur aan huisdieren?"
+        android:text="Vind je het erg als de verhuurder huisdieren heeft?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
+        android:textStyle="bold"
         android:text="Hoeveel nacht(en) zou je in de week blijven?"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -50,24 +52,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Neem je zelf huisdieren mee? "
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_pets" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupPets" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Zo ja, welke?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_self_pets" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupSelfPets" />
 
 
     <Spinner
@@ -77,7 +81,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
+        android:background="@drawable/combined_spinner_drawable"
         android:entries="@array/day_options"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <RadioGroup
-        android:id="@+id/radio_group_pets"
+        android:id="@+id/radioGroupPets"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -101,8 +105,8 @@
             android:id="@+id/radio_button_preference_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
-            android:text="Wel"
+            android:background="@drawable/border"
+            android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -110,8 +114,8 @@
             android:id="@+id/radio_button_preference_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
-            android:text="Niet"
+            android:background="@drawable/border"
+            android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -119,7 +123,7 @@
 
 
     <RadioGroup
-        android:id="@+id/radio_group_self_pets"
+        android:id="@+id/radioGroupSelfPets"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -134,7 +138,7 @@
             android:id="@+id/radio_button_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -143,7 +147,7 @@
             android:id="@+id/radio_button_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -151,18 +155,45 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextFound"
+        android:id="@+id/editTextPets"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: een kat"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: een kat"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView12"
+        app:layout_constraintLeft_toRightOf="@id/textView12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView19"
+        app:layout_constraintLeft_toRightOf="@id/textView19" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
