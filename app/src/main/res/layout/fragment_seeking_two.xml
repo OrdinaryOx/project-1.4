@@ -81,7 +81,7 @@
 
     <EditText
         android:id="@+id/editTextPostalCode"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -93,6 +93,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/editTextHouseNumber"
+        android:layout_width="160dp"
+        android:hint="  Huisnummer"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@id/editTextPostalCode"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        android:background="@drawable/border"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        />
 
     <EditText
         android:id="@+id/editTextCountry"
@@ -128,14 +141,14 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:text="Adres:"
+        android:layout_marginTop="16dp"
+        android:text="Straat:"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPostalCode" />
 
     <TextView
         android:id="@+id/textView2"
@@ -153,28 +166,42 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Postcode:"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/textViewHuisNummer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/editTextPostalCode"
+        android:text="Huisnummer:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
         android:text="Land:"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPostalCode" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
 
     <TextView
         android:id="@+id/textView26"
@@ -190,6 +217,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" />
 
     <TextView
+        android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" *"
@@ -241,6 +269,17 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView26"
         app:layout_constraintLeft_toRightOf="@id/textView26" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textViewHuisNummer"
+        app:layout_constraintLeft_toRightOf="@id/textViewHuisNummer" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
