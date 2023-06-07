@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.project14.ActivitiesScreen;
 import com.example.project14.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
@@ -247,7 +249,9 @@ public class User_Seeking_Form extends AppCompatActivity {
     }
 
     public void opsturen(View view) {
+        Intent intent = new Intent(this, ActivitiesScreen.class);
         Log.d("SIZE", " " + fragmentDataList.size());
         Log.d("TO BE SENT", fragmentDataList.toString());
+        startActivity(intent);
     }
 }

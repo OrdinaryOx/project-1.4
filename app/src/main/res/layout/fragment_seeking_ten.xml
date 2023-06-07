@@ -131,17 +131,7 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTerms" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opsturen"
-        android:onClick="opsturen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComment"
-        android:backgroundTint="@color/MWG_Dark"
-        />
+
 
     <Button
         android:id="@+id/opsturenButton"
@@ -149,6 +139,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/MWG_Dark"
         android:text="Opsturen"
+        android:onClick="opsturen"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
