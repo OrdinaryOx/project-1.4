@@ -1,9 +1,11 @@
 package com.example.project14.Seeking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 public class SeekingFourFragment extends Fragment {
@@ -38,12 +41,33 @@ public class SeekingFourFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String day = getDay();
         String pets = getPets();
         String selfPets = getSelfPets();
         String petsComment = getPetsComment();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), SeekingFiveFragment.class);
+        intent.putExtra("day", day);
+        intent.putExtra("pets", pets);
+        intent.putExtra("selfPets", selfPets);
+        intent.putExtra("petsComment", petsComment);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getDay()) &&
+                !TextUtils.isEmpty(getPets()) &&
+                !TextUtils.isEmpty(getSelfPets()) &&
+                !TextUtils.isEmpty(getPetsComment());
     }
 
     public String getDay() {

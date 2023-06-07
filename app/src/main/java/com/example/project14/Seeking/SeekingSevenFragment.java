@@ -1,9 +1,11 @@
 package com.example.project14.Seeking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 public class SeekingSevenFragment extends Fragment {
@@ -37,14 +40,34 @@ public class SeekingSevenFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String yourself = getYourself();
         String keyword = getKeyword();
         String room = getRoom();
         String mean = getMean();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), SeekingEightFragment.class);
+        intent.putExtra("yourself", yourself);
+        intent.putExtra("keyword", keyword);
+        intent.putExtra("room", room);
+        intent.putExtra("mean", mean);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
     }
 
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getYourself()) &&
+                !TextUtils.isEmpty(getKeyword()) &&
+                !TextUtils.isEmpty(getRoom()) &&
+                !TextUtils.isEmpty(getMean());
+    }
 
     public String getYourself() {
         return editTextYourself.getText().toString();

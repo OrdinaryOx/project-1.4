@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 public class SeekingTenFragment extends Fragment {
@@ -21,6 +23,7 @@ public class SeekingTenFragment extends Fragment {
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
     private EditText editTextComment;
+    private String test;
 
     public SeekingTenFragment() {
         // Required empty public constructor
@@ -40,12 +43,32 @@ public class SeekingTenFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         boolean truthChecked = isTruthChecked();
         boolean permissionChecked = isPermissionChecked();
         boolean termsChecked = isTermsChecked();
         String comment = getComment();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), SeekingTenFragment.class);
+        intent.putExtra("truthChecked", truthChecked);
+        intent.putExtra("permissionChecked", permissionChecked);
+        intent.putExtra("termsChecked", termsChecked);
+        intent.putExtra("comment", comment);
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return isTruthChecked() &&
+                isPermissionChecked() &&
+                isTermsChecked() &&
+                !TextUtils.isEmpty(getComment());
     }
 
     public boolean isTruthChecked() {

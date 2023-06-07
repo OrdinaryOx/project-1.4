@@ -1,9 +1,11 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +40,35 @@ public class ProviderSixFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String offer = getOffer();
         String importantNote = getImportantNote();
         String volunteer = getVolunteer();
         String commentVolunteer = getCommentVolunteer();
+
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderTwoFragment.class);
+        intent.putExtra("offer", offer);
+        intent.putExtra("importantNote", importantNote);
+        intent.putExtra("volunteer", volunteer);
+        intent.putExtra("commentVolunteer", commentVolunteer);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
     }
 
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getOffer()) &&
+                !TextUtils.isEmpty(getImportantNote()) &&
+                !TextUtils.isEmpty(getVolunteer()) &&
+                !TextUtils.isEmpty(getCommentVolunteer());
+    }
 
     public String getOffer() {
         return editTextOffer.getText().toString();

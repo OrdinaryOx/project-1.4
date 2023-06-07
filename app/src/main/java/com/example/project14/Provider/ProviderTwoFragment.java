@@ -1,9 +1,11 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,6 @@ public class ProviderTwoFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String address = getAddress();
         String city = getCity();
         String postalCode = getPostalCode();
@@ -50,6 +51,32 @@ public class ProviderTwoFragment extends Fragment {
         String phoneNumber = getPhoneNumber();
         String birthDate = getBirthDate();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderThreeFragment.class);
+        intent.putExtra("address", address);
+        intent.putExtra("city", city);
+        intent.putExtra("postalCode", postalCode);
+        intent.putExtra("country", country);
+        intent.putExtra("phoneNumber", phoneNumber);
+        intent.putExtra("birthDate", birthDate);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getAddress()) &&
+                !TextUtils.isEmpty(getCity()) &&
+                !TextUtils.isEmpty(getPostalCode()) &&
+                !TextUtils.isEmpty(getCountry()) &&
+                !TextUtils.isEmpty(getPhoneNumber()) &&
+                !TextUtils.isEmpty(getBirthDate());
     }
 
     public String getAddress() { return editTextAddress.getText().toString();}

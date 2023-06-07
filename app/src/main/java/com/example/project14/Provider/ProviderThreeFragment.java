@@ -1,9 +1,11 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +43,35 @@ public class ProviderThreeFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String situation = getSituation();
         String house = getHouse();
         String found = getFound();
         String providerMotivation = getProviderMotivation();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderFourFragment.class);
+        intent.putExtra("situation", situation);
+        intent.putExtra("house", house);
+        intent.putExtra("found", found);
+        intent.putExtra("providerMotivation", providerMotivation);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
     }
 
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getSituation()) &&
+                !TextUtils.isEmpty(getHouse()) &&
+                !TextUtils.isEmpty(getFound()) &&
+                !TextUtils.isEmpty(getProviderMotivation());
+    }
 
     public String getSituation() {
         return spinnerSituation.getSelectedItem().toString();

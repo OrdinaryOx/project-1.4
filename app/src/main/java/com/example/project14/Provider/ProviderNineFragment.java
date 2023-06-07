@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project14.R;
+import com.example.project14.Seeking.SeekingTwoFragment;
 
 
 public class ProviderNineFragment extends Fragment {
@@ -41,12 +43,34 @@ public class ProviderNineFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         boolean truthChecked = isTruthChecked();
         boolean permissionChecked = isPermissionChecked();
         boolean termsChecked = isTermsChecked();
         String comment = getComment();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderNineFragment.class);
+        intent.putExtra("truthChecked", truthChecked);
+        intent.putExtra("permissionChecked", permissionChecked);
+        intent.putExtra("termsChecked", termsChecked);
+        intent.putExtra("comment", comment);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return isTruthChecked() &&
+                isPermissionChecked() &&
+                isTermsChecked() &&
+                !TextUtils.isEmpty(getComment());
     }
 
     public boolean isTruthChecked() {

@@ -68,6 +68,11 @@ public class ProviderOneFragment extends Fragment {
         // Pass the intent to the next fragment
         passDataToNextFragment(intent);
     }
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
 
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getSalutation()) &&

@@ -1,9 +1,11 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,10 +39,31 @@ public class ProviderFourFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String providerMonth = getProviderMonth();
         String providerDays = getProviderDays();
         String typeRoom = getTypeRoom();
+
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderFiveFragment.class);
+        intent.putExtra("providerMonth", providerMonth);
+        intent.putExtra("providerDays", providerDays);
+        intent.putExtra("typeRoom", typeRoom);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getProviderMonth()) &&
+                !TextUtils.isEmpty(getProviderDays()) &&
+                !TextUtils.isEmpty(getTypeRoom());
     }
 
     public String getProviderMonth() {

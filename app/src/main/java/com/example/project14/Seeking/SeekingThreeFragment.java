@@ -1,9 +1,11 @@
 package com.example.project14.Seeking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 
@@ -38,13 +41,36 @@ public class SeekingThreeFragment extends Fragment {
 
         return view;
     }
+
     public void saveData() {
-        // Get the data from the fragment
         String city = getCity();
         String preference = getPreference();
         String budget = getBudget();
-        String month = getMonth();
+        String month = getMonth();;
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), SeekingFourFragment.class);
+        intent.putExtra("city", city);
+        intent.putExtra("preference", preference);
+        intent.putExtra("budget", budget);
+        intent.putExtra("month", month);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+    }
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getCity()) &&
+                !TextUtils.isEmpty(getCity()) &&
+                !TextUtils.isEmpty(getPreference()) &&
+                !TextUtils.isEmpty(getBudget()) &&
+                !TextUtils.isEmpty(getMonth());
     }
 
     public String getCity() {

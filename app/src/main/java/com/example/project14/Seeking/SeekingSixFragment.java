@@ -1,9 +1,11 @@
 package com.example.project14.Seeking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 
@@ -45,7 +48,6 @@ public class SeekingSixFragment extends Fragment {
     }
 
     public void saveData() {
-        // Get the data from the fragment
         boolean ehboSelected = isEhboSelected();
         boolean bhvSelected = isBhvSelected();
         boolean reanimationSelected = isReanimationSelected();
@@ -54,6 +56,35 @@ public class SeekingSixFragment extends Fragment {
         String health = getHealth();
         String healthInfo = getHealthInfo();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), SeekingSevenFragment.class);
+        intent.putExtra("ehboSelected", ehboSelected);
+        intent.putExtra("bhvSelected", bhvSelected);
+        intent.putExtra("reanimationSelected", reanimationSelected);
+        intent.putExtra("seekingWork", seekingWork);
+        intent.putExtra("work", work);
+        intent.putExtra("health", health);
+        intent.putExtra("healthInfo", healthInfo);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
+
+    }
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return isEhboSelected() &&
+                isBhvSelected() &&
+                isReanimationSelected() &&
+                !TextUtils.isEmpty(getSeekingWork()) &&
+                !TextUtils.isEmpty(getWork()) &&
+                !TextUtils.isEmpty(getHealth()) &&
+                !TextUtils.isEmpty(getHealthInfo());
     }
 
     public boolean isEhboSelected() {

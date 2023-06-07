@@ -1,9 +1,11 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,14 +40,35 @@ private EditText editTextPrice;
     }
 
     public void saveData() {
-        // Get the data from the fragment
         String squareMeter = getSquareMeter();
         String furnish = getFurnish();
         String furnished = getFurnished();
         String price = getPrice();
 
+        // Create an intent and add the data as extras
+        Intent intent = new Intent(getContext(), ProviderSixFragment.class);
+        intent.putExtra("squareMeter", squareMeter);
+        intent.putExtra("furnish", furnish);
+        intent.putExtra("furnished", furnished);
+        intent.putExtra("price", price);
+
+        // Pass the intent to the next fragment
+        passDataToNextFragment(intent);
     }
 
+
+    public void passDataToNextFragment(Intent intent) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+        }
+    }
+
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getSquareMeter()) &&
+                !TextUtils.isEmpty(getFurnish()) &&
+                !TextUtils.isEmpty(getFurnished()) &&
+                !TextUtils.isEmpty(getPrice());
+    }
 
     public String getSquareMeter() {
         return editTextSquareMeter.getText().toString();
