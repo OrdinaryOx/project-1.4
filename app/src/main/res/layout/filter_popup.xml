@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="305dp"
+        android:layout_height="205dp"
+        android:backgroundTint="@color/black"
+        android:layout_centerHorizontal="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="300dp"
+                android:layout_margin="3dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+
+                android:backgroundTint="@color/MWG_Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/filter_close"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/black"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/close_icon" />
+
+                    <TextView
+                        android:id="@+id/popup_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="filter your matches here:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/city_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Plaats: "
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_below="@id/popup_title"/>
+                    <Spinner
+                        android:id="@+id/city_spinner"
+                        android:layout_below="@id/popup_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/city_tv"
+                        android:entries="@array/city_options"/>
+
+                    <TextView
+                        android:id="@+id/situatie_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Woonsituatie: "
+                        android:layout_below="@id/city_tv"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/living_options"
+                        android:layout_toRightOf="@id/situatie_tv"
+                        android:layout_below="@id/city_spinner"
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
