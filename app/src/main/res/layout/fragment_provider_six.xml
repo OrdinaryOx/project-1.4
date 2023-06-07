@@ -24,11 +24,12 @@
     <TextView
         android:id="@+id/textView17"
         android:layout_width="match_parent"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Wat zou een woongenoot voor jou kunnen betekenen/ doen?"
+        android:text="Wat zou een woongenoot voor jou kunnen betekenen/doen?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +39,7 @@
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -53,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="Heb je ervaring met vrijwilligerswerk?"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -64,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Zo ja, vertel hier kort over:"
         android:textColor="@color/black"
@@ -145,5 +149,37 @@
             android:textSize="16sp" />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17"
+        android:translationY="20dp"
+        android:translationX="-255dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView28"
+        app:layout_constraintLeft_toRightOf="@id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView29"
+        app:layout_constraintLeft_toRightOf="@id/textView29" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

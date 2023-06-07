@@ -42,7 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
-        android:text="In welke stad/ dorp zoek je een woonruimte?"
+        android:text="In welke stad/dorp zoek je een woonruimte?"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Wat is ongeveer je budget per maand"
         android:textColor="@color/black"
@@ -65,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Heeft u een voorkeur om te wonen bij?"
         android:textColor="@color/black"
@@ -147,10 +150,47 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="Hoe lang zou je bij voorkeur willen wonen?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBudget" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView7"
+        app:layout_constraintLeft_toRightOf="@id/textView7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView18"
+        app:layout_constraintLeft_toRightOf="@id/textView18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView"
+        app:layout_constraintLeft_toRightOf="@id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView16"
+        app:layout_constraintLeft_toRightOf="@id/textView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

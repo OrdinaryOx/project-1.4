@@ -25,6 +25,7 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:text="Heb je beschikking over:"
@@ -77,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Heb je werk?"
         android:textColor="@color/black"
@@ -119,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:layout_marginEnd="16dp"
         android:text="Zo ja, wat en hoeveel uur per week?"
         android:textColor="@color/black"
@@ -132,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="Zo ja, wat?"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -141,11 +145,12 @@
     <TextView
         android:id="@+id/textView24"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Zijn er gezondheidszaken van belang om te weten voor de matching?"
+        android:textStyle="bold"
+        android:text="Zijn er gezondheidszaken van belang om te weten?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -207,6 +212,34 @@
 
     </RadioGroup>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView15"
+        app:layout_constraintLeft_toRightOf="@id/textView15" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:translationX="-10dp"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView24"
+        app:layout_constraintLeft_toRightOf="@id/textView24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

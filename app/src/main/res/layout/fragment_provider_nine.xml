@@ -28,6 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Opmerkingen:"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

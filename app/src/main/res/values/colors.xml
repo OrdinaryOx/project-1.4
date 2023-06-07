@@ -17,6 +17,6 @@
 
     <color name="formBorder">#006430</color>
     <color name="grey">#808080</color>
-
+<color name="red">#9E0000</color>
 
 </resources>
