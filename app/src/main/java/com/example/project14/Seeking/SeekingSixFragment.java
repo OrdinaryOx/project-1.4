@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,16 +20,17 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SeekingSixFragment extends Fragment {
-   private RadioButton radioButtonEhbo;
-   private RadioButton radioButtonBhv;
-   private RadioButton radioButtonReanimation;
-   private RadioGroup radioGroupSeekingWork;
-   private EditText editTextWork;
-   private RadioGroup radioGroupHealth;
-   private EditText editTextHealth;
+    private CheckBox radioButtonEhbo;
+    private CheckBox radioButtonBhv;
+    private CheckBox radioButtonReanimation;
+    private RadioGroup radioGroupSeekingWork;
+    private EditText editTextWork;
+    private RadioGroup radioGroupHealth;
+    private EditText editTextHealth;
 
     public SeekingSixFragment() {
         // Required empty public constructor
@@ -47,10 +49,42 @@ public class SeekingSixFragment extends Fragment {
         radioGroupHealth = view.findViewById(R.id.radioGroupHealth);
         editTextHealth = view.findViewById(R.id.editTextHealth);
 
-        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 6", " " + fragmentDataList);
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 6", " " + fragmentDataList);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("EHBO")) {
+                int ehbo = Integer.parseInt(fragmentDataList.get("EHBO"));
+                radioButtonEhbo.setChecked(ehbo == 1);
+            }
+            if (fragmentDataList.containsKey("BHV")) {
+                int bhv = Integer.parseInt(fragmentDataList.get("BHV"));
+                radioButtonBhv.setChecked(bhv == 1);
+            }
+            if (fragmentDataList.containsKey("Reanimation")) {
+                int reanimation = Integer.parseInt(fragmentDataList.get("Reanimation"));
+                radioButtonReanimation.setChecked(reanimation == 1);
+            }
+            if (fragmentDataList.containsKey("SeekingWork")) {
+                String seekingWork = fragmentDataList.get("SeekingWork");
+                setSeekingWork(seekingWork);
+            }
+            if (fragmentDataList.containsKey("Work")) {
+                String work = fragmentDataList.get("Work");
+                editTextWork.setText(work);
+            }
+            if (fragmentDataList.containsKey("Health")) {
+                String health = fragmentDataList.get("Health");
+                setHealth(health);
+            }
+            if (fragmentDataList.containsKey("HealthInfo")) {
+                String healthInfo = fragmentDataList.get("HealthInfo");
+                editTextHealth.setText(healthInfo);
+            }
+        }
         return view;
     }
 
@@ -71,14 +105,14 @@ public class SeekingSixFragment extends Fragment {
 
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(" " + EHBO);
-            fragmentDataList.add(" " + BHV);
-            fragmentDataList.add(" " + Reanimation);
-            fragmentDataList.add(getSeekingWork());
-            fragmentDataList.add(getWork());
-            fragmentDataList.add(getHealth());
-            fragmentDataList.add(getHealthInfo());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("EHBO", "" + EHBO);
+            fragmentDataList.put("BHV", "" + BHV);
+            fragmentDataList.put("Reanimation", "" + Reanimation);
+            fragmentDataList.put("SeekingWork", getSeekingWork());
+            fragmentDataList.put("Work", getWork());
+            fragmentDataList.put("Health", getHealth());
+            fragmentDataList.put("HealthInfo", getHealthInfo());
         }
     }
 
@@ -89,12 +123,8 @@ public class SeekingSixFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-        return isEhboSelected() &&
-                isBhvSelected() &&
-                isReanimationSelected() &&
+        return !TextUtils.isEmpty(getSeekingWork()) &&
                 !TextUtils.isEmpty(getSeekingWork()) &&
-                !TextUtils.isEmpty(getWork()) &&
-                !TextUtils.isEmpty(getHealth()) &&
                 !TextUtils.isEmpty(getHealthInfo());
     }
 
@@ -116,6 +146,16 @@ public class SeekingSixFragment extends Fragment {
         return radioButton.getText().toString();
     }
 
+    public void setSeekingWork(String seekingWork) {
+        if (seekingWork.equalsIgnoreCase("Ja")) {
+            radioGroupSeekingWork.check(R.id.radio_button_seeking_work_yes);
+        } else if (seekingWork.equalsIgnoreCase("Nee")) {
+            radioGroupSeekingWork.check(R.id.radio_button_seeking_work_no);
+
+        }
+    }
+
+
     public String getWork() {
         return editTextWork.getText().toString();
     }
@@ -125,7 +165,13 @@ public class SeekingSixFragment extends Fragment {
         RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
         return radioButton.getText().toString();
     }
-
+    public void setHealth(String health) {
+        if (health.equalsIgnoreCase("Ja")) {
+            radioGroupHealth.check(R.id.radio_button_health_yes);
+        } else if (health.equalsIgnoreCase("Nee")) {
+            radioGroupHealth.check(R.id.radio_button_health_no);
+        }
+    }
     public String getHealthInfo() {
         return editTextHealth.getText().toString();
     }

@@ -16,6 +16,9 @@ import android.widget.Spinner;
 
 import com.example.project14.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProviderSixFragment extends Fragment {
     private EditText editTextOffer;
     private EditText editTextImportantNote;
@@ -45,12 +48,16 @@ public class ProviderSixFragment extends Fragment {
         String volunteer = getVolunteer();
         String commentVolunteer = getCommentVolunteer();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderTwoFragment.class);
-        intent.putExtra("offer", offer);
-        intent.putExtra("importantNote", importantNote);
-        intent.putExtra("volunteer", volunteer);
-        intent.putExtra("commentVolunteer", commentVolunteer);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Offer", getOffer());
+            fragmentDataList.put("ImportantNote", getImportantNote());
+            fragmentDataList.put("Volunteer", getVolunteer());
+            fragmentDataList.put("CommentVolunteer", getCommentVolunteer());
+
+        }
+
 
         // Pass the intent to the next fragment
       //  passDataToNextFragment(intent);

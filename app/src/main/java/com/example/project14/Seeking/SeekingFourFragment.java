@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +20,7 @@ import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingFourFragment extends Fragment {
     private Spinner spinnerDay;
@@ -41,10 +43,30 @@ public class SeekingFourFragment extends Fragment {
         editTextPets = view.findViewById(R.id.editTextPets);
 
 
-        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 4", " " + fragmentDataList);
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 4", " " + fragmentDataList);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Day")) {
+                String day = fragmentDataList.get("Day");
+                setSpinnerSelection(spinnerDay, day);
+            }
+            if (fragmentDataList.containsKey("Pets")) {
+                String pets = fragmentDataList.get("Pets");
+                setRadioGroupSelection(radioGroupPets, pets);
+            }
+            if (fragmentDataList.containsKey("SelfPets")) {
+                String selfPets = fragmentDataList.get("SelfPets");
+                setRadioGroupSelection(radioGroupSelfPets, selfPets);
+            }
+            if (fragmentDataList.containsKey("PetsComment")) {
+                String petsComment = fragmentDataList.get("PetsComment");
+                editTextPets.setText(petsComment);
+            }
+        }
 
 
         return view;
@@ -54,11 +76,11 @@ public class SeekingFourFragment extends Fragment {
         public void saveData() {
             User_Seeking_Form activity = (User_Seeking_Form) getActivity();
             if (activity != null) {
-                ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-                fragmentDataList.add(getDay());
-                fragmentDataList.add(getPets());
-                fragmentDataList.add(getSelfPets());
-                fragmentDataList.add(getPetsComment());
+                HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+                fragmentDataList.put("Day", getDay());
+                fragmentDataList.put("Pets", getPets());
+                fragmentDataList.put("SelfPets", getSelfPets());
+                fragmentDataList.put("PetsComment", getPetsComment());
             }
         }
     public void passDataToNextFragment(Bundle data) {
@@ -70,8 +92,7 @@ public class SeekingFourFragment extends Fragment {
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getDay()) &&
                 !TextUtils.isEmpty(getPets()) &&
-                !TextUtils.isEmpty(getSelfPets()) &&
-                !TextUtils.isEmpty(getPetsComment());
+                !TextUtils.isEmpty(getSelfPets());
     }
 
     public String getDay() {
@@ -92,6 +113,32 @@ public class SeekingFourFragment extends Fragment {
 
     public String getPetsComment() {
         return editTextPets.getText().toString();
+    }
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void setRadioGroupSelection(RadioGroup radioGroup, String value) {
+        int radioButtonCount = radioGroup.getChildCount();
+        for (int i = 0; i < radioButtonCount; i++) {
+            View radioButton = radioGroup.getChildAt(i);
+            if (radioButton instanceof RadioButton) {
+                RadioButton radioBtn = (RadioButton) radioButton;
+                if (radioBtn.getText().toString().equals(value)) {
+                    radioBtn.setChecked(true);
+                    break;
+                }
+            }
+        }
     }
 
 }

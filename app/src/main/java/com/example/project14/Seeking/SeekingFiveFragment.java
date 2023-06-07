@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +20,7 @@ import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SeekingFiveFragment extends Fragment {
@@ -43,9 +45,34 @@ public class SeekingFiveFragment extends Fragment {
         editTextGrade = view.findViewById(R.id.editTextGrade);
         editTextCourse = view.findViewById(R.id.editTextCourse);
 
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 5", " " + fragmentDataList);
+
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 5", " " + fragmentDataList);
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("StartDate")) {
+                String startDate = fragmentDataList.get("StartDate");
+                editTextStartDate.setText(startDate);
+            }
+            if (fragmentDataList.containsKey("EndDate")) {
+                String endDate = fragmentDataList.get("EndDate");
+                editTextEndDate.setText(endDate);
+            }
+            if (fragmentDataList.containsKey("Reason")) {
+                String reason = fragmentDataList.get("Reason");
+                setSpinnerSelection(spinnerReason, reason);
+            }
+            if (fragmentDataList.containsKey("Grade")) {
+                String grade = fragmentDataList.get("Grade");
+                editTextGrade.setText(grade);
+            }
+            if (fragmentDataList.containsKey("Course")) {
+                String course = fragmentDataList.get("Course");
+                editTextCourse.setText(course);
+            }
+        }
 
         return view;
     }
@@ -53,12 +80,12 @@ public class SeekingFiveFragment extends Fragment {
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getStartDate());
-            fragmentDataList.add(getEndDate());
-            fragmentDataList.add(getReason());
-            fragmentDataList.add(getGrade());
-            fragmentDataList.add(getCourse());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("StartDate", getStartDate());
+            fragmentDataList.put("EndDate", getEndDate());
+            fragmentDataList.put("Reason", getReason());
+            fragmentDataList.put("Grade", getGrade());
+            fragmentDataList.put("Course", getCourse());
         }
        }
 
@@ -71,9 +98,7 @@ public class SeekingFiveFragment extends Fragment {
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getStartDate()) &&
                 !TextUtils.isEmpty(getEndDate()) &&
-                !TextUtils.isEmpty(getReason()) &&
-                !TextUtils.isEmpty(getGrade()) &&
-                !TextUtils.isEmpty(getCourse());
+                !TextUtils.isEmpty(getReason());
     }
 
     public String getStartDate() {
@@ -94,6 +119,18 @@ public class SeekingFiveFragment extends Fragment {
 
     public String getCourse() {
         return editTextCourse.getText().toString();
+    }
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
     }
 
 }

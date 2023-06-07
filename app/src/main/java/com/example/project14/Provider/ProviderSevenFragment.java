@@ -15,6 +15,9 @@ import android.widget.RadioGroup;
 
 import com.example.project14.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class ProviderSevenFragment extends Fragment {
 
@@ -54,13 +57,17 @@ public class ProviderSevenFragment extends Fragment {
         String pets = getPets();
 
         // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderEightFragment.class);
-        intent.putExtra("providerWork", providerWork);
-        intent.putExtra("providerWorkDetails", providerWorkDetails);
-        intent.putExtra("keyword", keyword);
-        intent.putExtra("hobby", hobby);
-        intent.putExtra("selfPets", selfPets);
-        intent.putExtra("pets", pets);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("ProviderWork", getProviderWork());
+            fragmentDataList.put("ProviderWorkDetails", getProviderWorkDetails());
+            fragmentDataList.put("Keyword", getKeyword());
+            fragmentDataList.put("Hobby", getHobby());
+            fragmentDataList.put("SelfPets", getSelfPets());
+            fragmentDataList.put("Pets", getPets());
+        }
+
 
         // Pass the intent to the next fragment
       //  passDataToNextFragment(intent);

@@ -16,6 +16,9 @@ import android.widget.Spinner;
 
 import com.example.project14.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProviderFiveFragment extends Fragment {
 private EditText editTextSquareMeter;
 private RadioGroup radioGroupFurnish;
@@ -36,6 +39,29 @@ private EditText editTextPrice;
         editTextFurnished = view.findViewById(R.id.editTextFurnished);
         editTextPrice = view.findViewById(R.id.editTextPrice);
 
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("SquareMeter")) {
+                String squareMeter = fragmentDataList.get("SquareMeter");
+                editTextSquareMeter.setText(squareMeter);
+            }
+            if (fragmentDataList.containsKey("Furnish")) {
+                String furnish = fragmentDataList.get("Furnish");
+                setRadioButtonSelection(radioGroupFurnish, furnish);
+            }
+            if (fragmentDataList.containsKey("Furnished")) {
+                String furnished = fragmentDataList.get("Furnished");
+                editTextFurnished.setText(furnished);
+            }
+            if (fragmentDataList.containsKey("Price")) {
+                String price = fragmentDataList.get("Price");
+                editTextPrice.setText(price);
+            }
+
+        }
+
+
         return view;
     }
 
@@ -45,12 +71,14 @@ private EditText editTextPrice;
         String furnished = getFurnished();
         String price = getPrice();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderSixFragment.class);
-        intent.putExtra("squareMeter", squareMeter);
-        intent.putExtra("furnish", furnish);
-        intent.putExtra("furnished", furnished);
-        intent.putExtra("price", price);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("SquareMeter", getSquareMeter());
+            fragmentDataList.put("Furnish", getFurnish());
+            fragmentDataList.put("Furnished", getFurnished());
+            fragmentDataList.put("Price", getPrice());
+        }
 
         // Pass the intent to the next fragment
    //     passDataToNextFragment(intent);
@@ -88,4 +116,16 @@ private EditText editTextPrice;
         return editTextPrice.getText().toString();
     }
 
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
 }

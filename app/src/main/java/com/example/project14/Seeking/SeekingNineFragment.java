@@ -18,6 +18,7 @@ import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingNineFragment extends Fragment {
     private EditText editTextBelief;
@@ -35,9 +36,22 @@ public class SeekingNineFragment extends Fragment {
         editTextBelief = view.findViewById(R.id.editTextBelief);
         editTextOther = view.findViewById(R.id.editTextOther);
 
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 9", " " + fragmentDataList);
+
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 9", " " + fragmentDataList);
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Belief")) {
+                String belief = fragmentDataList.get("Belief");
+                editTextBelief.setText(belief);
+            }
+            if (fragmentDataList.containsKey("Other")) {
+                String other = fragmentDataList.get("Other");
+                editTextOther.setText(other);
+            }
+        }
         return view;
     }
 
@@ -46,9 +60,9 @@ public class SeekingNineFragment extends Fragment {
 
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getBelief());
-            fragmentDataList.add(getOther());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Belief", getBelief());
+            fragmentDataList.put("Other", getOther());
         }
     }
 
@@ -59,8 +73,7 @@ public class SeekingNineFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getBelief()) &&
-                !TextUtils.isEmpty(getOther());
+     return true;
     }
 
     public String getBelief() {

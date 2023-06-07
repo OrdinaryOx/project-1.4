@@ -9,12 +9,16 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.example.project14.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ProviderFourFragment extends Fragment {
@@ -35,6 +39,25 @@ public class ProviderFourFragment extends Fragment {
         spinnerProviderDays = view.findViewById(R.id.spinnerProviderDays);
         editTextTypeRoom = view.findViewById(R.id.editTextTypeRoom);
 
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("ProviderDays")) {
+                String day = fragmentDataList.get("ProviderDays");
+                setSpinnerSelection(spinnerProviderDays, day);
+            }
+            if (fragmentDataList.containsKey("ProviderMonths")) {
+                String month = fragmentDataList.get("ProviderMonths");
+                setSpinnerSelection(spinnerProviderMonth, month);
+            }
+            if (fragmentDataList.containsKey("TypeRoom")) {
+                String typeRoom = fragmentDataList.get("TypeRoom");
+                editTextTypeRoom.setText(typeRoom);
+            }
+
+
+        }
+
         return view;
     }
 
@@ -43,11 +66,14 @@ public class ProviderFourFragment extends Fragment {
         String providerDays = getProviderDays();
         String typeRoom = getTypeRoom();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderFiveFragment.class);
-        intent.putExtra("providerMonth", providerMonth);
-        intent.putExtra("providerDays", providerDays);
-        intent.putExtra("typeRoom", typeRoom);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("ProviderMonth", getProviderMonth());
+            fragmentDataList.put("ProviderDays", getProviderDays());
+            fragmentDataList.put("TypeRoom", getTypeRoom());
+
+        }
 
         // Pass the intent to the next fragment
     //    passDataToNextFragment(intent);
@@ -75,5 +101,19 @@ public class ProviderFourFragment extends Fragment {
     public String getTypeRoom() {
         return editTextTypeRoom.getText().toString();
     }
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+    }
+
+
 
 }

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.project14.R;
 import com.example.project14.Seeking.SeekingTwoFragment;
 
+import java.util.ArrayList;
+
 
 public class ProviderNineFragment extends Fragment {
 
@@ -48,15 +50,7 @@ public class ProviderNineFragment extends Fragment {
         boolean termsChecked = isTermsChecked();
         String comment = getComment();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderNineFragment.class);
-        intent.putExtra("truthChecked", truthChecked);
-        intent.putExtra("permissionChecked", permissionChecked);
-        intent.putExtra("termsChecked", termsChecked);
-        intent.putExtra("comment", comment);
 
-        // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
     }
 
 

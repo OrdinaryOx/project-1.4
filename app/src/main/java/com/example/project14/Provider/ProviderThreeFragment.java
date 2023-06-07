@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -16,6 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.example.project14.R;
+import com.example.project14.Seeking.User_Seeking_Form;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ProviderThreeFragment extends Fragment {
@@ -39,6 +44,29 @@ public class ProviderThreeFragment extends Fragment {
         editTextFound = view.findViewById(R.id.editTextFound);
         editTextProviderMotivation = view.findViewById(R.id.editTextProviderMotivation);
 
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Situation")) {
+                String situation = fragmentDataList.get("Situation");
+                setSpinnerSelection(spinnerSituation, situation);
+            }
+            if (fragmentDataList.containsKey("House")) {
+                String house = fragmentDataList.get("House");
+                setRadioButtonSelection(radioGroupHouse, house);
+            }
+            if (fragmentDataList.containsKey("Found")) {
+                String postalCode = fragmentDataList.get("Found");
+                editTextFound.setText(postalCode);
+            }
+            if (fragmentDataList.containsKey("ProviderMotivation")) {
+                String providerMotivation = fragmentDataList.get("ProviderMotivation");
+                editTextProviderMotivation.setText(providerMotivation);
+            }
+
+        }
+
+
         return view;
     }
 
@@ -49,11 +77,14 @@ public class ProviderThreeFragment extends Fragment {
         String providerMotivation = getProviderMotivation();
 
         // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderFourFragment.class);
-        intent.putExtra("situation", situation);
-        intent.putExtra("house", house);
-        intent.putExtra("found", found);
-        intent.putExtra("providerMotivation", providerMotivation);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Situation", getSituation());
+            fragmentDataList.put("House", getHouse());
+            fragmentDataList.put("Found", getFound());
+            fragmentDataList.put("ProviderMotivation", getProviderMotivation());
+        }
 
         // Pass the intent to the next fragment
      //   passDataToNextFragment(intent);
@@ -91,5 +122,29 @@ public class ProviderThreeFragment extends Fragment {
         return editTextProviderMotivation.getText().toString();
     }
 
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
 
 }

@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.project14.R;
+import com.example.project14.Seeking.User_Seeking_Form;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProviderTwoFragment extends Fragment {
     private EditText editTextAddress;
@@ -40,6 +44,36 @@ public class ProviderTwoFragment extends Fragment {
         editTextPhoneNumber = view.findViewById(R.id.editTextPhoneNumber);
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
 
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Address")) {
+                String address = fragmentDataList.get("Address");
+                editTextAddress.setText(address);
+            }
+            if (fragmentDataList.containsKey("CityPersonal")) {
+                String city = fragmentDataList.get("CityPersonal");
+                editTextCity.setText(city);
+            }
+            if (fragmentDataList.containsKey("PostalCode")) {
+                String postalCode = fragmentDataList.get("PostalCode");
+                editTextPostalCode.setText(postalCode);
+            }
+            if (fragmentDataList.containsKey("Country")) {
+                String country = fragmentDataList.get("Country");
+                editTextCountry.setText(country);
+            }
+            if (fragmentDataList.containsKey("PhoneNumber")) {
+                String phoneNumber = fragmentDataList.get("PhoneNumber");
+                editTextPhoneNumber.setText(phoneNumber);
+            }
+            if (fragmentDataList.containsKey("BirthDate")) {
+                String birthDate = fragmentDataList.get("BirthDate");
+                editTextBirthDate.setText(birthDate);
+            }
+        }
+
+
         return view;
     }
 
@@ -51,14 +85,17 @@ public class ProviderTwoFragment extends Fragment {
         String phoneNumber = getPhoneNumber();
         String birthDate = getBirthDate();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderThreeFragment.class);
-        intent.putExtra("address", address);
-        intent.putExtra("city", city);
-        intent.putExtra("postalCode", postalCode);
-        intent.putExtra("country", country);
-        intent.putExtra("phoneNumber", phoneNumber);
-        intent.putExtra("birthDate", birthDate);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Address", getAddress());
+            fragmentDataList.put("CityPersonal", getCity());
+            fragmentDataList.put("PostalCode", getPostalCode());
+            fragmentDataList.put("Country", getCountry());
+            fragmentDataList.put("PhoneNumber", getPhoneNumber());
+            fragmentDataList.put("BirthDate", getBirthDate());
+
+        }
 
         // Pass the intent to the next fragment
      //   passDataToNextFragment(intent);

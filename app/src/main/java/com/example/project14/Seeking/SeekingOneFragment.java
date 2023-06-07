@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -18,6 +19,7 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingOneFragment extends Fragment {
 
@@ -38,6 +40,7 @@ public class SeekingOneFragment extends Fragment {
 
         // Initialize the EditText views
 
+
         spinnerSalutation = view.findViewById(R.id.spinnerSalutation);
         editTextFirstName = view.findViewById(R.id.editTextFirstName);
         editTextInfix = view.findViewById(R.id.editTextInfix);
@@ -45,19 +48,48 @@ public class SeekingOneFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.editTextPassword);
         editTextPasswordAgain = view.findViewById(R.id.editTextPasswordAgain);
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Salutation")) {
+                String salutation = fragmentDataList.get("Salutation");
+                setSpinnerSelection(spinnerSalutation, salutation);
+            }
+            if (fragmentDataList.containsKey("FirstName")) {
+                String firstName = fragmentDataList.get("FirstName");
+                editTextFirstName.setText(firstName);
+            }
+            if (fragmentDataList.containsKey("Infix")) {
+                String infix = fragmentDataList.get("Infix");
+                editTextInfix.setText(infix);
+            }
+            if (fragmentDataList.containsKey("LastName")) {
+                String lastName = fragmentDataList.get("LastName");
+                editTextLastName.setText(lastName);
+            }
+            if (fragmentDataList.containsKey("Password")) {
+                String password = fragmentDataList.get("Password");
+                editTextPassword.setText(password);
+            }
+            if (fragmentDataList.containsKey("PasswordAgain")) {
+                String passwordAgain = fragmentDataList.get("PasswordAgain");
+                editTextPasswordAgain.setText(passwordAgain);
+            }
+        }
+
         return view;
     }
 
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getSalutation());
-            fragmentDataList.add(getFirstName());
-            fragmentDataList.add(getInfix());
-            fragmentDataList.add(getLastName());
-            fragmentDataList.add(getPassword());
-            fragmentDataList.add(getPasswordAgain());
+            HashMap<String,String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Salutation", getSalutation());
+            fragmentDataList.put("FirstName", getFirstName());
+            fragmentDataList.put("Infix", getInfix());
+            fragmentDataList.put("LastName", getLastName());
+            fragmentDataList.put("Password", getPassword());
+            fragmentDataList.put("PasswordAgain", getPasswordAgain());
         }
         // Pass the data bundle to the next fragment
     }
@@ -95,5 +127,19 @@ public class SeekingOneFragment extends Fragment {
 
     public String getPasswordAgain() {
         return editTextPasswordAgain.getText().toString();
+    }
+
+
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
     }
 }

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = new Intent(this, User_Seeking_Form.class);
+        Intent intent = new Intent(this, User_Provider_Form.class);
         startActivity(intent);
 
     }

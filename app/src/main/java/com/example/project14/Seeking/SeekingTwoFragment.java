@@ -17,6 +17,7 @@ import com.example.project14.R;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingTwoFragment extends Fragment {
     private EditText editTextAddress;
@@ -44,9 +45,9 @@ public class SeekingTwoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_seeking_two, container, false);
 
 
-        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 2", " " + fragmentDataList);
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 2", " " + fragmentDataList);
 
 
         // Initialize the EditText views
@@ -58,19 +59,50 @@ public class SeekingTwoFragment extends Fragment {
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
 
 
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Address")) {
+                String address = fragmentDataList.get("Address");
+                editTextAddress.setText(address);
+            }
+            if (fragmentDataList.containsKey("CityPersonal")) {
+                String city = fragmentDataList.get("CityPersonal");
+                editTextCity.setText(city);
+            }
+            if (fragmentDataList.containsKey("PostalCode")) {
+                String postalCode = fragmentDataList.get("PostalCode");
+                editTextPostalCode.setText(postalCode);
+            }
+            if (fragmentDataList.containsKey("Country")) {
+                String country = fragmentDataList.get("Country");
+                editTextCountry.setText(country);
+            }
+            if (fragmentDataList.containsKey("PhoneNumber")) {
+                String phoneNumber = fragmentDataList.get("PhoneNumber");
+                editTextPhoneNumber.setText(phoneNumber);
+            }
+            if (fragmentDataList.containsKey("BirthDate")) {
+                String birthDate = fragmentDataList.get("BirthDate");
+                editTextBirthDate.setText(birthDate);
+            }
+        }
+
+
         return view;
     }
 
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getAddress());
-            fragmentDataList.add(getCity());
-            fragmentDataList.add(getPostalCode());
-            fragmentDataList.add(getCountry());
-            fragmentDataList.add(getPhoneNumber());
-            fragmentDataList.add(getBirthDate());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Address", getAddress());
+            fragmentDataList.put("CityPersonal", getCity());
+            fragmentDataList.put("PostalCode", getPostalCode());
+            fragmentDataList.put("Country", getCountry());
+            fragmentDataList.put("PhoneNumber", getPhoneNumber());
+            fragmentDataList.put("BirthDate", getBirthDate());
+
         }
     }
 

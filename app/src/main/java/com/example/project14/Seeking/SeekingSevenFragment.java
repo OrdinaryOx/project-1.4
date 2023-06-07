@@ -18,6 +18,7 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingSevenFragment extends Fragment {
     private EditText editTextYourself;
@@ -39,20 +40,41 @@ public class SeekingSevenFragment extends Fragment {
         editTextRoom = view.findViewById(R.id.editTextRoom);
         editTextMean = view.findViewById(R.id.editTextMean);
 
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 7", " " + fragmentDataList);
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 7", " " + fragmentDataList);
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Yourself")) {
+                String yourself = fragmentDataList.get("Yourself");
+                editTextYourself.setText(yourself);
+            }
+            if (fragmentDataList.containsKey("Keyword")) {
+                String keyword = fragmentDataList.get("Keyword");
+                editTextKeyword.setText(keyword);
+            }
+            if (fragmentDataList.containsKey("Room")) {
+                String room = fragmentDataList.get("Room");
+                editTextRoom.setText(room);
+            }
+            if (fragmentDataList.containsKey("Mean")) {
+                String mean = fragmentDataList.get("Mean");
+                editTextMean.setText(mean);
+            }
+        }
         return view;
     }
 
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getYourself());
-            fragmentDataList.add(getKeyword());
-            fragmentDataList.add(getRoom());
-            fragmentDataList.add(getMean());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Yourself", getYourself());
+            fragmentDataList.put("Keyword", getKeyword());
+            fragmentDataList.put("Room", getRoom());
+            fragmentDataList.put("Mean", getMean());
+
         }
     }
 

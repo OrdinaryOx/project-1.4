@@ -101,11 +101,12 @@
     <TextView
         android:id="@+id/textViewTerms"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text=""
+        android:gravity="center_horizontal"
+        android:text="Klik hier voor de privacyverklaring"
         android:textStyle="bold"
         android:textColor="#03dac5"
         android:background="@drawable/border"
@@ -117,11 +118,12 @@
     <TextView
         android:id="@+id/textViewCookies"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
+        android:gravity="center_horizontal"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
-        android:text=""
+        android:text="Klik hier voor het cookiebeleid"
         android:textStyle="bold"
         android:textColor="#03dac5"
         android:textSize="16sp"
@@ -129,6 +131,16 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTerms" />
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opsturen"
+        android:onClick="opsturen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComment"
+        android:backgroundTint="@color/MWG_Dark"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

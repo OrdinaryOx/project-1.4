@@ -42,9 +42,11 @@ public class SeekingTenFragment extends Fragment {
         checkBoxTerms = view.findViewById(R.id.checkBoxTerms);
         editTextComment = view.findViewById(R.id.editTextComment);
 
-        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 10", " " + fragmentDataList);
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 10", " " + fragmentDataList);
+
+
         return view;
     }
 

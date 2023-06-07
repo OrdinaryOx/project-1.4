@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +20,7 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SeekingThreeFragment extends Fragment {
@@ -42,10 +44,29 @@ public class SeekingThreeFragment extends Fragment {
         editTextBudget = view.findViewById(R.id.editTextBudget);
         spinnerMonth = view.findViewById(R.id.spinnerMonth);
 
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 3", " " + fragmentDataList);
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 3", " " + fragmentDataList);
-
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("City")) {
+                String city = fragmentDataList.get("City");
+                setSpinnerSelection(spinnerCity, city);
+            }
+            if (fragmentDataList.containsKey("Preference")) {
+                String preference = fragmentDataList.get("Preference");
+                setRadioButtonSelection(radioGroupPreference, preference);
+            }
+            if (fragmentDataList.containsKey("Budget")) {
+                String budget = fragmentDataList.get("Budget");
+                editTextBudget.setText(budget);
+            }
+            if (fragmentDataList.containsKey("Month")) {
+                String month = fragmentDataList.get("Month");
+                setSpinnerSelection(spinnerMonth, month);
+            }
+        }
 
 //        Bundle arguments = getArguments();
 //        Log.d("TAG", arguments.toString());
@@ -70,11 +91,11 @@ public class SeekingThreeFragment extends Fragment {
      //   passDataToNextFragment(intent);
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getCity());
-            fragmentDataList.add(getPreference());
-            fragmentDataList.add(getBudget());
-            fragmentDataList.add(getMonth());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("City", getCity());
+            fragmentDataList.put("Preference", getPreference());
+            fragmentDataList.put("Budget", getBudget());
+            fragmentDataList.put("Month", getMonth());
         }
     }
 
@@ -110,4 +131,28 @@ public class SeekingThreeFragment extends Fragment {
         return spinnerMonth.getSelectedItem().toString();
     }
 
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
 }

@@ -18,6 +18,7 @@ import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingEightFragment extends Fragment {
     private EditText editTextOtherOffer;
@@ -39,9 +40,31 @@ public class SeekingEightFragment extends Fragment {
         radioGroupVolunteer = view.findViewById(R.id.radioGroupVolunteer);
         editTextVolunteer = view.findViewById(R.id.editTextVolunteer);
 
+//        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+//        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
+//        Log.d("ARRAYLIST FRAGMENT 8", " " + fragmentDataList);
+
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-        Log.d("ARRAYLIST FRAGMENT 8", " " + fragmentDataList);
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("OtherOffer")) {
+                String otherOffer = fragmentDataList.get("OtherOffer");
+                editTextOtherOffer.setText(otherOffer);
+            }
+            if (fragmentDataList.containsKey("ImportantNote")) {
+                String importantNote = fragmentDataList.get("ImportantNote");
+                editTextImportantNote.setText(importantNote);
+            }
+            if (fragmentDataList.containsKey("VolunteerSelection")) {
+                String volunteerSelection = fragmentDataList.get("VolunteerSelection");
+                setRadioGroupSelection(radioGroupVolunteer, volunteerSelection);
+            }
+            if (fragmentDataList.containsKey("Volunteer")) {
+                String volunteer = fragmentDataList.get("Volunteer");
+                editTextVolunteer.setText(volunteer);
+            }
+        }
+
         return view;
     }
 
@@ -53,11 +76,12 @@ public class SeekingEightFragment extends Fragment {
 
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            ArrayList<String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.add(getOtherOffer());
-            fragmentDataList.add(getImportantNote());
-            fragmentDataList.add(getVolunteerSelection());
-            fragmentDataList.add(getVolunteer());
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("OtherOffer", getOtherOffer());
+            fragmentDataList.put("ImportantNote", getImportantNote());
+            fragmentDataList.put("VolunteerSelection", getVolunteerSelection());
+            fragmentDataList.put("Volunteer", getVolunteer());
+
         }
     }
 
@@ -69,8 +93,7 @@ public class SeekingEightFragment extends Fragment {
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getOtherOffer()) &&
                 !TextUtils.isEmpty(getImportantNote()) &&
-                !TextUtils.isEmpty(getVolunteerSelection()) &&
-                !TextUtils.isEmpty(getVolunteer());
+                !TextUtils.isEmpty(getVolunteerSelection());
     }
 
 
@@ -90,6 +113,20 @@ public class SeekingEightFragment extends Fragment {
 
     public String getVolunteer() {
         return editTextVolunteer.getText().toString();
+    }
+
+    private void setRadioGroupSelection(RadioGroup radioGroup, String value) {
+        int count = radioGroup.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
     }
 
 }

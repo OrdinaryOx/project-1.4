@@ -15,6 +15,9 @@ import android.widget.RadioGroup;
 
 import com.example.project14.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProviderEightFragment extends Fragment {
 
     private EditText editTextBelief;
@@ -32,20 +35,34 @@ public class ProviderEightFragment extends Fragment {
         editTextBelief = view.findViewById(R.id.editTextBelief);
         editTextOther = view.findViewById(R.id.editTextOther);
 
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Belief")) {
+                String belief = fragmentDataList.get("Belief");
+                editTextBelief.setText(belief);
+            }
+            if (fragmentDataList.containsKey("Comment")) {
+                String comment = fragmentDataList.get("Comment");
+                editTextOther.setText(comment);
+            }
+
+        }
+
         return view;
     }
 
     public void saveData() {
-        String belief = getBelief();
-        String comment = getComment();
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), ProviderNineFragment.class);
-        intent.putExtra("belief", belief);
-        intent.putExtra("comment", comment);
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Belief", getBelief());
+            fragmentDataList.put("Comment", getComment());
+        }
 
-        // Pass the intent to the next fragment
-//        passDataToNextFragment(intent);
+
     }
 
     public void passDataToNextFragment(Bundle data) {

@@ -6,13 +6,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import com.example.project14.R;
 
-public class User_Provider_Form extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.HashMap;
 
+public class User_Provider_Form extends AppCompatActivity {
+    private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
     private Class<?>[] fragmentClasses = {
@@ -31,6 +36,8 @@ public class User_Provider_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_provider_form);
+
+        fragmentDataList = new HashMap<>();
 
         fragmentManager = getSupportFragmentManager();
 
@@ -86,40 +93,67 @@ public class User_Provider_Form extends AppCompatActivity {
 
         if (currentFragment instanceof ProviderOneFragment) {
             ProviderOneFragment fragment = (ProviderOneFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
+
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderTwoFragment) {
             ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderThreeFragment) {
             ProviderThreeFragment fragment = (ProviderThreeFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderFourFragment) {
             ProviderFourFragment fragment = (ProviderFourFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderFiveFragment) {
             ProviderFiveFragment fragment = (ProviderFiveFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderSixFragment) {
             ProviderSixFragment fragment = (ProviderSixFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderSevenFragment) {
             ProviderSevenFragment fragment = (ProviderSevenFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderEightFragment) {
             ProviderEightFragment fragment = (ProviderEightFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         } else if (currentFragment instanceof ProviderNineFragment) {
             ProviderNineFragment fragment = (ProviderNineFragment) currentFragment;
-            fragment.saveData();
+            if (fragment.isDataValid()) {
+                fragment.saveData();
+            }
             return fragment.isDataValid();
+
         }
 
         return true; // Default case: allow proceeding if fragment type is unknown
@@ -143,10 +177,19 @@ public class User_Provider_Form extends AppCompatActivity {
         }
     }
 
+    public HashMap<String, String> getFragmentDataList() {
+        return fragmentDataList;
+    }
+
 
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
+    }
+
+    public void opsturen(View view) {
+        Log.d("SIZE", " " + fragmentDataList.size());
+        Log.d("TO BE SENT", fragmentDataList.toString());
     }
 }
 
