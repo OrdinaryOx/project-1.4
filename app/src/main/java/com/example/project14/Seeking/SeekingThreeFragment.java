@@ -14,7 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.example.project14.Provider.User_Provider_Form;
+import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 
@@ -56,12 +56,12 @@ public class SeekingThreeFragment extends Fragment {
         intent.putExtra("month", month);
 
         // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+      //  passDataToNextFragment(intent);
     }
 
-    public void passDataToNextFragment(Intent intent) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Seeking_Form) {
+            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 

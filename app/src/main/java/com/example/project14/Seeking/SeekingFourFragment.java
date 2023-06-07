@@ -54,12 +54,12 @@ public class SeekingFourFragment extends Fragment {
         intent.putExtra("petsComment", petsComment);
 
         // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+       // passDataToNextFragment(intent);
     }
 
-    public void passDataToNextFragment(Intent intent) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Seeking_Form) {
+            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 

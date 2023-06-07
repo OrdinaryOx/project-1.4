@@ -2,6 +2,7 @@ package com.example.project14.Provider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -85,51 +86,53 @@ public class User_Provider_Form extends AppCompatActivity {
 
         if (currentFragment instanceof ProviderOneFragment) {
             ProviderOneFragment fragment = (ProviderOneFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderTwoFragment) {
             ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderThreeFragment) {
             ProviderThreeFragment fragment = (ProviderThreeFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderFourFragment) {
             ProviderFourFragment fragment = (ProviderFourFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderFiveFragment) {
             ProviderFiveFragment fragment = (ProviderFiveFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderSixFragment) {
             ProviderSixFragment fragment = (ProviderSixFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderSevenFragment) {
             ProviderSevenFragment fragment = (ProviderSevenFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderEightFragment) {
             ProviderEightFragment fragment = (ProviderEightFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderNineFragment) {
             ProviderNineFragment fragment = (ProviderNineFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         }
 
         return true; // Default case: allow proceeding if fragment type is unknown
     }
 
-    public void passDataToNextFragment(Intent intent) {
+    public void passDataToNextFragment(Bundle data) {
+
+        Log.d("TAG BUNDLE PASSING", data.toString());
         int nextFragmentIndex = currentPageIndex + 1;
         if (nextFragmentIndex < fragmentClasses.length) {
             try {
                 Fragment nextFragment = (Fragment) fragmentClasses[nextFragmentIndex].getDeclaredConstructor().newInstance();
-                nextFragment.setArguments(intent.getExtras());
+                nextFragment.setArguments(data);
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView, nextFragment)
                         .addToBackStack(null)
@@ -139,6 +142,7 @@ public class User_Provider_Form extends AppCompatActivity {
             }
         }
     }
+
 
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";

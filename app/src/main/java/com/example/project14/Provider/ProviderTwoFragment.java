@@ -61,12 +61,12 @@ public class ProviderTwoFragment extends Fragment {
         intent.putExtra("birthDate", birthDate);
 
         // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+     //   passDataToNextFragment(intent);
     }
 
-    public void passDataToNextFragment(Intent intent) {
+    public void passDataToNextFragment(Bundle data) {
         if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 

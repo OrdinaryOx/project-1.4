@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.project14.Provider.User_Provider_Form;
+import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 public class SeekingTenFragment extends Fragment {
@@ -55,12 +55,12 @@ public class SeekingTenFragment extends Fragment {
         intent.putExtra("termsChecked", termsChecked);
         intent.putExtra("comment", comment);
         // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+      //  passDataToNextFragment(intent);
     }
 
-    public void passDataToNextFragment(Intent intent) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Seeking_Form) {
+            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 

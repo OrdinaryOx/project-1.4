@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -88,55 +89,55 @@ public class User_Seeking_Form extends AppCompatActivity {
 
         if (currentFragment instanceof SeekingOneFragment) {
             SeekingOneFragment fragment = (SeekingOneFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingTwoFragment) {
             SeekingTwoFragment fragment = (SeekingTwoFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingThreeFragment) {
             SeekingThreeFragment fragment = (SeekingThreeFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingFourFragment) {
             SeekingFourFragment fragment = (SeekingFourFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingFiveFragment) {
             SeekingFiveFragment fragment = (SeekingFiveFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingSixFragment) {
             SeekingSixFragment fragment = (SeekingSixFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingSevenFragment) {
             SeekingSevenFragment fragment = (SeekingSevenFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingEightFragment) {
             SeekingEightFragment fragment = (SeekingEightFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingNineFragment) {
             SeekingNineFragment fragment = (SeekingNineFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingTenFragment) {
             SeekingTenFragment fragment = (SeekingTenFragment) currentFragment;
-
+            fragment.saveData();
             return fragment.isDataValid();
         }
 
         return true; // Default case: allow proceeding if fragment type is unknown
     }
 
-    public void passDataToNextFragment(Intent intent) {
+    public void passDataToNextFragment(Bundle data) {
         int nextFragmentIndex = currentPageIndex + 1;
         if (nextFragmentIndex < fragmentClasses.length) {
             try {
                 Fragment nextFragment = (Fragment) fragmentClasses[nextFragmentIndex].getDeclaredConstructor().newInstance();
-                nextFragment.setArguments(intent.getExtras());
+                nextFragment.setArguments(data);
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerView, nextFragment)
                         .addToBackStack(null)

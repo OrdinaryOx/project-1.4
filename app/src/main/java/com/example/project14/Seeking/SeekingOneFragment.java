@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.project14.Provider.ProviderTwoFragment;
-import com.example.project14.Provider.User_Provider_Form;
+import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 public class SeekingOneFragment extends Fragment {
@@ -46,28 +47,21 @@ public class SeekingOneFragment extends Fragment {
     }
 
     public void saveData() {
-        String salutation = getSalutation();
-        String firstName = getFirstName();
-        String infix = getInfix();
-        String lastName = getLastName();
-        String password = getPassword();
-        String passwordAgain = getPasswordAgain();
+        Bundle data = new Bundle();
+        data.putString("salutation", getSalutation());
+        data.putString("firstName", getFirstName());
+        data.putString("infix", getInfix());
+        data.putString("lastName", getLastName());
+        data.putString("password", getPassword());
+        data.putString("passwordAgain", getPasswordAgain());
 
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingTwoFragment.class);
-        intent.putExtra("salutation", salutation);
-        intent.putExtra("firstName", firstName);
-        intent.putExtra("infix", infix);
-        intent.putExtra("lastName", lastName);
-        intent.putExtra("password", password);
-        intent.putExtra("passwordAgain", passwordAgain);
-
-        // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+        // Pass the data bundle to the next fragment
+        passDataToNextFragment(data);
     }
-    public void passDataToNextFragment(Intent intent) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Seeking_Form) {
+            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 

@@ -6,13 +6,16 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.project14.Provider.User_Provider_Form;
+import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
+
+import java.io.Console;
 
 public class SeekingTwoFragment extends Fragment {
     private EditText editTextAddress;
@@ -39,6 +42,17 @@ public class SeekingTwoFragment extends Fragment {
         editTextPhoneNumber = view.findViewById(R.id.editTextPhoneNumber);
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
 
+
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            String salutation = arguments.getString("salutation");
+            String firstName = arguments.getString("firstName");
+            String infix = arguments.getString("infix");
+            String lastName = arguments.getString("lastName");
+            String password = arguments.getString("password");
+            String passwordAgain = arguments.getString("passwordAgain");
+        }
+
         return view;
     }
 
@@ -60,13 +74,13 @@ public class SeekingTwoFragment extends Fragment {
         intent.putExtra("phoneNumber", phoneNumber);
         intent.putExtra("birthDate", birthDate);
         // Pass the intent to the next fragment
-        passDataToNextFragment(intent);
+        //passDataToNextFragment(intent);
 
     }
 
-    public void passDataToNextFragment(Intent intent) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(intent);
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Seeking_Form) {
+            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 
@@ -79,16 +93,28 @@ public class SeekingTwoFragment extends Fragment {
                 !TextUtils.isEmpty(getBirthDate());
     }
 
-    public String getAddress() { return editTextAddress.getText().toString();}
+    public String getAddress() {
+        return editTextAddress.getText().toString();
+    }
 
-    public String getCity() { return editTextCity.getText().toString();}
+    public String getCity() {
+        return editTextCity.getText().toString();
+    }
 
-    public String getPostalCode() { return editTextPostalCode.getText().toString();}
+    public String getPostalCode() {
+        return editTextPostalCode.getText().toString();
+    }
 
-    public String getCountry() { return editTextCountry.getText().toString();}
+    public String getCountry() {
+        return editTextCountry.getText().toString();
+    }
 
-    public String getPhoneNumber() {return editTextPhoneNumber.getText().toString();}
+    public String getPhoneNumber() {
+        return editTextPhoneNumber.getText().toString();
+    }
 
-    public String getBirthDate() {return editTextBirthDate.getText().toString();}
+    public String getBirthDate() {
+        return editTextBirthDate.getText().toString();
+    }
 
 }
