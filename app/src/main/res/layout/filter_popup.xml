@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/living_options"
                         android:layout_toRightOf="@id/situatie_tv"
-                        android:layout_below="@id/city_spinner"
+                        android:layout_below="@id/city_spinner"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
