@@ -30,6 +30,8 @@ public class SeekingOneFragment extends Fragment {
     private EditText editTextPassword;
     private EditText editTextPasswordAgain;
 
+    private EditText editTextEmail;
+
     public SeekingOneFragment() {
         // Required empty public constructor
     }
@@ -47,6 +49,7 @@ public class SeekingOneFragment extends Fragment {
         editTextLastName = view.findViewById(R.id.editTextLastName);
         editTextPassword = view.findViewById(R.id.editTextPassword);
         editTextPasswordAgain = view.findViewById(R.id.editTextPasswordAgain);
+        editTextEmail = view.findViewById(R.id.editTextEmail);
 
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
@@ -54,6 +57,10 @@ public class SeekingOneFragment extends Fragment {
             if (fragmentDataList.containsKey("Salutation")) {
                 String salutation = fragmentDataList.get("Salutation");
                 setSpinnerSelection(spinnerSalutation, salutation);
+            }
+            if (fragmentDataList.containsKey("Email")) {
+                String email = fragmentDataList.get("Email");
+                editTextEmail.setText(email);
             }
             if (fragmentDataList.containsKey("FirstName")) {
                 String firstName = fragmentDataList.get("FirstName");
@@ -83,11 +90,12 @@ public class SeekingOneFragment extends Fragment {
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
-            HashMap<String,String> fragmentDataList = activity.getFragmentDataList();
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
             fragmentDataList.put("Salutation", getSalutation());
             fragmentDataList.put("FirstName", getFirstName());
             fragmentDataList.put("Infix", getInfix());
             fragmentDataList.put("LastName", getLastName());
+            fragmentDataList.put("Email", getEmail());
             fragmentDataList.put("Password", getPassword());
             fragmentDataList.put("PasswordAgain", getPasswordAgain());
         }
@@ -95,11 +103,10 @@ public class SeekingOneFragment extends Fragment {
     }
 
 
-
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getSalutation()) &&
                 !TextUtils.isEmpty(getFirstName()) &&
-                !TextUtils.isEmpty(getInfix()) &&
+                !TextUtils.isEmpty(getEmail()) &&
                 !TextUtils.isEmpty(getLastName()) &&
                 !TextUtils.isEmpty(getPassword()) &&
                 !TextUtils.isEmpty(getPasswordAgain());
@@ -121,6 +128,10 @@ public class SeekingOneFragment extends Fragment {
         return editTextLastName.getText().toString();
     }
 
+    private String getEmail() {
+        return editTextEmail.getText().toString();
+    }
+
     public String getPassword() {
         return editTextPassword.getText().toString();
     }
@@ -128,7 +139,6 @@ public class SeekingOneFragment extends Fragment {
     public String getPasswordAgain() {
         return editTextPasswordAgain.getText().toString();
     }
-
 
 
     private void setSpinnerSelection(Spinner spinner, String value) {
@@ -142,4 +152,44 @@ public class SeekingOneFragment extends Fragment {
             }
         }
     }
+
+    public void highlightUnfilledFields() {
+        // Reset the border color of all EditText views
+
+        if (getSalutation().equals("Maak een keuze")) {
+            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (TextUtils.isEmpty(getFirstName())) {
+            editTextFirstName.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextFirstName.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getLastName())) {
+            editTextLastName.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextLastName.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPassword())) {
+            editTextPassword.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPassword.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPasswordAgain())) {
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getEmail())) {
+            editTextEmail.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextEmail.setBackgroundResource(R.drawable.border);
+        }
+    }
+
+    public void uploadPicture() {
+
+    }
+
 }

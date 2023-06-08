@@ -95,4 +95,6 @@ public class SeekingTenFragment extends Fragment {
         return editTextComment.getText().toString();
     }
 
+
+
 }

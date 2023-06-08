@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -67,7 +68,6 @@ public class SeekingTwoFragment extends Fragment {
         editTextPhoneNumber = view.findViewById(R.id.editTextPhoneNumber);
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
         editTextHouseNumber = view.findViewById(R.id.editTextHouseNumber);
-
         editTextPostalCode.addTextChangedListener(textWatcher);
         editTextHouseNumber.addTextChangedListener(textWatcher);
 
@@ -79,7 +79,7 @@ public class SeekingTwoFragment extends Fragment {
                 String address = fragmentDataList.get("Address");
                 editTextAddress.setText(address);
             }
-            if(fragmentDataList.containsKey("HouseNumber")) {
+            if (fragmentDataList.containsKey("HouseNumber")) {
                 String houseNumber = fragmentDataList.get("HouseNumber");
                 editTextHouseNumber.setText(houseNumber);
             }
@@ -189,6 +189,11 @@ public class SeekingTwoFragment extends Fragment {
         }
 
     };
+
+
+
+
+
     private void makeAPICall(String postalCode, String houseNumber) {
         String url = "https://postcode.tech/api/v1/postcode/full?postcode=" + postalCode + "&number=" + houseNumber;
 
@@ -215,11 +220,11 @@ public class SeekingTwoFragment extends Fragment {
 
                     // Update the UI on the main thread
 
-                        requireActivity().runOnUiThread(() -> {
-                            editTextAddress.setText(street);
-                            editTextCity.setText(city);
-                            // You can fill other EditText fields as needed
-                        });
+                    requireActivity().runOnUiThread(() -> {
+                        editTextAddress.setText(street);
+                        editTextCity.setText(city);
+                        // You can fill other EditText fields as needed
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -232,5 +237,48 @@ public class SeekingTwoFragment extends Fragment {
                 e.printStackTrace();
             }
         });
+    }
+
+
+
+    public void highlightUnfilledFields() {
+        // Reset the border color of all EditText views
+
+        // Check each field and change the border color if it's empty
+        if (TextUtils.isEmpty(getAddress())) {
+            editTextAddress.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextAddress.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getCity())) {
+            editTextCity.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextCity.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPostalCode())) {
+            editTextPostalCode.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextPostalCode.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getCountry())) {
+            editTextCountry.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextCountry.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPhoneNumber())) {
+            editTextPhoneNumber.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextPhoneNumber.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getBirthDate())) {
+            editTextBirthDate.setBackgroundResource(R.drawable.border_red);
+        }else {
+            editTextBirthDate.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getHouseNumber())) {
+            editTextHouseNumber.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextHouseNumber.setBackgroundResource(R.drawable.border);
+        }
     }
 }

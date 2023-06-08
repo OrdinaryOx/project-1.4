@@ -51,8 +51,6 @@ public class User_Seeking_Form extends AppCompatActivity {
         fragmentDataList = new HashMap<>();
 
 
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -92,9 +90,6 @@ public class User_Seeking_Form extends AppCompatActivity {
         });
 
 
-
-
-
         fragmentManager = getSupportFragmentManager();
 
         setCurrentFragment();
@@ -123,11 +118,13 @@ public class User_Seeking_Form extends AppCompatActivity {
 
                         // Enable forward button if it was disabled on the previous fragment/page
                         btnForward.setEnabled(true);
-                        btnForward.setBackgroundColor(getResources().getColor(R.color.grey));
+
                     }
                 } else {
                     // Display an error message or handle the case when not all fields are filled
-                    Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Vul eerst alle vragen in.", Toast.LENGTH_SHORT).show();
+//                  btnForward.setBackgroundColor(getResources().getColor(R.color.grey));
+                    highlightUnfilledFields();
                 }
             }
         });
@@ -221,6 +218,44 @@ public class User_Seeking_Form extends AppCompatActivity {
 
         return true; // Default case: allow proceeding if fragment type is unknown
     }
+
+    private void highlightUnfilledFields() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+
+        if (currentFragment instanceof SeekingOneFragment) {
+            SeekingOneFragment fragment = (SeekingOneFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingTwoFragment) {
+            SeekingTwoFragment fragment = (SeekingTwoFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingThreeFragment) {
+            SeekingThreeFragment fragment = (SeekingThreeFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingFourFragment) {
+//            SeekingFourFragment fragment = (SeekingFourFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingFiveFragment) {
+//            SeekingFiveFragment fragment = (SeekingFiveFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingSixFragment) {
+//            SeekingSixFragment fragment = (SeekingSixFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingSevenFragment) {
+//            SeekingSevenFragment fragment = (SeekingSevenFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingEightFragment) {
+//            SeekingEightFragment fragment = (SeekingEightFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingNineFragment) {
+//            SeekingNineFragment fragment = (SeekingNineFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof SeekingTenFragment) {
+//            SeekingTenFragment fragment = (SeekingTenFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        }
+        }
+    }
+
 
     public void passDataToNextFragment(Bundle data) {
         int nextFragmentIndex = currentPageIndex + 1;

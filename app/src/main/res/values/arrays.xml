@@ -5,12 +5,14 @@
         <string name="language_Dutch">Nederlands</string>
 
     <string-array name="salutation_options">
+        <item>Maak een keuze</item>
         <item>Dhr</item>
         <item>Mvr</item>
         <item>Anders</item>
     </string-array>
 
     <string-array name="living_options">
+        <item>Maak een keuze</item>
         <item>Alleenstaand</item>
         <item>Met partner</item>
         <item>Met huisgenoot</item>
@@ -19,6 +21,7 @@
     </string-array>
 
     <string-array name="city_options">
+        <item>Maak een keuze</item>
         <item>Amsterdam</item>
         <item>Rotterdam</item>
         <item>Den Haag</item>
@@ -95,6 +98,7 @@
     </string-array>
 
     <string-array name="month_options">
+        <item>Maak een keuze</item>
         <item>1 maand(en)</item>
         <item>2 maand(en)</item>
         <item>3 maand(en)</item>
@@ -110,6 +114,7 @@
     </string-array>
 
     <string-array name="day_options">
+        <item>Maak een keuze</item>
         <item>1 dag</item>
         <item>2 dagen</item>
         <item>3 dagen</item>
@@ -120,6 +125,7 @@
     </string-array>
 
     <string-array name="reason_options">
+        <item>Maak een keuze</item>
         <item>Studie</item>
         <item>Starter</item>
         <item>Scheiding</item>

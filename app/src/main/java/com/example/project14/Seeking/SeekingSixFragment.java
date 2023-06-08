@@ -165,6 +165,7 @@ public class SeekingSixFragment extends Fragment {
         RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
         return radioButton.getText().toString();
     }
+
     public void setHealth(String health) {
         if (health.equalsIgnoreCase("Ja")) {
             radioGroupHealth.check(R.id.radio_button_health_yes);
@@ -172,8 +173,30 @@ public class SeekingSixFragment extends Fragment {
             radioGroupHealth.check(R.id.radio_button_health_no);
         }
     }
+
     public String getHealthInfo() {
         return editTextHealth.getText().toString();
     }
+
+    public void highlightUnfilledFields() {
+        // Reset the border color of all EditText views
+
+        if (getSalutation().equals("Maak een keuze")) {
+            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (TextUtils.isEmpty(getFirstName())) {
+            editTextFirstName.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextFirstName.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getLastName())) {
+            editTextLastName.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextLastName.setBackgroundResource(R.drawable.border);
+        }
+    }
+
 
 }
