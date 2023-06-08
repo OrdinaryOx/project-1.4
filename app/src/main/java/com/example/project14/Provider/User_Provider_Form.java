@@ -18,6 +18,16 @@ import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
+import com.example.project14.Seeking.SeekingEightFragment;
+import com.example.project14.Seeking.SeekingFiveFragment;
+import com.example.project14.Seeking.SeekingFourFragment;
+import com.example.project14.Seeking.SeekingNineFragment;
+import com.example.project14.Seeking.SeekingOneFragment;
+import com.example.project14.Seeking.SeekingSevenFragment;
+import com.example.project14.Seeking.SeekingSixFragment;
+import com.example.project14.Seeking.SeekingTenFragment;
+import com.example.project14.Seeking.SeekingThreeFragment;
+import com.example.project14.Seeking.SeekingTwoFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +54,6 @@ public class User_Provider_Form extends AppCompatActivity {
         setContentView(R.layout.activity_user_provider_form);
 
         fragmentDataList = new HashMap<>();
-
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -85,10 +93,6 @@ public class User_Provider_Form extends AppCompatActivity {
         });
 
 
-
-
-
-
         fragmentManager = getSupportFragmentManager();
 
         setCurrentFragment();
@@ -117,12 +121,15 @@ public class User_Provider_Form extends AppCompatActivity {
 
                         // Enable forward button if it was disabled on the previous fragment/page
                         btnForward.setEnabled(true);
-                        btnForward.setBackgroundColor(getResources().getColor(R.color.grey));
+
                     }
                 } else {
+                    if (currentPageIndex != 0 && currentPageIndex != 1) {
+                        Toast.makeText(com.example.project14.Provider.User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                    }
                     // Display an error message or handle the case when not all fields are filled
-                    Toast.makeText(User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
-
+//                  btnForward.setBackgroundColor(getResources().getColor(R.color.grey));
+                    highlightUnfilledFields();
                 }
 
             }
@@ -145,16 +152,28 @@ public class User_Provider_Form extends AppCompatActivity {
 
         if (currentFragment instanceof ProviderOneFragment) {
             ProviderOneFragment fragment = (ProviderOneFragment) currentFragment;
-            if (fragment.isDataValid()) {
-                fragment.saveData();
+            if (fragment.isEmailValid()) {
+                if (fragment.arePasswordsMatching()) {
+                    if (fragment.isDataValid()) {
+                        fragment.saveData();
+                    } else {
+                        Toast.makeText(com.example.project14.Provider.User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderTwoFragment) {
             ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
-            if (fragment.isDataValid()) {
-                fragment.saveData();
+            if (fragment.isPhoneValid()) {
+
+                if (fragment.isDataValid()) {
+                    fragment.saveData();
+                } else {
+                    Toast.makeText(com.example.project14.Provider.User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                }
             }
+
             return fragment.isDataValid();
 
         } else if (currentFragment instanceof ProviderThreeFragment) {
@@ -210,6 +229,41 @@ public class User_Provider_Form extends AppCompatActivity {
 
         return true; // Default case: allow proceeding if fragment type is unknown
     }
+
+    private void highlightUnfilledFields() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+
+        if (currentFragment instanceof ProviderOneFragment) {
+            ProviderOneFragment fragment = (ProviderOneFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderTwoFragment) {
+            ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderThreeFragment) {
+//            ProviderThreeFragment fragment = (ProviderThreeFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderFourFragment) {
+//            ProviderFourFragment fragment = (ProviderFourFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderFiveFragment) {
+//            ProviderFiveFragment fragment = (ProviderFiveFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderSixFragment) {
+//            ProviderSixFragment fragment = (ProviderSixFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderSevenFragment) {
+//            ProviderSevenFragment fragment = (ProviderSevenFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderEightFragment) {
+//            ProviderEightFragment fragment = (ProviderEightFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        } else if (currentFragment instanceof ProviderNineFragment) {
+//            ProviderNineFragment fragment = (ProviderNineFragment) currentFragment;
+//            fragment.highlightUnfilledFields();
+//        }
+        }
+    }
+
 
     public void passDataToNextFragment(Bundle data) {
 

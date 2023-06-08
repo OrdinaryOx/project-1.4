@@ -125,6 +125,7 @@ public class SeekingTwoFragment extends Fragment {
     private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getContext(),
+                R.style.DatePickerDialogStyle,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -139,6 +140,11 @@ public class SeekingTwoFragment extends Fragment {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
         );
+
+        // Set the date picker dialog to display the year spinner
+        datePickerDialog.getDatePicker().setCalendarViewShown(false);
+        datePickerDialog.getDatePicker().setSpinnersShown(true);
+
         datePickerDialog.show();
     }
 
