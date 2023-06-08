@@ -62,18 +62,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Implement register button here Currently there is no register activity to link to yet
-//        buttonRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent (LoginActivity.this, ));
-//            }
-//        });
+        //Sends user to register screen
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent (LoginActivity.this, RoleActivity.class));
+            }
+        });
 
+        //Send user to activity screen
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent (LoginActivity.this, ActivitiesScreen.class));
             }
         });
 
