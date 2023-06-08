@@ -24,11 +24,12 @@
     <TextView
         android:id="@+id/textView17"
         android:layout_width="match_parent"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Wat zou een woongenoot voor jou kunnen betekenen/ doen?"
+        android:text="Wat zou een woongenoot voor jou kunnen betekenen/doen?"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +39,7 @@
     <TextView
         android:id="@+id/textView28"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -53,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="Heb je ervaring met vrijwilligerswerk?"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -64,12 +67,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:text="Zo ja, vertel hier kort over:"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_volunteer" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupVolunteer" />
 
     <EditText
         android:id="@+id/editTextOffer"
@@ -78,8 +82,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: klusjes doen"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: klusjes doen"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +96,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Bijvoorbeeld: notenallergie"
+        android:background="@drawable/border"
+        android:hint="  Bijvoorbeeld: notenallergie"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -101,14 +105,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <EditText
-        android:id="@+id/editTextComment"
+        android:id="@+id/editTextCommentVolunteer"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:hint=" Typ hier"
+        android:background="@drawable/border"
+        android:hint="  Typ hier"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <RadioGroup
-        android:id="@+id/radio_group_volunteer"
+        android:id="@+id/radioGroupVolunteer"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -130,7 +134,7 @@
             android:id="@+id/radio_button_volunteer_yes"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Ja"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -139,11 +143,43 @@
             android:id="@+id/radio_button_volunteer_no"
             android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:text="Nee"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
+        app:layout_constraintLeft_toRightOf="@id/textView17"
+        android:translationY="20dp"
+        android:translationX="-255dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView28"
+        app:layout_constraintLeft_toRightOf="@id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView29"
+        app:layout_constraintLeft_toRightOf="@id/textView29" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

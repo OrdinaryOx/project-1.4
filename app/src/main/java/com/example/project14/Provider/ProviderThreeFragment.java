@@ -1,66 +1,150 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.example.project14.R;
+import com.example.project14.Seeking.User_Seeking_Form;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProviderThreeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 public class ProviderThreeFragment extends Fragment {
+    private Spinner spinnerSituation;
+    private RadioGroup radioGroupHouse;
+    private EditText editTextFound;
+    private EditText editTextProviderMotivation;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ProviderThreeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProviderThreeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProviderThreeFragment newInstance(String param1, String param2) {
-        ProviderThreeFragment fragment = new ProviderThreeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_provider_three, container, false);
+
+        // Initialize the EditText views
+        spinnerSituation = view.findViewById(R.id.spinnerSituation);
+        radioGroupHouse = view.findViewById(R.id.radioGroupHouse);
+        editTextFound = view.findViewById(R.id.editTextFound);
+        editTextProviderMotivation = view.findViewById(R.id.editTextProviderMotivation);
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Situation")) {
+                String situation = fragmentDataList.get("Situation");
+                setSpinnerSelection(spinnerSituation, situation);
+            }
+            if (fragmentDataList.containsKey("House")) {
+                String house = fragmentDataList.get("House");
+                setRadioButtonSelection(radioGroupHouse, house);
+            }
+            if (fragmentDataList.containsKey("Found")) {
+                String postalCode = fragmentDataList.get("Found");
+                editTextFound.setText(postalCode);
+            }
+            if (fragmentDataList.containsKey("ProviderMotivation")) {
+                String providerMotivation = fragmentDataList.get("ProviderMotivation");
+                editTextProviderMotivation.setText(providerMotivation);
+            }
+
+        }
+
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void saveData() {
+        String situation = getSituation();
+        String house = getHouse();
+        String found = getFound();
+        String providerMotivation = getProviderMotivation();
+
+        // Create an intent and add the data as extras
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Situation", getSituation());
+            fragmentDataList.put("House", getHouse());
+            fragmentDataList.put("Found", getFound());
+            fragmentDataList.put("ProviderMotivation", getProviderMotivation());
+        }
+
+        // Pass the intent to the next fragment
+     //   passDataToNextFragment(intent);
+    }
+
+
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_provider_three, container, false);
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getSituation()) &&
+                !TextUtils.isEmpty(getHouse()) &&
+                !TextUtils.isEmpty(getFound()) &&
+                !TextUtils.isEmpty(getProviderMotivation());
     }
+
+    public String getSituation() {
+        return spinnerSituation.getSelectedItem().toString();
+    }
+
+    public String getHouse() {
+        int checkedRadioButtonId = radioGroupHouse.getCheckedRadioButtonId();
+        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+        return radioButton.getText().toString();
+    }
+
+    public String getFound() {
+        return editTextFound.getText().toString();
+    }
+
+    public String getProviderMotivation() {
+        return editTextProviderMotivation.getText().toString();
+    }
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                if (adapter.getItem(i).toString().equals(value)) {
+                    spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
+
 }

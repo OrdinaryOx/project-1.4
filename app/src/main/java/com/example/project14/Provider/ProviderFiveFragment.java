@@ -1,66 +1,131 @@
 package com.example.project14.Provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.example.project14.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProviderFiveFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProviderFiveFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+private EditText editTextSquareMeter;
+private RadioGroup radioGroupFurnish;
+private EditText editTextFurnished;
+private EditText editTextPrice;
 
     public ProviderFiveFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProviderFiveFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProviderFiveFragment newInstance(String param1, String param2) {
-        ProviderFiveFragment fragment = new ProviderFiveFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_provider_five, container, false);
+
+        // Initialize the EditText views
+        editTextSquareMeter = view.findViewById(R.id.editTextSquareMeter);
+        radioGroupFurnish = view.findViewById(R.id.radioGroupFurnish);
+        editTextFurnished = view.findViewById(R.id.editTextFurnished);
+        editTextPrice = view.findViewById(R.id.editTextPrice);
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("SquareMeter")) {
+                String squareMeter = fragmentDataList.get("SquareMeter");
+                editTextSquareMeter.setText(squareMeter);
+            }
+            if (fragmentDataList.containsKey("Furnish")) {
+                String furnish = fragmentDataList.get("Furnish");
+                setRadioButtonSelection(radioGroupFurnish, furnish);
+            }
+            if (fragmentDataList.containsKey("Furnished")) {
+                String furnished = fragmentDataList.get("Furnished");
+                editTextFurnished.setText(furnished);
+            }
+            if (fragmentDataList.containsKey("Price")) {
+                String price = fragmentDataList.get("Price");
+                editTextPrice.setText(price);
+            }
+
+        }
+
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void saveData() {
+        String squareMeter = getSquareMeter();
+        String furnish = getFurnish();
+        String furnished = getFurnished();
+        String price = getPrice();
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("SquareMeter", getSquareMeter());
+            fragmentDataList.put("Furnish", getFurnish());
+            fragmentDataList.put("Furnished", getFurnished());
+            fragmentDataList.put("Price", getPrice());
+        }
+
+        // Pass the intent to the next fragment
+   //     passDataToNextFragment(intent);
+    }
+
+
+    public void passDataToNextFragment(Bundle data) {
+        if (getActivity() instanceof User_Provider_Form) {
+            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_provider_five, container, false);
+    public boolean isDataValid() {
+        return !TextUtils.isEmpty(getSquareMeter()) &&
+                !TextUtils.isEmpty(getFurnish()) &&
+                !TextUtils.isEmpty(getFurnished()) &&
+                !TextUtils.isEmpty(getPrice());
+    }
+
+    public String getSquareMeter() {
+        return editTextSquareMeter.getText().toString();
+    }
+
+    public String getFurnish() {
+        int checkedRadioButtonId = radioGroupFurnish.getCheckedRadioButtonId();
+        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+        return radioButton.getText().toString();
+    }
+
+    public String getFurnished() {
+        return editTextFurnished.getText().toString();
+    }
+
+    public String getPrice() {
+        return editTextPrice.getText().toString();
+    }
+
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
     }
 }
