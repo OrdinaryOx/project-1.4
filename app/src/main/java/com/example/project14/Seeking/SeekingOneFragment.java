@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.project14.Provider.ProviderTwoFragment;
 import com.example.project14.Seeking.User_Seeking_Form;
@@ -29,7 +30,6 @@ public class SeekingOneFragment extends Fragment {
     private EditText editTextLastName;
     private EditText editTextPassword;
     private EditText editTextPasswordAgain;
-
     private EditText editTextEmail;
 
     public SeekingOneFragment() {
@@ -40,9 +40,8 @@ public class SeekingOneFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seeking_one, container, false);
 
-        // Initialize the EditText views
 
-
+        //INIT VIEWS
         spinnerSalutation = view.findViewById(R.id.spinnerSalutation);
         editTextFirstName = view.findViewById(R.id.editTextFirstName);
         editTextInfix = view.findViewById(R.id.editTextInfix);
@@ -51,6 +50,7 @@ public class SeekingOneFragment extends Fragment {
         editTextPasswordAgain = view.findViewById(R.id.editTextPasswordAgain);
         editTextEmail = view.findViewById(R.id.editTextEmail);
 
+        //This checks if hashmap with all the data already contains values for these views. If so it places them there (works for backwards button in userform)
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
@@ -87,6 +87,8 @@ public class SeekingOneFragment extends Fragment {
         return view;
     }
 
+
+    //Save data to HashMap
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
@@ -99,18 +101,28 @@ public class SeekingOneFragment extends Fragment {
             fragmentDataList.put("Password", getPassword());
             fragmentDataList.put("PasswordAgain", getPasswordAgain());
         }
-        // Pass the data bundle to the next fragment
     }
 
 
+    //Checks if data is valid
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getSalutation()) &&
                 !TextUtils.isEmpty(getFirstName()) &&
                 !TextUtils.isEmpty(getEmail()) &&
                 !TextUtils.isEmpty(getLastName()) &&
                 !TextUtils.isEmpty(getPassword()) &&
-                !TextUtils.isEmpty(getPasswordAgain());
+                !TextUtils.isEmpty(getPasswordAgain()) &&
+                getPassword().equals(getPasswordAgain()) &&
+                verifyEmail(getEmail());
+
     }
+
+    private boolean verifyEmail(String email) {
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(regex);
+    }
+
+
 
     public String getSalutation() {
         return spinnerSalutation.getSelectedItem().toString();
@@ -153,9 +165,8 @@ public class SeekingOneFragment extends Fragment {
         }
     }
 
+    //Change border color to red, if it isn't filled in when clicking on next page
     public void highlightUnfilledFields() {
-        // Reset the border color of all EditText views
-
         if (getSalutation().equals("Maak een keuze")) {
             spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
         } else {
@@ -192,4 +203,19 @@ public class SeekingOneFragment extends Fragment {
 
     }
 
+    public boolean isEmailValid() {
+        if (!verifyEmail(getEmail())) {
+            Toast.makeText(getContext(), "Email adres klopt niet", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean arePasswordsMatching() {
+        if (!getPassword().equals(getPasswordAgain())) {
+            Toast.makeText(getContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 }

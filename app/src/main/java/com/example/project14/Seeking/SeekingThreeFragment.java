@@ -83,18 +83,6 @@ public class SeekingThreeFragment extends Fragment {
     }
 
     public void saveData() {
-//        String city = getCity();
-//        String preference = getPreference();
-//        String budget = getBudget();
-//        String month = getMonth();;
-
-//        // Create an intent and add the data as extras
-//        Intent intent = new Intent(getContext(), SeekingFourFragment.class);
-//        intent.putExtra("city", city);
-//        intent.putExtra("preference", preference);
-//        intent.putExtra("budget", budget);
-//        intent.putExtra("month", month);
-
         // Pass the intent to the next fragment
         //   passDataToNextFragment(intent);
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
@@ -114,11 +102,16 @@ public class SeekingThreeFragment extends Fragment {
     }
 
     public boolean isDataValid() {
+        if (getCity().equals("Maak een keuze") || getMonth().equals("Maak een keuze")) {
+            return false;
+        }
+        if (getPreference().equals("-1")) {
+            return false;
+        }
+
         return !TextUtils.isEmpty(getCity()) &&
-                !TextUtils.isEmpty(getCity()) &&
-                !TextUtils.isEmpty(getPreference()) &&
-                !TextUtils.isEmpty(getBudget()) &&
-                !TextUtils.isEmpty(getMonth());
+                !TextUtils.isEmpty(getBudget());
+
     }
 
     public String getCity() {

@@ -121,8 +121,10 @@ public class User_Provider_Form extends AppCompatActivity {
                     }
                 } else {
                     // Display an error message or handle the case when not all fields are filled
-                    Toast.makeText(User_Provider_Form.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+
                 }
+
             }
         });
     }

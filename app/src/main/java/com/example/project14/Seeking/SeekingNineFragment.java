@@ -84,4 +84,6 @@ public class SeekingNineFragment extends Fragment {
         return editTextOther.getText().toString();
     }
 
+    public void highlightUnfilledFields() {
+    }
 }

@@ -121,8 +121,10 @@ public class User_Seeking_Form extends AppCompatActivity {
 
                     }
                 } else {
+                    if (currentPageIndex != 0 && currentPageIndex != 1) {
+                        Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                    }
                     // Display an error message or handle the case when not all fields are filled
-                    Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Vul eerst alle vragen in.", Toast.LENGTH_SHORT).show();
 //                  btnForward.setBackgroundColor(getResources().getColor(R.color.grey));
                     highlightUnfilledFields();
                 }
@@ -136,6 +138,19 @@ public class User_Seeking_Form extends AppCompatActivity {
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, fragment)
                     .commit();
+
+            // Set visibility of buttons based on current fragment
+            Button btnBack = findViewById(R.id.button_back_form);
+            Button btnForward = findViewById(R.id.button_forward_form);
+
+            if (fragment instanceof SeekingOneFragment) {
+                btnBack.setVisibility(View.INVISIBLE); // Hide "Terug" button in fragmentOne
+            } else if (fragment instanceof SeekingTenFragment) {
+                btnForward.setVisibility(View.INVISIBLE); // Hide "Vooruit" button in fragmentTen
+            } else {
+                btnBack.setVisibility(View.VISIBLE);
+                btnForward.setVisibility(View.VISIBLE);
+            }
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -146,15 +161,27 @@ public class User_Seeking_Form extends AppCompatActivity {
 
         if (currentFragment instanceof SeekingOneFragment) {
             SeekingOneFragment fragment = (SeekingOneFragment) currentFragment;
-            if (fragment.isDataValid()) {
-                fragment.saveData();
+            if (fragment.isEmailValid()) {
+                if (fragment.arePasswordsMatching()) {
+                    if (fragment.isDataValid()) {
+                        fragment.saveData();
+                    } else {
+                        Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             return fragment.isDataValid();
         } else if (currentFragment instanceof SeekingTwoFragment) {
             SeekingTwoFragment fragment = (SeekingTwoFragment) currentFragment;
-            if (fragment.isDataValid()) {
-                fragment.saveData();
+
+            if (fragment.isPhoneValid()) {
+
+                if (fragment.isDataValid()) {
+                    fragment.saveData();
+                } else {
+                    Toast.makeText(com.example.project14.Seeking.User_Seeking_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
+                }
             }
 
             return fragment.isDataValid();
@@ -231,29 +258,29 @@ public class User_Seeking_Form extends AppCompatActivity {
         } else if (currentFragment instanceof SeekingThreeFragment) {
             SeekingThreeFragment fragment = (SeekingThreeFragment) currentFragment;
             fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingFourFragment) {
-//            SeekingFourFragment fragment = (SeekingFourFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingFiveFragment) {
-//            SeekingFiveFragment fragment = (SeekingFiveFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingSixFragment) {
-//            SeekingSixFragment fragment = (SeekingSixFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingSevenFragment) {
-//            SeekingSevenFragment fragment = (SeekingSevenFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingEightFragment) {
-//            SeekingEightFragment fragment = (SeekingEightFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingNineFragment) {
-//            SeekingNineFragment fragment = (SeekingNineFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof SeekingTenFragment) {
-//            SeekingTenFragment fragment = (SeekingTenFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        }
+        } else if (currentFragment instanceof SeekingFourFragment) {
+            SeekingFourFragment fragment = (SeekingFourFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingFiveFragment) {
+            SeekingFiveFragment fragment = (SeekingFiveFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingSixFragment) {
+            SeekingSixFragment fragment = (SeekingSixFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingSevenFragment) {
+            SeekingSevenFragment fragment = (SeekingSevenFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingEightFragment) {
+            SeekingEightFragment fragment = (SeekingEightFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingNineFragment) {
+            SeekingNineFragment fragment = (SeekingNineFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof SeekingTenFragment) {
+            SeekingTenFragment fragment = (SeekingTenFragment) currentFragment;
+            fragment.highlightUnfilledFields();
         }
+
     }
 
 
@@ -271,11 +298,6 @@ public class User_Seeking_Form extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }
-
-    private boolean verifyEmail(String email) {
-        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        return email.matches(regex);
     }
 
 

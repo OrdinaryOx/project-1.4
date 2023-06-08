@@ -1,5 +1,6 @@
 package com.example.project14.Seeking;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,8 +33,11 @@ import org.json.JSONObject;
 
 import java.io.Console;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class SeekingTwoFragment extends Fragment {
     private EditText editTextAddress;
@@ -43,8 +49,7 @@ public class SeekingTwoFragment extends Fragment {
 
     private EditText editTextHouseNumber;
 
-    private boolean isFragmentAttached = false;
-
+    private Calendar calendar;
 
     public SeekingTwoFragment() {
         // Required empty public constructor
@@ -53,7 +58,7 @@ public class SeekingTwoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seeking_two, container, false);
-        isFragmentAttached = true;
+
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
@@ -70,6 +75,14 @@ public class SeekingTwoFragment extends Fragment {
         editTextHouseNumber = view.findViewById(R.id.editTextHouseNumber);
         editTextPostalCode.addTextChangedListener(textWatcher);
         editTextHouseNumber.addTextChangedListener(textWatcher);
+
+        calendar = Calendar.getInstance();
+        editTextBirthDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
 
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
@@ -109,6 +122,32 @@ public class SeekingTwoFragment extends Fragment {
         return view;
     }
 
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, monthOfYear);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                        updateBirthDate();
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    private void updateBirthDate() {
+        String dateFormat = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        editTextBirthDate.setText(simpleDateFormat.format(calendar.getTime()));
+    }
+
     public void saveData() {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
@@ -124,11 +163,6 @@ public class SeekingTwoFragment extends Fragment {
         }
     }
 
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Seeking_Form) {
-            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
-        }
-    }
 
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getAddress()) &&
@@ -138,6 +172,12 @@ public class SeekingTwoFragment extends Fragment {
                 !TextUtils.isEmpty(getCountry()) &&
                 !TextUtils.isEmpty(getPhoneNumber()) &&
                 !TextUtils.isEmpty(getBirthDate());
+
+    }
+
+    public boolean verifyPhone(String phoneNumber) {
+        String normalizedPhoneNumber = phoneNumber.replaceAll("\\s+", "");
+        return normalizedPhoneNumber.startsWith("06") && normalizedPhoneNumber.length() == 10;
     }
 
     public String getAddress() {
@@ -191,9 +231,6 @@ public class SeekingTwoFragment extends Fragment {
     };
 
 
-
-
-
     private void makeAPICall(String postalCode, String houseNumber) {
         String url = "https://postcode.tech/api/v1/postcode/full?postcode=" + postalCode + "&number=" + houseNumber;
 
@@ -240,39 +277,38 @@ public class SeekingTwoFragment extends Fragment {
     }
 
 
-
     public void highlightUnfilledFields() {
         // Reset the border color of all EditText views
 
         // Check each field and change the border color if it's empty
         if (TextUtils.isEmpty(getAddress())) {
             editTextAddress.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextAddress.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getCity())) {
             editTextCity.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextCity.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getPostalCode())) {
             editTextPostalCode.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextPostalCode.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getCountry())) {
             editTextCountry.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextCountry.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getPhoneNumber())) {
             editTextPhoneNumber.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextPhoneNumber.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getBirthDate())) {
             editTextBirthDate.setBackgroundResource(R.drawable.border_red);
-        }else {
+        } else {
             editTextBirthDate.setBackgroundResource(R.drawable.border);
         }
         if (TextUtils.isEmpty(getHouseNumber())) {
@@ -280,5 +316,18 @@ public class SeekingTwoFragment extends Fragment {
         } else {
             editTextHouseNumber.setBackgroundResource(R.drawable.border);
         }
+        if (!isPhoneValid()) {
+            editTextPhoneNumber.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPhoneNumber.setBackgroundResource(R.drawable.border);
+        }
+    }
+
+    public boolean isPhoneValid() {
+        if (!verifyPhone(getPhoneNumber())) {
+            Toast.makeText(getContext(), "Telefoonnummer ongeldig", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

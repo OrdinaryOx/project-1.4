@@ -19,6 +19,8 @@ import android.widget.Spinner;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +33,11 @@ public class SeekingSixFragment extends Fragment {
     private EditText editTextWork;
     private RadioGroup radioGroupHealth;
     private EditText editTextHealth;
+
+    private RadioButton seekingWorkYes;
+    private RadioButton seekingWorkNo;
+    private RadioButton healthIssuesYes;
+    private RadioButton healthIssuesNo;
 
     public SeekingSixFragment() {
         // Required empty public constructor
@@ -48,6 +55,11 @@ public class SeekingSixFragment extends Fragment {
         editTextWork = view.findViewById(R.id.editTextWork);
         radioGroupHealth = view.findViewById(R.id.radioGroupHealth);
         editTextHealth = view.findViewById(R.id.editTextHealth);
+
+        seekingWorkYes = view.findViewById(R.id.radio_button_seeking_work_yes);
+        seekingWorkNo = view.findViewById(R.id.radio_button_seeking_work_no);
+        healthIssuesYes = view.findViewById(R.id.radio_button_health_yes);
+        healthIssuesNo = view.findViewById(R.id.radio_button_health_no);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
@@ -123,9 +135,16 @@ public class SeekingSixFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getSeekingWork()) &&
-                !TextUtils.isEmpty(getSeekingWork()) &&
-                !TextUtils.isEmpty(getHealthInfo());
+
+        if (getSeekingWork().equals("-1") || getSeekingWork().equals("Ja") && TextUtils.isEmpty(getWork())) {
+            return false;
+        }
+
+        if (getHealth().equals("-1") || getHealth().equals("Ja") && TextUtils.isEmpty(getHealthInfo())) {
+            return false;
+        }
+        return true;
+
     }
 
     public boolean isEhboSelected() {
@@ -142,8 +161,11 @@ public class SeekingSixFragment extends Fragment {
 
     public String getSeekingWork() {
         int checkedRadioButtonId = radioGroupSeekingWork.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public void setSeekingWork(String seekingWork) {
@@ -162,8 +184,12 @@ public class SeekingSixFragment extends Fragment {
 
     public String getHealth() {
         int checkedRadioButtonId = radioGroupHealth.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public void setHealth(String health) {
@@ -179,22 +205,29 @@ public class SeekingSixFragment extends Fragment {
     }
 
     public void highlightUnfilledFields() {
-        // Reset the border color of all EditText views
-
-        if (getSalutation().equals("Maak een keuze")) {
-            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        if (getSeekingWork().equals("-1")) {
+            seekingWorkNo.setBackgroundResource(R.drawable.border_red);
+            seekingWorkYes.setBackgroundResource(R.drawable.border_red);
         } else {
-            spinnerSalutation.setBackgroundResource(R.drawable.combined_spinner_drawable);
+            seekingWorkNo.setBackgroundResource(R.drawable.border);
+            seekingWorkYes.setBackgroundResource(R.drawable.border);
         }
-        if (TextUtils.isEmpty(getFirstName())) {
-            editTextFirstName.setBackgroundResource(R.drawable.border_red);
+        if (getSeekingWork().equals("Ja") && TextUtils.isEmpty(getWork())) {
+            editTextWork.setBackgroundResource(R.drawable.border_red);
         } else {
-            editTextFirstName.setBackgroundResource(R.drawable.border);
+            editTextWork.setBackgroundResource(R.drawable.border);
         }
-        if (TextUtils.isEmpty(getLastName())) {
-            editTextLastName.setBackgroundResource(R.drawable.border_red);
+        if (getHealth().equals("-1")) {
+            healthIssuesNo.setBackgroundResource(R.drawable.border_red);
+            healthIssuesYes.setBackgroundResource(R.drawable.border_red);
         } else {
-            editTextLastName.setBackgroundResource(R.drawable.border);
+            healthIssuesNo.setBackgroundResource(R.drawable.border);
+            healthIssuesYes.setBackgroundResource(R.drawable.border);
+        }
+        if (getHealth().equals("Ja") && TextUtils.isEmpty(getHealthInfo())) {
+            editTextHealth.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextHealth.setBackgroundResource(R.drawable.border);
         }
     }
 
