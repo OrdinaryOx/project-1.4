@@ -18,17 +18,11 @@ import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
-import com.example.project14.Seeking.SeekingEightFragment;
-import com.example.project14.Seeking.SeekingFiveFragment;
-import com.example.project14.Seeking.SeekingFourFragment;
-import com.example.project14.Seeking.SeekingNineFragment;
 import com.example.project14.Seeking.SeekingOneFragment;
-import com.example.project14.Seeking.SeekingSevenFragment;
-import com.example.project14.Seeking.SeekingSixFragment;
 import com.example.project14.Seeking.SeekingTenFragment;
-import com.example.project14.Seeking.SeekingThreeFragment;
-import com.example.project14.Seeking.SeekingTwoFragment;
 
+
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -142,6 +136,18 @@ public class User_Provider_Form extends AppCompatActivity {
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, fragment)
                     .commit();
+
+            Button btnBack = findViewById(R.id.button_back_form);
+            Button btnForward = findViewById(R.id.button_forward_form);
+
+            if (fragment instanceof ProviderOneFragment) {
+                btnBack.setVisibility(View.INVISIBLE); // Hide "Terug" button in fragmentOne
+            } else if (fragment instanceof ProviderNineFragment) {
+                btnForward.setVisibility(View.INVISIBLE); // Hide "Vooruit" button in fragmentTen
+            } else {
+                btnBack.setVisibility(View.VISIBLE);
+                btnForward.setVisibility(View.VISIBLE);
+            }
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -165,6 +171,7 @@ public class User_Provider_Form extends AppCompatActivity {
             return fragment.isDataValid();
         } else if (currentFragment instanceof ProviderTwoFragment) {
             ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
+
             if (fragment.isPhoneValid()) {
 
                 if (fragment.isDataValid()) {
@@ -173,7 +180,6 @@ public class User_Provider_Form extends AppCompatActivity {
                     Toast.makeText(com.example.project14.Provider.User_Provider_Form.this, "Vul eerst alle onderdelen in.", Toast.LENGTH_SHORT).show();
                 }
             }
-
             return fragment.isDataValid();
 
         } else if (currentFragment instanceof ProviderThreeFragment) {

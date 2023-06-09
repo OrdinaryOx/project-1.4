@@ -16,6 +16,8 @@ import android.widget.Spinner;
 
 import com.example.project14.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +26,8 @@ public class ProviderSixFragment extends Fragment {
     private EditText editTextImportantNote;
     private RadioGroup radioGroupVolunteer;
     private EditText editTextCommentVolunteer;
+    private RadioButton vrijwilligYes;
+    private RadioButton vrijwilligNo;
 
     public ProviderSixFragment() {
         // Required empty public constructor
@@ -38,15 +42,48 @@ public class ProviderSixFragment extends Fragment {
         editTextImportantNote = view.findViewById(R.id.editTextImportantNote);
         radioGroupVolunteer = view.findViewById(R.id.radioGroupVolunteer);
         editTextCommentVolunteer = view.findViewById(R.id.editTextCommentVolunteer);
+        vrijwilligNo = view.findViewById(R.id.radio_button_volunteer_no);
+        vrijwilligYes = view.findViewById(R.id.radio_button_volunteer_yes);
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("Situation")) {
+                String offer = fragmentDataList.get("Offer");
+                editTextOffer.setText(offer);
+            }
+            if (fragmentDataList.containsKey("ImportantNote")) {
+                String note = fragmentDataList.get("ImportantNote");
+                editTextImportantNote.setText(note);
+            }
+            if (fragmentDataList.containsKey("Volunteer")) {
+                String volunteer = fragmentDataList.get("Found");
+                setRadioButtonSelection(radioGroupVolunteer, volunteer);
+            }
+            if (fragmentDataList.containsKey("CommentVolunteer")) {
+                String volunteerComment = fragmentDataList.get("CommentVolunteer");
+                editTextCommentVolunteer.setText(volunteerComment);
+            }
+
+        }
+
 
         return view;
     }
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
 
     public void saveData() {
-        String offer = getOffer();
-        String importantNote = getImportantNote();
-        String volunteer = getVolunteer();
-        String commentVolunteer = getCommentVolunteer();
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
@@ -59,22 +96,18 @@ public class ProviderSixFragment extends Fragment {
         }
 
 
-        // Pass the intent to the next fragment
-      //  passDataToNextFragment(intent);
     }
 
-
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
-        }
-    }
 
     public boolean isDataValid() {
+        if (getVolunteer().equals("Ja") && TextUtils.isEmpty(getCommentVolunteer())) {
+            return false;
+        }
+
+
         return !TextUtils.isEmpty(getOffer()) &&
                 !TextUtils.isEmpty(getImportantNote()) &&
-                !TextUtils.isEmpty(getVolunteer()) &&
-                !TextUtils.isEmpty(getCommentVolunteer());
+                !TextUtils.isEmpty(getVolunteer());
     }
 
     public String getOffer() {
@@ -95,4 +128,31 @@ public class ProviderSixFragment extends Fragment {
         return editTextCommentVolunteer.getText().toString();
     }
 
+
+    public void highlightUnfilledFields() {
+
+        if (getVolunteer().equals("-1")) {
+            vrijwilligNo.setBackgroundResource(R.drawable.border_red);
+            vrijwilligYes.setBackgroundResource(R.drawable.border_red);
+        } else {
+            vrijwilligNo.setBackgroundResource(R.drawable.border);
+            vrijwilligYes.setBackgroundResource(R.drawable.border);
+
+        }
+        if (TextUtils.isEmpty(getOffer())) {
+            editTextOffer.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextOffer.setBackgroundResource(R.drawable.border);
+        }
+        if (getVolunteer().equals("Ja") && TextUtils.isEmpty(getCommentVolunteer())) {
+            editTextCommentVolunteer.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextCommentVolunteer.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getImportantNote())) {
+            editTextImportantNote.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextImportantNote.setBackgroundResource(R.drawable.border);
+        }
+    }
 }

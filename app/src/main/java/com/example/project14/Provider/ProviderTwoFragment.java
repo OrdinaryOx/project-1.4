@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.project14.R;
-import com.example.project14.Seeking.User_Seeking_Form;
+
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -84,6 +84,10 @@ public class ProviderTwoFragment extends Fragment {
                 String address = fragmentDataList.get("Address");
                 editTextAddress.setText(address);
             }
+            if (fragmentDataList.containsKey("HouseNumber")) {
+                String houseNumber = fragmentDataList.get("HouseNumber");
+                editTextHouseNumber.setText(houseNumber);
+            }
             if (fragmentDataList.containsKey("CityPersonal")) {
                 String city = fragmentDataList.get("CityPersonal");
                 editTextCity.setText(city);
@@ -132,7 +136,6 @@ public class ProviderTwoFragment extends Fragment {
         // Set the date picker dialog to display the year spinner
         datePickerDialog.getDatePicker().setCalendarViewShown(false);
         datePickerDialog.getDatePicker().setSpinnersShown(true);
-
         datePickerDialog.show();
     }
 
@@ -148,12 +151,7 @@ public class ProviderTwoFragment extends Fragment {
     }
 
     public void saveData() {
-        String address = getAddress();
-        String city = getCity();
-        String postalCode = getPostalCode();
-        String country = getCountry();
-        String phoneNumber = getPhoneNumber();
-        String birthDate = getBirthDate();
+
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
@@ -174,6 +172,7 @@ public class ProviderTwoFragment extends Fragment {
     public String getHouseNumber() {
         return editTextHouseNumber.getText().toString();
     }
+
     private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -241,6 +240,7 @@ public class ProviderTwoFragment extends Fragment {
             }
         });
     }
+
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getAddress()) &&
                 !TextUtils.isEmpty(getCity()) &&
@@ -248,7 +248,8 @@ public class ProviderTwoFragment extends Fragment {
                 !TextUtils.isEmpty(getPostalCode()) &&
                 !TextUtils.isEmpty(getCountry()) &&
                 !TextUtils.isEmpty(getPhoneNumber()) &&
-                !TextUtils.isEmpty(getBirthDate());
+                !TextUtils.isEmpty(getBirthDate()) &&
+                verifyPhone(getPhoneNumber());
 
     }
 
@@ -275,6 +276,7 @@ public class ProviderTwoFragment extends Fragment {
     public String getBirthDate() {
         return editTextBirthDate.getText().toString();
     }
+
     public void highlightUnfilledFields() {
         // Reset the border color of all EditText views
 

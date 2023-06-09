@@ -180,7 +180,8 @@ public class SeekingTwoFragment extends Fragment {
                 !TextUtils.isEmpty(getPostalCode()) &&
                 !TextUtils.isEmpty(getCountry()) &&
                 !TextUtils.isEmpty(getPhoneNumber()) &&
-                !TextUtils.isEmpty(getBirthDate());
+                !TextUtils.isEmpty(getBirthDate()) &&
+                verifyPhone(getPhoneNumber());
 
     }
 

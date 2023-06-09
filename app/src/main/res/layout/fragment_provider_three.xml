@@ -185,6 +185,6 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView18"
         app:layout_constraintLeft_toRightOf="@id/textView18"
-        android:translationX="-155dp"
+        android:translationX="-125dp"
         android:translationY="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

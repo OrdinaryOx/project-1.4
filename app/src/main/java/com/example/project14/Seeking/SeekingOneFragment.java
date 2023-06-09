@@ -5,9 +5,11 @@ import static android.app.Activity.RESULT_OK;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -147,6 +149,7 @@ public class SeekingOneFragment extends Fragment {
     public String getImage() {
         return base64Image;
     }
+
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
@@ -226,6 +229,13 @@ public class SeekingOneFragment extends Fragment {
         } else {
             editTextEmail.setBackgroundResource(R.drawable.border);
         }
+        if (TextUtils.isEmpty((getImage()))) {
+            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
+            uploadImage.setBackground(borderDrawable);
+        } else {
+            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
+            uploadImage.setBackground(borderDrawable);
+        }
     }
 
     public void uploadPicture() {
@@ -242,7 +252,7 @@ public class SeekingOneFragment extends Fragment {
 
             try {
                 // Convert the selected image to a Base64 string
-base64Image = convertImageToBase64(imageUri);
+                base64Image = convertImageToBase64(imageUri);
 
 
             } catch (IOException e) {

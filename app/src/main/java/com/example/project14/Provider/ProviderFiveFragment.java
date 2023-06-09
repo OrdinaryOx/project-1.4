@@ -24,6 +24,8 @@ private EditText editTextSquareMeter;
 private RadioGroup radioGroupFurnish;
 private EditText editTextFurnished;
 private EditText editTextPrice;
+private RadioButton furnishYes;
+private RadioButton furnishNo;
 
     public ProviderFiveFragment() {
         // Required empty public constructor
@@ -38,6 +40,8 @@ private EditText editTextPrice;
         radioGroupFurnish = view.findViewById(R.id.radioGroupFurnish);
         editTextFurnished = view.findViewById(R.id.editTextFurnished);
         editTextPrice = view.findViewById(R.id.editTextPrice);
+        furnishYes = view.findViewById(R.id.radio_button_furnish_yes);
+        furnishNo = view.findViewById(R.id.radio_button_furnish_no);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
@@ -92,9 +96,12 @@ private EditText editTextPrice;
     }
 
     public boolean isDataValid() {
+        if (getFurnish().equals("Ja") && TextUtils.isEmpty(getFurnished())) {
+            return false;
+        }
+
         return !TextUtils.isEmpty(getSquareMeter()) &&
                 !TextUtils.isEmpty(getFurnish()) &&
-                !TextUtils.isEmpty(getFurnished()) &&
                 !TextUtils.isEmpty(getPrice());
     }
 
@@ -126,6 +133,32 @@ private EditText editTextPrice;
                     break;
                 }
             }
+        }
+    }
+
+    public void highlightUnfilledFields() {
+        if (TextUtils.isEmpty(getSquareMeter())) {
+            editTextSquareMeter.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextSquareMeter.setBackgroundResource(R.drawable.border);
+        }
+        if (getFurnish().equals("-1")) {
+            furnishNo.setBackgroundResource(R.drawable.border_red);
+            furnishYes.setBackgroundResource(R.drawable.border_red);
+        } else {
+            furnishNo.setBackgroundResource(R.drawable.border);
+            furnishYes.setBackgroundResource(R.drawable.border);
+
+        }
+        if (getFurnish().equals("Ja") && TextUtils.isEmpty(getFurnished())) {
+            editTextFurnished.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextFurnished.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPrice())) {
+            editTextPrice.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPrice.setBackgroundResource(R.drawable.border);
         }
     }
 }

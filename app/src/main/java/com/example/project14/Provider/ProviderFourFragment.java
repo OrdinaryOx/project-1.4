@@ -46,8 +46,8 @@ public class ProviderFourFragment extends Fragment {
                 String day = fragmentDataList.get("ProviderDays");
                 setSpinnerSelection(spinnerProviderDays, day);
             }
-            if (fragmentDataList.containsKey("ProviderMonths")) {
-                String month = fragmentDataList.get("ProviderMonths");
+            if (fragmentDataList.containsKey("ProviderMonth")) {
+                String month = fragmentDataList.get("ProviderMonth");
                 setSpinnerSelection(spinnerProviderMonth, month);
             }
             if (fragmentDataList.containsKey("TypeRoom")) {
@@ -76,7 +76,7 @@ public class ProviderFourFragment extends Fragment {
         }
 
         // Pass the intent to the next fragment
-    //    passDataToNextFragment(intent);
+        //    passDataToNextFragment(intent);
     }
 
 
@@ -95,9 +95,11 @@ public class ProviderFourFragment extends Fragment {
     public String getProviderMonth() {
         return spinnerProviderMonth.getSelectedItem().toString();
     }
+
     public String getProviderDays() {
         return spinnerProviderDays.getSelectedItem().toString();
     }
+
     public String getTypeRoom() {
         return editTextTypeRoom.getText().toString();
     }
@@ -114,6 +116,24 @@ public class ProviderFourFragment extends Fragment {
         }
     }
 
+    public void highlightUnfilledFields() {
+        if (getProviderMonth().equals("Maak een keuze")) {
+            spinnerProviderMonth.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerProviderMonth.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (getProviderDays().equals("Maak een keuze")) {
+            spinnerProviderDays.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerProviderDays.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (TextUtils.isEmpty(getTypeRoom())) {
+            editTextTypeRoom.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextTypeRoom.setBackgroundResource(R.drawable.border);
+        }
+
+    }
 
 
 }
