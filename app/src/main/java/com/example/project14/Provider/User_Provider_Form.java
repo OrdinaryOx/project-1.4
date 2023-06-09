@@ -22,9 +22,21 @@ import com.example.project14.Seeking.SeekingOneFragment;
 import com.example.project14.Seeking.SeekingTenFragment;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.security.Provider;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class User_Provider_Form extends AppCompatActivity {
     private HashMap<String, String> fragmentDataList;
@@ -245,28 +257,27 @@ public class User_Provider_Form extends AppCompatActivity {
         } else if (currentFragment instanceof ProviderTwoFragment) {
             ProviderTwoFragment fragment = (ProviderTwoFragment) currentFragment;
             fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderThreeFragment) {
-//            ProviderThreeFragment fragment = (ProviderThreeFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderFourFragment) {
-//            ProviderFourFragment fragment = (ProviderFourFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderFiveFragment) {
-//            ProviderFiveFragment fragment = (ProviderFiveFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderSixFragment) {
-//            ProviderSixFragment fragment = (ProviderSixFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderSevenFragment) {
-//            ProviderSevenFragment fragment = (ProviderSevenFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderEightFragment) {
-//            ProviderEightFragment fragment = (ProviderEightFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        } else if (currentFragment instanceof ProviderNineFragment) {
-//            ProviderNineFragment fragment = (ProviderNineFragment) currentFragment;
-//            fragment.highlightUnfilledFields();
-//        }
+        } else if (currentFragment instanceof ProviderThreeFragment) {
+            ProviderThreeFragment fragment = (ProviderThreeFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderFourFragment) {
+            ProviderFourFragment fragment = (ProviderFourFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderFiveFragment) {
+            ProviderFiveFragment fragment = (ProviderFiveFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderSixFragment) {
+            ProviderSixFragment fragment = (ProviderSixFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderSevenFragment) {
+            ProviderSevenFragment fragment = (ProviderSevenFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+        } else if (currentFragment instanceof ProviderEightFragment) {
+            ProviderEightFragment fragment = (ProviderEightFragment) currentFragment;
+        } else if (currentFragment instanceof ProviderNineFragment) {
+            ProviderNineFragment fragment = (ProviderNineFragment) currentFragment;
+            fragment.highlightUnfilledFields();
+
         }
     }
 
@@ -299,11 +310,159 @@ public class User_Provider_Form extends AppCompatActivity {
         return email.matches(regex);
     }
 
-    public void opsturen(View view) {
-        Intent intent = new Intent(this, ActivitiesScreen.class);
-        Log.d("SIZE", " " + fragmentDataList.size());
-        Log.d("TO BE SENT", fragmentDataList.toString());
-        startActivity(intent);
+    public void opsturen(View view) throws JSONException {
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/json");
+        String json = buildProviderPreferences().toString();
+        Log.d("JSON String", json);
+        RequestBody body = RequestBody.create(json, mediaType);
+
+        Request request = new Request.Builder()
+                .url("https://hardy-stream-production.up.railway.app/api/user/verhuurder")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                // Handle the request failure
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Request successful
+                    String responseBody = response.body().string();
+                    System.out.println("Response: " + responseBody);
+                } else {
+                    // Request failed
+                    System.out.println("Request failed with code: " + response.code());
+                }
+            }
+        });
+    }
+
+    private Object buildProviderPreferences() throws JSONException {
+        JSONObject userPreferences = new JSONObject();
+
+        JSONObject user = new JSONObject();
+        user.put("emailAddress", fragmentDataList.get("Email"));
+        user.put("password", fragmentDataList.get("Password"));
+        user.put("dateOfBirth", fragmentDataList.get("BirthDate"));
+
+        user.put("firstName", fragmentDataList.get("FirstName"));
+        user.put("middleName", fragmentDataList.get("Infix"));
+        user.put("lastName", fragmentDataList.get("LastName"));
+        user.put("picture", fragmentDataList.get("ProfileImage"));
+
+        String gender = "";
+
+        if (fragmentDataList.get("Salutation").equals("Dhr")) {
+            gender = "M";
+        } else if(fragmentDataList.get("Salutation").equals("Mvr")) {
+            gender = "F";
+        } else {
+            gender = "O";
+        }
+
+
+        user.put("gender", gender);
+        user.put("phoneNumber", fragmentDataList.get("PhoneNumber"));
+        user.put("postalCode", fragmentDataList.get("PostalCode"));
+        user.put("street", fragmentDataList.get("Street"));
+        user.put("city", fragmentDataList.get("CityPersonal"));
+        user.put("houseNumber", fragmentDataList.get("HouseNumber"));
+        user.put("country", fragmentDataList.get("Country"));
+
+
+
+        JSONObject preferences = new JSONObject();
+        // Populate the preferences JSON object with data
+//        preferences.put("seekingCity", fragmentDataList.get("City"));
+//        String liveWith = "";
+//
+//        Log.d("TAG", fragmentDataList.get("Preference") );
+//
+//        if (fragmentDataList.get("Preference").equals("Man")) {
+//            liveWith = "M";
+//        } else if (fragmentDataList.get("Preference").equals("Vrouw")) {
+//            liveWith = "V";
+//        } else if (fragmentDataList.get("Preference").equals("Koppel")) {
+//            liveWith = "K";
+//        } else {
+//            liveWith = "";
+//        }
+//
+//        Log.d("TAG", liveWith);
+//
+//        preferences.put("liveWith", liveWith);
+//        preferences.put("budget", fragmentDataList.get("Budget"));
+//
+//        String[] periodSplit = fragmentDataList.get("Month").split(" ");
+//        String periodGood = periodSplit[0];
+//
+//        preferences.put("period", periodGood);
+//
+//        String[] nightSplit = fragmentDataList.get("Day").split(" ");
+//        String nightGood = nightSplit[0];
+//
+//
+//        preferences.put("nights", nightGood);
+//        preferences.put("pet", fragmentDataList.get("Pets"));
+//        preferences.put("ownPet", fragmentDataList.get("SelfPets"));
+//        preferences.put("ownPetDescription", fragmentDataList.get("PetsComment"));
+//        preferences.put("starDate", fragmentDataList.get("StartDate"));
+//        preferences.put("endDate", fragmentDataList.get("EndDate"));
+////        preferences.put("starDate", "2012-12-12");
+////        preferences.put("endDate", "2013-12-12");
+//
+//        preferences.put("reason", fragmentDataList.get("Reason"));
+//        preferences.put("schoolFinished", fragmentDataList.get("Grade"));
+//        preferences.put("schoolDoing", fragmentDataList.get("Course"));
+//
+//        ArrayList<String> skills = new ArrayList<>();
+//        if  (fragmentDataList.get("EHBO").equals("EHBO")) {
+//            skills.add("EHBO");
+//        }
+//        if  (fragmentDataList.get("BHV").equals("BHV")) {
+//            skills.add("BHV");
+//        }
+//        if  (fragmentDataList.get("Reanimation").equals("Reanimatie")) {
+//            skills.add("Reanimatie");
+//        }
+//        String skillString = "";
+//
+//        for (int i = 0; i < skills.size(); i++) {
+//            if (i == 0) {
+//                skillString += skills.get(i);
+//            }
+//            skillString += ", " + skills.get(i);
+//        }
+//
+//        preferences.put("skill", skillString);
+//        preferences.put("work", fragmentDataList.get("SeekingWork"));
+//        preferences.put("workDescription", fragmentDataList.get("Work"));
+//        preferences.put("healthRisk", fragmentDataList.get("Health"));
+//        preferences.put("healthRiskDescription", fragmentDataList.get("HealthInfo"));
+//        preferences.put("selfDescription", fragmentDataList.get("Yourself"));
+//        preferences.put("selfWords", fragmentDataList.get("Keyword"));
+//        preferences.put("idealSpace", fragmentDataList.get("Room"));
+//        preferences.put("offer", fragmentDataList.get("Mean"));
+//        preferences.put("offerYou", fragmentDataList.get("OtherOffer"));
+//        preferences.put("importantNote", fragmentDataList.get("ImportantNote"));
+//        preferences.put("volunteer", fragmentDataList.get("VolunteerSelection"));
+//        preferences.put("volunteerDescription", fragmentDataList.get("Volunteer"));
+//        preferences.put("religion", fragmentDataList.get("Belief"));
+//        preferences.put("comment", fragmentDataList.get("Other"));
+//        preferences.put("overallcomment", fragmentDataList.get("Comment"));
+//
+//        userPreferences.put("user", user);
+//        userPreferences.put("preferences", preferences);
+
+        return userPreferences;
+    }
     }
 }
 

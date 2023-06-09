@@ -111,8 +111,12 @@ private RadioButton furnishNo;
 
     public String getFurnish() {
         int checkedRadioButtonId = radioGroupFurnish.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getFurnished() {

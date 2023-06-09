@@ -240,6 +240,12 @@ public class ProviderOneFragment extends Fragment {
         } else {
             Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
             uploadImage.setBackground(borderDrawable);
+        } if (!arePasswordsMatching()) {
+            editTextPassword.setBackgroundResource(R.drawable.border_red);
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPassword.setBackgroundResource(R.drawable.border);
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border);
         }
     }
 

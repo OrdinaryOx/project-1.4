@@ -159,6 +159,7 @@ public class ProviderTwoFragment extends Fragment {
             fragmentDataList.put("Address", getAddress());
             fragmentDataList.put("CityPersonal", getCity());
             fragmentDataList.put("PostalCode", getPostalCode());
+            fragmentDataList.put("HouseNumber", getHouseNumber());
             fragmentDataList.put("Country", getCountry());
             fragmentDataList.put("PhoneNumber", getPhoneNumber());
             fragmentDataList.put("BirthDate", getBirthDate());

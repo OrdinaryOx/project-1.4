@@ -57,7 +57,7 @@ public class ProviderSixFragment extends Fragment {
                 editTextImportantNote.setText(note);
             }
             if (fragmentDataList.containsKey("Volunteer")) {
-                String volunteer = fragmentDataList.get("Found");
+                String volunteer = fragmentDataList.get("Volunteer");
                 setRadioButtonSelection(radioGroupVolunteer, volunteer);
             }
             if (fragmentDataList.containsKey("CommentVolunteer")) {
@@ -120,8 +120,12 @@ public class ProviderSixFragment extends Fragment {
 
     public String getVolunteer() {
         int checkedRadioButtonId = radioGroupVolunteer.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getCommentVolunteer() {
