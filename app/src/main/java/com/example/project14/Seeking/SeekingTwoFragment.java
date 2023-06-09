@@ -48,6 +48,8 @@ public class SeekingTwoFragment extends Fragment {
     private EditText editTextPhoneNumber;
     private EditText editTextBirthDate;
 
+    private EditText editTextStreet;
+
     private EditText editTextHouseNumber;
 
     private Calendar calendar;
@@ -159,7 +161,7 @@ public class SeekingTwoFragment extends Fragment {
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.put("Address", getAddress());
+            fragmentDataList.put("Street", getAddress());
             fragmentDataList.put("HouseNumber", getHouseNumber());
             fragmentDataList.put("CityPersonal", getCity());
             fragmentDataList.put("PostalCode", getPostalCode());

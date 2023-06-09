@@ -19,20 +19,25 @@ import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import okhttp3.Call;
+import okhttp3.Callback;
+//import retrofit2.Call;
+//import retrofit2.Callback;
+//import retrofit2.Retrofit;
+//import retrofit2.converter.gson.GsonConverterFactory;
 import com.example.project14.RoleActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import retrofit2.Call;
-import retrofit2.Callback;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -47,7 +52,7 @@ public class User_Seeking_Form extends AppCompatActivity {
     private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
-    private UserService userService;
+
 
     private Class<?>[] fragmentClasses = {
             SeekingOneFragment.class,
@@ -73,8 +78,7 @@ public class User_Seeking_Form extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // Create UserService
-        userService = retrofit.create(UserService.class);
+
 
 
         fragmentDataList = new HashMap<>();
@@ -335,45 +339,38 @@ public class User_Seeking_Form extends AppCompatActivity {
         return fragmentDataList;
     }
 
-    public void opsturen(View view) {
-        if (areAllFieldsFilled()) {
-            try {
-                JSONObject userPreferences = buildUserPreferences();
-                Log.d("TAG", userPreferences.toString());
+    public void opsturen(View view) throws JSONException {
+        OkHttpClient client = new OkHttpClient();
 
-                Call<ResponseBody> call = userService.postHuurder(userPreferences);
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            try {
-                                String responseBody = response.body().string();
-                                // Process the response body as needed
-                                Log.d("RESPONSE", responseBody);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            // Request failed
-                            // Handle the failure case
-                            Log.e("RESPONSE_ERROR", response.message());
-                        }
-                    }
+        MediaType mediaType = MediaType.parse("application/json");
+        String json = buildUserPreferences().toString();
+        Log.d("JSON String", json);
+        RequestBody body = RequestBody.create(json, mediaType);
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        // Request failed due to network error or other issues
-                        // Handle the failure case
-                        t.printStackTrace();
-                    }
-                });
+        Request request = new Request.Builder()
+                .url("https://hardy-stream-production.up.railway.app/api/user/huurder")
+                .post(body)
+                .build();
 
-            } catch (JSONException e) {
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
+                // Handle the request failure
             }
-        } else {
-            highlightUnfilledFields();
-        }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Request successful
+                    String responseBody = response.body().string();
+                    System.out.println("Response: " + responseBody);
+                } else {
+                    // Request failed
+                    System.out.println("Request failed with code: " + response.code());
+                }
+            }
+        });
     }
 
     private JSONObject buildUserPreferences() throws JSONException {
@@ -383,6 +380,7 @@ public class User_Seeking_Form extends AppCompatActivity {
         user.put("emailAddress", fragmentDataList.get("Email"));
         user.put("password", fragmentDataList.get("Password"));
         user.put("dateOfBirth", fragmentDataList.get("BirthDate"));
+//        user.put("dateOfBirth", "2020-12-12");
         user.put("firstName", fragmentDataList.get("FirstName"));
         user.put("middleName", fragmentDataList.get("Infix"));
         user.put("lastName", fragmentDataList.get("LastName"));
@@ -390,14 +388,14 @@ public class User_Seeking_Form extends AppCompatActivity {
 
         String gender = "";
 
-        switch (fragmentDataList.get("Salutation")) {
-            case "Dhr":
-                gender = "M";
-            case "Mvr":
-                gender = "F";
-            case "Anders":
-                gender = "O";
+        if (fragmentDataList.get("Salutation").equals("Dhr")) {
+            gender = "M";
+        } else if(fragmentDataList.get("Salutation").equals("Mvr")) {
+            gender = "F";
+        } else {
+            gender = "O";
         }
+
 
         user.put("gender", gender);
         user.put("phoneNumber", fragmentDataList.get("PhoneNumber"));
@@ -412,15 +410,43 @@ public class User_Seeking_Form extends AppCompatActivity {
         JSONObject preferences = new JSONObject();
         // Populate the preferences JSON object with data
         preferences.put("seekingCity", fragmentDataList.get("City"));
-        preferences.put("liveWith", fragmentDataList.get("Preference"));
+       String liveWith = "";
+
+       Log.d("TAG", fragmentDataList.get("Preference") );
+
+       if (fragmentDataList.get("Preference").equals("Man")) {
+           liveWith = "M";
+       } else if (fragmentDataList.get("Preference").equals("Vrouw")) {
+           liveWith = "V";
+       } else if (fragmentDataList.get("Preference").equals("Koppel")) {
+           liveWith = "K";
+       } else {
+           liveWith = "";
+       }
+
+        Log.d("TAG", liveWith);
+
+        preferences.put("liveWith", liveWith);
         preferences.put("budget", fragmentDataList.get("Budget"));
-        preferences.put("period", fragmentDataList.get("Month"));
-        preferences.put("nights", fragmentDataList.get("Day"));
+
+        String[] periodSplit = fragmentDataList.get("Month").split(" ");
+        String periodGood = periodSplit[0];
+
+        preferences.put("period", periodGood);
+
+        String[] nightSplit = fragmentDataList.get("Day").split(" ");
+        String nightGood = nightSplit[0];
+
+
+        preferences.put("nights", nightGood);
         preferences.put("pet", fragmentDataList.get("Pets"));
         preferences.put("ownPet", fragmentDataList.get("SelfPets"));
         preferences.put("ownPetDescription", fragmentDataList.get("PetsComment"));
-        preferences.put("startDate", fragmentDataList.get("StartDate"));
+        preferences.put("starDate", fragmentDataList.get("StartDate"));
         preferences.put("endDate", fragmentDataList.get("EndDate"));
+//        preferences.put("starDate", "2012-12-12");
+//        preferences.put("endDate", "2013-12-12");
+
         preferences.put("reason", fragmentDataList.get("Reason"));
         preferences.put("schoolFinished", fragmentDataList.get("Grade"));
         preferences.put("schoolDoing", fragmentDataList.get("Course"));
@@ -435,7 +461,16 @@ public class User_Seeking_Form extends AppCompatActivity {
         if  (fragmentDataList.get("Reanimation").equals("Reanimatie")) {
             skills.add("Reanimatie");
         }
-        preferences.put("skill", skills);
+        String skillString = "";
+
+        for (int i = 0; i < skills.size(); i++) {
+            if (i == 0) {
+                skillString += skills.get(i);
+            }
+            skillString += ", " + skills.get(i);
+        }
+
+        preferences.put("skill", skillString);
         preferences.put("work", fragmentDataList.get("SeekingWork"));
         preferences.put("workDescription", fragmentDataList.get("Work"));
         preferences.put("healthRisk", fragmentDataList.get("Health"));
