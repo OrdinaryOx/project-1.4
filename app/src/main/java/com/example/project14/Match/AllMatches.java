@@ -15,6 +15,13 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -24,6 +31,13 @@ import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
 import com.google.android.material.slider.Slider;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -99,13 +113,16 @@ public class AllMatches extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView_matches);
 
-        MatchAdapter matchAdapter = new MatchAdapter(this);
+        List<Match> itemList;
+        MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, itemList);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_matches);
         recyclerView.setAdapter(matchAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+
+        fetchDataHuurder();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -144,7 +161,43 @@ public class AllMatches extends AppCompatActivity {
                 recyclerView.smoothScrollBy(900, 0);
             }
         });
+
+
     }
+
+
+    private void fetchDataHuurder() {
+        // Create Retrofit instance
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Create API service instance
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        // Make the API call
+        Call<List<Match>> call = apiService.getItems();
+        call.enqueue(new Callback<List<Match>>() {
+            @Override
+            public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
+                if (response.isSuccessful()) {
+                    List<Match> itemList = response.body();
+                    // Create and set the adapter for your RecyclerView
+                    MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, itemList);
+                    recyclerView.setAdapter(matchAdapter);
+                } else {
+                    // Handle error
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Match>> call, Throwable t) {
+                // Handle failure
+            }
+        });
+    }
+
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
@@ -188,8 +241,7 @@ public class AllMatches extends AppCompatActivity {
 }
 
 
-
-        //SLIDER
+//SLIDER
 
 
 

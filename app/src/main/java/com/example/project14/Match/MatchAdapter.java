@@ -28,9 +28,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     private LayoutInflater layoutInflater;
     private List<Match> matches;
 
-    public MatchAdapter(Context context) {
+    public MatchAdapter(Context context, List<Match> matches) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.matches = createDummyData();
+        this.matches = matches;
         this.context = context;
     }
 
