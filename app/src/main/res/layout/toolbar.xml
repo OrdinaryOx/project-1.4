@@ -32,7 +32,7 @@
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/cogwheel" />
+            android:src="@drawable/settings_icon" />
 
     </RelativeLayout>
 
