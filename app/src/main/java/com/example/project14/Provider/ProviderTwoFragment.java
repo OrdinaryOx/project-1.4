@@ -156,7 +156,7 @@ public class ProviderTwoFragment extends Fragment {
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
-            fragmentDataList.put("Address", getAddress());
+            fragmentDataList.put("Street", getAddress());
             fragmentDataList.put("CityPersonal", getCity());
             fragmentDataList.put("PostalCode", getPostalCode());
             fragmentDataList.put("HouseNumber", getHouseNumber());

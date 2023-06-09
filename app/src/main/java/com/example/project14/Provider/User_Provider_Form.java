@@ -355,13 +355,13 @@ public class User_Provider_Form extends AppCompatActivity {
         user.put("firstName", fragmentDataList.get("FirstName"));
         user.put("middleName", fragmentDataList.get("Infix"));
         user.put("lastName", fragmentDataList.get("LastName"));
-        user.put("picture", fragmentDataList.get("ProfileImage"));
+        user.put("picture", "temp");
 
         String gender = "";
 
         if (fragmentDataList.get("Salutation").equals("Dhr")) {
             gender = "M";
-        } else if(fragmentDataList.get("Salutation").equals("Mvr")) {
+        } else if (fragmentDataList.get("Salutation").equals("Mvr")) {
             gender = "F";
         } else {
             gender = "O";
@@ -377,93 +377,52 @@ public class User_Provider_Form extends AppCompatActivity {
         user.put("country", fragmentDataList.get("Country"));
 
 
-
         JSONObject preferences = new JSONObject();
         // Populate the preferences JSON object with data
-//        preferences.put("seekingCity", fragmentDataList.get("City"));
-//        String liveWith = "";
-//
-//        Log.d("TAG", fragmentDataList.get("Preference") );
-//
-//        if (fragmentDataList.get("Preference").equals("Man")) {
-//            liveWith = "M";
-//        } else if (fragmentDataList.get("Preference").equals("Vrouw")) {
-//            liveWith = "V";
-//        } else if (fragmentDataList.get("Preference").equals("Koppel")) {
-//            liveWith = "K";
-//        } else {
-//            liveWith = "";
-//        }
-//
-//        Log.d("TAG", liveWith);
-//
-//        preferences.put("liveWith", liveWith);
-//        preferences.put("budget", fragmentDataList.get("Budget"));
-//
-//        String[] periodSplit = fragmentDataList.get("Month").split(" ");
-//        String periodGood = periodSplit[0];
-//
-//        preferences.put("period", periodGood);
-//
-//        String[] nightSplit = fragmentDataList.get("Day").split(" ");
-//        String nightGood = nightSplit[0];
-//
-//
-//        preferences.put("nights", nightGood);
-//        preferences.put("pet", fragmentDataList.get("Pets"));
-//        preferences.put("ownPet", fragmentDataList.get("SelfPets"));
-//        preferences.put("ownPetDescription", fragmentDataList.get("PetsComment"));
-//        preferences.put("starDate", fragmentDataList.get("StartDate"));
-//        preferences.put("endDate", fragmentDataList.get("EndDate"));
-////        preferences.put("starDate", "2012-12-12");
-////        preferences.put("endDate", "2013-12-12");
-//
-//        preferences.put("reason", fragmentDataList.get("Reason"));
-//        preferences.put("schoolFinished", fragmentDataList.get("Grade"));
-//        preferences.put("schoolDoing", fragmentDataList.get("Course"));
-//
-//        ArrayList<String> skills = new ArrayList<>();
-//        if  (fragmentDataList.get("EHBO").equals("EHBO")) {
-//            skills.add("EHBO");
-//        }
-//        if  (fragmentDataList.get("BHV").equals("BHV")) {
-//            skills.add("BHV");
-//        }
-//        if  (fragmentDataList.get("Reanimation").equals("Reanimatie")) {
-//            skills.add("Reanimatie");
-//        }
-//        String skillString = "";
-//
-//        for (int i = 0; i < skills.size(); i++) {
-//            if (i == 0) {
-//                skillString += skills.get(i);
-//            }
-//            skillString += ", " + skills.get(i);
-//        }
-//
-//        preferences.put("skill", skillString);
-//        preferences.put("work", fragmentDataList.get("SeekingWork"));
-//        preferences.put("workDescription", fragmentDataList.get("Work"));
-//        preferences.put("healthRisk", fragmentDataList.get("Health"));
-//        preferences.put("healthRiskDescription", fragmentDataList.get("HealthInfo"));
-//        preferences.put("selfDescription", fragmentDataList.get("Yourself"));
-//        preferences.put("selfWords", fragmentDataList.get("Keyword"));
-//        preferences.put("idealSpace", fragmentDataList.get("Room"));
-//        preferences.put("offer", fragmentDataList.get("Mean"));
-//        preferences.put("offerYou", fragmentDataList.get("OtherOffer"));
-//        preferences.put("importantNote", fragmentDataList.get("ImportantNote"));
-//        preferences.put("volunteer", fragmentDataList.get("VolunteerSelection"));
-//        preferences.put("volunteerDescription", fragmentDataList.get("Volunteer"));
-//        preferences.put("religion", fragmentDataList.get("Belief"));
-//        preferences.put("comment", fragmentDataList.get("Other"));
-//        preferences.put("overallcomment", fragmentDataList.get("Comment"));
-//
-//        userPreferences.put("user", user);
-//        userPreferences.put("preferences", preferences);
+        preferences.put("situation", fragmentDataList.get("Situation"));
+        preferences.put("house", fragmentDataList.get("House"));
+        preferences.put("found", fragmentDataList.get("Found"));
+        preferences.put("motivation", fragmentDataList.get("ProviderMotivation"));
+        preferences.put("housePicture", "Temp");
+
+//MONTH
+        String[] periodSplit = fragmentDataList.get("ProviderMonth").split(" ");
+        String periodGood = periodSplit[0];
+
+//DAY
+        String[] nightSplit = fragmentDataList.get("ProviderDays").split(" ");
+        String nightGood = nightSplit[0];
+
+
+        preferences.put("period", periodGood);
+        preferences.put("nights", nightGood);
+        preferences.put("roomType", fragmentDataList.get("TypeRoom"));
+        preferences.put("roomSize", fragmentDataList.get("SquareMeter"));
+        preferences.put("furniture", fragmentDataList.get("Furnish"));
+        preferences.put("furnitureDescription", fragmentDataList.get("Furnished"));
+        preferences.put("price", fragmentDataList.get("Price"));
+        preferences.put("offer", fragmentDataList.get("Offer"));
+        preferences.put("importantNote", fragmentDataList.get("ImportantNote"));
+        preferences.put("volunteer", fragmentDataList.get("Volunteer"));
+        preferences.put("volunteerDescription", fragmentDataList.get("CommentVolunteer"));
+        preferences.put("work", fragmentDataList.get("ProviderWork"));
+        preferences.put("workDescription", fragmentDataList.get("ProviderWorkDetails"));
+        preferences.put("describe", fragmentDataList.get("Keyword"));
+        preferences.put("hobby", fragmentDataList.get("Hobby"));
+        preferences.put("pet", fragmentDataList.get("SelfPets"));
+        preferences.put("petDescription", fragmentDataList.get("Pets"));
+        preferences.put("religion", fragmentDataList.get("Belief"));
+        preferences.put("comment", fragmentDataList.get("Comment"));
+        preferences.put("overallcomment", fragmentDataList.get("Comment"));
+
+
+        userPreferences.put("user", user);
+        userPreferences.put("preferences", preferences);
+
 
         return userPreferences;
     }
-    }
+
 }
 
 

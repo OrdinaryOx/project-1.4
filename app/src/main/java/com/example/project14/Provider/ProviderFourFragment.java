@@ -62,9 +62,6 @@ public class ProviderFourFragment extends Fragment {
     }
 
     public void saveData() {
-        String providerMonth = getProviderMonth();
-        String providerDays = getProviderDays();
-        String typeRoom = getTypeRoom();
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
