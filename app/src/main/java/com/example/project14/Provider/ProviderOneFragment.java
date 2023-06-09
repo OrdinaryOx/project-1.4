@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProviderOneFragment extends Fragment {
-//TODO 7 8 9
+
     private Spinner spinnerSalutation;
     private EditText editTextFirstName;
     private EditText editTextInfix;
