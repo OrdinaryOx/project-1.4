@@ -1,17 +1,26 @@
 package com.example.project14.Seeking;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +28,9 @@ import com.example.project14.Provider.ProviderTwoFragment;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +43,9 @@ public class SeekingOneFragment extends Fragment {
     private EditText editTextPassword;
     private EditText editTextPasswordAgain;
     private EditText editTextEmail;
+    private ImageView imageView;
+    private Button uploadImage;
+    private String base64Image = "0";
 
     public SeekingOneFragment() {
         // Required empty public constructor
@@ -49,6 +64,8 @@ public class SeekingOneFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.editTextPassword);
         editTextPasswordAgain = view.findViewById(R.id.editTextPasswordAgain);
         editTextEmail = view.findViewById(R.id.editTextEmail);
+        imageView = view.findViewById(R.id.imageGallery);
+        uploadImage = view.findViewById(R.id.buttonUploadPicture);
 
         //This checks if hashmap with all the data already contains values for these views. If so it places them there (works for backwards button in userform)
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
@@ -84,6 +101,13 @@ public class SeekingOneFragment extends Fragment {
             }
         }
 
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadPicture();
+            }
+        });
+
         return view;
     }
 
@@ -99,6 +123,7 @@ public class SeekingOneFragment extends Fragment {
             fragmentDataList.put("LastName", getLastName());
             fragmentDataList.put("Email", getEmail());
             fragmentDataList.put("Password", getPassword());
+            fragmentDataList.put("ProfileImage", getImage());
             fragmentDataList.put("PasswordAgain", getPasswordAgain());
         }
     }
@@ -113,15 +138,19 @@ public class SeekingOneFragment extends Fragment {
                 !TextUtils.isEmpty(getPassword()) &&
                 !TextUtils.isEmpty(getPasswordAgain()) &&
                 getPassword().equals(getPasswordAgain()) &&
-                verifyEmail(getEmail());
+                verifyEmail(getEmail()) &&
+                base64Image != "0";
 
     }
 
+
+    public String getImage() {
+        return base64Image;
+    }
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
     }
-
 
 
     public String getSalutation() {
@@ -200,7 +229,47 @@ public class SeekingOneFragment extends Fragment {
     }
 
     public void uploadPicture() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 2);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+
+            try {
+                // Convert the selected image to a Base64 string
+base64Image = convertImageToBase64(imageUri);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private String convertImageToBase64(Uri imageUri) throws IOException {
+        InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        Log.d("TAG", "Image converted");
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        }
+
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+    private Bitmap decodeBase64ToBitmap(String base64Image) {
+        byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
     public boolean isEmailValid() {

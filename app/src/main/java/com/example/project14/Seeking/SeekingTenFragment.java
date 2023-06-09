@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SeekingTenFragment extends Fragment {
-    //TODO: ADD OPSTUREN METHOD INSTEAD OF SAVEDATA CHECKBOX CHECK
+    //TODO: Privacyverklaring Cookiebeleid clickable
     private CheckBox checkBoxTruth;
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;

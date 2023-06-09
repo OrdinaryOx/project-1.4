@@ -57,7 +57,6 @@ public class SeekingNineFragment extends Fragment {
 
     public void saveData() {
 
-
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();

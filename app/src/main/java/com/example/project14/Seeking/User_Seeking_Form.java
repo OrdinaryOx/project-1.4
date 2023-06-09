@@ -18,8 +18,25 @@ import com.example.project14.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import com.example.project14.RoleActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +47,8 @@ public class User_Seeking_Form extends AppCompatActivity {
     private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
+    private UserService userService;
+
     private Class<?>[] fragmentClasses = {
             SeekingOneFragment.class,
             SeekingTwoFragment.class,
@@ -47,6 +66,16 @@ public class User_Seeking_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_seeking_form);
+
+        // Create Retrofit instance
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Create UserService
+        userService = retrofit.create(UserService.class);
+
 
         fragmentDataList = new HashMap<>();
 
@@ -105,6 +134,7 @@ public class User_Seeking_Form extends AppCompatActivity {
                 }
             }
         });
+
 
         // Forward button click listener
         Button btnForward = findViewById(R.id.button_forward_form);
@@ -306,9 +336,132 @@ public class User_Seeking_Form extends AppCompatActivity {
     }
 
     public void opsturen(View view) {
-        Intent intent = new Intent(this, ActivitiesScreen.class);
-        Log.d("SIZE", " " + fragmentDataList.size());
-        Log.d("TO BE SENT", fragmentDataList.toString());
-        startActivity(intent);
+        if (areAllFieldsFilled()) {
+            try {
+                JSONObject userPreferences = buildUserPreferences();
+                Log.d("TAG", userPreferences.toString());
+
+                Call<ResponseBody> call = userService.postHuurder(userPreferences);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                String responseBody = response.body().string();
+                                // Process the response body as needed
+                                Log.d("RESPONSE", responseBody);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // Request failed
+                            // Handle the failure case
+                            Log.e("RESPONSE_ERROR", response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        // Request failed due to network error or other issues
+                        // Handle the failure case
+                        t.printStackTrace();
+                    }
+                });
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            highlightUnfilledFields();
+        }
+    }
+
+    private JSONObject buildUserPreferences() throws JSONException {
+        JSONObject userPreferences = new JSONObject();
+
+        JSONObject user = new JSONObject();
+        user.put("emailAddress", fragmentDataList.get("Email"));
+        user.put("password", fragmentDataList.get("Password"));
+        user.put("dateOfBirth", fragmentDataList.get("BirthDate"));
+        user.put("firstName", fragmentDataList.get("FirstName"));
+        user.put("middleName", fragmentDataList.get("Infix"));
+        user.put("lastName", fragmentDataList.get("LastName"));
+        user.put("picture", fragmentDataList.get("ProfileImage"));
+
+        String gender = "";
+
+        switch (fragmentDataList.get("Salutation")) {
+            case "Dhr":
+                gender = "M";
+            case "Mvr":
+                gender = "F";
+            case "Anders":
+                gender = "O";
+        }
+
+        user.put("gender", gender);
+        user.put("phoneNumber", fragmentDataList.get("PhoneNumber"));
+        user.put("postalCode", fragmentDataList.get("PostalCode"));
+        user.put("street", fragmentDataList.get("Street"));
+        user.put("city", fragmentDataList.get("CityPersonal"));
+        user.put("houseNumber", fragmentDataList.get("HouseNumber"));
+        user.put("country", fragmentDataList.get("Country"));
+
+
+
+        JSONObject preferences = new JSONObject();
+        // Populate the preferences JSON object with data
+        preferences.put("seekingCity", fragmentDataList.get("City"));
+        preferences.put("liveWith", fragmentDataList.get("Preference"));
+        preferences.put("budget", fragmentDataList.get("Budget"));
+        preferences.put("period", fragmentDataList.get("Month"));
+        preferences.put("nights", fragmentDataList.get("Day"));
+        preferences.put("pet", fragmentDataList.get("Pets"));
+        preferences.put("ownPet", fragmentDataList.get("SelfPets"));
+        preferences.put("ownPetDescription", fragmentDataList.get("PetsComment"));
+        preferences.put("startDate", fragmentDataList.get("StartDate"));
+        preferences.put("endDate", fragmentDataList.get("EndDate"));
+        preferences.put("reason", fragmentDataList.get("Reason"));
+        preferences.put("schoolFinished", fragmentDataList.get("Grade"));
+        preferences.put("schoolDoing", fragmentDataList.get("Course"));
+
+        ArrayList<String> skills = new ArrayList<>();
+        if  (fragmentDataList.get("EHBO").equals("EHBO")) {
+            skills.add("EHBO");
+        }
+        if  (fragmentDataList.get("BHV").equals("BHV")) {
+            skills.add("BHV");
+        }
+        if  (fragmentDataList.get("Reanimation").equals("Reanimatie")) {
+            skills.add("Reanimatie");
+        }
+        preferences.put("skill", skills);
+        preferences.put("work", fragmentDataList.get("SeekingWork"));
+        preferences.put("workDescription", fragmentDataList.get("Work"));
+        preferences.put("healthRisk", fragmentDataList.get("Health"));
+        preferences.put("healthRiskDescription", fragmentDataList.get("HealthInfo"));
+        preferences.put("selfDescription", fragmentDataList.get("Yourself"));
+        preferences.put("selfWords", fragmentDataList.get("Keyword"));
+        preferences.put("idealSpace", fragmentDataList.get("Room"));
+        preferences.put("offer", fragmentDataList.get("Mean"));
+        preferences.put("offerYou", fragmentDataList.get("OtherOffer"));
+        preferences.put("importantNote", fragmentDataList.get("ImportantNote"));
+        preferences.put("volunteer", fragmentDataList.get("VolunteerSelection"));
+        preferences.put("volunteerDescription", fragmentDataList.get("Volunteer"));
+        preferences.put("religion", fragmentDataList.get("Belief"));
+        preferences.put("comment", fragmentDataList.get("Other"));
+        preferences.put("overallcomment", fragmentDataList.get("Comment"));
+
+        userPreferences.put("user", user);
+        userPreferences.put("preferences", preferences);
+
+        return userPreferences;
+    }
+    public void uploadPicture() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        SeekingOneFragment fragment = (SeekingOneFragment) currentFragment;
+
+        Log.d("TAG", "UPLOAD PICTURE FORM CALLED");
+        fragment.uploadPicture();
     }
 }
