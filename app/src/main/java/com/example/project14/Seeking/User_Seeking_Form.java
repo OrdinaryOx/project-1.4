@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -332,6 +333,12 @@ public class User_Seeking_Form extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void openPrivacy(View view) {
+        Uri uri = Uri.parse("https://mijnwoongenoot.nl/privacy/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.project14.Provider;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -247,6 +248,13 @@ public class User_Provider_Form extends AppCompatActivity {
         }
 
         return true; // Default case: allow proceeding if fragment type is unknown
+    }
+
+
+    public void openPrivacy(View view) {
+        Uri uri = Uri.parse("https://mijnwoongenoot.nl/privacy/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     private void highlightUnfilledFields() {

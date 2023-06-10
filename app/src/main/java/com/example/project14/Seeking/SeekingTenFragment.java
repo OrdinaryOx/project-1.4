@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SeekingTenFragment extends Fragment {
-    //TODO: Privacyverklaring Cookiebeleid clickable
     private CheckBox checkBoxTruth;
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
@@ -58,6 +57,8 @@ public class SeekingTenFragment extends Fragment {
             fragmentDataList.put("Comment", getComment());
         }
     }
+
+
 
 
     public boolean isDataValid() {

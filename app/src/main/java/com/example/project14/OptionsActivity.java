@@ -70,4 +70,9 @@ public class OptionsActivity extends AppCompatActivity {
 
 
     }
+    public void openPrivacy(View view) {
+        Uri uri = Uri.parse("https://mijnwoongenoot.nl/privacy/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
 }
