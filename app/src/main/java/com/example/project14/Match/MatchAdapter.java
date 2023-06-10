@@ -2,6 +2,9 @@ package com.example.project14.Match;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,12 +71,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.age.setText(" (" + age + ")");
         holder.city.setText(match.getCity());
 
+
+        byte[] imageData = match.getPicture().getData();
+        String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
+
         Glide.with(holder.profileImage)
-                .load(match.getImageURL())
+                .load(decodeBase64ToBitmap(base64Image))
                 .centerCrop()
                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into(holder.profileImage);
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +93,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             }
         });
     }
+    private Bitmap decodeBase64ToBitmap(String base64Image) {
+        byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
 
     private static int calculateAge(String dateOfBirth) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
