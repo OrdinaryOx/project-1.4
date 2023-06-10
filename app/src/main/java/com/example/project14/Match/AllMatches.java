@@ -4,14 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,15 +28,14 @@ import android.widget.PopupWindow;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
-import com.example.project14.RoleActivity;
-import com.google.android.material.slider.Slider;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -50,6 +48,7 @@ public class AllMatches extends AppCompatActivity {
     private Button buttonRight;
     private RecyclerView recyclerView;
 
+    private List<Match> matches;
     private PopupWindow popupWindow;
 
     @Override
@@ -113,8 +112,8 @@ public class AllMatches extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView_matches);
 
-        List<Match> itemList;
-        MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, itemList);
+        matches = new ArrayList<>();
+        MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, matches);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_matches);
         recyclerView.setAdapter(matchAdapter);
@@ -177,23 +176,32 @@ public class AllMatches extends AppCompatActivity {
         ApiService apiService = retrofit.create(ApiService.class);
 
         // Make the API call
-        Call<List<Match>> call = apiService.getItems();
-        call.enqueue(new Callback<List<Match>>() {
+       Call<JsonObject> call = apiService.getItems();
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
-                    List<Match> itemList = response.body();
-                    // Create and set the adapter for your RecyclerView
-                    MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, itemList);
+                    Log.d("TAG", "YES");
+                    JsonObject jsonObject = response.body();
+
+                    Log.d("TAG", jsonObject.toString());
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    //Geef type voor mealArray
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+
+                    MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, matches);
                     recyclerView.setAdapter(matchAdapter);
                 } else {
-                    // Handle error
+
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Match>> call, Throwable t) {
-                // Handle failure
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "NOT SUCCESSFULL");
             }
         });
     }
