@@ -12,4 +12,6 @@ public interface ApiService {
     @GET("user/huurder")
     Call<JsonObject> getItems();
 
+    @GET("user/verhuurder")
+    Call<JsonObject> getVerhuurders();
 }

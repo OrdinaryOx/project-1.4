@@ -121,10 +121,11 @@ public class AllMatches extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+
+//        if (token.role = huurder) {}
+//        if (token.role = verhuurder) {}
         fetchDataHuurder();
 
-
-        fetchDataHuurder();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -184,9 +185,10 @@ public class AllMatches extends AppCompatActivity {
                     JsonObject jsonObject = response.body();
                     JsonArray jsonArray = jsonObject.getAsJsonArray("data");
                     Gson gson = new Gson();
-                    Type type = new TypeToken<List<Match>>() {}.getType();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
                     List<Match> matches = gson.fromJson(jsonArray, type);
-Log.d("TAG", matches.toString());
+                    Log.d("TAG", matches.toString());
                     // Clear previous data and add the new data
                     AllMatches.this.matches.clear();
                     AllMatches.this.matches.addAll(matches);

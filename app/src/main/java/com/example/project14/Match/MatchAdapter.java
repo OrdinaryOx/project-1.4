@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,13 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.project14.ProfileOther;
+import com.example.project14.ProfileHuurder;
+import com.example.project14.ProfileVerhuurder;
 import com.example.project14.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -92,11 +90,22 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             @Override
             public void onClick(View v) {
                 // Start the InsideChatActivity with the appropriate data
-                Intent intent = new Intent(context, ProfileOther.class);
+                String role = match.getRole();
+                if (role.equals("Huurder")) {
+                    Intent intent = new Intent(context, ProfileHuurder.class);
+                    intent.putExtra("username", match.getFirstName());
+                    intent.putExtra("age", age);
+                    context.startActivity(intent);
+
+                }
+                if (role.equals("Verhuurder")) {
+                Intent intent = new Intent(context, ProfileVerhuurder.class);
                 intent.putExtra("username", match.getFirstName());
                 intent.putExtra("age", age);
-                //intent.putExtra("profileImageURL", match.getPicture());
                 context.startActivity(intent);
+
+                }
+                //intent.putExtra("profileImageURL", match.getPicture());
             }
         });
     }

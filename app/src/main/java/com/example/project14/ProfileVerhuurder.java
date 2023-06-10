@@ -20,7 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class ProfileOther extends AppCompatActivity {
+public class ProfileVerhuurder extends AppCompatActivity {
 
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
 
@@ -50,7 +50,7 @@ public class ProfileOther extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(ProfileOther.this, MainActivity.class);
+                Intent intent = new Intent(ProfileVerhuurder.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -59,7 +59,7 @@ public class ProfileOther extends AppCompatActivity {
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileOther.this, OptionsActivity.class);
+                Intent intent = new Intent(ProfileVerhuurder.this, OptionsActivity.class);
                 startActivity(intent);
             }
         });
@@ -99,8 +99,8 @@ public class ProfileOther extends AppCompatActivity {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(ProfileOther.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ProfileOther.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
+                if (ContextCompat.checkSelfPermission(ProfileVerhuurder.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ProfileVerhuurder.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
                 } else {
                     makePhoneCall();
                 }
@@ -116,7 +116,7 @@ public class ProfileOther extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 makePhoneCall();
             } else {
-                Toast.makeText(ProfileOther.this, "Phone call permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileVerhuurder.this, "Phone call permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
