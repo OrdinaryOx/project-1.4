@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     private Context context;
     private LayoutInflater layoutInflater;
     private List<Match> matches;
+    private ImageView test;
 
     public MatchAdapter(Context context, List<Match> matches) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -49,6 +51,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mItemView = layoutInflater.inflate(R.layout.item_match,
                 parent, false);
+
+        test = parent.findViewById(R.id.testImage);
 
         return new MatchViewHolder(mItemView);
 
@@ -72,8 +76,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.city.setText(match.getCity());
 
 
+
         byte[] imageData = match.getPicture().getData();
         String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
+
+
 
         Glide.with(holder.profileImage)
                 .load(decodeBase64ToBitmap(base64Image))
