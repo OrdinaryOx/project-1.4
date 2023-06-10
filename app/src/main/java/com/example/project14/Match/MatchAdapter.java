@@ -2,6 +2,7 @@ package com.example.project14.Match;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,22 +61,20 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         Match match = matches.get(position);
 
-
-//        String[] split = match.getName().split(" ");
-//        String firstName = split[0];
-//        String userName = firstName.substring(0, Math.min(firstName.length(), 8));
-//        holder.username.setText(userName);
-
-//
-//        holder.age.setText(String.valueOf(" (" + match.getAge() + ")"));
-//        holder.city.setText(match.getCity());
-//        Glide.with(holder.profileImage)
-//                .load(match.getImageURL())
-//                .centerCrop()
-//                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-//                .into(holder.profileImage);
-
+        Log.d("TAG", position + " " + match.toString());
         int age = calculateAge(match.getDateOfBirth());
+
+        holder.username.setText(match.getFirstName());
+        holder.age.setText(" (" + age + ")");
+        holder.city.setText(match.getCity());
+
+        Glide.with(holder.profileImage)
+                .load(match.getImageURL())
+                .centerCrop()
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(holder.profileImage);
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -49,6 +49,7 @@ public class AllMatches extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private List<Match> matches;
+    private MatchAdapter matchAdapter;
     private PopupWindow popupWindow;
 
     @Override
@@ -113,12 +114,14 @@ public class AllMatches extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView_matches);
 
         matches = new ArrayList<>();
-        MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, matches);
+        matchAdapter = new MatchAdapter(AllMatches.this, matches);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_matches);
+        recyclerView = findViewById(R.id.recyclerView_matches);
         recyclerView.setAdapter(matchAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
+
+        fetchDataHuurder();
 
 
         fetchDataHuurder();
@@ -166,46 +169,39 @@ public class AllMatches extends AppCompatActivity {
 
 
     private void fetchDataHuurder() {
-        // Create Retrofit instance
+        // ...
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://hardy-stream-production.up.railway.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        // Create API service instance
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // Make the API call
-       Call<JsonObject> call = apiService.getItems();
+        Call<JsonObject> call = apiService.getItems();
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
-                    Log.d("TAG", "YES");
                     JsonObject jsonObject = response.body();
-
-                    Log.d("TAG", jsonObject.toString());
                     JsonArray jsonArray = jsonObject.getAsJsonArray("data");
                     Gson gson = new Gson();
-                    //Geef type voor mealArray
-                    Type type = new TypeToken<List<Match>>() {
-                    }.getType();
+                    Type type = new TypeToken<List<Match>>() {}.getType();
                     List<Match> matches = gson.fromJson(jsonArray, type);
-
-                    MatchAdapter matchAdapter = new MatchAdapter(AllMatches.this, matches);
-                    recyclerView.setAdapter(matchAdapter);
+Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
                 } else {
-
+                    Log.d("TAG", "Request not successful");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("TAG", "NOT SUCCESSFULL");
+                Log.d("TAG", "Request failed");
             }
         });
     }
-
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout

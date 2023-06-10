@@ -1,6 +1,8 @@
 package com.example.project14.Match;
 
 
+import androidx.annotation.NonNull;
+
 public class Match {
     private int id;
     private String emailAddress;
@@ -187,5 +189,11 @@ private Picture picture;
         }
     }
 
+
+    @NonNull
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
 
