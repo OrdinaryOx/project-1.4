@@ -12,18 +12,101 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/options_CV"
+        android:id="@+id/contact_CV"
+        android:layout_width="175dp"
+        android:layout_height="300dp"
         android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/CardView_Light"
-        >
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="18dp"
+        android:backgroundTint="@color/CardView_Light">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="175dp"
+            android:layout_height="300dp"
+            android:layout_marginEnd="-2dp"
+            android:layout_marginBottom="336dp">
+
+            <TextView
+                android:id="@+id/contactTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Contact:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phoneNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contactTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:text="Telefoon:"
+                android:textSize="25sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/clickPhoneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123456789"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:layout_below="@id/phoneNumberTextView"
+                android:autoLink="phone"
+                android:textSize="25sp"
+                android:textColorLink="@color/blue"
+                android:onClick="dialPhoneNumber"
+                />
+
+
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/clickPhoneTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Email:"
+                android:textSize="25sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/clickEmailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:layout_below="@id/emailTextView"
+                android:autoLink="email"
+                android:textSize="25sp"
+                android:textColorLink="@color/blue"
+                android:onClick="sendEmail" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_CV"
+        android:layout_width="175dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/CardView_Light">
+
+        <RelativeLayout
+            android:layout_width="175dp"
+            android:layout_height="300dp">
 
             <TextView
                 android:id="@+id/languageTextView"
@@ -131,7 +214,7 @@
         android:layout_below="@id/textForSwitchPrivacy"
         android:layout_marginTop="8dp"
         android:layout_toLeftOf="@id/PrivacySwitch"
-        android:text="Wel"
+        android:text="Niet zichtbaar"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:translationX="-28dp" />
@@ -144,7 +227,7 @@
         android:layout_marginTop="8dp"
         android:translationX="12dp"
         android:textColor="@color/black"
-        android:text="Niet"/>
+        android:text="Wel zichtbaar"/>
 
 
     <TextView
