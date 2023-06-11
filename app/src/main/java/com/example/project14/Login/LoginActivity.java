@@ -1,10 +1,8 @@
-package com.example.project14;
+package com.example.project14.Login;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.project14.ActivitiesScreen;
+import com.example.project14.MainActivity;
+import com.example.project14.OptionsActivity;
+import com.example.project14.R;
+import com.example.project14.RoleActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private Boolean validatecredentials(){
+    private Boolean validateCredentials(){
             if (1+1 == 2) {
                 return true;
         } else {
@@ -133,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                             emptyPassword.setVisibility(View.GONE);
                         }
                     }, 3000);
-                } else if (validatecredentials() == false) {
+                } else if (validateCredentials() == false) {
                     emptyPassword.setVisibility(View.INVISIBLE);
                     emptyEmail.setVisibility(View.INVISIBLE);
                     wrongCredentials.setVisibility(View.VISIBLE);

@@ -36,7 +36,7 @@
             android:name=".RoleActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Match.AllMatches"
