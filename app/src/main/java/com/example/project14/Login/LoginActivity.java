@@ -1,27 +1,51 @@
 package com.example.project14.Login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import com.example.project14.ActivitiesScreen;
 import com.example.project14.MainActivity;
+import com.example.project14.Match.AllMatches;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
     private Button buttonLogin, buttonRegister;
     private EditText editTextTextEmailAddress, editTextTextPassword;
     private TextView emptyEmail, emptyPassword, wrongCredentials;
+    private ArrayList<Users> users;
 
     private Boolean validateEmail(){
         String val = editTextTextEmailAddress.getEditableText().toString();
@@ -47,18 +71,71 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private Boolean validateCredentials(){
-            if (1+1 == 2) {
-                return true;
-        } else {
-                return false;
+    private void fetchDataUsers() {
+        // ...
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        APIInterfaceLogin apiInterfaceLogin = retrofit.create(APIInterfaceLogin.class);
+
+        Call<JsonObject> call = apiInterfaceLogin.getUsers();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Users>>() {}.getType();
+                    List<Users> fetchedUsers = gson.fromJson(jsonArray, type);
+
+                    if (fetchedUsers != null) {
+                        if (users == null) {
+                            users = new ArrayList<>();
+                        } else {
+                            users.clear();
+                        }
+                        users.addAll(fetchedUsers);
+                        Log.d("TAG", users.toString());
+                    } else {
+                        Log.d("TAG", "Empty user list");
+                    }
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
             }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
+    private Boolean validateCredentials() {
+        if (users.isEmpty()) {
+            return false;
+        } else {
+            for (Users user : users) {
+                System.out.println(user.getFirstName());
+                if (user.getEmailAddress().equals(editTextTextEmailAddress.getEditableText().toString())) {
+                    if (user.getPassword().equals(editTextTextPassword.getEditableText().toString())) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        fetchDataUsers();
 
         //Set login actions
         buttonLogin = findViewById(R.id.buttonLogin);
