@@ -27,7 +27,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_other);
+        setContentView(R.layout.activity_profile_verhuurder);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

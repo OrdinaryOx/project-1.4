@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
@@ -56,6 +57,7 @@ public class AllMatches extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -169,8 +171,13 @@ public class AllMatches extends AppCompatActivity {
     }
 
 
+    private void fetchDataVerhuurder() {
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+    }
     private void fetchDataHuurder() {
         // ...
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://hardy-stream-production.up.railway.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -192,6 +199,8 @@ public class AllMatches extends AppCompatActivity {
                     // Clear previous data and add the new data
                     AllMatches.this.matches.clear();
                     AllMatches.this.matches.addAll(matches);
+
+
                     matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
                 } else {
                     Log.d("TAG", "Request not successful");
@@ -204,6 +213,8 @@ public class AllMatches extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout

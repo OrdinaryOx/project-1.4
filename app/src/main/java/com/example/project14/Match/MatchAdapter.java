@@ -74,41 +74,90 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.city.setText(match.getCity());
 
 
-
         byte[] imageData = match.getPicture().getData();
         String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
 
 
-
-        Glide.with(holder.profileImage)
-                .load(decodeBase64ToBitmap(base64Image))
-                .centerCrop()
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .into(holder.profileImage);
+//        Glide.with(holder.profileImage)
+//                .load(decodeBase64ToBitmap(base64Image))
+//                .centerCrop()
+//                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+//                .into(holder.profileImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the InsideChatActivity with the appropriate data
+
                 String role = match.getRole();
-                if (role.equals("Huurder")) {
-                    Intent intent = new Intent(context, ProfileHuurder.class);
-                    intent.putExtra("username", match.getFirstName());
-                    intent.putExtra("age", age);
-                    context.startActivity(intent);
+                if (role != null) {
+                    if (role.equals("Huurder")) {
+                        Intent intent = new Intent(context, ProfileHuurder.class);
+                        String firstName = match.getFirstName();
+                        if (firstName != null) {
+                            intent.putExtra("firstname", firstName);
+                            intent.putExtra("middlename", match.getMiddleName());
+                            intent.putExtra("lastname", match.getLastName());
+                        }
+                        intent.putExtra("age", "" + age);
+                        String gender = match.getGender();
+                        if (gender != null) {
+                            intent.putExtra("gender", gender);
+                        }
+                        String city = match.getCity();
+                        if (city != null) {
+                            intent.putExtra("city", city);
+                        }
+                        String budget = match.getBudget();
+                        if (budget != null) {
+                            intent.putExtra("budget", budget);
+                        }
+                        String skill = match.getSkill();
+                        if (skill != null) {
+                            intent.putExtra("medical", "" + skill);
+                        }
+                        int work = match.getWork();
+                        if (work != -1) {
+                            intent.putExtra("work", "" + work);
+                            intent.putExtra("workdesc", match.getWorkDescription());
 
-                }
-                if (role.equals("Verhuurder")) {
-                Intent intent = new Intent(context, ProfileVerhuurder.class);
-                intent.putExtra("username", match.getFirstName());
-                intent.putExtra("age", age);
-                context.startActivity(intent);
+                        }
+                        String pet = match.getOwnPet();
+                        if (pet != null) {
+                            intent.putExtra("pet", pet);
+                            intent.putExtra("petdesc", match.getOwnPetDescription());
+                        }
 
+                        intent.putExtra("offer", match.getOffer());
+                        intent.putExtra("keywords", match.getSelfWords());
+                        intent.putExtra("description", match.getSelfDescription());
+
+                        context.startActivity(intent);
+                    }
+                    if (role.equals("Verhuurder")) {
+                        Intent intent = new Intent(context, ProfileVerhuurder.class);
+                        String firstName = match.getFirstName();
+                        if (firstName != null) {
+                            intent.putExtra("username", firstName);
+                        }
+                        intent.putExtra("age", age);
+                        String gender = match.getGender();
+                        if (gender != null) {
+                            intent.putExtra("gender", gender);
+                        }
+                        String city = match.getCity();
+                        if (city != null) {
+                            intent.putExtra("city", city);
+                        }
+                        context.startActivity(intent);
+                    }
                 }
-                //intent.putExtra("profileImageURL", match.getPicture());
+
+
             }
         });
     }
+
     private Bitmap decodeBase64ToBitmap(String base64Image) {
         byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
