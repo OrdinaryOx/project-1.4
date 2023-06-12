@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,22 +67,98 @@ public class ProfileVerhuurder extends AppCompatActivity {
 
         // INTENT
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("username");
+        String firstName = intent.getStringExtra("firstname");
+        String middleName = intent.getStringExtra("middlename");
+        String lastName = intent.getStringExtra("lastname");
         String imageURL = intent.getStringExtra("profileImageURL");
+        String age = intent.getStringExtra("age");
+        Log.d("AGE IN THIS", "" + age);
+        String city = intent.getStringExtra("city");
+        String gender = intent.getStringExtra("gender");
 
+        String pet = intent.getStringExtra("pet");
+        String petDesc = intent.getStringExtra("petdesc");
+
+        String keywords = intent.getStringExtra("keywords");
+        String help = intent.getStringExtra("help");
+        String description = intent.getStringExtra("selfDescription");
+        String important = intent.getStringExtra("important");
+        String roomSize = intent.getStringExtra("roomSize");
+        String situation = intent.getStringExtra("situation");
+        String price = intent.getStringExtra("price");
+
+
+        TextView ageTV = findViewById(R.id.age);
+        TextView genderTV = findViewById(R.id.gender);
+        TextView priceTV = findViewById(R.id.rentalPrice);
+        TextView roomSizeTV = findViewById(R.id.livingSpace);
+        TextView situationTV = findViewById(R.id.Woonsituatie);
+        TextView petTV = findViewById(R.id.Pets);
+        TextView petDescTV = findViewById(R.id.petDesc);
+        TextView helpTV = findViewById(R.id.remarks);
+        TextView selfDescTV = findViewById(R.id.userDescription);
+        TextView keywordsTV = findViewById(R.id.userKeywords);
         TextView userNameTV = findViewById(R.id.username);
-        userNameTV.setText(userName);
 
-        ImageView profileImageIV = findViewById(R.id.ProfilePicture);
-        Glide.with(this)
-                .load(imageURL)
-                .centerCrop()
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .into(profileImageIV);
+
+        if (middleName == null) {
+            userNameTV.setText(firstName + " " + lastName);
+        } else {
+            userNameTV.setText(firstName + " " + middleName + " " + lastName);
+        }
+
+        ageTV.setText("(" + age + ")");
+
+        String genderString = "";
+        if (gender.equals("F") || gender.equals("V")) {
+            genderString = "Vrouw";
+        } else if (gender.equals("M")) {
+            genderString = "Man";
+        } else {
+            genderString = "Anders";
+        }
+        genderTV.setText("Geslacht: " + genderString);
+
+        priceTV.setText("Huurprijs: " + price + " p/m");
+        roomSizeTV.setText("Kamergrootte: " + roomSize + " m2");
+        situationTV.setText("Woonsituatie: " + situation);
+
+        if (pet.equals("1")) {
+            pet = "Ja";
+        } else {
+            pet = "Nee";
+        }
+        petTV.setText("Huisdieren: " + pet);
+
+        if (petDesc != null) {
+
+            if (petDesc.equals("") || petDesc.equals("null") || petDesc.trim().isEmpty()) {
+                petDesc = "";
+            } else {
+                petDescTV.setText(petDesc);
+            }
+
+        }
+        if (pet == "Nee") {
+            petDescTV.setText("-");
+        }
+
+
+        helpTV.setText(help);
+        selfDescTV.setText(important);
+        keywordsTV.setText(keywords);
+
+//        ImageView profileImageIV = findViewById(R.id.ProfilePicture);
+//        Glide.with(this)
+//                .load(imageURL)
+//                .centerCrop()
+//                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+//                .into(profileImageIV);
 
         // EMAIL & CALL
         ImageView email = findViewById(R.id.imageViewChat);
         ImageView phone = findViewById(R.id.imageViewCall);
+
 
         email.setOnClickListener(new View.OnClickListener() {
             @Override

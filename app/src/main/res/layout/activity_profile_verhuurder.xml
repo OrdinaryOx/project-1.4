@@ -32,7 +32,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="330dp">
 
             <TextView
                 android:id="@+id/username"
@@ -121,14 +121,27 @@
                 android:text="Huisdieren: Ja"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+            <TextView
+                android:id="@+id/petDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/Pets"
+                android:layout_marginRight="10dp"
+                android:maxLines="1"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/remarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Pets"
+                android:layout_below="@id/petDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:maxLines="3"
                 android:text="Hier taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -137,19 +150,46 @@
     </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:id="@+id/userDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/CardViewPO"
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_below="@id/toolbar"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:layout_toRightOf="@id/ProfilePicture"
-        android:gravity="center_vertical"
-        android:text="Hier beschrijving over de gebruiker, bijvoorbeeld hobby's likes en dislikes etc."
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:layout_toRightOf="@+id/ProfilePicture"
+        android:backgroundTint="#8acda1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/userDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:maxLines="5"
+                android:text="Hier beschrijving over de gebruiker, bijvoorbeeld hobby's likes en dislikes etc."
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userKeywords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userDescription"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:maxLines="2"
+                android:text="Sociaal, Behulpzaam, Aardig"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
     <ImageView

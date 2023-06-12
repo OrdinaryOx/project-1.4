@@ -106,6 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/work"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
                 android:maxLines="1"
@@ -142,6 +143,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/Pets"
+                android:layout_marginRight="10dp"
                 android:maxLines="1"
                 android:text="Description"
                 android:textColor="@color/black"
@@ -154,6 +156,7 @@
                 android:layout_below="@id/petDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:maxLines="3"
                 android:text="Hier taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."
                 android:textColor="@color/black"

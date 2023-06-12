@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +21,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 
 public class ProfileHuurder extends AppCompatActivity {
+
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
+    String phoneNumber;
+    String emailString;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class ProfileHuurder extends AppCompatActivity {
 
         // INTENT
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("firstname");
+        userName = intent.getStringExtra("firstname");
         String middleName = intent.getStringExtra("middlename");
         String lastName = intent.getStringExtra("lastname");
         String age = intent.getStringExtra("age");
@@ -71,14 +76,17 @@ public class ProfileHuurder extends AppCompatActivity {
         String gender = intent.getStringExtra("gender");
         String work = intent.getStringExtra("work");
         String budget = intent.getStringExtra("budget");
-        String pet = intent.getStringExtra("pet");
         String medical = intent.getStringExtra("medical");
         String workDesc = intent.getStringExtra("workdesc");
+        String pet = intent.getStringExtra("pet");
         String petDesc = intent.getStringExtra("petdesc");
 
         String keywords = intent.getStringExtra("keywords");
         String offer = intent.getStringExtra("offer");
         String description = intent.getStringExtra("description");
+        phoneNumber = intent.getStringExtra("phonenumber");
+
+        emailString = intent.getStringExtra("email");
 
 
         TextView userNameTV = findViewById(R.id.username);
@@ -143,27 +151,31 @@ public class ProfileHuurder extends AppCompatActivity {
         TextView workDescTV = findViewById(R.id.workDesc);
         if (workDesc != null) {
 
-            if (workDesc.equals("") || workDesc.equals("null")) {
-                workDescTV.setText("");
+            if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty()) {
+                workDescTV.setText("-");
             } else {
                 workDescTV.setText(workDesc);
             }
-        } else {
+        }
+
+
+        if (work == "Nee") {
             workDescTV.setText("-");
         }
 
         TextView petDescTV = findViewById(R.id.petDesc);
-        petDescTV.setText(petDesc);
+
 
         if (petDesc != null) {
 
-            if (petDesc.equals("") || petDesc.equals("null")) {
+            if (petDesc.equals("") || petDesc.equals("null") || petDesc.trim().isEmpty()) {
                 petDesc = "";
             } else {
                 petDescTV.setText(petDesc);
             }
 
-        } else {
+        }
+        if (pet == "Nee") {
             petDescTV.setText("-");
         }
 
@@ -193,8 +205,9 @@ public class ProfileHuurder extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Email Subject");
-                intent.putExtra(Intent.EXTRA_TEXT, "Email Body");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailString});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Mijn Woongenoot");
+                intent.putExtra(Intent.EXTRA_TEXT, "Hallo " + userName + ", \n");
 
                 startActivity(intent);
 
@@ -228,7 +241,6 @@ public class ProfileHuurder extends AppCompatActivity {
 
     // Method to initiate the phone call
     private void makePhoneCall() {
-        String phoneNumber = "0616090398";
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);

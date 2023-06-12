@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
-
+    //TODO: Verhuurder
     private Context context;
     private LayoutInflater layoutInflater;
     private List<Match> matches;
@@ -131,6 +131,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         intent.putExtra("offer", match.getOffer());
                         intent.putExtra("keywords", match.getSelfWords());
                         intent.putExtra("description", match.getSelfDescription());
+                        intent.putExtra("phonenumber", "" + match.getPhoneNumber());
+                        intent.putExtra("email", match.getEmailAddress());
 
                         context.startActivity(intent);
                     }
@@ -138,9 +140,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         Intent intent = new Intent(context, ProfileVerhuurder.class);
                         String firstName = match.getFirstName();
                         if (firstName != null) {
-                            intent.putExtra("username", firstName);
+                            intent.putExtra("firstname", firstName);
+                            intent.putExtra("middlename", match.getMiddleName());
+                            intent.putExtra("lastname", match.getLastName());
                         }
-                        intent.putExtra("age", age);
+                        intent.putExtra("age", "" + age);
+
+
                         String gender = match.getGender();
                         if (gender != null) {
                             intent.putExtra("gender", gender);
@@ -149,6 +155,20 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         if (city != null) {
                             intent.putExtra("city", city);
                         }
+
+
+                        intent.putExtra("price", "" + match.getPrice());
+                        intent.putExtra("roomSize", "" + match.getRoomSize());
+                        intent.putExtra("situation", match.getSituation());
+                        intent.putExtra("pet", "" + match.getPet());
+
+                        intent.putExtra("petDesc", match.getPetDescription());
+                        intent.putExtra("help", match.getOffer());
+                        intent.putExtra("important", match.getImportantNote());
+                        intent.putExtra("selfDescription", match.getSelfDescription());
+                        intent.putExtra("keywords", match.getDescribe());
+
+
                         context.startActivity(intent);
                     }
                 }

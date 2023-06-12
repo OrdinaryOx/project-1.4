@@ -126,7 +126,8 @@ public class AllMatches extends AppCompatActivity {
 
 //        if (token.role = huurder) {}
 //        if (token.role = verhuurder) {}
-        fetchDataHuurder();
+//        fetchDataHuurder();
+        fetchDataVerhuurder();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -173,6 +174,41 @@ public class AllMatches extends AppCompatActivity {
 
     private void fetchDataVerhuurder() {
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getVerhuurders();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
     }
     private void fetchDataHuurder() {
         // ...

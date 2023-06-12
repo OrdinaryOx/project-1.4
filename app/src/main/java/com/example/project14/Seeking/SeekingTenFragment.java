@@ -21,7 +21,7 @@ import com.example.project14.R;
 import java.util.ArrayList;
 
 public class SeekingTenFragment extends Fragment {
-//TODO: ADD OPSTUREN METHOD INSTEAD OF SAVEDATA
+
     private CheckBox checkBoxTruth;
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
