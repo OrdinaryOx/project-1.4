@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -22,8 +20,6 @@ import android.widget.PopupWindow;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
-import com.example.project14.RoleActivity;
-import com.google.android.material.slider.Slider;
 
 public class AllMatches extends AppCompatActivity {
 
@@ -148,7 +144,7 @@ public class AllMatches extends AppCompatActivity {
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
-        View popupView = getLayoutInflater().inflate(R.layout.filter_popup, null);
+        View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
 
         // Create the popup window
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
