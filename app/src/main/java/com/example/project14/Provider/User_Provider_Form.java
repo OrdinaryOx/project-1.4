@@ -41,6 +41,7 @@ import okhttp3.Response;
 
 public class User_Provider_Form extends AppCompatActivity {
     //TODO Add ProfilePicture + HousePicture
+    //TODO Wachtwoord check
     private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
