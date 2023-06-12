@@ -191,16 +191,23 @@ public class ProviderOneFragment extends Fragment {
     }
 
     public boolean arePasswordsMatching() {
+        if (TextUtils.isEmpty(getPassword()) || TextUtils.isEmpty(getPasswordAgain())) {
+            Toast.makeText(getContext(), "Wachtwoorden mogen niet leeg zijn", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
         if (!getPassword().equals(getPasswordAgain())) {
             Toast.makeText(getContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         return true;
     }
 
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
+
     }
 
     public void highlightUnfilledFields() {
@@ -234,13 +241,24 @@ public class ProviderOneFragment extends Fragment {
         } else {
             editTextEmail.setBackgroundResource(R.drawable.border);
         }
+        if (TextUtils.isEmpty(getPassword())) {
+            editTextPassword.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPassword.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getPasswordAgain())) {
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border);
+        }
         if (TextUtils.isEmpty((getImage()))) {
             Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
             uploadImage.setBackground(borderDrawable);
         } else {
             Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
             uploadImage.setBackground(borderDrawable);
-        } if (!arePasswordsMatching()) {
+        }
+        if (!arePasswordsMatching()) {
             editTextPassword.setBackgroundResource(R.drawable.border_red);
             editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
         } else {

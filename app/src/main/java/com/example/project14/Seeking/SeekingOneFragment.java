@@ -153,6 +153,7 @@ public class SeekingOneFragment extends Fragment {
     private boolean verifyEmail(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
+
     }
 
 
@@ -214,16 +215,7 @@ public class SeekingOneFragment extends Fragment {
         } else {
             editTextLastName.setBackgroundResource(R.drawable.border);
         }
-        if (TextUtils.isEmpty(getPassword())) {
-            editTextPassword.setBackgroundResource(R.drawable.border_red);
-        } else {
-            editTextPassword.setBackgroundResource(R.drawable.border);
-        }
-        if (TextUtils.isEmpty(getPasswordAgain())) {
-            editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
-        } else {
-            editTextPasswordAgain.setBackgroundResource(R.drawable.border);
-        }
+
         if (TextUtils.isEmpty(getEmail())) {
             editTextEmail.setBackgroundResource(R.drawable.border_red);
         } else {
@@ -236,6 +228,14 @@ public class SeekingOneFragment extends Fragment {
             Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
             uploadImage.setBackground(borderDrawable);
         }
+        if (!arePasswordsMatching()) {
+            editTextPassword.setBackgroundResource(R.drawable.border_red);
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPassword.setBackgroundResource(R.drawable.border);
+            editTextPasswordAgain.setBackgroundResource(R.drawable.border);
+        }
+
     }
 
     public void uploadPicture() {
@@ -291,10 +291,16 @@ public class SeekingOneFragment extends Fragment {
     }
 
     public boolean arePasswordsMatching() {
+        if (TextUtils.isEmpty(getPassword()) || TextUtils.isEmpty(getPasswordAgain())) {
+            Toast.makeText(getContext(), "Wachtwoorden mogen niet leeg zijn", Toast.LENGTH_SHORT).show();
+
+         return false;
+        }
         if (!getPassword().equals(getPasswordAgain())) {
             Toast.makeText(getContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         return true;
     }
 }
