@@ -72,7 +72,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.username.setText(match.getFirstName());
         holder.age.setText(" (" + age + ")");
         holder.city.setText(match.getCity());
-        holder.match.setText(match.getMatchingScore());
+        holder.match.setText(" " + match.getMatchingScore() + "%");
 
 
 //        byte[] imageData = match.getPicture().getData();
