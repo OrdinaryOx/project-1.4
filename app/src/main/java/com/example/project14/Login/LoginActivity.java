@@ -26,6 +26,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -119,22 +125,60 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void createToken() {
-        // Generate a random token
-        SecureRandom secureRandom = new SecureRandom();
-        byte[] tokenBytes = new byte[32];
-        secureRandom.nextBytes(tokenBytes);
-        String token = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            token = Base64.getUrlEncoder().withoutPadding().encodeToString(tokenBytes);
-        }
+    private void loginUser() {
+            try {
+                // API endpoint URL
+                URL url = new URL("https://hardy-stream-production.up.railway.app/api/login");
 
-// Store the token securely
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", token);
-        editor.apply();
-    }
+                // Create connection
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                // Set request method to POST
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json");
+
+                // Request body parameters
+                String email = editTextTextEmailAddress.toString();
+                String password = editTextTextPassword.toString();
+                String requestBody = "{ \"email\": \"" + email + "\", \"password\": \"" + password + "\" }";
+
+                // Enable sending request body
+                connection.setDoOutput(true);
+
+                // Write request body to the connection
+                OutputStream outputStream = connection.getOutputStream();
+                outputStream.write(requestBody.getBytes());
+                outputStream.flush();
+                outputStream.close();
+
+                // Get response code
+                int responseCode = connection.getResponseCode();
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    // Read response
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line;
+                    StringBuilder response = new StringBuilder();
+
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+
+                    reader.close();
+
+                    // Process the response
+                    String userToken = response.toString();
+                    System.out.println("User token: " + userToken);
+                } else {
+                    System.out.println("Failed to obtain user token. Response code: " + responseCode);
+                }
+
+                // Close the connection
+                connection.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     private Boolean validateCredentials() {
         if (users.isEmpty()) {
@@ -144,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(user.getFirstName());
                 if (user.getEmailAddress().equals(editTextTextEmailAddress.getEditableText().toString())) {
                     if (user.getPassword().equals(editTextTextPassword.getEditableText().toString())) {
-                        createToken();
+                        loginUser();
                         return true;
                     } else {
                         return false;
