@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.project14.Chats.AllChats;
+import com.example.project14.Login.LoginActivity;
 import com.example.project14.Match.AllMatches;
 
 public class ActivitiesScreen extends AppCompatActivity {
