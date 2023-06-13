@@ -138,10 +138,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private Boolean validateCredentials() {
-        return true;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,18 +222,8 @@ public class LoginActivity extends AppCompatActivity {
                             emptyPassword.setVisibility(View.GONE);
                         }
                     }, 3000);
-                } else if (validateCredentials() == false) {
-                    emptyPassword.setVisibility(View.INVISIBLE);
-                    emptyEmail.setVisibility(View.INVISIBLE);
-                    wrongCredentials.setVisibility(View.VISIBLE);
-                    wrongCredentials.postDelayed(new Runnable() {
-                        public void run() {
-                            wrongCredentials.setVisibility(View.GONE);
-                        }
-                    }, 3000);
                 }else {
                     loginUser();
-
                 }
             }
         });

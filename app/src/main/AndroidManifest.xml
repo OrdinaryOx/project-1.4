@@ -15,10 +15,10 @@
             android:name=".OptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileOther"
+            android:name=".Profile.ProfileOther"
             android:exported="false" />
         <activity
-            android:name=".ProfileUser"
+            android:name=".Profile.ProfileUser"
             android:exported="false" />
         <activity
             android:name=".ActivitiesScreen"

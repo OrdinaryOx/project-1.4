@@ -1,8 +1,10 @@
-package com.example.project14;
+package com.example.project14.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.project14.R;
 
 public class ProfileOther extends AppCompatActivity {
 

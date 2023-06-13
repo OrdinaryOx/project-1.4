@@ -1,4 +1,4 @@
-package com.example.project14;
+package com.example.project14.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,9 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.project14.Match.AllMatches;
+import com.example.project14.MainActivity;
+import com.example.project14.OptionsActivity;
+import com.example.project14.R;
 
 public class ProfileUser extends AppCompatActivity {
+
+    private void getUserProfile() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
