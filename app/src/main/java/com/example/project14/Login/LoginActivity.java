@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -50,6 +51,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin, buttonRegister;
     private EditText editTextTextEmailAddress, editTextTextPassword;
     private TextView emptyEmail, emptyPassword, wrongCredentials;
-    private ArrayList<Users> users;
+    private SharedPreferences sharedPreferences;
+
+
 
     private Boolean validateEmail(){
         String val = editTextTextEmailAddress.getEditableText().toString();
@@ -83,127 +87,68 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void fetchDataUsers() {
-        // ...
+    private void loginUser() {
+        String email = editTextTextEmailAddress.getEditableText().toString();
+        String password = editTextTextPassword.getEditableText().toString();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         APIInterfaceLogin apiInterfaceLogin = retrofit.create(APIInterfaceLogin.class);
 
-        Call<JsonObject> call = apiInterfaceLogin.getUsers();
+        // Create a HashMap to hold the email and password
+        HashMap<String, String> loginData = new HashMap<>();
+        loginData.put("emailAddress", email);
+        loginData.put("password", password);
+
+        Log.d("inside", loginData.toString());
+        Call<JsonObject> call = apiInterfaceLogin.postLogin(loginData);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
                     JsonObject jsonObject = response.body();
-                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
-                    Gson gson = new Gson();
-                    Type type = new TypeToken<List<Users>>() {}.getType();
-                    List<Users> fetchedUsers = gson.fromJson(jsonArray, type);
+                   String token = jsonObject.get("token").toString();
 
-                    if (fetchedUsers != null) {
-                        if (users == null) {
-                            users = new ArrayList<>();
-                        } else {
-                            users.clear();
-                        }
-                        users.addAll(fetchedUsers);
-                        Log.d("TAG", users.toString());
-                    } else {
-                        Log.d("TAG", "Empty user list");
-                    }
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("token", token);
+                    editor.apply();
+
+
+                    Intent intent = new Intent(LoginActivity.this, ActivitiesScreen.class);
+                    startActivity(intent);
                 } else {
-                    Log.d("TAG", "Request not successful");
+                    emptyPassword.setVisibility(View.INVISIBLE);
+                    emptyEmail.setVisibility(View.INVISIBLE);
+                    wrongCredentials.setVisibility(View.VISIBLE);
+                    wrongCredentials.postDelayed(new Runnable() {
+                        public void run() {
+                            wrongCredentials.setVisibility(View.GONE);
+                        }
+                    }, 3000);
+                    Log.d("TAG", "Request failed with code: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("TAG", "Request failed");
+                Log.d("TAG", "Request failed", t);
             }
         });
     }
 
-    private void loginUser() {
-            try {
-                // API endpoint URL
-                URL url = new URL("https://hardy-stream-production.up.railway.app/api/login");
-
-                // Create connection
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-                // Set request method to POST
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                // Request body parameters
-                String email = editTextTextEmailAddress.toString();
-                String password = editTextTextPassword.toString();
-                String requestBody = "{ \"email\": \"" + email + "\", \"password\": \"" + password + "\" }";
-
-                // Enable sending request body
-                connection.setDoOutput(true);
-
-                // Write request body to the connection
-                OutputStream outputStream = connection.getOutputStream();
-                outputStream.write(requestBody.getBytes());
-                outputStream.flush();
-                outputStream.close();
-
-                // Get response code
-                int responseCode = connection.getResponseCode();
-
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    // Read response
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line;
-                    StringBuilder response = new StringBuilder();
-
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
-                    }
-
-                    reader.close();
-
-                    // Process the response
-                    String userToken = response.toString();
-                    System.out.println("User token: " + userToken);
-                } else {
-                    System.out.println("Failed to obtain user token. Response code: " + responseCode);
-                }
-
-                // Close the connection
-                connection.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
     private Boolean validateCredentials() {
-        if (users.isEmpty()) {
-            return false;
-        } else {
-            for (Users user : users) {
-                System.out.println(user.getFirstName());
-                if (user.getEmailAddress().equals(editTextTextEmailAddress.getEditableText().toString())) {
-                    if (user.getPassword().equals(editTextTextPassword.getEditableText().toString())) {
-                        loginUser();
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
-        }
-        return false;
+        return true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fetchDataUsers();
+
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
 
         //Set login actions
         buttonLogin = findViewById(R.id.buttonLogin);
@@ -291,7 +236,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }, 3000);
                 }else {
-                    startActivity(new Intent (LoginActivity.this, ActivitiesScreen.class));
+                    loginUser();
+
                 }
             }
         });
