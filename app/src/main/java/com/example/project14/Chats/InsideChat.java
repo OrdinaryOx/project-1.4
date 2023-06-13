@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.project14.ActivitiesScreen;
-import com.example.project14.LoginActivity;
+//import com.example.project14.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;

@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -36,8 +38,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class AllMatches extends AppCompatActivity {
@@ -124,12 +130,32 @@ public class AllMatches extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
 
-//        if (token.role = huurder) {}
-//        if (token.role = verhuurder) {}
-//        fetchDataHuurder();
-//        fetchDataVerhuurder();
-        fetchMatchingHuurder();
+
+        String[] tokenParts = token.split("\\.");
+        String payload = tokenParts[1];
+        String decodedPayload = new String(Base64.getUrlDecoder().decode(payload));
+        JSONObject payloadJson = null;
+        try {
+            payloadJson = new JSONObject(decodedPayload);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            if (payloadJson.getString("role").equals("Huurder")) {
+               Log.d("USER ROLE", "Huurder");
+                fetchMatchingHuurder();
+
+            } else {
+                Log.d("USER ROLE", "Verhuurder");
+                fetchMatchingVerhuurder();
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -227,7 +253,7 @@ public class AllMatches extends AppCompatActivity {
         });
     }
 
-    private void fetchMatchingVerHuurder() {
+    private void fetchMatchingVerhuurder() {
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
 
 
