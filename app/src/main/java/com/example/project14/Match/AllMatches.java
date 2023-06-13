@@ -15,6 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,8 +26,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.project14.MainActivity;
@@ -32,8 +38,10 @@ import com.example.project14.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +60,12 @@ public class AllMatches extends AppCompatActivity {
     private List<Match> matches;
     private MatchAdapter matchAdapter;
     private PopupWindow popupWindow;
+    private RadioGroup petsRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -66,6 +74,8 @@ public class AllMatches extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+        //petsRadioGroup = findViewById(R.id.radioGroup_Pets);
+
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +112,30 @@ public class AllMatches extends AppCompatActivity {
                 showPopupWindow(v);
             }
         });
-        //
+
+//        Button buttonProvider = findViewById(R.id.button_save_filter_provider);
+//
+//
+//            buttonProvider.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Log.d("TAG", "button clicked");
+//                    fetchFilterDataHuurder();
+//                }
+//            });
+//
+//
+//        Button buttonSeeking = findViewById(R.id.button_save_filter_seeking);
+//        if (buttonSeeking != null) {
+//            buttonSeeking.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Log.d("TAG", "button clicked");
+//                    fetchFilterDataVerhuurder();
+//                }
+//            });
+//        }
+//        //
 
 
         imgArrowLeft = findViewById(R.id.img_arrow_left);
@@ -126,8 +159,8 @@ public class AllMatches extends AppCompatActivity {
 
 //        if (token.role = huurder) {}
 //        if (token.role = verhuurder) {}
-//        fetchDataHuurder();
-        fetchDataVerhuurder();
+        fetchDataHuurder();
+//        fetchDataVerhuurder();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -210,6 +243,8 @@ public class AllMatches extends AppCompatActivity {
             }
         });
     }
+
+
     private void fetchDataHuurder() {
         // ...
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
@@ -250,11 +285,110 @@ public class AllMatches extends AppCompatActivity {
         });
     }
 
+private String createUrlHuurder() {
+    String baseUrl = "";
+
+    int selectedRadioButtonId = petsRadioGroup.getCheckedRadioButtonId();
+    boolean petsChecked = (selectedRadioButtonId == R.id.pets_yes); // Replace with the actual ID of the "Yes" RadioButton
+
+    if (petsChecked) {
+        baseUrl += "?pet=1";
+    } else {
+        baseUrl += "?pet=0";
+    }
+
+    return baseUrl;
+
+}
+
+    private void fetchFilterDataHuurder() {
+        // ...
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/huurder/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getFilterHuurder(createUrlHuurder());
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
+
+    private void fetchFilterDataVerhuurder() {
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getVerhuurders();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
 
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
         View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
+
+        petsRadioGroup = popupView.findViewById(R.id.radioGroup_Pets);
 
         // Create the popup window
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -290,6 +424,12 @@ public class AllMatches extends AppCompatActivity {
                 return false;
             }
         });
+        Log.d("BEFORE button", "befooiqwdoiqwjd");
+
+    }
+
+    public void filterHuurder(View view) {
+  fetchFilterDataHuurder();
     }
 }
 
