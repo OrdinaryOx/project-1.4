@@ -20,6 +20,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="18dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background">
 
         <RelativeLayout
@@ -102,6 +103,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background">
 
         <RelativeLayout
@@ -206,7 +208,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="181dp"
         android:layout_marginTop="12dp"
-        android:background="@color/white"
+        android:background="#8acda1"
         android:scaleX="2"
         android:scaleY="2"
         android:text=""
@@ -221,6 +223,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="19dp"
         android:layout_marginTop="24dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background_top"
         android:gravity="center_horizontal"
         android:text="Telefoonnummer zichtbaar:"
@@ -235,6 +238,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background"
         android:clickable="true"
         android:gravity="center"
@@ -253,6 +257,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="19dp"
         android:layout_marginBottom="198dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background_bottom_left"
         android:gravity="center"
         android:text="Nee"
@@ -268,6 +273,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="198dp"
+        android:backgroundTint="#8acda1"
         android:background="@drawable/custom_background_bottom_right"
         android:gravity="center"
         android:text="Ja"
