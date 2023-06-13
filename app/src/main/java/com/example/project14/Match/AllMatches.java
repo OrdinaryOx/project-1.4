@@ -15,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,7 +59,6 @@ public class AllMatches extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -127,7 +128,8 @@ public class AllMatches extends AppCompatActivity {
 //        if (token.role = huurder) {}
 //        if (token.role = verhuurder) {}
 //        fetchDataHuurder();
-        fetchDataVerhuurder();
+//        fetchDataVerhuurder();
+        fetchMatchingHuurder();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -172,6 +174,112 @@ public class AllMatches extends AppCompatActivity {
     }
 
 
+    private void fetchMatchingHuurder() {
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(chain -> {
+            Request originalRequest = chain.request();
+            Request.Builder requestBuilder = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+            Request newRequest = requestBuilder.build();
+            return chain.proceed(newRequest);
+        });
+
+        OkHttpClient httpClient = httpClientBuilder.build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getHuurderMatch();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful: " + response.code());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
+    private void fetchMatchingVerHuurder() {
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(chain -> {
+            Request originalRequest = chain.request();
+            Request.Builder requestBuilder = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+            Request newRequest = requestBuilder.build();
+            return chain.proceed(newRequest);
+        });
+
+        OkHttpClient httpClient = httpClientBuilder.build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/")
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getVerhuurderMatch();
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful: " + response.code());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
     private void fetchDataVerhuurder() {
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
 
@@ -210,6 +318,7 @@ public class AllMatches extends AppCompatActivity {
             }
         });
     }
+
     private void fetchDataHuurder() {
         // ...
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
@@ -249,7 +358,6 @@ public class AllMatches extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void showPopupWindow(View anchorView) {

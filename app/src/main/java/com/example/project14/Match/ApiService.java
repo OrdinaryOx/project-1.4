@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface ApiService {
 
@@ -15,4 +16,9 @@ public interface ApiService {
     @GET("user/verhuurder")
     Call<JsonObject> getVerhuurders();
 
+    @POST("user/huurder/match")
+    Call<JsonObject> getHuurderMatch();
+
+    @POST("user/verhuurder/match")
+    Call<JsonObject> getVerhuurderMatch();
 }

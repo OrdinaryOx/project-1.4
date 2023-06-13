@@ -72,10 +72,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.username.setText(match.getFirstName());
         holder.age.setText(" (" + age + ")");
         holder.city.setText(match.getCity());
+        holder.match.setText(match.getMatchingScore());
 
 
-        byte[] imageData = match.getPicture().getData();
-        String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
+//        byte[] imageData = match.getPicture().getData();
+     //   String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
 
 
 //        Glide.with(holder.profileImage)
@@ -226,6 +227,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         public ImageView profileImage;
 
         public TextView city;
+        public TextView match;
 
         public MatchViewHolder(@NonNull View ItemView) {
             super(ItemView);
@@ -233,6 +235,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             this.age = ItemView.findViewById(R.id.match_age);
             this.city = ItemView.findViewById(R.id.match_city);
             this.profileImage = ItemView.findViewById(R.id.match_pfp);
+            this.match = ItemView.findViewById(R.id.match_percentage);
         }
 
     }
