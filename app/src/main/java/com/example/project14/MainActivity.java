@@ -8,16 +8,12 @@ import android.os.Bundle;
 
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.Seeking.User_Seeking_Form;
+import com.example.project14.Login.LoginActivity;
 
-import android.graphics.Paint;
 import android.net.Uri;
-import android.os.Bundle;
-import android.view.HapticFeedbackConstants;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 

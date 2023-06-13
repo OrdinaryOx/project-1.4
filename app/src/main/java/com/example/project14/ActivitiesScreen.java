@@ -3,12 +3,16 @@ package com.example.project14;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.project14.Chats.AllChats;
+import com.example.project14.Login.LoginActivity;
 import com.example.project14.Match.AllMatches;
 
 public class ActivitiesScreen extends AppCompatActivity {
@@ -20,6 +24,12 @@ public class ActivitiesScreen extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+        Log.d("TAG ACTIVITY 2", token);
+
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
