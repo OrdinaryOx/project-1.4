@@ -90,6 +90,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:text="Huisdieren:"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -105,6 +106,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:text="Gemeubileerd:"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -150,6 +152,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:text="Woonsituatie:"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -165,6 +168,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:text="Kamer in M2:"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -180,6 +184,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:text="Kosten in Euro:"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -187,7 +192,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/provider_room" />
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/radioGroup_seeking_pets"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -210,13 +215,14 @@
             </RadioGroup>
 
             <RadioGroup
+                android:id="@+id/radioGroup_seeking_furnished"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_right"
                 app:layout_constraintStart_toEndOf="@+id/provider_furnished"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup_seeking_pets">
 
                 <RadioButton
                     android:id="@+id/radioButton_furnished_yes"
@@ -259,13 +265,14 @@
             </EditText>
 
             <Button
-                android:id="@+id/button_save_filter_provider"
+                android:id="@+id/button_save_filter_seeking"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="105dp"
                 android:layout_marginEnd="105dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
+                android:onClick="filterVerhuurder"
                 android:text="Opslaan"
                 android:textColor="@color/black"
                 android:textStyle="bold"

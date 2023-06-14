@@ -17,8 +17,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,8 +28,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.project14.MainActivity;
@@ -36,11 +42,13 @@ import com.example.project14.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -54,14 +62,25 @@ public class AllMatches extends AppCompatActivity {
     private ImageView imgArrowRight;
     private ImageView imgGreenLeft;
     private ImageView imgGreenRight;
-
     private Button buttonLeft;
     private Button buttonRight;
     private RecyclerView recyclerView;
-
     private List<Match> matches;
     private MatchAdapter matchAdapter;
     private PopupWindow popupWindow;
+    private RadioGroup petsRadioGroup;
+    private RadioGroup genderRadioGroup;
+    private CheckBox ehboCheckBox;
+    private CheckBox bhvCheckBox;
+    private CheckBox reanimationCheckBox;
+    private RadioGroup seekingPetsRadioGroup;
+    private RadioGroup seekingFurnishedRadioGroup;
+    private Spinner seekingMonthsSpinner;
+    private Spinner seekingDaysSpinner;
+    private Spinner seekingSituationSpinner;
+    private EditText seekingRoomSpaceEditText;
+    private EditText seekingBudgetEditText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +94,7 @@ public class AllMatches extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +131,6 @@ public class AllMatches extends AppCompatActivity {
                 showPopupWindow(v);
             }
         });
-        //
-
 
         imgArrowLeft = findViewById(R.id.img_arrow_left);
         imgArrowRight = findViewById(R.id.img_arrow_right);
@@ -387,10 +405,270 @@ public class AllMatches extends AppCompatActivity {
         });
     }
 
+    private String createUrlHuurder() {
+        String baseUrl = "";
+
+        int selectedRadioButtonIdPet = petsRadioGroup.getCheckedRadioButtonId();
+        boolean petsCheckedYes = (selectedRadioButtonIdPet == R.id.pets_yes); // Replace with the actual ID of the "Yes" RadioButton
+        boolean petsCheckedNo = (selectedRadioButtonIdPet == R.id.pets_no);
+
+        if (petsCheckedYes) {
+            baseUrl += "?pet=1";
+        } else if (petsCheckedNo) {
+            baseUrl += "?pet=0";
+        } else {
+            baseUrl += "";
+        }
+
+        String gender = "";
+
+        int selectedRadioButtonIdGender = genderRadioGroup.getCheckedRadioButtonId();
+        if (selectedRadioButtonIdGender == R.id.radioButton_Man) {
+            baseUrl += "?gender=M";
+        } else if (selectedRadioButtonIdGender == R.id.radioButton_Woman) {
+            baseUrl += "?gender=F";
+        } else if (selectedRadioButtonIdGender == R.id.radioButton_Other) {
+            baseUrl += "?gender=O";
+        }
+
+        boolean ehboChecked = ehboCheckBox.isChecked();
+
+        if (ehboChecked) {
+            baseUrl += "?EHBO=1";
+        } else {
+            baseUrl += "";
+        }
+
+        boolean bhvChecked = bhvCheckBox.isChecked();
+
+        if (bhvChecked) {
+            baseUrl += "?BHV=1";
+        } else {
+            baseUrl += "";
+        }
+
+        boolean reanimationChecked = reanimationCheckBox.isChecked();
+
+        if (reanimationChecked) {
+            baseUrl += "?Reanimatie=1";
+        } else {
+            baseUrl += "";
+        }
+
+        return baseUrl;
+
+    }
+
+    private String createUrlVerhuurder() {
+
+        String baseUrl = "";
+        int selectedRadioButtonIdPet = seekingPetsRadioGroup.getCheckedRadioButtonId();
+        boolean petsCheckedYes = (selectedRadioButtonIdPet == R.id.radioButton_seeking_pets_yes); // Replace with the actual ID of the "Yes" RadioButton
+        boolean petsCheckedNo = (selectedRadioButtonIdPet == R.id.radioButton_seeking_pets_no);
+        if (petsCheckedYes) {
+            baseUrl += "?pet=1";
+        } else if (petsCheckedNo) {
+            baseUrl += "?pet=0";
+        } else {
+            baseUrl += "";
+        }
+
+        int selectedRadioButtonIdFurnished = seekingFurnishedRadioGroup.getCheckedRadioButtonId();
+        boolean furnishedCheckedYes = (selectedRadioButtonIdFurnished == R.id.radioButton_furnished_yes); // Replace with the actual ID of the "Yes" RadioButton
+        boolean furnishedCheckedNo = (selectedRadioButtonIdFurnished == R.id.radioButton_furnished_no);
+        if (furnishedCheckedYes) {
+            baseUrl += "?furniture=1";
+        } else if (furnishedCheckedNo) {
+            baseUrl += "?furniture=0";
+        } else {
+            baseUrl += "";
+        }
+
+        String selectedMonthString = seekingMonthsSpinner.getSelectedItem().toString();
+        int selectedMonth = -1;
+
+        // Extract the numerical value from the string
+        String[] parts = selectedMonthString.split(" "); // Split the string at spaces
+        if (parts.length > 0) {
+            try {
+                selectedMonth = Integer.parseInt(parts[0]); // Parse the first part as an integer
+            } catch (NumberFormatException e) {
+                e.printStackTrace(); // Handle or log the parsing error
+            }
+        }
+
+        Log.d("TAG", "Months" + selectedMonth);
+        if (selectedMonth != -1) {
+            baseUrl += "?period=" + selectedMonth;
+        } else {
+            baseUrl += "";
+        }
+        Log.d("BaseURL", baseUrl);
+
+        String selectedDayString = seekingDaysSpinner.getSelectedItem().toString();
+        int selectedDay = -1;
+        String[] partsDays = selectedDayString.split(" "); // Split the string at spaces
+        if (partsDays.length > 0) {
+            try {
+                selectedDay = Integer.parseInt(parts[0]); // Parse the first part as an integer
+            } catch (NumberFormatException e) {
+                e.printStackTrace(); // Handle or log the parsing error
+            }
+        }
+
+        if (selectedDay != -1) {
+            baseUrl += "?nights=" + selectedDay;
+        } else {
+            baseUrl += "";
+        }
+
+
+        String selectedSituation = "";
+        if (seekingSituationSpinner.getSelectedItemPosition() != 0) {
+            selectedSituation = seekingSituationSpinner.getSelectedItem().toString();
+        }
+
+        if (!selectedSituation.isEmpty()) {
+            baseUrl += "?situation=" + selectedSituation;
+        } else {
+            baseUrl += "";
+        }
+
+        int minRoomSpace = -1;
+        String minRoomSpaceString = seekingRoomSpaceEditText.getText().toString().trim();
+        if (!minRoomSpaceString.isEmpty()) {
+            minRoomSpace = Integer.parseInt(minRoomSpaceString);
+        } else {
+            minRoomSpace = -1;
+        }
+
+        if (minRoomSpace != -1) {
+            baseUrl += "?roomSize=" + minRoomSpace;
+        } else {
+            baseUrl += "";
+        }
+
+        int maxBudget = -1;
+        String maxBudgetString = seekingBudgetEditText.getText().toString().trim();
+
+        if (!maxBudgetString.isEmpty()) {
+            maxBudget = Integer.parseInt(maxBudgetString);
+        } else {
+            maxBudget = -1;
+        }
+        if (maxBudget != -1) {
+            baseUrl += "?price=" + maxBudget;
+        } else {
+            baseUrl += "";
+        }
+
+
+        return baseUrl;
+
+    }
+
+    private void fetchFilterDataHuurder() {
+        // ...
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/huurder/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getFilterHuurder(createUrlHuurder());
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
+
+    private void fetchFilterDataVerhuurder() {
+        // ...
+        Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getFilterVerhuurder(createUrlVerhuurder());
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonObject = response.body();
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Match>>() {
+                    }.getType();
+                    List<Match> matches = gson.fromJson(jsonArray, type);
+                    Log.d("TAG", matches.toString());
+                    // Clear previous data and add the new data
+                    AllMatches.this.matches.clear();
+                    AllMatches.this.matches.addAll(matches);
+
+
+                    matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
+                } else {
+                    Log.d("TAG", "Request not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("TAG", "Request failed");
+            }
+        });
+    }
+
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
-        View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
+        //View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
+        View popupView = getLayoutInflater().inflate(R.layout.filter_popup_seeking, null);
+
+        seekingPetsRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_pets);
+        seekingFurnishedRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_furnished);
+        seekingMonthsSpinner = popupView.findViewById(R.id.spinner_filter_seeking_months);
+        seekingDaysSpinner = popupView.findViewById(R.id.spinner_filter_seeking_days);
+        seekingSituationSpinner = popupView.findViewById(R.id.spinner_filter_seeking_situation);
+        seekingRoomSpaceEditText = popupView.findViewById(R.id.editText_room_space);
+        seekingBudgetEditText = popupView.findViewById(R.id.editText_cost);
+
+//        petsRadioGroup = popupView.findViewById(R.id.radioGroup_Pets);
+//        genderRadioGroup = popupView.findViewById(R.id.radioGroup_Gender);
+//        ehboCheckBox = popupView.findViewById(R.id.checkBox_EHBO);
+//        bhvCheckBox = popupView.findViewById(R.id.checkBox_BHV);
+//        reanimationCheckBox = popupView.findViewById(R.id.checkBox_Reanimation);
 
         // Create the popup window
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -426,6 +704,16 @@ public class AllMatches extends AppCompatActivity {
                 return false;
             }
         });
+        Log.d("BEFORE button", "befooiqwdoiqwjd");
+
+    }
+
+    public void filterHuurder(View view) {
+        fetchFilterDataHuurder();
+    }
+
+    public void filterVerhuurder(View view) {
+        fetchFilterDataVerhuurder();
     }
 }
 
