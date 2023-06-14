@@ -58,6 +58,7 @@ public class AllMatches extends AppCompatActivity {
 
 
     //TODO: CHANGE TOKEN IN AUTH
+    String token;
     private ImageView imgArrowLeft;
     private ImageView imgArrowRight;
     private ImageView imgGreenLeft;
@@ -89,12 +90,14 @@ public class AllMatches extends AppCompatActivity {
         setContentView(R.layout.activity_all_matches);
 
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
 
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -151,9 +154,8 @@ public class AllMatches extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
-
+        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
 
         String[] tokenParts = token.split("\\.");
         String payload = tokenParts[1];
@@ -177,6 +179,9 @@ public class AllMatches extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+        Log.d("TOKEN", token);
+        token = token.substring(1,token.length()-1);
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -229,7 +234,7 @@ public class AllMatches extends AppCompatActivity {
         httpClientBuilder.addInterceptor(chain -> {
             Request originalRequest = chain.request();
             Request.Builder requestBuilder = originalRequest.newBuilder()
-                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+                    .header("Authorization", "Bearer " + token);
             Request newRequest = requestBuilder.build();
             return chain.proceed(newRequest);
         });
@@ -277,12 +282,11 @@ public class AllMatches extends AppCompatActivity {
     private void fetchMatchingVerhuurder() {
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
 
-
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         httpClientBuilder.addInterceptor(chain -> {
             Request originalRequest = chain.request();
             Request.Builder requestBuilder = originalRequest.newBuilder()
-                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+                    .header("Authorization", "Bearer " + token);
             Request newRequest = requestBuilder.build();
             return chain.proceed(newRequest);
         });
@@ -416,9 +420,9 @@ public class AllMatches extends AppCompatActivity {
 
         baseUrl+="?";
         if (petsCheckedYes) {
-            baseUrl += "&pet=1";
+            baseUrl += "&ownPet=1";
         } else if (petsCheckedNo) {
-            baseUrl += "&pet=0";
+            baseUrl += "&ownPet=0";
         } else {
             baseUrl += "";
         }
@@ -587,9 +591,20 @@ public class AllMatches extends AppCompatActivity {
         // ...
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
 
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(chain -> {
+            Request originalRequest = chain.request();
+            Request.Builder requestBuilder = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer " + token);
+            Request newRequest = requestBuilder.build();
+            return chain.proceed(newRequest);
+        });
+
+        OkHttpClient httpClient = httpClientBuilder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/match")
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/match/")
+                .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
@@ -634,7 +649,7 @@ public class AllMatches extends AppCompatActivity {
         httpClientBuilder.addInterceptor(chain -> {
             Request originalRequest = chain.request();
             Request.Builder requestBuilder = originalRequest.newBuilder()
-                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+                    .header("Authorization", "Bearer " + token);
             Request newRequest = requestBuilder.build();
             return chain.proceed(newRequest);
         });
@@ -686,8 +701,7 @@ public class AllMatches extends AppCompatActivity {
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
+
 
 
         String[] tokenParts = token.split("\\.");

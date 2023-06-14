@@ -372,12 +372,19 @@ public class User_Seeking_Form extends AppCompatActivity {
                     // Request successful
                     String responseBody = response.body().string();
                     System.out.println("Response: " + responseBody);
+
+                    Intent intent = new Intent(User_Seeking_Form.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
                     // Request failed
                     System.out.println("Request failed with code: " + response.code());
                 }
             }
         });
+
+
+
+
     }
 
     private JSONObject buildUserPreferences() throws JSONException {
@@ -427,6 +434,8 @@ public class User_Seeking_Form extends AppCompatActivity {
            liveWith = "V";
        } else if (fragmentDataList.get("Preference").equals("Koppel")) {
            liveWith = "K";
+       } else if (fragmentDataList.get("Preference").equals("Geen voorkeur")){
+           liveWith = "";
        } else {
            liveWith = "";
        }

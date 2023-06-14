@@ -26,8 +26,7 @@
 
         <RelativeLayout
             android:layout_width="175dp"
-            android:layout_height="300dp"
->
+            android:layout_height="300dp">
 
             <TextView
                 android:id="@+id/contactTextView"
@@ -223,10 +222,16 @@
                 android:layout_height="20dp"
                 android:layout_below="@id/textForSwitchPrivacy"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/white"
+                android:backgroundTint="#8acda1"
                 android:scaleX="2"
-                android:scaleY="2" />
+                android:scaleY="2"
+                android:thumbTint="@color/MWG_Dark"
+                android:trackTint="@color/black" />
 
             <TextView
                 android:layout_width="144dp"

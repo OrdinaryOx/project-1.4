@@ -15,12 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.project14.ActivitiesScreen;
+import com.example.project14.Login.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
 import com.example.project14.Seeking.SeekingOneFragment;
 import com.example.project14.Seeking.SeekingTenFragment;
+import com.example.project14.Seeking.User_Seeking_Form;
 
 
 import org.json.JSONException;
@@ -346,6 +348,8 @@ public class User_Provider_Form extends AppCompatActivity {
                     // Request successful
                     String responseBody = response.body().string();
                     System.out.println("Response: " + responseBody);
+                    Intent intent = new Intent(User_Provider_Form.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
                     // Request failed
                     System.out.println("Request failed with code: " + response.code());
