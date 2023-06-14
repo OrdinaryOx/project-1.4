@@ -18,6 +18,7 @@
     <color name="CardView_Light">#8acda1</color>
 
     <color name="formBorder">#006430</color>
+    <color name="formBorderRed">#FF0000</color>
     <color name="grey">#808080</color>
 <color name="red">#9E0000</color>
 

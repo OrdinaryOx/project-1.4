@@ -28,6 +28,10 @@ public class SeekingThreeFragment extends Fragment {
     private RadioGroup radioGroupPreference;
     private EditText editTextBudget;
     private Spinner spinnerMonth;
+    private RadioButton woman;
+    private RadioButton man;
+    private RadioButton couple;
+    private RadioButton none;
 
     public SeekingThreeFragment() {
         // Required empty public constructor
@@ -43,6 +47,10 @@ public class SeekingThreeFragment extends Fragment {
         radioGroupPreference = view.findViewById(R.id.radioGroupPreference);
         editTextBudget = view.findViewById(R.id.editTextBudget);
         spinnerMonth = view.findViewById(R.id.spinnerMonth);
+        woman = view.findViewById(R.id.radio_button_women);
+        man = view.findViewById(R.id.radio_button_men);
+        couple = view.findViewById(R.id.radio_button_couples);
+        none = view.findViewById(R.id.radio_button_geen);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
@@ -75,20 +83,8 @@ public class SeekingThreeFragment extends Fragment {
     }
 
     public void saveData() {
-//        String city = getCity();
-//        String preference = getPreference();
-//        String budget = getBudget();
-//        String month = getMonth();;
-
-//        // Create an intent and add the data as extras
-//        Intent intent = new Intent(getContext(), SeekingFourFragment.class);
-//        intent.putExtra("city", city);
-//        intent.putExtra("preference", preference);
-//        intent.putExtra("budget", budget);
-//        intent.putExtra("month", month);
-
         // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
+        //   passDataToNextFragment(intent);
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
@@ -106,11 +102,16 @@ public class SeekingThreeFragment extends Fragment {
     }
 
     public boolean isDataValid() {
+        if (getCity().equals("Maak een keuze") || getMonth().equals("Maak een keuze")) {
+            return false;
+        }
+        if (getPreference().equals("-1")) {
+            return false;
+        }
+
         return !TextUtils.isEmpty(getCity()) &&
-                !TextUtils.isEmpty(getCity()) &&
-                !TextUtils.isEmpty(getPreference()) &&
-                !TextUtils.isEmpty(getBudget()) &&
-                !TextUtils.isEmpty(getMonth());
+                !TextUtils.isEmpty(getBudget());
+
     }
 
     public String getCity() {
@@ -119,9 +120,13 @@ public class SeekingThreeFragment extends Fragment {
 
     public String getPreference() {
         int checkedRadioButtonId = radioGroupPreference.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
+
 
     public String getBudget() {
         return editTextBudget.getText().toString();
@@ -155,4 +160,39 @@ public class SeekingThreeFragment extends Fragment {
             }
         }
     }
+
+    public void highlightUnfilledFields() {
+        if (getCity().equals("Maak een keuze")) {
+            spinnerCity.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerCity.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (getPreference().equals("-1")) {
+            woman.setBackgroundResource(R.drawable.border_red);
+            man.setBackgroundResource(R.drawable.border_red);
+            couple.setBackgroundResource(R.drawable.border_red);
+            none.setBackgroundResource(R.drawable.border_red);
+        } else {
+            woman.setBackgroundResource(R.drawable.border);
+            man.setBackgroundResource(R.drawable.border);
+            couple.setBackgroundResource(R.drawable.border);
+            none.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getBudget())) {
+            editTextBudget.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextBudget.setBackgroundResource(R.drawable.border);
+        }
+        if (getMonth().equals("Maak een keuze")) {
+            spinnerMonth.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerMonth.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+    }
+
+//    private boolean isRadioButtonSelected(RadioGroup radioGroup) {
+//        int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+//        return selectedRadioButtonId != -1;
+//    }
+
 }

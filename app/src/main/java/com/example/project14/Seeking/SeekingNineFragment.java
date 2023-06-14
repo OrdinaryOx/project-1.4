@@ -1,6 +1,7 @@
 package com.example.project14.Seeking;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,8 @@ public class SeekingNineFragment extends Fragment {
     public SeekingNineFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +60,6 @@ public class SeekingNineFragment extends Fragment {
 
     public void saveData() {
 
-
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
@@ -73,7 +75,7 @@ public class SeekingNineFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-     return true;
+        return true;
     }
 
     public String getBelief() {
@@ -84,4 +86,6 @@ public class SeekingNineFragment extends Fragment {
         return editTextOther.getText().toString();
     }
 
+    public void highlightUnfilledFields() {
+    }
 }

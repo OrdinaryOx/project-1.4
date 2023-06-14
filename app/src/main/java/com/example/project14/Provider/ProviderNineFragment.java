@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ import android.widget.TextView;
 import com.example.project14.ActivitiesScreen;
 import com.example.project14.R;
 import com.example.project14.Seeking.SeekingTwoFragment;
+import com.example.project14.Seeking.User_Seeking_Form;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ProviderNineFragment extends Fragment {
@@ -32,6 +35,8 @@ public class ProviderNineFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_provider_nine, container, false);
@@ -42,16 +47,19 @@ public class ProviderNineFragment extends Fragment {
         checkBoxTerms = view.findViewById(R.id.checkBoxTerms);
         editTextComment = view.findViewById(R.id.editTextComment);
 
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+        Log.d("ARRAYLIST FRAGMENT 10", " " + fragmentDataList);
+
         return view;
     }
 
     public void saveData() {
-        boolean truthChecked = isTruthChecked();
-        boolean permissionChecked = isPermissionChecked();
-        boolean termsChecked = isTermsChecked();
-        String comment = getComment();
-
-
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Comment", getComment());
+        }
     }
 
 
@@ -84,4 +92,21 @@ public class ProviderNineFragment extends Fragment {
         return editTextComment.getText().toString();
     }
 
+    public void highlightUnfilledFields() {
+        if (isTruthChecked()) {
+            checkBoxTruth.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxTruth.setBackgroundResource(R.drawable.border_red);
+        }
+        if (isPermissionChecked()) {
+            checkBoxPermission.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxPermission.setBackgroundResource(R.drawable.border_red);
+        }
+        if (isTermsChecked()) {
+            checkBoxTerms.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxTerms.setBackgroundResource(R.drawable.border_red);
+        }
+    }
 }

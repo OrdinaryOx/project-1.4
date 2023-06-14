@@ -89,6 +89,7 @@ public class SeekingSevenFragment extends Fragment {
                 !TextUtils.isEmpty(getKeyword()) &&
                 !TextUtils.isEmpty(getRoom()) &&
                 !TextUtils.isEmpty(getMean());
+
     }
 
     public String getYourself() {
@@ -105,6 +106,32 @@ public class SeekingSevenFragment extends Fragment {
 
     public String getMean() {
         return editTextMean.getText().toString();
+    }
+
+    public void highlightUnfilledFields() {
+
+        if (getYourself().isEmpty()) {
+            editTextYourself.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextYourself.setBackgroundResource(R.drawable.border);
+        }
+        if (getKeyword().isEmpty()) {
+            editTextKeyword.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextKeyword.setBackgroundResource(R.drawable.border);
+        }
+        if (getRoom().isEmpty()) {
+            editTextRoom.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextRoom.setBackgroundResource(R.drawable.border);
+        }
+        if (getMean().isEmpty()) {
+            editTextMean.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextMean.setBackgroundResource(R.drawable.border);
+        }
+
+
     }
 
 }

@@ -24,11 +24,11 @@ import java.util.HashMap;
 
 
 public class SeekingFiveFragment extends Fragment {
- private EditText editTextStartDate;
- private EditText editTextEndDate;
- private Spinner spinnerReason;
- private EditText editTextGrade;
- private EditText editTextCourse;
+    private EditText editTextStartDate;
+    private EditText editTextEndDate;
+    private Spinner spinnerReason;
+    private EditText editTextGrade;
+    private EditText editTextCourse;
 
     public SeekingFiveFragment() {
         // Required empty public constructor
@@ -87,7 +87,7 @@ public class SeekingFiveFragment extends Fragment {
             fragmentDataList.put("Grade", getGrade());
             fragmentDataList.put("Course", getCourse());
         }
-       }
+    }
 
     public void passDataToNextFragment(Bundle data) {
         if (getActivity() instanceof User_Seeking_Form) {
@@ -96,9 +96,14 @@ public class SeekingFiveFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getStartDate()) &&
-                !TextUtils.isEmpty(getEndDate()) &&
-                !TextUtils.isEmpty(getReason());
+        if (getReason().equals("Maak een keuze") ||
+                TextUtils.isEmpty(getStartDate()) ||
+                TextUtils.isEmpty(getEndDate())) {
+            return false;
+        }
+return true;
+
+
     }
 
     public String getStartDate() {
@@ -131,6 +136,28 @@ public class SeekingFiveFragment extends Fragment {
                 }
             }
         }
+    }
+
+
+    public void highlightUnfilledFields() {
+
+        if (TextUtils.isEmpty(getStartDate())) {
+            editTextStartDate.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextStartDate.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getEndDate())) {
+            editTextEndDate.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextEndDate.setBackgroundResource(R.drawable.border);
+        }
+        if (getReason().equals("Maak een keuze")) {
+            spinnerReason.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerReason.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+
+
     }
 
 }

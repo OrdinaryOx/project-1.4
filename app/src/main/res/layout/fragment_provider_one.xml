@@ -23,7 +23,7 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -31,28 +31,24 @@
         android:background="@drawable/border"
         android:calendarViewShown="false"
         android:hint="  ********"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/editTextPasswordAgain"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
+        android:layout_marginTop="8dp"
         android:calendarViewShown="false"
         android:hint="  ********"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Spinner
         android:id="@+id/spinnerSalutation"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -80,7 +76,7 @@
 
     <EditText
         android:id="@+id/editTextFirstName"
-        android:layout_width="170dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -94,7 +90,7 @@
 
     <EditText
         android:id="@+id/editTextInfix"
-        android:layout_width="190dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -106,12 +102,13 @@
 
     <Button
         android:id="@+id/buttonUploadPicture"
-        android:layout_width="190dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:onClick="uploadPicture"
         android:background="@drawable/border"
-        android:text="Upload Foto"
+        android:text="Upload"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -133,12 +130,12 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:text="Upload hier een foto van u:"
+        android:layout_marginEnd="80dp"
+        android:text="Upload uw foto:"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -149,9 +146,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Inschrijven beschikbare woonruimte"
+        android:text="Inschrijving beschikbare woonruimte"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginEnd="82dp"
         android:text="Tussenvoegsel:"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -202,26 +199,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Wachtwoord:"
+        android:layout_marginTop="16dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginRight="31dp"
+        android:text="Wachtwoord nogmaals:"
         android:layout_marginTop="16dp"
-        android:text="Wachtwoord opnieuw:"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 
     <TextView
@@ -261,6 +258,7 @@
         app:layout_constraintLeft_toRightOf="@id/textView9" />
 
     <TextView
+        android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" *"
@@ -270,6 +268,7 @@
         app:layout_constraintLeft_toRightOf="@id/textView10" />
 
     <TextView
+        android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" *"
@@ -277,5 +276,45 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView13"
         app:layout_constraintLeft_toRightOf="@id/textView13" />
+
+
+
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Emailadres:"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
+        android:hint="  Emailadres"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" *"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textViewEmail"
+        app:layout_constraintLeft_toRightOf="@id/textViewEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

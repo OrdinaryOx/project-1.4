@@ -28,6 +28,8 @@ public class ProviderThreeFragment extends Fragment {
     private RadioGroup radioGroupHouse;
     private EditText editTextFound;
     private EditText editTextProviderMotivation;
+    private RadioButton houseYes;
+    private RadioButton houseNo;
 
 
     public ProviderThreeFragment() {
@@ -43,6 +45,8 @@ public class ProviderThreeFragment extends Fragment {
         radioGroupHouse = view.findViewById(R.id.radioGroupHouse);
         editTextFound = view.findViewById(R.id.editTextFound);
         editTextProviderMotivation = view.findViewById(R.id.editTextProviderMotivation);
+        houseYes = view.findViewById(R.id.radio_button_house_yes);
+        houseNo = view.findViewById(R.id.radio_button_house_no);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
@@ -71,12 +75,6 @@ public class ProviderThreeFragment extends Fragment {
     }
 
     public void saveData() {
-        String situation = getSituation();
-        String house = getHouse();
-        String found = getFound();
-        String providerMotivation = getProviderMotivation();
-
-        // Create an intent and add the data as extras
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
@@ -86,16 +84,8 @@ public class ProviderThreeFragment extends Fragment {
             fragmentDataList.put("ProviderMotivation", getProviderMotivation());
         }
 
-        // Pass the intent to the next fragment
-     //   passDataToNextFragment(intent);
     }
 
-
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Provider_Form) {
-            ((User_Provider_Form) getActivity()).passDataToNextFragment(data);
-        }
-    }
 
     public boolean isDataValid() {
         return !TextUtils.isEmpty(getSituation()) &&
@@ -110,8 +100,11 @@ public class ProviderThreeFragment extends Fragment {
 
     public String getHouse() {
         int checkedRadioButtonId = radioGroupHouse.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getFound() {
@@ -144,6 +137,32 @@ public class ProviderThreeFragment extends Fragment {
                     break;
                 }
             }
+        }
+    }
+
+    public void highlightUnfilledFields() {
+        if (getSituation().equals("Maak een keuze")) {
+            spinnerSituation.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerSituation.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (getHouse().equals("-1")) {
+            houseNo.setBackgroundResource(R.drawable.border_red);
+            houseYes.setBackgroundResource(R.drawable.border_red);
+        } else {
+            houseYes.setBackgroundResource(R.drawable.border);
+            houseNo.setBackgroundResource(R.drawable.border);
+
+        }
+        if (TextUtils.isEmpty(getFound())) {
+            editTextFound.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextFound.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getProviderMotivation())) {
+            editTextProviderMotivation.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextProviderMotivation.setBackgroundResource(R.drawable.border);
         }
     }
 

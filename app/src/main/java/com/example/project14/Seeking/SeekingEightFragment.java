@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,6 +27,8 @@ public class SeekingEightFragment extends Fragment {
     private EditText editTextImportantNote;
     private RadioGroup radioGroupVolunteer;
     private EditText editTextVolunteer;
+    private RadioButton volunteerYes;
+    private RadioButton volunteerNo;
 
     public SeekingEightFragment() {
         // Required empty public constructor
@@ -39,6 +43,9 @@ public class SeekingEightFragment extends Fragment {
         editTextImportantNote = view.findViewById(R.id.editTextImportantNote);
         radioGroupVolunteer = view.findViewById(R.id.radioGroupVolunteer);
         editTextVolunteer = view.findViewById(R.id.editTextVolunteer);
+
+        volunteerYes = view.findViewById(R.id.radio_button_volunteer_yes);
+        volunteerNo = view.findViewById(R.id.radio_button_volunteer_no);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
@@ -69,11 +76,6 @@ public class SeekingEightFragment extends Fragment {
     }
 
     public void saveData() {
-        String otherOffer = getOtherOffer();
-        String importantNote = getImportantNote();
-        String volunteerSelection = getVolunteerSelection();
-        String volunteer = getVolunteer();
-
         User_Seeking_Form activity = (User_Seeking_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
@@ -81,7 +83,6 @@ public class SeekingEightFragment extends Fragment {
             fragmentDataList.put("ImportantNote", getImportantNote());
             fragmentDataList.put("VolunteerSelection", getVolunteerSelection());
             fragmentDataList.put("Volunteer", getVolunteer());
-
         }
     }
 
@@ -90,10 +91,15 @@ public class SeekingEightFragment extends Fragment {
             ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
         }
     }
+
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getOtherOffer()) &&
-                !TextUtils.isEmpty(getImportantNote()) &&
-                !TextUtils.isEmpty(getVolunteerSelection());
+        if (getVolunteerSelection().equals("Ja") && TextUtils.isEmpty(getVolunteer())) {
+            return false;
+        }
+
+        return !getVolunteerSelection().equals("-1") &&
+                !TextUtils.isEmpty(getOtherOffer()) &&
+                !TextUtils.isEmpty(getImportantNote());
     }
 
 
@@ -107,8 +113,11 @@ public class SeekingEightFragment extends Fragment {
 
     public String getVolunteerSelection() {
         int checkedRadioButtonId = radioGroupVolunteer.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getVolunteer() {
@@ -129,4 +138,31 @@ public class SeekingEightFragment extends Fragment {
         }
     }
 
+    public void highlightUnfilledFields() {
+
+        if (getVolunteerSelection().equals("-1")) {
+            volunteerNo.setBackgroundResource(R.drawable.border_red);
+            volunteerYes.setBackgroundResource(R.drawable.border_red);
+        } else {
+            volunteerNo.setBackgroundResource(R.drawable.border);
+            volunteerYes.setBackgroundResource(R.drawable.border);
+        }
+        if (getVolunteerSelection().equals("Ja") && TextUtils.isEmpty(getVolunteer())) {
+            editTextVolunteer.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextVolunteer.setBackgroundResource(R.drawable.border);
+        }
+        if (getOtherOffer().isEmpty()) {
+            editTextOtherOffer.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextOtherOffer.setBackgroundResource(R.drawable.border);
+        }
+        if(getImportantNote().isEmpty()) {
+            editTextImportantNote.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextImportantNote.setBackgroundResource(R.drawable.border);
+        }
+
+
+    }
 }

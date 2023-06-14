@@ -27,6 +27,10 @@ public class ProviderSevenFragment extends Fragment {
     private EditText editTextHobby;
     private RadioGroup radioGroupSelfPets;
     private EditText editTextPets;
+    private RadioButton workYes;
+    private RadioButton workNo;
+    private RadioButton petsYes;
+    private RadioButton petsNo;
 
 
     public ProviderSevenFragment() {
@@ -45,16 +49,58 @@ public class ProviderSevenFragment extends Fragment {
         radioGroupSelfPets = view.findViewById(R.id.radioGroupSelfPets);
         editTextPets = view.findViewById(R.id.editTextPets);
 
+        workYes = view.findViewById(R.id.radio_button_provider_work_yes);
+        workNo = view.findViewById(R.id.radio_button_provider_work_no);
+        petsYes = view.findViewById(R.id.radio_button_yes);
+        petsNo = view.findViewById(R.id.radio_button_no);
+
+        User_Provider_Form activity = (User_Provider_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            if (fragmentDataList.containsKey("ProviderWorkDetails")) {
+                String workDetails = fragmentDataList.get("ProviderWorkDetails");
+                editTextProviderWork.setText(workDetails);
+            }
+            if (fragmentDataList.containsKey("Keyword")) {
+                String keyword = fragmentDataList.get("Keyword");
+                editTextKeyword.setText(keyword);
+            }
+            if (fragmentDataList.containsKey("Hobby")) {
+                String hobby = fragmentDataList.get("Hobby");
+                editTextHobby.setText(hobby);
+            }
+            if (fragmentDataList.containsKey("Pets")) {
+                String pets = fragmentDataList.get("Pets");
+                editTextPets.setText(pets);
+            }
+            if (fragmentDataList.containsKey("ProviderWork")) {
+                String work = fragmentDataList.get("ProviderWork");
+                setRadioButtonSelection(radioGroupProviderWork, work);
+            }
+            if (fragmentDataList.containsKey("SelfPets")) {
+                String pets = fragmentDataList.get("SelfPets");
+                setRadioButtonSelection(radioGroupSelfPets, pets);
+            }
+
+        }
+
         return view;
     }
 
+    private void setRadioButtonSelection(RadioGroup radioGroup, String value) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            View view = radioGroup.getChildAt(i);
+            if (view instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) view;
+                if (radioButton.getText().toString().equals(value)) {
+                    radioButton.setChecked(true);
+                    break;
+                }
+            }
+        }
+    }
+
     public void saveData() {
-        String providerWork = getProviderWork();
-        String providerWorkDetails = getProviderWorkDetails();
-        String keyword = getKeyword();
-        String hobby = getHobby();
-        String selfPets = getSelfPets();
-        String pets = getPets();
 
         // Create an intent and add the data as extras
         User_Provider_Form activity = (User_Provider_Form) getActivity();
@@ -70,7 +116,7 @@ public class ProviderSevenFragment extends Fragment {
 
 
         // Pass the intent to the next fragment
-      //  passDataToNextFragment(intent);
+        //  passDataToNextFragment(intent);
     }
 
 
@@ -81,12 +127,17 @@ public class ProviderSevenFragment extends Fragment {
     }
 
     public boolean isDataValid() {
+        if (getSelfPets().equals("Ja") && TextUtils.isEmpty(getPets())) {
+            return false;
+        }
+
+        if (getProviderWork().equals("Ja") && TextUtils.isEmpty(getProviderWorkDetails())) {
+            return false;
+        }
         return !TextUtils.isEmpty(getProviderWork()) &&
-                !TextUtils.isEmpty(getProviderWorkDetails()) &&
                 !TextUtils.isEmpty(getKeyword()) &&
                 !TextUtils.isEmpty(getHobby()) &&
-                !TextUtils.isEmpty(getSelfPets()) &&
-                !TextUtils.isEmpty(getPets());
+                !TextUtils.isEmpty(getSelfPets());
     }
 
     public String getProviderWork() {
@@ -109,12 +160,55 @@ public class ProviderSevenFragment extends Fragment {
 
     public String getSelfPets() {
         int checkedRadioButtonId = radioGroupSelfPets.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getPets() {
         return editTextPets.getText().toString();
+    }
+
+
+    public void highlightUnfilledFields() {
+        if (getProviderWork().equals("-1")) {
+            workYes.setBackgroundResource(R.drawable.border_red);
+            workNo.setBackgroundResource(R.drawable.border_red);
+        } else {
+            workYes.setBackgroundResource(R.drawable.border);
+            workNo.setBackgroundResource(R.drawable.border);
+        }
+        if (getSelfPets().equals("-1")) {
+            petsNo.setBackgroundResource(R.drawable.border_red);
+            petsYes.setBackgroundResource(R.drawable.border_red);
+        } else {
+            petsYes.setBackgroundResource(R.drawable.border);
+            petsNo.setBackgroundResource(R.drawable.border);
+
+        }
+        if (TextUtils.isEmpty(getKeyword())) {
+            editTextKeyword.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextKeyword.setBackgroundResource(R.drawable.border);
+        }
+        if (TextUtils.isEmpty(getHobby())) {
+            editTextHobby.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextHobby.setBackgroundResource(R.drawable.border);
+        }
+        if (getSelfPets().equals("Ja") && TextUtils.isEmpty(getPets())) {
+            editTextPets.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPets.setBackgroundResource(R.drawable.border);
+        }
+        if (getProviderWork().equals("Ja") && TextUtils.isEmpty(getProviderWorkDetails())) {
+            editTextProviderWork.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextProviderWork.setBackgroundResource(R.drawable.border);
+        }
     }
 
 }

@@ -19,6 +19,7 @@ import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeekingTenFragment extends Fragment {
 
@@ -26,7 +27,7 @@ public class SeekingTenFragment extends Fragment {
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
     private EditText editTextComment;
-    private String test;
+
 
     public SeekingTenFragment() {
         // Required empty public constructor
@@ -51,32 +52,20 @@ public class SeekingTenFragment extends Fragment {
     }
 
     public void saveData() {
-        boolean truthChecked = isTruthChecked();
-        boolean permissionChecked = isPermissionChecked();
-        boolean termsChecked = isTermsChecked();
-        String comment = getComment();
-
-        // Create an intent and add the data as extras
-        Intent intent = new Intent(getContext(), SeekingTenFragment.class);
-        intent.putExtra("truthChecked", truthChecked);
-        intent.putExtra("permissionChecked", permissionChecked);
-        intent.putExtra("termsChecked", termsChecked);
-        intent.putExtra("comment", comment);
-        // Pass the intent to the next fragment
-      //  passDataToNextFragment(intent);
-    }
-
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Seeking_Form) {
-            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Comment", getComment());
         }
     }
+
+
+
 
     public boolean isDataValid() {
         return isTruthChecked() &&
                 isPermissionChecked() &&
-                isTermsChecked() &&
-                !TextUtils.isEmpty(getComment());
+                isTermsChecked();
     }
 
     public boolean isTruthChecked() {
@@ -95,4 +84,22 @@ public class SeekingTenFragment extends Fragment {
         return editTextComment.getText().toString();
     }
 
+
+    public void highlightUnfilledFields() {
+        if (isTruthChecked()) {
+            checkBoxTruth.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxTruth.setBackgroundResource(R.drawable.border_red);
+        }
+        if (isPermissionChecked()) {
+            checkBoxPermission.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxPermission.setBackgroundResource(R.drawable.border_red);
+        }
+        if (isTermsChecked()) {
+            checkBoxTerms.setBackgroundResource(R.drawable.border);
+        } else {
+            checkBoxTerms.setBackgroundResource(R.drawable.border_red);
+        }
+    }
 }

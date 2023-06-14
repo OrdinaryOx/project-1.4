@@ -28,6 +28,11 @@ public class SeekingFourFragment extends Fragment {
     private RadioGroup radioGroupSelfPets;
     private EditText editTextPets;
 
+    private RadioButton preferenceYes;
+    private RadioButton preferenceNo;
+    private RadioButton selfYes;
+    private RadioButton selfNo;
+
     public SeekingFourFragment() {
         // Required empty public constructor
     }
@@ -42,7 +47,10 @@ public class SeekingFourFragment extends Fragment {
         radioGroupSelfPets = view.findViewById(R.id.radioGroupSelfPets);
         editTextPets = view.findViewById(R.id.editTextPets);
 
-
+        preferenceYes = view.findViewById(R.id.radio_button_preference_yes);
+        preferenceNo = view.findViewById(R.id.radio_button_preference_no);
+        selfYes = view.findViewById(R.id.radio_button_yes);
+        selfNo = view.findViewById(R.id.radio_button_no);
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
 //        Log.d("ARRAYLIST FRAGMENT 4", " " + fragmentDataList);
@@ -73,26 +81,30 @@ public class SeekingFourFragment extends Fragment {
     }
 
 
-        public void saveData() {
-            User_Seeking_Form activity = (User_Seeking_Form) getActivity();
-            if (activity != null) {
-                HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
-                fragmentDataList.put("Day", getDay());
-                fragmentDataList.put("Pets", getPets());
-                fragmentDataList.put("SelfPets", getSelfPets());
-                fragmentDataList.put("PetsComment", getPetsComment());
-            }
-        }
-    public void passDataToNextFragment(Bundle data) {
-        if (getActivity() instanceof User_Seeking_Form) {
-            ((User_Seeking_Form) getActivity()).passDataToNextFragment(data);
+    public void saveData() {
+        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
+        if (activity != null) {
+            HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
+            fragmentDataList.put("Day", getDay());
+            fragmentDataList.put("Pets", getPets());
+            fragmentDataList.put("SelfPets", getSelfPets());
+            fragmentDataList.put("PetsComment", getPetsComment());
         }
     }
 
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getDay()) &&
-                !TextUtils.isEmpty(getPets()) &&
-                !TextUtils.isEmpty(getSelfPets());
+        if (getDay().equals("Maak een keuze") ||
+                getPets().equals("-1") ||
+               getSelfPets().equals("-1")) {
+            return false;
+        }
+
+        if (getSelfPets().equals("Ja") && TextUtils.isEmpty(getPetsComment())) {
+            return false;
+        }
+
+        return true;
+
     }
 
     public String getDay() {
@@ -101,14 +113,24 @@ public class SeekingFourFragment extends Fragment {
 
     public String getPets() {
         int checkedRadioButtonId = radioGroupPets.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            return radioButton.getText().toString();
+
+        }
+        return "-1";
     }
 
     public String getSelfPets() {
+
         int checkedRadioButtonId = radioGroupSelfPets.getCheckedRadioButtonId();
-        RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
-        return radioButton.getText().toString();
+        if (checkedRadioButtonId != -1) {
+
+            RadioButton radioButton = getView().findViewById(checkedRadioButtonId);
+            Log.d("TAG", radioButton.getText().toString());
+            return radioButton.getText().toString();
+        }
+        return "-1";
     }
 
     public String getPetsComment() {
@@ -139,6 +161,36 @@ public class SeekingFourFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void highlightUnfilledFields() {
+
+        if (getDay().equals("Maak een keuze")) {
+            spinnerDay.setBackgroundResource(R.drawable.combined_spinner_drawable_red);
+        } else {
+            spinnerDay.setBackgroundResource(R.drawable.combined_spinner_drawable);
+        }
+        if (getPets().equals("-1")) {
+            preferenceYes.setBackgroundResource(R.drawable.border_red);
+            preferenceNo.setBackgroundResource(R.drawable.border_red);
+        } else {
+            preferenceYes.setBackgroundResource(R.drawable.border);
+            preferenceNo.setBackgroundResource(R.drawable.border);
+        }
+        if (getSelfPets().equals("-1")) {
+            selfYes.setBackgroundResource(R.drawable.border_red);
+            selfNo.setBackgroundResource(R.drawable.border_red);
+        } else {
+            selfYes.setBackgroundResource(R.drawable.border);
+            selfNo.setBackgroundResource(R.drawable.border);
+        }
+
+        if (getSelfPets().equals("Ja") && TextUtils.isEmpty(getPetsComment())) {
+            editTextPets.setBackgroundResource(R.drawable.border_red);
+        } else {
+            editTextPets.setBackgroundResource(R.drawable.border);
+        }
+
     }
 
 }

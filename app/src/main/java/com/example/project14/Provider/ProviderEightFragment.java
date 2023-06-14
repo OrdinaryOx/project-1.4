@@ -72,8 +72,7 @@ public class ProviderEightFragment extends Fragment {
     }
 
     public boolean isDataValid() {
-        return !TextUtils.isEmpty(getBelief()) &&
-                !TextUtils.isEmpty(getComment());
+return true;
     }
 
     public String getBelief() {
@@ -83,5 +82,9 @@ public class ProviderEightFragment extends Fragment {
     public String getComment() {
         return editTextOther.getText().toString();
     }
+
+
+
+
 
 }
