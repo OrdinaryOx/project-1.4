@@ -13,8 +13,11 @@ public interface ApiService {
     @GET("user/huurder")
     Call<JsonObject> getItems();
 
-@GET
-Call<JsonObject> getFilterHuurder(@Url String url);
+    @GET
+    Call<JsonObject> getFilterHuurder(@Url String url);
+
+    @GET
+    Call<JsonObject> getFilterVerhuurder(@Url String url);
 
     @GET("user/verhuurder")
     Call<JsonObject> getVerhuurders();

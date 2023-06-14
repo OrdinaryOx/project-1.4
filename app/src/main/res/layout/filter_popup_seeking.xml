@@ -215,6 +215,7 @@
             </RadioGroup>
 
             <RadioGroup
+                android:id="@+id/radioGroup_seeking_furnished"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -271,6 +272,7 @@
                 android:layout_marginEnd="105dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
+                android:onClick="filterVerhuurder"
                 android:text="Opslaan"
                 android:textColor="@color/black"
                 android:textStyle="bold"
