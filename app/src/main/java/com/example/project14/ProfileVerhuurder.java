@@ -81,7 +81,8 @@ public class ProfileVerhuurder extends AppCompatActivity {
 
         String keywords = intent.getStringExtra("keywords");
         String help = intent.getStringExtra("help");
-        String description = intent.getStringExtra("selfDescription");
+        String motivation = intent.getStringExtra("motivation");
+     //   String description = intent.getStringExtra("selfDescription");
         String important = intent.getStringExtra("important");
         String roomSize = intent.getStringExtra("roomSize");
         String situation = intent.getStringExtra("situation");
@@ -144,7 +145,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         }
 
 
-        helpTV.setText(help);
+        helpTV.setText("Motivatie: " + motivation);
         selfDescTV.setText(important);
         keywordsTV.setText(keywords);
 

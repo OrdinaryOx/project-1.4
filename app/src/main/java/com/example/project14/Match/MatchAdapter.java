@@ -165,9 +165,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
                         intent.putExtra("petDesc", match.getPetDescription());
                         intent.putExtra("help", match.getOffer());
+                        intent.putExtra("motivation", match.getMotivation());
                         intent.putExtra("important", match.getImportantNote());
                         intent.putExtra("selfDescription", match.getSelfDescription());
                         intent.putExtra("keywords", match.getDescribe());
+
 
 
                         context.startActivity(intent);
