@@ -32,7 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileUser extends AppCompatActivity {
-
+//TODO: Verhuurder Layout, User Verhuurder Layout
     private JsonObject userprofile;
 
     private void getUserProfile() {

@@ -85,9 +85,14 @@ public class ProfileHuurder extends AppCompatActivity {
         String offer = intent.getStringExtra("offer");
         String description = intent.getStringExtra("description");
         phoneNumber = intent.getStringExtra("phonenumber");
-
         emailString = intent.getStringExtra("email");
 
+        String reason = intent.getStringExtra("reden");
+        String ideaal = intent.getStringExtra("ideaal");
+
+
+        String redenWonen = intent.getStringExtra("reden");
+        String ideaalWonen = intent.getStringExtra("ideaal");
 
         TextView userNameTV = findViewById(R.id.username);
         if (middleName == null) {
@@ -106,13 +111,13 @@ public class ProfileHuurder extends AppCompatActivity {
         TextView genderTV = findViewById(R.id.gender);
         String genderString = "";
         if (gender.equals("F") || gender.equals("V")) {
-            genderString = "Vrouw";
+            genderString = "-  Vrouw";
         } else if (gender.equals("M")) {
-            genderString = "Man";
+            genderString = "-  Man";
         } else {
-            genderString = "Anders";
+            genderString = "-  Anders";
         }
-        genderTV.setText("Geslacht: " + genderString);
+        genderTV.setText(genderString);
 
 
         TextView budgetTV = findViewById(R.id.budget);
@@ -133,7 +138,7 @@ public class ProfileHuurder extends AppCompatActivity {
 
         TextView workTV = findViewById(R.id.work);
         if (work.equals("1")) {
-            work = "Ja";
+            work = "Ja  -";
         } else {
             work = "Nee";
         }
@@ -142,7 +147,7 @@ public class ProfileHuurder extends AppCompatActivity {
 
         TextView petTV = findViewById(R.id.Pets);
         if (pet.equals("1")) {
-            pet = "Ja";
+            pet = "Ja  -";
         } else {
             pet = "Nee";
         }
@@ -187,6 +192,14 @@ public class ProfileHuurder extends AppCompatActivity {
         descriptionTV.setText(description);
         keywordsTV.setText(keywords);
         offerTV.setText(offer);
+
+
+        TextView reasonTV = findViewById(R.id.redenWoonruimte);
+        TextView idealTV = findViewById(R.id.idealeWoonruimte);
+
+        reasonTV.setText("Reden voor woonruimte: " + reason);
+        idealTV.setText("Ideale woonruimte: " + ideaal);
+
 
 
         ImageView profileImageIV = findViewById(R.id.ProfilePicture);

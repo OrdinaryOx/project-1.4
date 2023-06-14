@@ -28,11 +28,14 @@
         android:layout_below="@id/ProfilePicture"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+
         android:backgroundTint="#8acda1">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp">
+
+            android:layout_height="wrap_content">
+
 
             <TextView
                 android:id="@+id/username"
@@ -42,47 +45,68 @@
                 android:layout_marginTop='10dp'
                 android:text="Barend de Jong"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/username"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:text="Geslacht: Man, Vrouw, Anders"
+                android:layout_toRightOf="@id/age"
+                android:text="-  Man"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop='10dp'
                 android:layout_toRightOf="@id/username"
                 android:text="(78)"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/placeOfResidence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/gender"
+                android:layout_below="@id/age"
+
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
+                android:layout_marginBottom="10dp"
                 android:text="Woonplaats: Raamsdonksveer"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/WoonruimteCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CardViewPO"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#8acda1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/budget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/placeOfResidence"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
                 android:text="Budget: €700 p/m "
@@ -90,13 +114,50 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/work"
+                android:id="@+id/redenWoonruimte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/budget"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:text="Werk: Ja/Nee"
+                android:text="Waarom zoek ik een woonruimte:"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/idealeWoonruimte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/redenWoonruimte"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop='10dp'
+                android:layout_marginBottom="10dp"
+                android:text="Mijn ideale woonomgeving:"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/overigeCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/WoonruimteCV"
+        android:layout_margin="20dp"
+        android:backgroundTint="#8acda1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/EHBO"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop='10dp'
+                android:text="Werk: Ja"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -105,12 +166,13 @@
                 android:id="@+id/workDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/work"
-                android:layout_marginRight="10dp"
+                android:layout_below="@id/EHBO"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:maxLines="1"
-                android:text="Description"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/work"
+                android:maxLines="2"
+                android:text="Ik werk als een programmeur bij Avans hogeschool in Breda"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -118,10 +180,9 @@
                 android:id="@+id/EHBO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/workDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:text="Medische hulp: EHBO BHV"
+                android:text="Licenties: EHBO / BHV / Reanimatie"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -129,10 +190,10 @@
                 android:id="@+id/Pets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/EHBO"
+                android:layout_below="@id/workDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Huisdieren: Ja/Nee"
+                android:text="Huisdieren: Ja"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -140,12 +201,14 @@
                 android:id="@+id/petDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/workDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/Pets"
                 android:layout_marginRight="10dp"
-                android:maxLines="1"
-                android:text="Description"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@id/Pets"
+                android:maxLines="2"
+                android:text="Ik heb een zwarte kat genaamd Minoes"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -155,16 +218,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/petDesc"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:maxLines="3"
                 android:text="Hier taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -184,10 +245,10 @@
                 android:id="@+id/userDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
                 android:maxLines="5"
                 android:text="Hier beschrijving over de gebruiker, bijvoorbeeld hobby's likes en dislikes etc."
                 android:textColor="@color/black"
@@ -210,12 +271,14 @@
 
     <Button
         android:id="@+id/editProfileButton"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_below="@id/overigeCV"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/CardViewPO"
         android:layout_marginTop="30dp"
-        android:text="Edit Profile"
         android:backgroundTint="@color/MWG_Dark"
-        android:textSize="60px"/>
+        android:text="Pas profiel aan"
+        android:textSize="60px" />
+
 </RelativeLayout>
+
