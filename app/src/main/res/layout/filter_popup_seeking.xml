@@ -74,6 +74,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
+
                 android:background="@drawable/combined_spinner_drawable_right"
                 android:entries="@array/living_options"
                 android:textColor="@color/black"
@@ -89,8 +90,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Huisdieren:"
                 android:gravity="center"
+                android:text="Huisdieren:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -105,8 +106,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Gemeubileerd:"
                 android:gravity="center"
+                android:text="Gemeubileerd:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -151,8 +152,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Woonsituatie:"
                 android:gravity="center"
+                android:text="Woonsituatie:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -161,14 +162,14 @@
 
             <TextView
                 android:id="@+id/provider_room"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_below="@id/popup_title"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Kamer in M2:"
                 android:gravity="center"
+                android:text="Min. kamer \nin M2:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -177,14 +178,14 @@
 
             <TextView
                 android:id="@+id/provider_cost"
-                android:layout_width="wrap_content"
+                android:layout_width="133dp"
                 android:layout_height="40dp"
                 android:layout_below="@id/popup_title"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Kosten in Euro:"
                 android:gravity="center"
+                android:text="Max kosten \nin Euro:"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -243,9 +244,11 @@
                 android:layout_width="145dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/custom_background_right"
                 android:digits="0123456789"
                 android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/provider_room"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_filter_seeking_situation">
 
@@ -258,7 +261,9 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_right"
                 android:digits="0123456789"
+                android:layout_marginRight="20dp"
                 android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/provider_cost"
                 app:layout_constraintTop_toBottomOf="@+id/editText_room_space">
 
@@ -279,8 +284,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

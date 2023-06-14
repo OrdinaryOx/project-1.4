@@ -23,9 +23,9 @@ public interface ApiService {
     @GET("user/verhuurder")
     Call<JsonObject> getVerhuurders();
 
-    @POST("user/huurder/match")
+    @GET("user/huurder/match")
     Call<JsonObject> getHuurderMatch();
 
-    @POST("user/verhuurder/match")
+    @GET("user/verhuurder/match")
     Call<JsonObject> getVerhuurderMatch();
 }

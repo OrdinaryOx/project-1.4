@@ -81,6 +81,7 @@ public class AllMatches extends AppCompatActivity {
     private EditText seekingRoomSpaceEditText;
     private EditText seekingBudgetEditText;
 
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +151,7 @@ public class AllMatches extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
 
 
@@ -406,16 +407,18 @@ public class AllMatches extends AppCompatActivity {
     }
 
     private String createUrlHuurder() {
+        Log.d("CALLED HUURDER FILTER", "CALLED");
         String baseUrl = "";
 
         int selectedRadioButtonIdPet = petsRadioGroup.getCheckedRadioButtonId();
         boolean petsCheckedYes = (selectedRadioButtonIdPet == R.id.pets_yes); // Replace with the actual ID of the "Yes" RadioButton
         boolean petsCheckedNo = (selectedRadioButtonIdPet == R.id.pets_no);
 
+        baseUrl+="?";
         if (petsCheckedYes) {
-            baseUrl += "?pet=1";
+            baseUrl += "&pet=1";
         } else if (petsCheckedNo) {
-            baseUrl += "?pet=0";
+            baseUrl += "&pet=0";
         } else {
             baseUrl += "";
         }
@@ -424,17 +427,17 @@ public class AllMatches extends AppCompatActivity {
 
         int selectedRadioButtonIdGender = genderRadioGroup.getCheckedRadioButtonId();
         if (selectedRadioButtonIdGender == R.id.radioButton_Man) {
-            baseUrl += "?gender=M";
+            baseUrl += "&gender=M";
         } else if (selectedRadioButtonIdGender == R.id.radioButton_Woman) {
-            baseUrl += "?gender=F";
+            baseUrl += "&gender=F";
         } else if (selectedRadioButtonIdGender == R.id.radioButton_Other) {
-            baseUrl += "?gender=O";
+            baseUrl += "&gender=O";
         }
 
         boolean ehboChecked = ehboCheckBox.isChecked();
 
         if (ehboChecked) {
-            baseUrl += "?EHBO=1";
+            baseUrl += "&EHBO=1";
         } else {
             baseUrl += "";
         }
@@ -442,7 +445,7 @@ public class AllMatches extends AppCompatActivity {
         boolean bhvChecked = bhvCheckBox.isChecked();
 
         if (bhvChecked) {
-            baseUrl += "?BHV=1";
+            baseUrl += "&BHV=1";
         } else {
             baseUrl += "";
         }
@@ -450,7 +453,7 @@ public class AllMatches extends AppCompatActivity {
         boolean reanimationChecked = reanimationCheckBox.isChecked();
 
         if (reanimationChecked) {
-            baseUrl += "?Reanimatie=1";
+            baseUrl += "&Reanimatie=1";
         } else {
             baseUrl += "";
         }
@@ -461,14 +464,14 @@ public class AllMatches extends AppCompatActivity {
 
     private String createUrlVerhuurder() {
 
-        String baseUrl = "";
+        String baseUrl = "?";
         int selectedRadioButtonIdPet = seekingPetsRadioGroup.getCheckedRadioButtonId();
         boolean petsCheckedYes = (selectedRadioButtonIdPet == R.id.radioButton_seeking_pets_yes); // Replace with the actual ID of the "Yes" RadioButton
         boolean petsCheckedNo = (selectedRadioButtonIdPet == R.id.radioButton_seeking_pets_no);
         if (petsCheckedYes) {
-            baseUrl += "?pet=1";
+            baseUrl += "&pet=1";
         } else if (petsCheckedNo) {
-            baseUrl += "?pet=0";
+            baseUrl += "&pet=0";
         } else {
             baseUrl += "";
         }
@@ -477,61 +480,74 @@ public class AllMatches extends AppCompatActivity {
         boolean furnishedCheckedYes = (selectedRadioButtonIdFurnished == R.id.radioButton_furnished_yes); // Replace with the actual ID of the "Yes" RadioButton
         boolean furnishedCheckedNo = (selectedRadioButtonIdFurnished == R.id.radioButton_furnished_no);
         if (furnishedCheckedYes) {
-            baseUrl += "?furniture=1";
+            baseUrl += "&furniture=1";
         } else if (furnishedCheckedNo) {
-            baseUrl += "?furniture=0";
+            baseUrl += "&furniture=0";
         } else {
             baseUrl += "";
         }
 
         String selectedMonthString = seekingMonthsSpinner.getSelectedItem().toString();
-        int selectedMonth = -1;
+        Log.d("TAG MONTH STRING", selectedMonthString);
 
-        // Extract the numerical value from the string
-        String[] parts = selectedMonthString.split(" "); // Split the string at spaces
-        if (parts.length > 0) {
-            try {
-                selectedMonth = Integer.parseInt(parts[0]); // Parse the first part as an integer
-            } catch (NumberFormatException e) {
-                e.printStackTrace(); // Handle or log the parsing error
+
+        if (!selectedMonthString.equals("Maak een keuze")) {
+            int selectedMonth = -1;
+
+            // Extract the numerical value from the string
+            String[] parts = selectedMonthString.split(" "); // Split the string at spaces
+            if (parts.length > 0) {
+                try {
+                    selectedMonth = Integer.parseInt(parts[0]); // Parse the first part as an integer
+                } catch (NumberFormatException e) {
+                    e.printStackTrace(); // Handle or log the parsing error
+                }
+            }
+
+
+            if (selectedMonth != -1) {
+                baseUrl += "&period=" + selectedMonth;
+            } else {
+                baseUrl += "";
             }
         }
 
-        Log.d("TAG", "Months" + selectedMonth);
-        if (selectedMonth != -1) {
-            baseUrl += "?period=" + selectedMonth;
-        } else {
-            baseUrl += "";
-        }
-        Log.d("BaseURL", baseUrl);
+        Log.d("TAG BASEURL", baseUrl);
 
         String selectedDayString = seekingDaysSpinner.getSelectedItem().toString();
-        int selectedDay = -1;
-        String[] partsDays = selectedDayString.split(" "); // Split the string at spaces
-        if (partsDays.length > 0) {
-            try {
-                selectedDay = Integer.parseInt(parts[0]); // Parse the first part as an integer
-            } catch (NumberFormatException e) {
-                e.printStackTrace(); // Handle or log the parsing error
+        if (!selectedDayString.equals("Maak een keuze")) {
+
+            Log.d("SELCETEDDAYSTRING", selectedDayString);
+
+            int selectedDay = -1;
+            String[] partsDays = selectedDayString.split(" "); // Split the string at spaces
+            Log.d("TAG PARTS DAYS", partsDays[0]);
+            if (partsDays.length > 0) {
+                try {
+                    selectedDay = Integer.parseInt(partsDays[0]); // Parse the first part as an integer
+                    Log.d("PARSED SELECTED", "" + selectedDay);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace(); // Handle or log the parsing error
+                }
             }
+
+            if (selectedDay != -1) {
+                baseUrl += "&nights=" + selectedDay;
+            } else {
+                baseUrl += "";
+            }
+
         }
 
-        if (selectedDay != -1) {
-            baseUrl += "?nights=" + selectedDay;
-        } else {
-            baseUrl += "";
-        }
 
+        String selectedSituation = seekingSituationSpinner.getSelectedItem().toString();
 
-        String selectedSituation = "";
-        if (seekingSituationSpinner.getSelectedItemPosition() != 0) {
-            selectedSituation = seekingSituationSpinner.getSelectedItem().toString();
-        }
-
-        if (!selectedSituation.isEmpty()) {
-            baseUrl += "?situation=" + selectedSituation;
-        } else {
-            baseUrl += "";
+        if(!selectedSituation.equals("Maak een keuze")) {
+            if (!selectedSituation.isEmpty()) {
+                baseUrl += "&situation=" + selectedSituation;
+            } else {
+                baseUrl += "";
+            }
         }
 
         int minRoomSpace = -1;
@@ -543,7 +559,7 @@ public class AllMatches extends AppCompatActivity {
         }
 
         if (minRoomSpace != -1) {
-            baseUrl += "?roomSize=" + minRoomSpace;
+            baseUrl += "&roomSize=" + minRoomSpace;
         } else {
             baseUrl += "";
         }
@@ -557,7 +573,7 @@ public class AllMatches extends AppCompatActivity {
             maxBudget = -1;
         }
         if (maxBudget != -1) {
-            baseUrl += "?price=" + maxBudget;
+            baseUrl += "&price=" + maxBudget;
         } else {
             baseUrl += "";
         }
@@ -573,12 +589,13 @@ public class AllMatches extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/huurder/")
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/match")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
 
         Call<JsonObject> call = apiService.getFilterHuurder(createUrlHuurder());
+        Log.d("TAG HUURDER URL CREATION", createUrlHuurder());
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -597,7 +614,7 @@ public class AllMatches extends AppCompatActivity {
 
                     matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
                 } else {
-                    Log.d("TAG", "Request not successful");
+                    Log.d("TAG", "Request not successful fetchFilterDataHuurder");
                 }
             }
 
@@ -613,9 +630,21 @@ public class AllMatches extends AppCompatActivity {
         // ...
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
 
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(chain -> {
+            Request originalRequest = chain.request();
+            Request.Builder requestBuilder = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsInJvbGUiOiJIdXVyZGVyIiwiaWF0IjoxNjg2NjUxNjE5fQ.JsliAy0LXHVgku2qbGEkR_TacwDSDZTjEjrmxwkqQDg");
+            Request newRequest = requestBuilder.build();
+            return chain.proceed(newRequest);
+        });
+
+        OkHttpClient httpClient = httpClientBuilder.build();
+
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/verhuurder/")
+                .baseUrl("https://hardy-stream-production.up.railway.app/api/user/huurder/match/")
+                .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
@@ -626,7 +655,10 @@ public class AllMatches extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
                     JsonObject jsonObject = response.body();
+                    Log.d("TAG JSON OBJECT", jsonObject.toString());
+
                     JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+                    Log.d("TAG JSON ARRAY", "" + jsonArray.size());
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<Match>>() {
                     }.getType();
@@ -639,13 +671,13 @@ public class AllMatches extends AppCompatActivity {
 
                     matchAdapter.notifyDataSetChanged(); // Notify the adapter about the data change
                 } else {
-                    Log.d("TAG", "Request not successful");
+                    Log.d("TAG", "Request not successful fetchFilterDataVerhuurder");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("TAG", "Request failed");
+                Log.d("TAG", "Request failed" + t.getMessage());
             }
         });
     }
@@ -653,58 +685,116 @@ public class AllMatches extends AppCompatActivity {
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
-        //View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
-        View popupView = getLayoutInflater().inflate(R.layout.filter_popup_seeking, null);
 
-        seekingPetsRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_pets);
-        seekingFurnishedRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_furnished);
-        seekingMonthsSpinner = popupView.findViewById(R.id.spinner_filter_seeking_months);
-        seekingDaysSpinner = popupView.findViewById(R.id.spinner_filter_seeking_days);
-        seekingSituationSpinner = popupView.findViewById(R.id.spinner_filter_seeking_situation);
-        seekingRoomSpaceEditText = popupView.findViewById(R.id.editText_room_space);
-        seekingBudgetEditText = popupView.findViewById(R.id.editText_cost);
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
 
-//        petsRadioGroup = popupView.findViewById(R.id.radioGroup_Pets);
-//        genderRadioGroup = popupView.findViewById(R.id.radioGroup_Gender);
-//        ehboCheckBox = popupView.findViewById(R.id.checkBox_EHBO);
-//        bhvCheckBox = popupView.findViewById(R.id.checkBox_BHV);
-//        reanimationCheckBox = popupView.findViewById(R.id.checkBox_Reanimation);
 
-        // Create the popup window
-        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        String[] tokenParts = token.split("\\.");
+        String payload = tokenParts[1];
+        String decodedPayload = new String(Base64.getUrlDecoder().decode(payload));
+        JSONObject payloadJson = null;
+        try {
+            payloadJson = new JSONObject(decodedPayload);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
-        // Set the background drawable for the popup window
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        try {
+            if (payloadJson.getString("role").equals("Huurder")) {
+                Log.d("USER ROLE POPUP", "Huurder");
+                View popupView = getLayoutInflater().inflate(R.layout.filter_popup_seeking, null);
 
-        // Disable interaction with views outside the popup
-        popupWindow.setTouchable(true);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(false);
+                seekingPetsRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_pets);
+                seekingFurnishedRadioGroup = popupView.findViewById(R.id.radioGroup_seeking_furnished);
+                seekingMonthsSpinner = popupView.findViewById(R.id.spinner_filter_seeking_months);
+                seekingDaysSpinner = popupView.findViewById(R.id.spinner_filter_seeking_days);
+                seekingSituationSpinner = popupView.findViewById(R.id.spinner_filter_seeking_situation);
+                seekingRoomSpaceEditText = popupView.findViewById(R.id.editText_room_space);
+                seekingBudgetEditText = popupView.findViewById(R.id.editText_cost);
 
-        // Show the popup window anchored to the filter button
-        popupWindow.showAsDropDown(anchorView);
+                popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        // Dismiss the popup window when the user clicks a close button
-        ImageView closeButton = popupView.findViewById(R.id.filter_close);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
+                // Set the background drawable for the popup window
+                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+                // Disable interaction with views outside the popup
+                popupWindow.setTouchable(true);
+                popupWindow.setFocusable(true);
+                popupWindow.setOutsideTouchable(false);
+
+                // Show the popup window anchored to the filter button
+                popupWindow.showAsDropDown(anchorView);
+
+                // Dismiss the popup window when the user clicks a close button
+                ImageView closeButton = popupView.findViewById(R.id.filter_close);
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+                // Enable interaction with views outside the popup
+                popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
+            } else {
+                Log.d("USER ROLE POPUP", "Verhuurder");
+                View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
+                petsRadioGroup = popupView.findViewById(R.id.radioGroup_Pets);
+                genderRadioGroup = popupView.findViewById(R.id.radioGroup_Gender);
+                ehboCheckBox = popupView.findViewById(R.id.checkBox_EHBO);
+                bhvCheckBox = popupView.findViewById(R.id.checkBox_BHV);
+                reanimationCheckBox = popupView.findViewById(R.id.checkBox_Reanimation);
+
+                popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                // Set the background drawable for the popup window
+                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+                // Disable interaction with views outside the popup
+                popupWindow.setTouchable(true);
+                popupWindow.setFocusable(true);
+                popupWindow.setOutsideTouchable(false);
+
+                // Show the popup window anchored to the filter button
+                popupWindow.showAsDropDown(anchorView);
+
+                // Dismiss the popup window when the user clicks a close button
+                ImageView closeButton = popupView.findViewById(R.id.filter_close);
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+                // Enable interaction with views outside the popup
+                popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
             }
-        });
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
-        // Enable interaction with views outside the popup
-        popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                    popupWindow.dismiss();
-                    return true;
-                }
-                return false;
-            }
-        });
-        Log.d("BEFORE button", "befooiqwdoiqwjd");
+
 
     }
 
