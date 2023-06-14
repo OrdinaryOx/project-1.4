@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -18,7 +19,6 @@ public class OptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -70,4 +70,23 @@ public class OptionsActivity extends AppCompatActivity {
 
 
     }
+
+    public void sendEmail(View view) {
+        String email = "example@example.com"; // Replace with your desired email address
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        //intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
+        intent.setData(Uri.parse("mailto:" + email));
+        startActivity(Intent.createChooser(intent, "Send Email"));
+    }
+
+
+    public void dialPhoneNumber(View view) {
+        String phoneNumber = ((TextView) view).getText().toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
+    }
+
+
 }

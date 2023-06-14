@@ -388,7 +388,7 @@ public class AllMatches extends AppCompatActivity {
 
     private void showPopupWindow(View anchorView) {
         // Inflate the popup layout
-        View popupView = getLayoutInflater().inflate(R.layout.filter_popup, null);
+        View popupView = getLayoutInflater().inflate(R.layout.filter_popup_provider, null);
 
         // Create the popup window
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

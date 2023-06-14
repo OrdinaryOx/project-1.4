@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="550dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@color/MWG_Basic">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/filter_close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/border"
+                android:src="@drawable/close_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/popup_title"
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background"
+                android:text="Hier kan je filteren op matches:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Spinner
+                android:id="@+id/spinner_filter_seeking_months"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/combined_spinner_drawable_right"
+                android:entries="@array/month_options"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/provider_months"
+                app:layout_constraintTop_toBottomOf="@+id/provider_furnished" />
+
+            <Spinner
+                android:id="@+id/spinner_filter_seeking_days"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/combined_spinner_drawable_right"
+                android:entries="@array/day_options"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/provider_months"
+                app:layout_constraintTop_toBottomOf="@+id/provider_months" />
+
+            <Spinner
+                android:id="@+id/spinner_filter_seeking_situation"
+                android:layout_width="147dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/combined_spinner_drawable_right"
+                android:entries="@array/living_options"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/provider_days"
+                app:layout_constraintTop_toBottomOf="@+id/provider_days" />
+
+            <TextView
+                android:id="@+id/pets_provider"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Huisdieren:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_title" />
+
+            <TextView
+                android:id="@+id/provider_furnished"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Gemeubileerd:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pets_provider" />
+
+            <TextView
+                android:id="@+id/provider_months"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Hoeveel maanden:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/provider_furnished" />
+
+            <TextView
+                android:id="@+id/provider_days"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Hoeveel dagen:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/provider_months" />
+
+            <TextView
+                android:id="@+id/provider_situation"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Woonsituatie:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/provider_days" />
+
+            <TextView
+                android:id="@+id/provider_room"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Kamer in M2:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/provider_situation" />
+
+            <TextView
+                android:id="@+id/provider_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/popup_title"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_left"
+                android:text="Kosten in Euro:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/provider_room" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_right"
+                app:layout_constraintStart_toEndOf="@+id/pets_provider"
+                app:layout_constraintTop_toBottomOf="@+id/popup_title">
+
+                <RadioButton
+                    android:id="@+id/radioButton_seeking_pets_yes"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:text="Ja" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_seeking_pets_no"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:text="Nee" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_right"
+                app:layout_constraintStart_toEndOf="@+id/provider_furnished"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                <RadioButton
+                    android:id="@+id/radioButton_furnished_yes"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:text="Ja" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_furnished_no"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:text="Nee" />
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/editText_room_space"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_right"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                app:layout_constraintStart_toEndOf="@+id/provider_room"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_filter_seeking_situation">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/editText_cost"
+                android:layout_width="133dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_background_right"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                app:layout_constraintStart_toEndOf="@+id/provider_cost"
+                app:layout_constraintTop_toBottomOf="@+id/editText_room_space">
+
+            </EditText>
+
+            <Button
+                android:id="@+id/button_save_filter_provider"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="105dp"
+                android:layout_marginEnd="105dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/white"
+                android:text="Opslaan"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
