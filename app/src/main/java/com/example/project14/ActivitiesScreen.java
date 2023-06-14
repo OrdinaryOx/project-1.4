@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.example.project14.Chats.AllChats;
 import com.example.project14.Login.LoginActivity;
 import com.example.project14.Match.AllMatches;
+import com.example.project14.Profile.ProfileUser;
 
 public class ActivitiesScreen extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class ActivitiesScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         Log.d("TAG ACTIVITY 2", token);
 
