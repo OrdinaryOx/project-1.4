@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,18 +17,17 @@
         android:layout_width="175dp"
         android:layout_height="300dp"
         android:layout_below="@id/toolbar"
-
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_background"
         android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background">
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="175dp"
             android:layout_height="300dp"
-            android:layout_marginEnd="-2dp"
-            android:layout_marginBottom="336dp">
+>
 
             <TextView
                 android:id="@+id/contactTextView"
@@ -48,22 +48,21 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
                 android:text="Telefoon:"
-                android:textSize="25sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/clickPhoneTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123456789"
+                android:layout_below="@id/phoneNumberTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:layout_below="@id/phoneNumberTextView"
-                android:autoLink="phone"
-                android:textSize="25sp"
-                android:textColorLink="@color/blue"
                 android:onClick="dialPhoneNumber"
-                />
+                android:text="06 11120415"
+                android:textColor="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textSize="25sp" />
 
 
             <TextView
@@ -74,21 +73,22 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="Email:"
-                android:textSize="25sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/clickEmailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:layout_below="@id/emailTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:layout_below="@id/emailTextView"
                 android:autoLink="email"
-                android:textSize="25sp"
+                android:onClick="sendEmail"
+                android:text="info@nmijnw\noongenoot.nl"
+                android:textColor="@color/blue"
                 android:textColorLink="@color/blue"
-                android:onClick="sendEmail" />
+                android:textSize="25sp" />
 
 
         </RelativeLayout>
@@ -103,8 +103,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_background"
         android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background">
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="175dp"
@@ -157,7 +158,8 @@
                 android:text="Thema:"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:translationY="-10dp" />
 
             <RadioGroup
                 android:id="@+id/themeRadioGroup"
@@ -165,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/themeTextView"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="0dp">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -173,6 +175,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
                     android:text="Licht"
+
                     android:textSize="25sp" />
 
                 <RadioButton
@@ -188,96 +191,114 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Privacyverklaring"
+        android:layout_below="@id/verklaringCV"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:backgroundTint="@color/MWG_Dark"
+        android:onClick="logout"
         android:padding="10dp"
         android:text="Log uit"
         android:textSize="22sp" />
 
 
-    <Switch
-        android:id="@+id/PrivacySwitch"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/privacyCV"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_below="@id/textForSwitchPrivacy"
-        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_CV"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="181dp"
-        android:layout_marginTop="12dp"
-        android:background="#8acda1"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:text=""
-        android:textSize="5sp" />
-
-    <TextView
-        android:id="@+id/textForSwitchPrivacy"
-        android:layout_width="375dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/options_CV"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="24dp"
+        android:layout_margin="20dp"
         android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background_top"
-        android:gravity="center_horizontal"
-        android:text="Telefoonnummer zichtbaar:"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        app:cardCornerRadius="20dp">
 
-    <TextView
-        android:id="@+id/Privacyverklaring"
-        android:layout_width="375dp"
-        android:layout_height="90dp"
-        android:layout_below="@id/PrivacySwitch"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background"
-        android:clickable="true"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="Klik hier voor de Privacyverklaring"
-        android:textColor="@color/blue"
-        android:textSize="25dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/PrivacySwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@id/textForSwitchPrivacy"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:scaleX="2"
+                android:scaleY="2" />
+
+            <TextView
+                android:layout_width="144dp"
+                android:layout_height="54dp"
+                android:layout_below="@id/textForSwitchPrivacy"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="Nee"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/textForSwitchPrivacy"
+                android:layout_width="375dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/custom_background_top"
+                android:backgroundTint="#8acda1"
+                android:gravity="center_horizontal"
+                android:text="Telefoonnummer zichtbaar:"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
-    <TextView
-        android:id="@+id/textView38"
-        android:layout_width="139dp"
-        android:layout_height="54dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="198dp"
-        android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background_bottom_left"
-        android:gravity="center"
-        android:text="Nee"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="144dp"
+                android:layout_height="54dp"
+                android:layout_below="@id/textForSwitchPrivacy"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
 
-    <TextView
-        android:id="@+id/textView39"
-        android:layout_width="144dp"
-        android:layout_height="54dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="198dp"
-        android:backgroundTint="#8acda1"
-        android:background="@drawable/custom_background_bottom_right"
-        android:gravity="center"
-        android:text="Ja"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+                android:background="@drawable/custom_background_bottom_right"
+                android:backgroundTint="#8acda1"
+                android:gravity="center"
+                android:text="Ja"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/verklaringCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/privacyCV"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/Privacyverklaring"
+                android:layout_width="375dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_background"
+                android:backgroundTint="#8acda1"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Klik hier voor de Privacyverklaring"
+                android:textColor="@color/blue"
+                android:textSize="25dp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

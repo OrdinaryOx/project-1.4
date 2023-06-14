@@ -29,10 +29,10 @@
             android:id="@+id/options_button"
             android:layout_width="120px"
             android:layout_height="120px"
-            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/cogwheel" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/settings_icon" />
 
     </RelativeLayout>
 

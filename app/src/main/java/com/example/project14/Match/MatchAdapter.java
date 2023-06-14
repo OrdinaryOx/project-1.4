@@ -170,7 +170,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         intent.putExtra("selfDescription", match.getSelfDescription());
                         intent.putExtra("keywords", match.getDescribe());
 
-
+                        intent.putExtra("phonenumber", "" + match.getPhoneNumber());
+                        intent.putExtra("email", match.getEmailAddress());
 
                         context.startActivity(intent);
                     }

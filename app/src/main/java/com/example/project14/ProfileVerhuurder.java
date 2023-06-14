@@ -24,6 +24,9 @@ import androidx.core.content.ContextCompat;
 public class ProfileVerhuurder extends AppCompatActivity {
 
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
+    String phoneNumber;
+    String emailString;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +85,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         String keywords = intent.getStringExtra("keywords");
         String help = intent.getStringExtra("help");
         String motivation = intent.getStringExtra("motivation");
-     //   String description = intent.getStringExtra("selfDescription");
+        //   String description = intent.getStringExtra("selfDescription");
         String important = intent.getStringExtra("important");
         String roomSize = intent.getStringExtra("roomSize");
         String situation = intent.getStringExtra("situation");
@@ -100,6 +103,10 @@ public class ProfileVerhuurder extends AppCompatActivity {
         TextView selfDescTV = findViewById(R.id.userDescription);
         TextView keywordsTV = findViewById(R.id.userKeywords);
         TextView userNameTV = findViewById(R.id.username);
+
+        userName = firstName;
+        phoneNumber = intent.getStringExtra("phonenumber");
+        emailString = intent.getStringExtra("email");
 
 
         if (middleName == null) {
@@ -166,10 +173,12 @@ public class ProfileVerhuurder extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Email Subject");
-                intent.putExtra(Intent.EXTRA_TEXT, "Email Body");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailString});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Mijn Woongenoot");
+                intent.putExtra(Intent.EXTRA_TEXT, "Hallo " + userName + ", \n");
 
                 startActivity(intent);
+
 
             }
         });
