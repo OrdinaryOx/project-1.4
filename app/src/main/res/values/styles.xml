@@ -15,11 +15,11 @@
     </style>
 
 
-    //TEST
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
-        <!-- Other theme attributes -->
+        <item name="windowNoTitle">true</item>
     </style>
+
 
 
 </resources>
