@@ -161,7 +161,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);

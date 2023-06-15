@@ -24,7 +24,6 @@ public class ActivitiesScreen extends AppCompatActivity {
         setContentView(R.layout.activity_activities_screen);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);

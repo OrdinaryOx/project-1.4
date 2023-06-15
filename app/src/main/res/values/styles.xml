@@ -14,4 +14,12 @@
         <item name="android:datePickerMode">spinner</item>
     </style>
 
+
+    //TEST
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <!-- Other theme attributes -->
+    </style>
+
+
 </resources>
