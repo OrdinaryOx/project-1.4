@@ -104,8 +104,8 @@ public class ProfileHuurder extends AppCompatActivity {
         TextView ageTV = findViewById(R.id.age);
         ageTV.setText("(" + age + ")");
 
-        TextView cityTV = findViewById(R.id.placeOfResidence);
-        cityTV.setText("Woonplaats: " + city);
+        TextView cityTV = findViewById(R.id.placeOfResidenceDesc);
+        cityTV.setText("" + city);
 
 
         TextView genderTV = findViewById(R.id.gender);
@@ -120,38 +120,32 @@ public class ProfileHuurder extends AppCompatActivity {
         genderTV.setText(genderString);
 
 
-        TextView budgetTV = findViewById(R.id.budget);
-        budgetTV.setText("Budget: €" + budget + " p/m");
+        TextView budgetTV = findViewById(R.id.budgetDesc);
+        budgetTV.setText("€" + budget + " p/m");
 
 
-        TextView medicalTV = findViewById(R.id.EHBO);
+        TextView medicalTV = findViewById(R.id.EHBODesc);
         if (medical != null) {
 
             if (medical.equals("") || medical.equals("null")) {
                 medical = "Geen medische vaardigheden";
             }
-            medicalTV.setText("Vaardigheden: " + medical);
+            medicalTV.setText(medical);
         } else {
-            medicalTV.setText("Vaardigheden: Geen medische vaardigheden");
+            medicalTV.setText("Geen medische vaardigheden");
         }
 
 
         TextView workTV = findViewById(R.id.work);
+
+
+
         if (work.equals("1")) {
-            work = "Ja  -";
+            work = "Ja - ";
         } else {
             work = "Nee";
         }
-        workTV.setText("Werk: " + work);
 
-
-        TextView petTV = findViewById(R.id.Pets);
-        if (pet.equals("1")) {
-            pet = "Ja  -";
-        } else {
-            pet = "Nee";
-        }
-        petTV.setText("Huisdieren: " + pet);
 
         TextView workDescTV = findViewById(R.id.workDesc);
         if (workDesc != null) {
@@ -159,16 +153,24 @@ public class ProfileHuurder extends AppCompatActivity {
             if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty()) {
                 workDescTV.setText("-");
             } else {
-                workDescTV.setText(workDesc);
+                workDescTV.setText(work + workDesc);
             }
         }
 
 
         if (work == "Nee") {
-            workDescTV.setText("-");
+            workDescTV.setText("Nee");
         }
 
         TextView petDescTV = findViewById(R.id.petDesc);
+
+
+        TextView petTV = findViewById(R.id.Pets);
+        if (pet.equals("1")) {
+            pet = "Ja - ";
+        } else {
+            pet = "Nee";
+        }
 
 
         if (petDesc != null) {
@@ -176,12 +178,12 @@ public class ProfileHuurder extends AppCompatActivity {
             if (petDesc.equals("") || petDesc.equals("null") || petDesc.trim().isEmpty()) {
                 petDesc = "";
             } else {
-                petDescTV.setText(petDesc);
+                petDescTV.setText(pet + petDesc);
             }
 
         }
         if (pet == "Nee") {
-            petDescTV.setText("-");
+            petDescTV.setText("Nee");
         }
 
 
@@ -194,11 +196,11 @@ public class ProfileHuurder extends AppCompatActivity {
         offerTV.setText(offer);
 
 
-        TextView reasonTV = findViewById(R.id.redenWoonruimte);
-        TextView idealTV = findViewById(R.id.idealeWoonruimte);
+        TextView reasonTV = findViewById(R.id.redenDesc);
+        TextView idealTV = findViewById(R.id.idealeDesc);
 
-        reasonTV.setText("Reden voor woonruimte: " + reason);
-        idealTV.setText("Ideale woonruimte: " + ideaal);
+        reasonTV.setText(reason);
+        idealTV.setText(ideaal);
 
 
 
