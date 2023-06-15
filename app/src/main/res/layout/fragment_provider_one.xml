@@ -30,6 +30,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:calendarViewShown="false"
+        android:padding="4dp"
         android:hint="  ********"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -42,6 +43,7 @@
         android:background="@drawable/border"
         android:layout_marginTop="8dp"
         android:calendarViewShown="false"
+        android:padding="4dp"
         android:hint="  ********"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -67,6 +69,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
+        android:padding="4dp"
         android:hint="  Achternaam"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +84,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
+        android:padding="4dp"
         android:hint="  Voornaam"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +99,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
+        android:padding="4dp"
         android:hint="  Tussenvoegsel"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +192,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Achternaam:"
-
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -302,6 +306,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
+        android:padding="4dp"
         android:hint="  Emailadres"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
