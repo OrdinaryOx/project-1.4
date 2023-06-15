@@ -84,7 +84,7 @@
                 android:layout_marginTop="0dp"
                 android:autoLink="email"
                 android:onClick="sendEmail"
-                android:text="info@nmijnw\noongenoot.nl"
+                android:text="info@mijnwo\nongenoot.nl"
                 android:textColor="@color/blue"
                 android:textColorLink="@color/blue"
                 android:textSize="25sp" />
