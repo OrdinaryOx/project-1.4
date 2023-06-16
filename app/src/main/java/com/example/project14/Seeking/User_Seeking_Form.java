@@ -8,9 +8,12 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -72,6 +75,9 @@ public class User_Seeking_Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_seeking_form);
+
+
+
 
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
@@ -166,6 +172,8 @@ public class User_Seeking_Form extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void setCurrentFragment() {
         try {

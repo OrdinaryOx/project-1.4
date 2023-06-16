@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/buttonUploadPicture" />
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -40,18 +40,40 @@
         android:calendarViewShown="false"
         android:hint="  ********"
         app:layout_constraintStart_toStartOf="parent"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextPasswordAgain"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        >
+    <ImageView
+        android:padding="3dp"
+        android:id="@+id/passwordVisibilityButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+
+        android:src="@drawable/eye_icon"
+        android:background="@color/MWG_Dark"
+       />
+    </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/editTextPasswordAgain"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/border"
         android:layout_marginTop="8dp"
+        android:background="@drawable/border"
         android:calendarViewShown="false"
         android:hint="  ********"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="textPassword"
+        android:layout_marginLeft="20dp"
+        android:padding="4dp"
+        app:layout_constraintStart_toEndOf="@+id/editTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Spinner
@@ -220,6 +242,7 @@
         android:layout_marginRight="31dp"
         android:text="Wachtwoord nogmaals:"
         android:layout_marginTop="16dp"
+        android:translationX="-16dp"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -279,6 +302,7 @@
         android:text=" *"
         android:textColor="@color/red"
         android:textSize="16sp"
+        android:translationX="-10dp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView13"
         app:layout_constraintLeft_toRightOf="@id/textView13" />
 
