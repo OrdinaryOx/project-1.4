@@ -207,8 +207,21 @@ public class ProfileUser extends AppCompatActivity {
 
 
 
+
                         workDesc.replace("\"", "");
 
+                        if (workDesc != null) {
+                            if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty() || workDesc.equals("\"\"")) {
+                                workDesc = "";
+                            } else {
+                                workDesc = " - " + workDesc;
+                            }
+
+                        } else {
+                            workDesc = "";
+                        }
+
+                        Log.d("WORKDESC", workDesc);
 
 
 
@@ -310,13 +323,11 @@ public class ProfileUser extends AppCompatActivity {
                         motivation = motivation.replace("\"", "");
 
                         situationTV.setText(situation);
-
-
                         motivationTV.setText(motivation);
 
 
                         if (workDesc != null) {
-                            if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty()) {
+                            if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty() || workDesc.equals("\"\"")) {
                                 workDesc = "";
                             } else {
                                 workDesc = " - " + workDesc;
@@ -325,6 +336,8 @@ public class ProfileUser extends AppCompatActivity {
                         } else {
                             workDesc = "";
                         }
+
+                        Log.d("WORKDESC", workDesc);
 
                         workDescTextViewverhuurder.setText(work + workDesc);
                         livingSpaceTV.setText(roomSize + " m2");
