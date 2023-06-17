@@ -24,7 +24,7 @@
         android:layout_below="@id/toolbar"
         android:layout_marginTop="15dp"
         android:layout_toStartOf="@id/filter_icon"
-        android:text="Filter"
+        android:text="@string/filter_all_matches"
         android:textColor="@color/black"
         android:textAlignment="textEnd"
         android:textSize="16sp"
@@ -49,7 +49,7 @@
         android:layout_below="@id/filter_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
-        android:text="Bekijk hier uw mogelijke matches"
+        android:text="@string/title_all_matches"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -119,8 +119,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="50dp"
-                android:src="@drawable/arrow_right"
-    />
+                android:src="@drawable/arrow_right"/>
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

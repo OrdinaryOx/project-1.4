@@ -37,6 +37,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 import com.example.project14.ActivitiesScreen;
+import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.Match.AllMatches;
 import com.example.project14.OptionsActivity;
@@ -144,6 +145,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

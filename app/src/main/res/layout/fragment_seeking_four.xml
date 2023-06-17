@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Vind je het erg als de verhuurder huisdieren heeft?"
+        android:text="@string/seeking_otherPet"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:textStyle="bold"
-        android:text="Hoeveel nacht(en) zou je in de week blijven?"
+        android:text="@string/seeking_days"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Neem je zelf huisdieren mee? "
+        android:text="@string/seeking_pets"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Zo ja, welke?"
+        android:text="@string/seeking_petsComment"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Ja"
+            android:text="@string/seeking_petsYes"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -115,7 +115,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Nee"
+            android:text="@string/seeking_petsNo"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -139,7 +139,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Ja"
+            android:text="@string/seeking_selfPetsYes"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -148,7 +148,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Nee"
+            android:text="@string/seeking_selfPetsNo"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -163,7 +163,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  Bijvoorbeeld: een kat"
+        android:hint="@string/seeking_petsSelfCommentHint"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +173,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView12"
@@ -182,7 +182,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView17"
@@ -191,7 +191,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView19"

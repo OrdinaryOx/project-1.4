@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class ProviderEightFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(requireContext());
+
         View view = inflater.inflate(R.layout.fragment_provider_eight, container, false);
 
         // Initialize the EditText views
@@ -82,9 +85,6 @@ return true;
     public String getComment() {
         return editTextOther.getText().toString();
     }
-
-
-
 
 
 }

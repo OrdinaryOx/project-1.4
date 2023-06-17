@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="25dp"
-        android:text="Woonsituatie:"
+        android:text="@string/provider_situation"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Hoe heeft u MijnWoongenoot gevonden?"
+        android:text="@string/provider_found"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Heeft u een koopwoning?"
+        android:text="@string/provider_bought"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Ja"
+            android:text="@string/provider_boughtYes"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -98,7 +98,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Nee"
+            android:text="@string/provider_boughtNo"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -113,7 +113,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  Bijvoorbeeld: via vrienden"
+        android:hint="@string/provider_foundHint"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -129,7 +129,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  Bijvoorbeeld: om meer gezelschap te hebben"
+        android:hint="@string/provider_reasonHint"
         android:gravity="top|left"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +145,7 @@
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Wat is uw motivatie om een kamer aan te bieden aan een woningzoekende/student?"
+        android:text="@string/provider_reason"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView"
@@ -164,7 +164,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView7"
@@ -173,7 +173,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView16"
@@ -182,11 +182,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
+        android:translationX="-155dp"
+        android:translationY="20dp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView18"
-        app:layout_constraintLeft_toRightOf="@id/textView18"
-        android:translationX="-125dp"
-        android:translationY="20dp"/>
+        app:layout_constraintLeft_toRightOf="@id/textView18" />
 </androidx.constraintlayout.widget.ConstraintLayout>

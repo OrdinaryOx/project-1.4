@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="Welkom!"
+                android:text="@string/login_welcome"
                 android:textColor="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewWelcome"
                 android:layout_centerHorizontal="true"
-                android:text="Voer hier uw gegevens in:"
+                android:text="@string/login_info"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -60,7 +60,7 @@
                 android:drawableStart="@drawable/email_icon"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="E-mailadres"
+                android:hint="@string/login_email"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -73,7 +73,7 @@
                 android:drawableStart="@drawable/password_icon"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:hint="Wachtwoord"
+                android:hint="@string/login_password"
                 android:inputType="textEmailAddress" />
 
             <Button
@@ -84,7 +84,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/MWG_Basic"
-                android:text="Login" />
+                android:text="@string/login_login" />
 
             <TextView
                 android:id="@+id/emptyEmail"
@@ -94,7 +94,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="Vul een Emailadres in"
+                android:text="@string/login_emptyEmail"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="invisible"/>
@@ -107,7 +107,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="Vul een wachtwoord in"
+                android:text="@string/login_emptyPassword"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="invisible"/>
@@ -120,7 +120,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="inloggegevens zijn onjuist"
+                android:text="@string/login_incorrectData"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="invisible"/>
@@ -136,7 +136,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Of:"
+        android:text="@string/login_or"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -147,7 +147,7 @@
         android:layout_below="@id/textViewAlternative"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:text="Maak een account aan"
+        android:text="@string/login_makeAccount"
         android:width="230dp"
         android:onClick="CreateAccount"
         android:backgroundTint="@color/MWG_Basic"/>

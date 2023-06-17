@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Contact:"
+                android:text="@string/options_contact"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
                 android:layout_below="@id/contactTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:text="Telefoon:"
+                android:text="@string/options_phone"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
@@ -58,7 +58,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
                 android:onClick="dialPhoneNumber"
-                android:text="06 11120415"
+                android:text="@string/option_phoneNumber"
                 android:textColor="@color/blue"
                 android:textColorLink="@color/blue"
                 android:textSize="25sp" />
@@ -71,7 +71,7 @@
                 android:layout_below="@id/clickPhoneTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Email:"
+                android:text="@string/options_email"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
@@ -84,7 +84,7 @@
                 android:layout_marginTop="0dp"
                 android:autoLink="email"
                 android:onClick="sendEmail"
-                android:text="info@mijnwo\nongenoot.nl"
+                android:text="@string/option_emailLink"
                 android:textColor="@color/blue"
                 android:textColorLink="@color/blue"
                 android:textSize="25sp" />
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Taal:"
+                android:text="@string/options_language"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -130,6 +130,7 @@
                 android:layout_marginTop="10dp">
 
                 <RadioButton
+                    android:id="@+id/languageDutch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -138,6 +139,7 @@
                     android:textSize="25sp" />
 
                 <RadioButton
+                    android:id="@+id/languageEnglish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -154,7 +156,7 @@
                 android:layout_below="@id/languageRadioGroup"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:text="Thema:"
+                android:text="@string/options_theme"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -173,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
-                    android:text="Licht"
+                    android:text="@string/options_themeLight"
 
                     android:textSize="25sp" />
 
@@ -181,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Donker"
+                    android:text="@string/options_themeDark"
                     android:textSize="25sp"
                     android:translationY="-20dp" />
 
@@ -198,7 +200,7 @@
         android:backgroundTint="@color/MWG_Dark"
         android:onClick="logout"
         android:padding="10dp"
-        android:text="Log uit"
+        android:text="@string/options_logOut"
         android:textSize="22sp" />
 
 
@@ -239,7 +241,7 @@
                 android:layout_below="@id/textForSwitchPrivacy"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="Nee"
+                android:text="@string/options_phoneNo"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
 
@@ -252,7 +254,7 @@
                 android:background="@drawable/custom_background_top"
                 android:backgroundTint="#8acda1"
                 android:gravity="center_horizontal"
-                android:text="Telefoonnummer zichtbaar:"
+                android:text="@string/options_phoneTitle"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -265,11 +267,10 @@
                 android:layout_below="@id/textForSwitchPrivacy"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-
                 android:background="@drawable/custom_background_bottom_right"
                 android:backgroundTint="#8acda1"
                 android:gravity="center"
-                android:text="Ja"
+                android:text="@string/options_phoneYes"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
         </RelativeLayout>
@@ -299,7 +300,7 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="Klik hier voor de Privacyverklaring"
+                android:text="@string/options_link"
                 android:textColor="@color/blue"
                 android:textSize="25dp" />
 

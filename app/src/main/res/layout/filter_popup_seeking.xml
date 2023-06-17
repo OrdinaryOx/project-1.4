@@ -36,7 +36,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background"
-                android:text="Hier kan je filteren op matches:"
+                android:text="@string/popup_providerTitle"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -91,7 +91,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:gravity="center"
-                android:text="Huisdieren:"
+                android:text="@string/popup_providerPets"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -107,7 +107,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:gravity="center"
-                android:text="Gemeubileerd:"
+                android:text="@string/popup_providerFurnished"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -122,7 +122,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Hoeveel maanden:"
+                android:text="@string/popup_providerMonths"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -137,7 +137,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
-                android:text="Hoeveel dagen:"
+                android:text="@string/popup_providerDays"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -153,7 +153,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:gravity="center"
-                android:text="Woonsituatie:"
+                android:text="@string/popup_providerSituation"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -169,7 +169,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:gravity="center"
-                android:text="Min. kamer \nin M2:"
+                android:text="@string/popup_providerSize"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -185,7 +185,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_background_left"
                 android:gravity="center"
-                android:text="Max kosten \nin Euro:"
+                android:text="@string/popup_providerCosts"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -206,13 +206,13 @@
                     android:id="@+id/radioButton_seeking_pets_yes"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Ja" />
+                    android:text="@string/popup_providerPetsYes" />
 
                 <RadioButton
                     android:id="@+id/radioButton_seeking_pets_no"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Nee" />
+                    android:text="@string/popup_providerPetsNo" />
             </RadioGroup>
 
             <RadioGroup
@@ -229,13 +229,13 @@
                     android:id="@+id/radioButton_furnished_yes"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Ja" />
+                    android:text="@string/popup_providerFurnishedYes" />
 
                 <RadioButton
                     android:id="@+id/radioButton_furnished_no"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:text="Nee" />
+                    android:text="@string/popup_providerFurnishedNo" />
             </RadioGroup>
 
 
@@ -278,7 +278,7 @@
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
                 android:onClick="filterVerhuurder"
-                android:text="Opslaan"
+                android:text="@string/popup_providerSave"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

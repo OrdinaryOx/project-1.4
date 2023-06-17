@@ -51,7 +51,7 @@
                 android:layout_below="@id/icon_house"
                 android:gravity="center_horizontal"
                 android:layout_centerHorizontal="true"
-                android:text="IK HEB EEN WOONRUIMTE BESCHIKBAAR"
+                android:text="@string/role_provider"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_search"
                 android:layout_centerHorizontal="true"
-                android:text="IK ZOEK EEN WOONRUIMTE"
+                android:text="@string/role_seeking"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

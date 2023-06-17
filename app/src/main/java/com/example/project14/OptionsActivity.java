@@ -14,16 +14,25 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 public class OptionsActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+
+    private String currentLanguageCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
+
+        currentLanguageCode = "nl"; // Default language code
+        RadioGroup languageRadioGroup = findViewById(R.id.languageRadioGroup);
+
 
         sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
@@ -71,6 +80,40 @@ public class OptionsActivity extends AppCompatActivity {
 //                finish();
             }
         });
+
+        languageRadioGroup = findViewById(R.id.languageRadioGroup);
+
+        // Set the initial checked state based on the language preference
+        String currentLanguageCode = LanguageUtils.getLanguagePreference(this);
+        if (currentLanguageCode.equals("nl")) {
+            languageRadioGroup.check(R.id.languageDutch);
+        } else if (currentLanguageCode.equals("en")) {
+            languageRadioGroup.check(R.id.languageEnglish);
+        }
+
+        LanguageUtils.updateLanguage(this);
+
+        languageRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton selectedRadioButton = findViewById(checkedId);
+                String selectedLanguage = selectedRadioButton.getText().toString();
+
+                if (selectedLanguage.equals(getString(R.string.language_english))) {
+                    LanguageUtils.setLanguagePreference(OptionsActivity.this, "en");
+                } else if (selectedLanguage.equals(getString(R.string.language_Dutch))) {
+                    LanguageUtils.setLanguagePreference(OptionsActivity.this, "nl");
+                }
+
+                LanguageUtils.updateLanguage(OptionsActivity.this);
+
+                // Restart the activity to apply the language changes
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
 
         findViewById(R.id.Privacyverklaring).setOnClickListener(new View.OnClickListener() {
             @Override

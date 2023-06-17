@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
-        android:text="In welke stad/dorp zoek je een woonruimte?"
+        android:text="@string/seeking_cityRoom"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -56,7 +56,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Wat is ongeveer je budget per maand"
+        android:text="@string/seeking_budget"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Heeft u een voorkeur om te wonen bij?"
+        android:text="@string/seeking_preference"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Vrouw"
+            android:text="@string/seeking_preferenceW"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -100,7 +100,7 @@
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Man"
+            android:text="@string/seeking_preferenceM"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -109,7 +109,7 @@
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Koppel"
+            android:text="@string/seeking_preferenceC"
             android:textColor="@color/black"
             android:textSize="16sp" />
         <RadioButton
@@ -117,7 +117,7 @@
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Geen vookeur"
+            android:text="@string/seeking_preferenceO"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -132,7 +132,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  €1000"
+        android:hint="@string/seeking_budgetHint"
         android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +161,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textStyle="bold"
-        android:text="Hoe lang zou je bij voorkeur willen wonen?"
+        android:text="@string/seeking_livingTime"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +170,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView7"
@@ -179,7 +179,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView18"
@@ -188,7 +188,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView"
@@ -197,7 +197,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView16"

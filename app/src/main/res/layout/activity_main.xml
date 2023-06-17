@@ -39,7 +39,7 @@
                 android:id="@+id/header1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Op zoek naar een leuke huisgenoot?"
+                android:text="@string/main_title"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -53,7 +53,7 @@
                 android:layout_below="@id/header1"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Heb je een kamer nodig of een kamer vrij en ben je op zoek naar een leuke huisgenoot? Dan is Mijn Woongenoot de ideale keuze voor jou!"
+                android:text="@string/main_info"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -66,7 +66,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Wil je meer informatie?"
+                android:text="@string/main_moreInfo"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -79,7 +79,7 @@
                 android:layout_centerHorizontal="true"
                 android:autoLink="web"
                 android:linksClickable="true"
-                android:text="Klik dan hier!"
+                android:text="@string/main_link"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -108,7 +108,7 @@
                 android:layout_marginBottom="20dp"
                 android:onClick="Continue"
                 android:backgroundTint="@color/MWG_Dark"
-                android:text="Ga Verder" />
+                android:text="@string/main_button" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

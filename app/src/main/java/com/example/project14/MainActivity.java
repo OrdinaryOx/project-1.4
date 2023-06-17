@@ -15,12 +15,20 @@ import com.example.project14.Login.LoginActivity;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+    private TextView headerOneTextView;
+    private TextView textOneTextView;
+    private TextView moreInformationTextView;
+    private TextView clickableTextTextView;
+    private Button buttonButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +57,44 @@ public class MainActivity extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+
+        headerOneTextView = findViewById(R.id.header1);
+        textOneTextView = findViewById(R.id.text1);
+        moreInformationTextView = findViewById(R.id.moreInformation);
+        clickableTextTextView = findViewById(R.id.clickableText);
+        buttonButton = findViewById(R.id.button);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(MainActivity.this);
+        String headerOne = "";
+        String textOne = "";
+        String moreInformation = "";
+        String clickableText= "";
+        String button = "";
+
+        if (languageCode.equals("nl")) {
+            headerOne = getResources().getString(R.string.main_title);
+            textOne  = getResources().getString(R.string.main_info);
+            moreInformation = getResources().getString(R.string.main_moreInfo);
+            clickableText = getResources().getString(R.string.main_link);
+            button = getResources().getString(R.string.main_button);
+        } else if (languageCode.equals("en")) {
+            headerOne = getResources().getString(R.string.main_title_en);
+            textOne  = getResources().getString(R.string.main_info_en);
+            moreInformation = getResources().getString(R.string.main_moreInfo_en);
+            clickableText = getResources().getString(R.string.main_link_en);
+            button = getResources().getString(R.string.main_button_en);
+        }
+
+        headerOneTextView.setText(headerOne);
+        textOneTextView.setText(textOne);
+        moreInformationTextView.setText(moreInformation);
+        clickableTextTextView.setText(clickableText);
+        buttonButton.setText(button);
+
+
         // Set click listener for the back button
 //        backButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -70,11 +116,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        TextView mainLink = findViewById(R.id.clickableText);
 
-
-        TextView clickableText = findViewById(R.id.clickableText);
-
-        clickableText.setOnClickListener(new View.OnClickListener() {
+        mainLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "https://mijnwoongenoot.nl";

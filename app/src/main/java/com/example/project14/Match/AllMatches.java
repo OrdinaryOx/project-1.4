@@ -36,6 +36,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
@@ -86,6 +87,8 @@ public class AllMatches extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);
 

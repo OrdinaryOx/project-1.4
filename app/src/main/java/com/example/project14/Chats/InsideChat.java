@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.project14.ActivitiesScreen;
 //import com.example.project14.LoginActivity;
+import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
@@ -19,6 +20,8 @@ public class InsideChat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inside_chat);
         Toolbar toolbar = findViewById(R.id.toolbar);

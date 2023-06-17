@@ -24,7 +24,7 @@
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:text="Username"
+        android:text="@string/chat_username"
         android:textColor="@color/black"
         android:textSize="23sp"
         android:textStyle="bold" />
@@ -50,7 +50,7 @@
         android:padding="3dp"
         android:background="@color/white"
         android:gravity="right"
-        android:text="Hallo, hoe gaat het?" />
+        android:text="@string/chat_message" />
 
     <TextView
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
         android:padding="3dp"
         android:background="@color/white"
         android:gravity="left"
-        android:text="Hallo, met mij gaat het goed!"
+        android:text="@string/chat_reaction"
      />
 
 

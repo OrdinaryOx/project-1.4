@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Username"
+                android:text="@string/allChats_userName"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/chat_username"
                 android:padding="10dp"
-                android:text="90"
+                android:text="@string/allChats_age"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:text="This is a message sent by username" />
+                android:text="@string/allChats_message" />
 
 
             <ImageView

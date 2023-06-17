@@ -30,7 +30,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  M2"
+        android:hint="@string/provider_roomSizeHint"
         android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
-        android:hint="  Bijvoorbeeld: Bed, bank"
+        android:hint="@string/provider_furnishedHint"
         android:padding="4dp"
         android:gravity="top|left"
         android:textSize="16sp"
@@ -64,7 +64,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  €1000,-"
+        android:hint="@string/provider_priceHint"
         android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
             android:layout_height="40dp"
             android:background="@drawable/border"
             android:textColor="@color/black"
-            android:text="Ja"
+            android:text="@string/provider_furnishedYes"
             android:textSize="16sp" />
 
         <RadioButton
@@ -98,7 +98,7 @@
             android:layout_height="40dp"
             android:background="@drawable/border"
             android:textColor="@color/black"
-            android:text="Nee"
+            android:text="@string/provider_furnishedNo"
             android:textSize="16sp" />
 
     </RadioGroup>
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
-        android:text="Hoe groot is deze ruimte?"
+        android:text="@string/provider_roomSize"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Is de woonruimte/kamer gemeubileerd?"
+        android:text="@string/provider_furnished"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -135,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Zo ja, licht toe:"
+        android:text="@string/provider_furnishedExtra"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Heeft u zelf al een prijs in gedachten?"
+        android:text="@string/provider_roomPrice"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -159,7 +159,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView7"
@@ -168,7 +168,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView32"
@@ -177,7 +177,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView34"

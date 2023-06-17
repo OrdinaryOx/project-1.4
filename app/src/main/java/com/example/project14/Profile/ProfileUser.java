@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
@@ -182,6 +183,8 @@ public class ProfileUser extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(this);
+
         getUserProfile();
         super.onCreate(savedInstanceState);
 

@@ -28,7 +28,7 @@
         android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
-        android:text="Heb je beschikking over:"
+        android:text="@string/seeking_help"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
-        android:text="EHBO"
+        android:text="@string/seeking_firstAid"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/border"
-        android:text="BHV"
+        android:text="@string/seeking_care"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/border"
-        android:text="Reanimatie"
+        android:text="@string/seeking_reanimation"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
         android:layout_marginStart="16dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:text="Heb je werk?"
+        android:text="@string/seeking_work"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Ja"
+            android:text="@string/seeking_workYes"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -110,7 +110,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Nee"
+            android:text="@string/seeking_workNo"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -123,7 +123,7 @@
         android:layout_marginTop="16dp"
         android:textStyle="bold"
         android:layout_marginEnd="16dp"
-        android:text="Zo ja, wat en hoeveel uur per week?"
+        android:text="@string/seeking_workComment"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textStyle="bold"
-        android:text="Zo ja, wat?"
+        android:text="@string/seeking_healthComment"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +150,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:textStyle="bold"
-        android:text="Zijn er gezondheidszaken van belang om te weten?"
+        android:text="@string/seeking_health"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +165,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  Bijvoorbeeld: programmeur"
+        android:hint="@string/seeking_workCommentHint"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -179,7 +179,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:padding="4dp"
-        android:hint="  Bijvoorbeeld: asthma"
+        android:hint="@string/seeking_healthCommentHint"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -199,7 +199,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Ja"
+            android:text="@string/seeking_healthYes"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -208,7 +208,7 @@
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:background="@drawable/border"
-            android:text="Nee"
+            android:text="@string/seeking_healthNo"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -218,7 +218,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView17"
@@ -227,7 +227,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" *"
+        android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView15"
@@ -236,7 +236,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="*"
+        android:text="@string/star"
         android:translationX="-10dp"
         android:textColor="@color/red"
         android:textSize="16sp"

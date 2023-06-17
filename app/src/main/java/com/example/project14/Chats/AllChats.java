@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.Match.AllMatches;
 import com.example.project14.OptionsActivity;
@@ -28,6 +29,8 @@ public class AllChats extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LanguageUtils.updateLanguage(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_chats);
 

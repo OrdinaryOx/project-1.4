@@ -34,7 +34,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/MWG_Dark"
-                android:text="Terug" />
+                android:text="@string/form_backBtn" />
 
             <Button
                 android:id="@+id/button_forward_form"
@@ -44,7 +44,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/button_back_form"
                 android:backgroundTint="@color/MWG_Dark"
-                android:text="Vooruit" />
+                android:text="@string/form_nextBtn" />
 
         </RelativeLayout>
 
