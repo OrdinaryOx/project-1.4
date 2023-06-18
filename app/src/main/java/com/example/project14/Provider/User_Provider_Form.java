@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.project14.ActivitiesScreen;
+import com.example.project14.LanguageUtils;
 import com.example.project14.Login.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
@@ -47,6 +48,9 @@ public class User_Provider_Form extends AppCompatActivity {
     private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
     private int currentPageIndex = 0;
+    private Button forwardFormBtn;
+    private Button backFormBtn;
+
     private Class<?>[] fragmentClasses = {
             ProviderOneFragment.class,
             ProviderTwoFragment.class,
@@ -73,6 +77,28 @@ public class User_Provider_Form extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        forwardFormBtn = findViewById(R.id.button_forward_form);
+        backFormBtn = findViewById(R.id.button_back_form);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(User_Provider_Form.this);
+        String forwardFormButton = "";
+        String backFormButton = "";
+
+
+        if (languageCode.equals("nl")) {
+            forwardFormButton = getResources().getString(R.string.form_nextBtn);
+            backFormButton = getResources().getString(R.string.form_backBtn);
+        } else if (languageCode.equals("en")) {
+            forwardFormButton = getResources().getString(R.string.form_nextBtn_en);
+            backFormButton = getResources().getString(R.string.form_backBtn_en);
+        }
+
+        forwardFormBtn.setText(forwardFormButton);
+        backFormBtn.setText(backFormButton);
+
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

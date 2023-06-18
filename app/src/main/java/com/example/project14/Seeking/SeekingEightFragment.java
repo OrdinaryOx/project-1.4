@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
@@ -29,6 +31,11 @@ public class SeekingEightFragment extends Fragment {
     private EditText editTextVolunteer;
     private RadioButton volunteerYes;
     private RadioButton volunteerNo;
+    private TextView meanTextView;
+    private TextView noteTextView;
+    private TextView volunteerTextView;
+    private TextView volunteerMoreTextView;
+
 
     public SeekingEightFragment() {
         // Required empty public constructor
@@ -46,6 +53,64 @@ public class SeekingEightFragment extends Fragment {
 
         volunteerYes = view.findViewById(R.id.radio_button_volunteer_yes);
         volunteerNo = view.findViewById(R.id.radio_button_volunteer_no);
+
+        meanTextView = view.findViewById(R.id.textView17);
+        noteTextView = view.findViewById(R.id.textView28);
+        volunteerTextView = view.findViewById(R.id.textView29);
+        volunteerMoreTextView = view.findViewById(R.id.textView31);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String offerEdit = "";
+        String importantNoteEdit = "";
+        String volunteerEdit = "";
+
+        String volunteerRadioYes = "";
+        String volunteerRadioNo = "";
+
+        String meanText = "";
+        String noteText = "";
+        String volunteerText = "";
+        String volunteerMoreText = "";
+
+        if (languageCode.equals("nl")) {
+            offerEdit = getResources().getString(R.string.provider_meanHint);
+            importantNoteEdit = getResources().getString(R.string.provider_noteHint);
+            volunteerEdit = getResources().getString(R.string.provider_type);
+
+            volunteerRadioYes = getResources().getString(R.string.provider_volunteerYes);
+            volunteerRadioNo = getResources().getString(R.string.provider_volunteerNo);
+
+            meanText = getResources().getString(R.string.provider_mean);
+            noteText = getResources().getString(R.string.provider_note);
+            volunteerText = getResources().getString(R.string.provider_volunteer);
+            volunteerMoreText = getResources().getString(R.string.provider_noteComment);
+        } else if (languageCode.equals("en")) {
+            offerEdit = getResources().getString(R.string.provider_meanHint_en);
+            importantNoteEdit = getResources().getString(R.string.provider_noteHint_en);
+            volunteerEdit = getResources().getString(R.string.provider_type_en);
+
+            volunteerRadioYes = getResources().getString(R.string.provider_volunteerYes_en);
+            volunteerRadioNo = getResources().getString(R.string.provider_volunteerNo_en);
+
+            meanText = getResources().getString(R.string.provider_mean_en);
+            noteText = getResources().getString(R.string.provider_note_en);
+            volunteerText = getResources().getString(R.string.provider_volunteer_en);
+            volunteerMoreText = getResources().getString(R.string.provider_noteComment_en);
+        }
+
+        editTextOtherOffer.setHint(offerEdit);
+        editTextImportantNote.setHint(importantNoteEdit);
+        editTextVolunteer.setHint(volunteerEdit);
+
+        volunteerYes.setText(volunteerRadioYes);
+        volunteerNo.setText(volunteerRadioNo);
+
+        meanTextView.setText(meanText);
+        noteTextView.setText(noteText);
+        volunteerTextView.setText(volunteerText);
+        volunteerMoreTextView.setText(volunteerMoreText);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();

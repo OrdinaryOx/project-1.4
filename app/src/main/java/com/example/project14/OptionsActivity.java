@@ -19,11 +19,29 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.project14.Provider.User_Provider_Form;
+
 public class OptionsActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
 
     private String currentLanguageCode;
+
+    private TextView languageTextView;
+    private TextView dutchTextView;
+    private TextView englishTextView;
+    private TextView themeTextView;
+    private TextView lightTextView;
+    private TextView darkTextView;
+    private TextView contactTextView;
+    private TextView phoneNumberTextView;
+    private TextView emailTextView;
+    private TextView phoneVisibleTextView;
+    private TextView phoneYesTextView;
+    private TextView phoneNoTextView;
+    private TextView linkTextView;
+    private Button logOutBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +69,92 @@ public class OptionsActivity extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        languageTextView = findViewById(R.id.languageTextView);
+        dutchTextView = findViewById(R.id.languageDutch);
+        englishTextView = findViewById(R.id.languageEnglish);
+        themeTextView = findViewById(R.id.themeTextView);
+        lightTextView = findViewById(R.id.light_radio);
+        darkTextView = findViewById(R.id.dark_radio);
+        contactTextView = findViewById(R.id.contactTextView);
+        phoneNumberTextView = findViewById(R.id.phoneNumberTextView);
+        emailTextView = findViewById(R.id.emailTextView);
+        phoneVisibleTextView = findViewById(R.id.textForSwitchPrivacy);
+        phoneYesTextView = findViewById(R.id.textView39);
+        phoneNoTextView = findViewById(R.id.phone_no);
+        linkTextView = findViewById(R.id.Privacyverklaring);
+        logOutBtn = findViewById(R.id.logoutButton);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(OptionsActivity.this);
+        String languageText = "";
+        String dutchText = "";
+        String englishText = "";
+        String themeText = "";
+        String lightText = "";
+        String darkText = "";
+        String contactText = "";
+        String phoneNumberText = "";
+        String emailText = "";
+        String phoneVisibleText = "";
+        String phoneYesText = "";
+        String phoneNoText = "";
+        String linkText = "";
+        String logOutButton = "";
+
+
+        if (languageCode.equals("nl")) {
+            languageText = getResources().getString(R.string.options_language);
+            dutchText = getResources().getString(R.string.language_Dutch);
+            englishText = getResources().getString(R.string.language_english);
+            themeText = getResources().getString(R.string.options_theme);
+            lightText = getResources().getString(R.string.options_themeLight);
+            darkText = getResources().getString(R.string.options_themeDark);
+
+            contactText = getResources().getString(R.string.options_contact);
+            phoneNumberText = getResources().getString(R.string.options_phone);
+            emailText = getResources().getString(R.string.options_email);
+            phoneVisibleText = getResources().getString(R.string.options_phoneTitle);
+            phoneYesText = getResources().getString(R.string.options_phoneYes);
+            phoneNoText = getResources().getString(R.string.options_phoneNo);
+            linkText = getResources().getString(R.string.options_link);
+
+            logOutButton = getResources().getString(R.string.options_logOut);
+        } else if (languageCode.equals("en")) {
+            languageText = getResources().getString(R.string.options_language_en);
+            dutchText = getResources().getString(R.string.language_Dutch);
+            englishText = getResources().getString(R.string.language_english);
+            themeText = getResources().getString(R.string.options_theme_en);
+            lightText = getResources().getString(R.string.options_themeLight_en);
+            darkText = getResources().getString(R.string.options_themeDark_en);
+
+            contactText = getResources().getString(R.string.options_contact_en);
+            phoneNumberText = getResources().getString(R.string.options_phone_en);
+            emailText = getResources().getString(R.string.options_email_en);
+            phoneVisibleText = getResources().getString(R.string.options_phoneTitle_en);
+            phoneYesText = getResources().getString(R.string.options_phoneYes_en);
+            phoneNoText = getResources().getString(R.string.options_phoneNo_en);
+            linkText = getResources().getString(R.string.options_link_en);
+
+            logOutButton = getResources().getString(R.string.options_logOut_en);
+        }
+
+        languageTextView.setText(languageText);
+        dutchTextView.setText(dutchText);
+        englishTextView.setText(englishText);
+        themeTextView.setText(themeText);
+        lightTextView.setText(lightText);
+        darkTextView.setText(darkText);
+        contactTextView.setText(contactText);
+        phoneNumberTextView.setText(phoneNumberText);
+        emailTextView.setText(emailText);
+        phoneVisibleTextView.setText(phoneVisibleText);
+        phoneYesTextView.setText(phoneYesText);
+        phoneNoTextView.setText(phoneNoText);
+        linkTextView.setText(linkText);
+        logOutBtn.setText(logOutButton);
+
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,6 +46,7 @@
                 android:src="@drawable/icon_house" />
 
             <TextView
+                android:id="@+id/provider_TextView"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_house"
@@ -91,6 +92,7 @@
                 android:src="@drawable/search_icon" />
 
             <TextView
+                android:id="@+id/seeking_TextView"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_search"

@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project14.ActivitiesScreen;
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
 import com.example.project14.Seeking.SeekingTwoFragment;
 import com.example.project14.Seeking.User_Seeking_Form;
@@ -30,6 +32,12 @@ public class ProviderNineFragment extends Fragment {
     private CheckBox checkBoxPermission;
     private CheckBox checkBoxTerms;
     private EditText editTextComment;
+
+    private TextView commentTextView;
+    private TextView privacyTextView;
+    private TextView cookieTextView;
+    private Button sendBtn;
+
 
     public ProviderNineFragment() {
         // Required empty public constructor
@@ -46,6 +54,67 @@ public class ProviderNineFragment extends Fragment {
         checkBoxPermission = view.findViewById(R.id.checkBoxPermission);
         checkBoxTerms = view.findViewById(R.id.checkBoxTerms);
         editTextComment = view.findViewById(R.id.editTextComment);
+
+        commentTextView = view.findViewById(R.id.textView31);
+        privacyTextView = view.findViewById(R.id.textViewTerms);
+        cookieTextView = view.findViewById(R.id.textViewCookies);
+
+        sendBtn = view.findViewById(R.id.opsturenButtonProvider);
+
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String truthCheck = "";
+        String permissionCheck = "";
+        String termsCheck = "";
+
+        String commentEdit = "";
+
+        String commentText = "";
+        String privacyText = "";
+        String cookieText = "";
+
+        String sendButton = "";
+
+
+        if (languageCode.equals("nl")) {
+            truthCheck = getResources().getString(R.string.provider_checkTruth);
+            permissionCheck = getResources().getString(R.string.provider_checkPicture);
+            termsCheck = getResources().getString(R.string.provider_checkPrivacy);
+
+            commentEdit = getResources().getString(R.string.provider_type);
+
+            commentText = getResources().getString(R.string.provider_comment);
+            privacyText = getResources().getString(R.string.provider_linkPrivacy);
+            cookieText = getResources().getString(R.string.privacy_linkCookie);
+
+            sendButton = getResources().getString(R.string.provider_send);
+        } else if (languageCode.equals("en")) {
+            truthCheck = getResources().getString(R.string.provider_checkTruth_en);
+            permissionCheck = getResources().getString(R.string.provider_checkPicture_en);
+            termsCheck = getResources().getString(R.string.provider_checkPrivacy_en);
+
+            commentEdit = getResources().getString(R.string.provider_type_en);
+
+            commentText = getResources().getString(R.string.provider_comment_en);
+            privacyText = getResources().getString(R.string.provider_linkPrivacy_en);
+            cookieText = getResources().getString(R.string.privacy_linkCookie_en);
+
+            sendButton = getResources().getString(R.string.provider_send_en);
+        }
+
+        checkBoxTruth.setText(truthCheck);
+        checkBoxPermission.setText(permissionCheck);
+        checkBoxTerms.setText(termsCheck);
+
+        editTextComment.setHint(commentEdit);
+
+        commentTextView.setText(commentText);
+        privacyTextView.setText(privacyText);
+        cookieTextView.setText(cookieText);
+
+        sendBtn.setText(sendButton);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         HashMap<String, String> fragmentDataList = activity.getFragmentDataList();

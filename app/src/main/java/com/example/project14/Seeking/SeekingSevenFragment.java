@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
@@ -25,6 +27,11 @@ public class SeekingSevenFragment extends Fragment {
     private EditText editTextKeyword;
     private EditText editTextRoom;
     private EditText editTextMean;
+    private TextView describeTextView;
+    private TextView keywordTextView;
+    private TextView describeRoomTextView;
+    private TextView meanTextView;
+
 
     public SeekingSevenFragment() {
         // Required empty public constructor
@@ -39,6 +46,56 @@ public class SeekingSevenFragment extends Fragment {
         editTextKeyword = view.findViewById(R.id.editTextKeyword);
         editTextRoom = view.findViewById(R.id.editTextRoom);
         editTextMean = view.findViewById(R.id.editTextMean);
+
+        describeTextView = view.findViewById(R.id.textView17);
+        keywordTextView = view.findViewById(R.id.textView28);
+        describeRoomTextView = view.findViewById(R.id.textView29);
+        meanTextView = view.findViewById(R.id.textView30);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String describeEdit = "";
+        String keywordEdit = "";
+        String describeRoomEdit = "";
+        String meanEdit = "";
+
+        String describeText = "";
+        String keywordText = "";
+        String describeRoomText = "";
+        String meanText = "";
+
+        if (languageCode.equals("nl")) {
+            describeEdit = getResources().getString(R.string.seeking_type);
+            keywordEdit = getResources().getString(R.string.seeking_keywordHint);
+            describeRoomEdit = getResources().getString(R.string.seeking_idealRoomHint);
+            meanEdit = getResources().getString(R.string.seeking_providerMeanHint);
+
+            describeText = getResources().getString(R.string.seeking_describe);
+            keywordText = getResources().getString(R.string.seeking_keyword);
+            describeRoomText = getResources().getString(R.string.seeking_idealRoom);
+            meanText = getResources().getString(R.string.seeking_providerMean);
+        } else if (languageCode.equals("en")) {
+            describeEdit = getResources().getString(R.string.seeking_type_en);
+            keywordEdit = getResources().getString(R.string.seeking_keywordHint_en);
+            describeRoomEdit = getResources().getString(R.string.seeking_idealRoomHint_en);
+            meanEdit = getResources().getString(R.string.seeking_providerMeanHint_en);
+
+            describeText = getResources().getString(R.string.seeking_describe_en);
+            keywordText = getResources().getString(R.string.seeking_keyword_en);
+            describeRoomText = getResources().getString(R.string.seeking_idealRoom_en);
+            meanText = getResources().getString(R.string.seeking_providerMean_en);
+        }
+
+        editTextYourself.setHint(describeEdit);
+        editTextKeyword.setHint(keywordEdit);
+        editTextRoom.setHint(describeRoomEdit);
+        editTextMean.setHint(meanEdit);
+
+        describeTextView.setText(describeText);
+        keywordTextView.setText(keywordText);
+        describeRoomTextView.setText(describeRoomText);
+        meanTextView.setText(meanText);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();

@@ -34,12 +34,14 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
 import com.example.project14.R;
+import com.example.project14.RoleActivity;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -84,6 +86,8 @@ public class AllMatches extends AppCompatActivity {
     private EditText seekingBudgetEditText;
 
     private SharedPreferences sharedPreferences;
+    private TextView titleTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +104,23 @@ public class AllMatches extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        titleTextView = findViewById(R.id.matchText);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(AllMatches.this);
+        String titleText = "";
+
+
+        if (languageCode.equals("nl")) {
+            titleText = getResources().getString(R.string.title_all_matches);
+        } else if (languageCode.equals("en")) {
+            titleText = getResources().getString(R.string.title_all_matches_en);
+        }
+
+        titleTextView.setText(titleText);
+
 
 
         // Set click listener for the back button

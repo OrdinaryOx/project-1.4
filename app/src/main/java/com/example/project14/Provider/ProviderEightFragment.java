@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.project14.LanguageUtils;
+import com.example.project14.MainActivity;
 import com.example.project14.R;
 
 import java.util.ArrayList;
@@ -24,19 +26,51 @@ public class ProviderEightFragment extends Fragment {
     private EditText editTextBelief;
     private EditText editTextOther;
 
+    private TextView beliefTextView;
+    private TextView otherTextView;
+
     public ProviderEightFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LanguageUtils.updateLanguage(requireContext());
+        //LanguageUtils.updateLanguage(requireContext());
 
         View view = inflater.inflate(R.layout.fragment_provider_eight, container, false);
 
         // Initialize the EditText views
+
         editTextBelief = view.findViewById(R.id.editTextBelief);
         editTextOther = view.findViewById(R.id.editTextOther);
+        beliefTextView = view.findViewById(R.id.textView17);
+        otherTextView = view.findViewById(R.id.textView31);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String beliefReligion = "";
+        String other = "";
+        String beliefLabel = "";
+        String otherLabel = "";
+
+        if (languageCode.equals("nl")) {
+            beliefReligion = getResources().getString(R.string.provider_type);
+            other = getResources().getString(R.string.provider_type);
+            beliefLabel = getResources().getString(R.string.provider_belief);
+            otherLabel = getResources().getString(R.string.provider_otherComment);
+        } else if (languageCode.equals("en")) {
+            beliefReligion = getResources().getString(R.string.provider_type_en);
+            other = getResources().getString(R.string.provider_type_en);
+            beliefLabel = getResources().getString(R.string.provider_belief_en);
+            otherLabel = getResources().getString(R.string.provider_otherComment_en);
+        }
+
+        editTextBelief.setHint(beliefReligion);
+        editTextOther.setHint(other);
+        beliefTextView.setText(beliefLabel);
+        otherTextView.setText(otherLabel);
+
 
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();

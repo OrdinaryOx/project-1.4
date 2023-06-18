@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
@@ -29,6 +31,13 @@ public class SeekingFiveFragment extends Fragment {
     private Spinner spinnerReason;
     private EditText editTextGrade;
     private EditText editTextCourse;
+    private TextView startDateTextView;
+    private TextView startTextView;
+    private TextView endDateTextView;
+    private TextView endTextView;
+    private TextView reasonTextView;
+    private TextView schoolTextView;
+    private TextView schoolFutureTextView;
 
     public SeekingFiveFragment() {
         // Required empty public constructor
@@ -41,9 +50,75 @@ public class SeekingFiveFragment extends Fragment {
         // Initialize the EditText views
         editTextStartDate = view.findViewById(R.id.editTextStartDate);
         editTextEndDate = view.findViewById(R.id.editTextEndDate);
+
         spinnerReason = view.findViewById(R.id.spinnerReason);
+
         editTextGrade = view.findViewById(R.id.editTextGrade);
         editTextCourse = view.findViewById(R.id.editTextCourse);
+
+        startDateTextView = view.findViewById(R.id.textView17);
+        startTextView = view.findViewById(R.id.textView20);
+        endDateTextView = view.findViewById(R.id.textView21);
+        endTextView = view.findViewById(R.id.textView22);
+        reasonTextView = view.findViewById(R.id.textView23);
+        schoolTextView = view.findViewById(R.id.textView15);
+        schoolFutureTextView = view.findViewById(R.id.textView25);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String startDateEdit = "";
+        String endDateEdit = "";
+        String gradeEdit = "";
+        String courseEdit = "";
+        String startDateText = "";
+        String startText = "";
+        String endDateText = "";
+        String endText = "";
+        String reasonText = "";
+        String schoolText = "";
+        String schoolFutureText = "";
+
+        if (languageCode.equals("nl")) {
+            startDateEdit = getResources().getString(R.string.seeking_startDateHint);
+            endDateEdit = getResources().getString(R.string.seeking_endDateHint);
+            gradeEdit = getResources().getString(R.string.seeking_schoolHint);
+            courseEdit = getResources().getString(R.string.seeking_schoolFutureHint);
+
+            startDateText = getResources().getString(R.string.seeking_startDate);
+            startText = getResources().getString(R.string.seeking_start);
+            endDateText = getResources().getString(R.string.seeking_endDate);
+            endText = getResources().getString(R.string.seeking_end);
+            reasonText = getResources().getString(R.string.seeking_reason);
+            schoolText = getResources().getString(R.string.seeking_school);
+            schoolFutureText = getResources().getString(R.string.seeking_schoolFuture);
+        } else if (languageCode.equals("en")) {
+            startDateEdit = getResources().getString(R.string.seeking_startDateHint_en);
+            endDateEdit = getResources().getString(R.string.seeking_endDateHint_en);
+            gradeEdit = getResources().getString(R.string.seeking_schoolHint_en);
+            courseEdit = getResources().getString(R.string.seeking_schoolFutureHint_en);
+
+            startDateText = getResources().getString(R.string.seeking_startDate_en);
+            startText = getResources().getString(R.string.seeking_start_en);
+            endDateText = getResources().getString(R.string.seeking_endDate_en);
+            endText = getResources().getString(R.string.seeking_end_en);
+            reasonText = getResources().getString(R.string.seeking_reason_en);
+            schoolText = getResources().getString(R.string.seeking_school_en);
+            schoolFutureText = getResources().getString(R.string.seeking_schoolFuture_en);
+        }
+
+        editTextStartDate.setHint(startDateEdit);
+        editTextEndDate.setHint(endDateEdit);
+        editTextGrade.setHint(gradeEdit);
+        editTextCourse.setHint(courseEdit);
+
+        startDateTextView.setText(startDateText);
+        startTextView.setText(startText);
+        endDateTextView.setText(endDateText);
+        endTextView.setText(endText);
+        reasonTextView.setText(reasonText);
+        schoolTextView.setText(schoolText);
+        schoolFutureTextView.setText(schoolFutureText);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();

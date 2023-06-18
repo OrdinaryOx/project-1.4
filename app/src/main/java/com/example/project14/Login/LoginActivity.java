@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -61,6 +62,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextTextEmailAddress, editTextTextPassword;
     private TextView emptyEmail, emptyPassword, wrongCredentials;
     private SharedPreferences sharedPreferences;
+
+    private TextView welcomeTextView;
+    private TextView inputTextView;
+    private TextView alternativeTextView;
+
 
 
 
@@ -145,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LanguageUtils.updateLanguage(this);
+        //LanguageUtils.updateLanguage(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -169,6 +175,66 @@ public class LoginActivity extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+
+        welcomeTextView = findViewById(R.id.textViewWelcome);
+        inputTextView = findViewById(R.id.textViewInputData);
+        alternativeTextView = findViewById(R.id.textViewAlternative);
+
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(LoginActivity.this);
+        String login = "";
+        String register = "";
+        String emailAddress = "";
+        String textPassword = "";
+        String email = "";
+        String password = "";
+        String credentials = "";
+        String welcome = "";
+        String input= "";
+        String alternative = "";
+
+        if (languageCode.equals("nl")) {
+            login = getResources().getString(R.string.login_login);
+            register = getResources().getString(R.string.login_makeAccount);
+            emailAddress = getResources().getString(R.string.login_email);
+            textPassword = getResources().getString(R.string.login_password);
+            email = getResources().getString(R.string.login_emptyEmail);
+            password = getResources().getString(R.string.login_emptyPassword);
+            credentials = getResources().getString(R.string.login_incorrectData);
+            welcome = getResources().getString(R.string.login_welcome);
+            input = getResources().getString(R.string.login_info);
+            alternative = getResources().getString(R.string.login_or);
+
+        } else if (languageCode.equals("en")) {
+            login = getResources().getString(R.string.login_login_en);
+            register = getResources().getString(R.string.login_makeAccount_en);
+            emailAddress = getResources().getString(R.string.login_email_en);
+            textPassword = getResources().getString(R.string.login_password_en);
+            email = getResources().getString(R.string.login_emptyEmail_en);
+            password = getResources().getString(R.string.login_emptyPassword_en);
+            credentials = getResources().getString(R.string.login_incorrectData_en);
+            welcome = getResources().getString(R.string.login_welcome_en);
+            input = getResources().getString(R.string.login_info_en);
+            alternative = getResources().getString(R.string.login_or_en);
+        }
+
+        buttonLogin.setText(login);
+        buttonRegister.setText(register);
+        editTextTextEmailAddress.setHint(emailAddress);
+        editTextTextPassword.setHint(textPassword);
+        emptyEmail.setText(email);
+        emptyPassword.setText(password);
+        wrongCredentials.setText(credentials);
+        welcomeTextView.setText(welcome);
+        inputTextView.setText(input);
+        alternativeTextView.setText(alternative);
+
+
+
+
 
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {

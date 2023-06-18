@@ -16,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
 
 
@@ -47,6 +49,14 @@ public class ProviderTwoFragment extends Fragment {
     private EditText editTextBirthDate;
     private EditText editTextHouseNumber;
     private Calendar calendar;
+    private TextView postCodeTextView;
+    private TextView houseNumberTextView;
+    private TextView streetTextView;
+    private TextView cityTextView;
+    private TextView countryTextView;
+    private TextView phoneNumberTextView;
+    private TextView birthDateTextView;
+
 
     public ProviderTwoFragment() {
         // Required empty public constructor
@@ -67,6 +77,83 @@ public class ProviderTwoFragment extends Fragment {
         editTextHouseNumber = view.findViewById(R.id.editTextHouseNumber);
         editTextPostalCode.addTextChangedListener(textWatcher);
         editTextHouseNumber.addTextChangedListener(textWatcher);
+
+        postCodeTextView = view.findViewById(R.id.textView6);
+        houseNumberTextView = view.findViewById(R.id.textViewHuisNummer);
+        streetTextView = view.findViewById(R.id.textView7);
+        cityTextView = view.findViewById(R.id.textView2);
+        countryTextView = view.findViewById(R.id.textView11);
+        phoneNumberTextView = view.findViewById(R.id.textView14);
+        birthDateTextView = view.findViewById(R.id.textView26);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String addressEdit = "";
+        String cityEdit = "";
+        String postalCodeEdit = "";
+        String countryEdit = "";
+        String phoneNumberEdit = "";
+        String birthDateEdit = "";
+        String houseNumberEdit = "";
+
+        String postCodeText = "";
+        String houseNumberText = "";
+        String streetText = "";
+        String cityText = "";
+        String countryText = "";
+        String phoneNumberText = "";
+        String birthDateText = "";
+
+        if (languageCode.equals("nl")) {
+            addressEdit = getResources().getString(R.string.provider_streetHint);
+            cityEdit = getResources().getString(R.string.provider_cityHint);
+            postalCodeEdit = getResources().getString(R.string.provider_codeHint);
+            countryEdit = getResources().getString(R.string.provider_countryHint);
+            phoneNumberEdit = getResources().getString(R.string.provider_phoneNumberHint);
+            birthDateEdit = getResources().getString(R.string.provider_birthHint);
+            houseNumberEdit = getResources().getString(R.string.provider_houseNumberHint);
+
+            postCodeText = getResources().getString(R.string.provider_code);
+            houseNumberText = getResources().getString(R.string.provider_houseNumber);
+            streetText = getResources().getString(R.string.provider_street);
+            cityText = getResources().getString(R.string.provider_city);
+            countryText = getResources().getString(R.string.provider_country);
+            phoneNumberText = getResources().getString(R.string.provider_phoneNumber);
+            birthDateText = getResources().getString(R.string.provider_birth);
+        } else if (languageCode.equals("en")) {
+            addressEdit = getResources().getString(R.string.provider_streetHint_en);
+            cityEdit = getResources().getString(R.string.provider_cityHint_en);
+            postalCodeEdit = getResources().getString(R.string.provider_codeHint_en);
+            countryEdit = getResources().getString(R.string.provider_countryHint_en);
+            phoneNumberEdit = getResources().getString(R.string.provider_phoneNumberHint_en);
+            birthDateEdit = getResources().getString(R.string.provider_birthHint_en);
+            houseNumberEdit = getResources().getString(R.string.provider_houseNumberHint_en);
+
+            postCodeText = getResources().getString(R.string.provider_code_en);
+            houseNumberText = getResources().getString(R.string.provider_houseNumber_en);
+            streetText = getResources().getString(R.string.provider_street_en);
+            cityText = getResources().getString(R.string.provider_city_en);
+            countryText = getResources().getString(R.string.provider_country_en);
+            phoneNumberText = getResources().getString(R.string.provider_phoneNumber_en);
+            birthDateText = getResources().getString(R.string.provider_birth_en);
+        }
+
+        editTextAddress.setHint(addressEdit);
+        editTextCity.setHint(cityEdit);
+        editTextPostalCode.setHint(postalCodeEdit);
+        editTextCountry.setHint(countryEdit);
+        editTextPhoneNumber.setHint(phoneNumberEdit);
+        editTextBirthDate.setHint(birthDateEdit);
+        editTextHouseNumber.setHint(houseNumberEdit);
+
+        postCodeTextView.setText(postCodeText);
+        houseNumberTextView.setText(houseNumberText);
+        streetTextView.setText(streetText);
+        cityTextView.setText(cityText);
+        countryTextView.setText(countryText);
+        phoneNumberTextView.setText(phoneNumberText);
+        birthDateTextView.setText(birthDateText);
 
         calendar = Calendar.getInstance();
         editTextBirthDate.setOnClickListener(new View.OnClickListener() {

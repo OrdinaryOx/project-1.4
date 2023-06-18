@@ -10,12 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +30,11 @@ public class ProviderFourFragment extends Fragment {
     private Spinner spinnerProviderMonth;
     private Spinner spinnerProviderDays;
     private EditText editTextTypeRoom;
+    private Button roomBtn;
+    private TextView roomTextView;
+    private TextView monthTextView;
+    private TextView dayTextView;
+    private TextView roomTypeTextView;
 
     public ProviderFourFragment() {
         // Required empty public constructor
@@ -37,7 +47,52 @@ public class ProviderFourFragment extends Fragment {
         // Initialize the EditText views
         spinnerProviderMonth = view.findViewById(R.id.spinnerProviderMonth);
         spinnerProviderDays = view.findViewById(R.id.spinnerProviderDays);
+
         editTextTypeRoom = view.findViewById(R.id.editTextTypeRoom);
+
+        roomBtn = view.findViewById(R.id.button);
+
+        roomTextView = view.findViewById(R.id.textView7);
+        monthTextView = view.findViewById(R.id.textView);
+        dayTextView = view.findViewById(R.id.textView16);
+        roomTypeTextView = view.findViewById(R.id.textView18);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String typeRoomEdit = "";
+        String roomButton = "";
+        String roomText = "";
+        String monthText = "";
+        String dayText = "";
+        String roomTypeText = "";
+
+        if (languageCode.equals("nl")) {
+            typeRoomEdit = getResources().getString(R.string.provider_roomHint);
+
+            roomButton = getResources().getString(R.string.provider_addPicture);
+
+            roomText = getResources().getString(R.string.provider_PictureRoom);
+            monthText = getResources().getString(R.string.provider_roomMonths);
+            dayText = getResources().getString(R.string.provider_roomDays);
+            roomTypeText = getResources().getString(R.string.provider_roomType);
+        } else if (languageCode.equals("en")) {
+            typeRoomEdit = getResources().getString(R.string.provider_roomHint_en);
+
+            roomButton = getResources().getString(R.string.provider_addPicture_en);
+
+            roomText = getResources().getString(R.string.provider_PictureRoom_en);
+            monthText = getResources().getString(R.string.provider_roomMonths_en);
+            dayText = getResources().getString(R.string.provider_roomDays_en);
+            roomTypeText = getResources().getString(R.string.provider_roomType_en);
+        }
+
+        editTextTypeRoom.setHint(typeRoomEdit);
+        roomBtn.setText(roomButton);
+        roomTextView.setText(roomText);
+        monthTextView.setText(monthText);
+        dayTextView.setText(dayText);
+        roomTypeTextView.setText(roomTypeText);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {

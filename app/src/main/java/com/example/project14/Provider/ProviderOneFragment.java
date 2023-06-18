@@ -23,8 +23,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project14.LanguageUtils;
+import com.example.project14.MainActivity;
 import com.example.project14.R;
 import com.example.project14.Seeking.User_Seeking_Form;
 
@@ -48,6 +51,17 @@ public class ProviderOneFragment extends Fragment {
 
     private Button uploadImage;
 
+    private TextView titleTextView;
+    private TextView salutationTextView;
+    private TextView firstNameTextView;
+    private TextView infixTextView;
+    private TextView lastNameTextView;
+    private TextView emailTextView;
+    private TextView passwordTextView;
+    private TextView passwordAgainTextView;
+    private TextView buttonTextView;
+
+
     public ProviderOneFragment() {
         // Required empty public constructor
     }
@@ -67,7 +81,104 @@ public class ProviderOneFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.editTextPassword);
         editTextPasswordAgain = view.findViewById(R.id.editTextPasswordAgain);
         editTextEmail = view.findViewById(R.id.editTextEmail);
+
         uploadImage = view.findViewById(R.id.buttonUploadPicture);
+
+        titleTextView = view.findViewById(R.id.textView5);
+        salutationTextView = view.findViewById(R.id.textView3);
+        firstNameTextView = view.findViewById(R.id.textView7);
+        infixTextView = view.findViewById(R.id.textView8);
+        lastNameTextView = view.findViewById(R.id.textView9);
+        emailTextView = view.findViewById(R.id.textViewEmail);
+        passwordTextView = view.findViewById(R.id.textView10);
+        passwordAgainTextView = view.findViewById(R.id.textView13);
+        buttonTextView = view.findViewById(R.id.textView4);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String firstNameEdit = "";
+        String infixEdit = "";
+        String lastNameEdit = "";
+        String passwordEdit = "";
+        String passwordAgainEdit = "";
+        String emailEdit = "";
+
+        String uploadImageText = "";
+
+        String titleText = "";
+        String salutationText = "";
+        String firstNameText = "";
+        String infixText = "";
+        String lastNameText = "";
+        String emailText = "";
+        String passwordText = "";
+        String passwordAgainText = "";
+
+        String buttonText = "";
+
+        if (languageCode.equals("nl")) {
+            firstNameEdit = getResources().getString(R.string.provider_firstNameHint);
+            infixEdit = getResources().getString(R.string.provider_infixHint);
+            lastNameEdit = getResources().getString(R.string.provider_lastNameHint);
+            passwordEdit = getResources().getString(R.string.provider_passwordHint);
+            passwordAgainEdit = getResources().getString(R.string.provider_passwordHint);
+            emailEdit = getResources().getString(R.string.provider_emailHint);
+
+            uploadImageText = getResources().getString(R.string.provider_profilePictureBtn);
+
+            titleText = getResources().getString(R.string.provider_title);
+            salutationText = getResources().getString(R.string.provider_salutation);
+            firstNameText = getResources().getString(R.string.provider_firstName);
+            infixText = getResources().getString(R.string.provider_infix);
+            lastNameText = getResources().getString(R.string.provider_lastName);
+            emailText = getResources().getString(R.string.provider_email);
+            passwordText = getResources().getString(R.string.provider_password);
+            passwordAgainText = getResources().getString(R.string.provider_passwordAgain);
+
+            buttonText = getResources().getString(R.string.provider_profilePicture);
+
+        } else if (languageCode.equals("en")) {
+            firstNameEdit = getResources().getString(R.string.provider_firstNameHint_en);
+            infixEdit = getResources().getString(R.string.provider_infixHint_en);
+            lastNameEdit = getResources().getString(R.string.provider_lastNameHint_en);
+            passwordEdit = getResources().getString(R.string.provider_passwordHint_en);
+            passwordAgainEdit = getResources().getString(R.string.provider_passwordHint_en);
+            emailEdit = getResources().getString(R.string.provider_emailHint_en);
+
+            uploadImageText = getResources().getString(R.string.provider_profilePictureBtn_en);
+
+            titleText = getResources().getString(R.string.provider_title_en);
+            salutationText = getResources().getString(R.string.provider_salutation_en);
+            firstNameText = getResources().getString(R.string.provider_firstName_en);
+            infixText = getResources().getString(R.string.provider_infix_en);
+            lastNameText = getResources().getString(R.string.provider_lastName_en);
+            emailText = getResources().getString(R.string.provider_email_en);
+            passwordText = getResources().getString(R.string.provider_password_en);
+            passwordAgainText = getResources().getString(R.string.provider_passwordAgain_en);
+
+            buttonText = getResources().getString(R.string.provider_profilePicture_en);
+        }
+
+        editTextFirstName.setHint(firstNameEdit);
+        editTextInfix.setHint(infixEdit);
+        editTextLastName.setHint(lastNameEdit);
+        editTextPassword.setHint(passwordEdit);
+        editTextPasswordAgain.setHint(passwordAgainEdit);
+        editTextEmail.setHint(emailEdit);
+        uploadImage.setText(uploadImageText);
+
+        titleTextView.setText(titleText);
+        salutationTextView.setText(salutationText);
+        firstNameTextView.setText(firstNameText);
+        infixTextView.setText(infixText);
+        lastNameTextView.setText(lastNameText);
+        emailTextView.setText(emailText);
+        passwordTextView.setText(passwordText);
+        passwordAgainTextView.setText(passwordAgainText);
+
+        buttonTextView.setText(buttonText);
+
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {

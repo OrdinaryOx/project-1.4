@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 
@@ -32,6 +34,10 @@ public class SeekingFourFragment extends Fragment {
     private RadioButton preferenceNo;
     private RadioButton selfYes;
     private RadioButton selfNo;
+    private TextView daysTextView;
+    private TextView providerPetTextView;
+    private TextView selfPetTextView;
+    private TextView selfPetMoreTextView;
 
     public SeekingFourFragment() {
         // Required empty public constructor
@@ -45,12 +51,71 @@ public class SeekingFourFragment extends Fragment {
         spinnerDay = view.findViewById(R.id.spinnerDay);
         radioGroupPets = view.findViewById(R.id.radioGroupPets);
         radioGroupSelfPets = view.findViewById(R.id.radioGroupSelfPets);
+
         editTextPets = view.findViewById(R.id.editTextPets);
 
         preferenceYes = view.findViewById(R.id.radio_button_preference_yes);
         preferenceNo = view.findViewById(R.id.radio_button_preference_no);
         selfYes = view.findViewById(R.id.radio_button_yes);
         selfNo = view.findViewById(R.id.radio_button_no);
+
+        daysTextView = view.findViewById(R.id.textView17);
+        providerPetTextView = view.findViewById(R.id.textView19);
+        selfPetTextView = view.findViewById(R.id.textView12);
+        selfPetMoreTextView = view.findViewById(R.id.textView15);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String petsEdit = "";
+
+        String preferenceRadioYes = "";
+        String preferenceRadioNo = "";
+        String selfRadioYes = "";
+        String selfRadioNo = "";
+
+        String daysText = "";
+        String providerPetText = "";
+        String selfPetText = "";
+        String selfPetMoreText = "";
+
+        if (languageCode.equals("nl")) {
+            petsEdit = getResources().getString(R.string.seeking_petsSelfCommentHint);
+
+            preferenceRadioYes = getResources().getString(R.string.seeking_petsYes);
+            preferenceRadioNo = getResources().getString(R.string.seeking_petsNo);
+            selfRadioYes = getResources().getString(R.string.seeking_selfPetsYes);
+            selfRadioNo = getResources().getString(R.string.seeking_selfPetsNo);
+
+            daysText = getResources().getString(R.string.seeking_days);
+            providerPetText = getResources().getString(R.string.seeking_otherPet);
+            selfPetText = getResources().getString(R.string.seeking_pets);
+            selfPetMoreText = getResources().getString(R.string.seeking_petsComment);
+        } else if (languageCode.equals("en")) {
+            petsEdit = getResources().getString(R.string.seeking_petsSelfCommentHint_en);
+
+            preferenceRadioYes = getResources().getString(R.string.seeking_petsYes_en);
+            preferenceRadioNo = getResources().getString(R.string.seeking_petsNo_en);
+            selfRadioYes = getResources().getString(R.string.seeking_selfPetsYes_en);
+            selfRadioNo = getResources().getString(R.string.seeking_selfPetsNo_en);
+
+            daysText = getResources().getString(R.string.seeking_days_en);
+            providerPetText = getResources().getString(R.string.seeking_otherPet_en);
+            selfPetText = getResources().getString(R.string.seeking_pets_en);
+            selfPetMoreText = getResources().getString(R.string.seeking_petsComment_en);
+        }
+
+        editTextPets.setHint(petsEdit);
+
+        preferenceYes.setText(preferenceRadioYes);
+        preferenceNo.setText(preferenceRadioNo);
+        selfYes.setText(selfRadioYes);
+        selfNo.setText(selfRadioNo);
+
+        daysTextView.setText(daysText);
+        providerPetTextView.setText(providerPetText);
+        selfPetTextView.setText(selfPetText);
+        selfPetMoreTextView.setText(selfPetMoreText);
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
 //        Log.d("ARRAYLIST FRAGMENT 4", " " + fragmentDataList);

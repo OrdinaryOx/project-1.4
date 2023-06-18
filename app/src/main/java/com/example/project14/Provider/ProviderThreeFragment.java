@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
 import com.example.project14.Seeking.User_Seeking_Form;
 
@@ -30,6 +32,12 @@ public class ProviderThreeFragment extends Fragment {
     private EditText editTextProviderMotivation;
     private RadioButton houseYes;
     private RadioButton houseNo;
+
+    private TextView situationTextView;
+    private TextView boughtTextView;
+    private TextView foundTextView;
+    private TextView motivationTextView;
+
 
 
     public ProviderThreeFragment() {
@@ -47,6 +55,60 @@ public class ProviderThreeFragment extends Fragment {
         editTextProviderMotivation = view.findViewById(R.id.editTextProviderMotivation);
         houseYes = view.findViewById(R.id.radio_button_house_yes);
         houseNo = view.findViewById(R.id.radio_button_house_no);
+
+        situationTextView = view.findViewById(R.id.textView7);
+        boughtTextView = view.findViewById(R.id.textView);
+        foundTextView = view.findViewById(R.id.textView16);
+        motivationTextView = view.findViewById(R.id.textView18);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String yesButton = "";
+        String noButton = "";
+
+        String foundEdit = "";
+        String providerMotivationEdit = "";
+
+        String situationText = "";
+        String boughtText = "";
+        String foundText = "";
+        String motivationText = "";
+
+        if (languageCode.equals("nl")) {
+            yesButton = getResources().getString(R.string.provider_boughtYes);
+            noButton = getResources().getString(R.string.provider_boughtNo);
+
+            foundEdit = getResources().getString(R.string.provider_foundHint);
+            providerMotivationEdit = getResources().getString(R.string.provider_reasonHint);
+
+            situationText = getResources().getString(R.string.provider_situation);
+            boughtText = getResources().getString(R.string.provider_bought);
+            foundText = getResources().getString(R.string.provider_found);
+            motivationText = getResources().getString(R.string.provider_reason);
+        } else if (languageCode.equals("en")) {
+            yesButton = getResources().getString(R.string.provider_boughtYes_en);
+            noButton = getResources().getString(R.string.provider_boughtNo_en);
+
+            foundEdit = getResources().getString(R.string.provider_foundHint_en);
+            providerMotivationEdit = getResources().getString(R.string.provider_reasonHint_en);
+
+            situationText = getResources().getString(R.string.provider_situation_en);
+            boughtText = getResources().getString(R.string.provider_bought_en);
+            foundText = getResources().getString(R.string.provider_found_en);
+            motivationText = getResources().getString(R.string.provider_reason_en);
+        }
+
+        houseYes.setText(yesButton);
+        houseNo.setText(noButton);
+
+        editTextFound.setHint(foundEdit);
+        editTextProviderMotivation.setHint(providerMotivationEdit);
+
+        situationTextView.setText(situationText);
+        boughtTextView.setText(boughtText);
+        foundTextView.setText(foundText);
+        motivationTextView.setText(motivationText);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {

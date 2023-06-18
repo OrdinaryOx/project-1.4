@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.R;
 
 import java.util.ArrayList;
@@ -31,6 +33,12 @@ public class ProviderSevenFragment extends Fragment {
     private RadioButton workNo;
     private RadioButton petsYes;
     private RadioButton petsNo;
+    private TextView workTextView;
+    private TextView workMoreTextView;
+    private TextView keywordTextView;
+    private TextView hobbyTextView;
+    private TextView petTextView;
+    private TextView petMoreTextView;
 
 
     public ProviderSevenFragment() {
@@ -51,8 +59,94 @@ public class ProviderSevenFragment extends Fragment {
 
         workYes = view.findViewById(R.id.radio_button_provider_work_yes);
         workNo = view.findViewById(R.id.radio_button_provider_work_no);
+
         petsYes = view.findViewById(R.id.radio_button_yes);
         petsNo = view.findViewById(R.id.radio_button_no);
+
+        workTextView = view.findViewById(R.id.textView15);
+        workMoreTextView = view.findViewById(R.id.textView16);
+        keywordTextView = view.findViewById(R.id.textView35);
+        hobbyTextView = view.findViewById(R.id.textView36);
+        petTextView = view.findViewById(R.id.textView12);
+        petMoreTextView = view.findViewById(R.id.textView29);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String workEdit = "";
+        String keywordEdit = "";
+        String hobbyEdit = "";
+        String petsEdit = "";
+
+        String workYesRadio = "" ;
+        String workNoRadio = "";
+
+        String petsYesRadio = "";
+        String petsNoRadio = "";
+
+        String workText = "";
+        String workMoreText = "";
+        String keywordText = "";
+        String hobbyText = "";
+        String petText = "";
+        String petMoreText = "";
+
+        if (languageCode.equals("nl")) {
+            workEdit = getResources().getString(R.string.provider_workCommentHint);
+            keywordEdit = getResources().getString(R.string.provider_keywordHint);
+            hobbyEdit = getResources().getString(R.string.provider_hobbyHint);
+            petsEdit = getResources().getString(R.string.provider_petCommentHint);
+
+            workYesRadio = getResources().getString(R.string.provider_workYes);
+            workNoRadio = getResources().getString(R.string.provider_workNo);
+
+            petsYesRadio = getResources().getString(R.string.providerPetsYes);
+            petsNoRadio = getResources().getString(R.string.providerPetsNo);
+
+            workText = getResources().getString(R.string.provider_work);
+            workMoreText = getResources().getString(R.string.provider_workComment);
+            keywordText = getResources().getString(R.string.provider_keyword);
+            hobbyText = getResources().getString(R.string.provider_hobby);
+            petText = getResources().getString(R.string.providerPets);
+            petMoreText = getResources().getString(R.string.provider_petComment);
+
+        } else if (languageCode.equals("en")) {
+            workEdit = getResources().getString(R.string.provider_workCommentHint_en);
+            keywordEdit = getResources().getString(R.string.provider_keywordHint_en);
+            hobbyEdit = getResources().getString(R.string.provider_hobbyHint_en);
+            petsEdit = getResources().getString(R.string.provider_petCommentHint_en);
+
+            workYesRadio = getResources().getString(R.string.provider_workYes_en);
+            workNoRadio = getResources().getString(R.string.provider_workNo_en);
+
+            petsYesRadio = getResources().getString(R.string.providerPetsYes_en);
+            petsNoRadio = getResources().getString(R.string.providerPetsNo_en);
+
+            workText = getResources().getString(R.string.provider_work_en);
+            workMoreText = getResources().getString(R.string.provider_workComment_en);
+            keywordText = getResources().getString(R.string.provider_keyword_en);
+            hobbyText = getResources().getString(R.string.provider_hobby_en);
+            petText = getResources().getString(R.string.providerPets_en);
+            petMoreText = getResources().getString(R.string.provider_petComment_en);
+        }
+
+        editTextProviderWork.setHint(workEdit);
+        editTextKeyword.setHint(keywordEdit);
+        editTextHobby.setHint(hobbyEdit);
+        editTextPets.setHint(petsEdit);
+
+        workYes.setText(workYesRadio);
+        workNo.setText(workNoRadio);
+
+        petsYes.setText(petsYesRadio);
+        petsNo.setText(petsNoRadio);
+
+        workTextView.setText(workText);
+        workMoreTextView.setText(workMoreText);
+        keywordTextView.setText(keywordText);
+        hobbyTextView.setText(hobbyText);
+        petTextView.setText(petText);
+        petMoreTextView.setText(petMoreText);
 
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {

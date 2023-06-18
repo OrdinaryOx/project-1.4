@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
@@ -38,6 +40,11 @@ public class SeekingSixFragment extends Fragment {
     private RadioButton seekingWorkNo;
     private RadioButton healthIssuesYes;
     private RadioButton healthIssuesNo;
+    private TextView aidTextView;
+    private TextView workTextView;
+    private TextView workMoreTextView;
+    private TextView healthTextView;
+    private TextView healthMoreTextView;
 
     public SeekingSixFragment() {
         // Required empty public constructor
@@ -52,14 +59,99 @@ public class SeekingSixFragment extends Fragment {
         radioButtonBhv = view.findViewById(R.id.radioButtonBhv);
         radioButtonReanimation = view.findViewById(R.id.radioButtonReanimation);
         radioGroupSeekingWork = view.findViewById(R.id.radioGroupSeekingWork);
-        editTextWork = view.findViewById(R.id.editTextWork);
+
         radioGroupHealth = view.findViewById(R.id.radioGroupHealth);
+
         editTextHealth = view.findViewById(R.id.editTextHealth);
+        editTextWork = view.findViewById(R.id.editTextWork);
 
         seekingWorkYes = view.findViewById(R.id.radio_button_seeking_work_yes);
         seekingWorkNo = view.findViewById(R.id.radio_button_seeking_work_no);
         healthIssuesYes = view.findViewById(R.id.radio_button_health_yes);
         healthIssuesNo = view.findViewById(R.id.radio_button_health_no);
+
+        aidTextView = view.findViewById(R.id.textView17);
+        workTextView = view.findViewById(R.id.textView15);
+        workMoreTextView = view.findViewById(R.id.textView16);
+        healthTextView = view.findViewById(R.id.textView24);
+        healthMoreTextView = view.findViewById(R.id.textView27);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String ehboButton = "";
+        String bhvButton = "";
+        String reanimationButton = "";
+
+        String healthEdit = "";
+        String workEdit = "";
+
+        String workRadioYes = "";
+        String workRadioNo = "";
+        String healthRadioYes = "";
+        String healthRadioNo = "";
+
+        String aidText = "";
+        String workText = "";
+        String workMoreText = "";
+        String healthText = "";
+        String healthMoreText = "";
+
+        if (languageCode.equals("nl")) {
+            ehboButton = getResources().getString(R.string.seeking_firstAid);
+            bhvButton = getResources().getString(R.string.seeking_care);
+            reanimationButton = getResources().getString(R.string.seeking_reanimation);
+
+            healthEdit = getResources().getString(R.string.seeking_healthCommentHint);
+            workEdit = getResources().getString(R.string.seeking_workCommentHint);
+
+            workRadioYes = getResources().getString(R.string.seeking_workYes);
+            workRadioNo = getResources().getString(R.string.seeking_workNo);
+            healthRadioYes = getResources().getString(R.string.seeking_healthYes);
+            healthRadioNo = getResources().getString(R.string.seeking_healthNo);
+
+            aidText = getResources().getString(R.string.seeking_help);
+            workText = getResources().getString(R.string.seeking_work);
+            workMoreText = getResources().getString(R.string.seeking_workComment);
+            healthText = getResources().getString(R.string.seeking_health);
+            healthMoreText = getResources().getString(R.string.seeking_healthComment);
+        } else if (languageCode.equals("en")) {
+            ehboButton = getResources().getString(R.string.seeking_firstAid_en);
+            bhvButton = getResources().getString(R.string.seeking_care_en);
+            reanimationButton = getResources().getString(R.string.seeking_reanimation_en);
+
+            healthEdit = getResources().getString(R.string.seeking_healthCommentHint_en);
+            workEdit = getResources().getString(R.string.seeking_workCommentHint_en);
+
+            workRadioYes = getResources().getString(R.string.seeking_workYes_en);
+            workRadioNo = getResources().getString(R.string.seeking_workNo_en);
+            healthRadioYes = getResources().getString(R.string.seeking_healthYes_en);
+            healthRadioNo = getResources().getString(R.string.seeking_healthNo_en);
+
+            aidText = getResources().getString(R.string.seeking_help_en);
+            workText = getResources().getString(R.string.seeking_work_en);
+            workMoreText = getResources().getString(R.string.seeking_workComment_en);
+            healthText = getResources().getString(R.string.seeking_health_en);
+            healthMoreText = getResources().getString(R.string.seeking_healthComment_en);
+        }
+
+        radioButtonEhbo.setText(ehboButton);
+        radioButtonBhv.setText(bhvButton);
+        radioButtonReanimation.setText(reanimationButton);
+
+        editTextHealth.setHint(healthEdit);
+        editTextWork.setHint(workEdit);
+
+        seekingWorkYes.setText(workRadioYes);
+        seekingWorkNo.setText(workRadioNo);
+        healthIssuesYes.setText(healthRadioYes);
+        healthIssuesNo.setText(healthRadioNo);
+
+        aidTextView.setText(aidText);
+        workTextView.setText(workText);
+        workMoreTextView.setText(workMoreText);
+        healthTextView.setText(healthText);
+        healthMoreTextView.setText(healthMoreText);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();

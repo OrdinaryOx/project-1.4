@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.project14.LanguageUtils;
 import com.example.project14.Seeking.User_Seeking_Form;
 import com.example.project14.R;
 
@@ -32,6 +34,11 @@ public class SeekingThreeFragment extends Fragment {
     private RadioButton man;
     private RadioButton couple;
     private RadioButton none;
+    private TextView cityTextView;
+    private TextView preferenceTextView;
+    private TextView budgetTextView;
+    private TextView preferenceTimeTextView;
+
 
     public SeekingThreeFragment() {
         // Required empty public constructor
@@ -45,12 +52,73 @@ public class SeekingThreeFragment extends Fragment {
 
         spinnerCity = view.findViewById(R.id.spinnerCity);
         radioGroupPreference = view.findViewById(R.id.radioGroupPreference);
+
         editTextBudget = view.findViewById(R.id.editTextBudget);
+
         spinnerMonth = view.findViewById(R.id.spinnerMonth);
+
         woman = view.findViewById(R.id.radio_button_women);
         man = view.findViewById(R.id.radio_button_men);
         couple = view.findViewById(R.id.radio_button_couples);
         none = view.findViewById(R.id.radio_button_geen);
+
+        cityTextView = view.findViewById(R.id.textView7);
+        preferenceTextView = view.findViewById(R.id.textView);
+        budgetTextView = view.findViewById(R.id.textView16);
+        preferenceTimeTextView = view.findViewById(R.id.textView18);
+
+        LanguageUtils.updateLanguage(requireContext());
+
+        String languageCode = LanguageUtils.getLanguagePreference(requireContext());
+        String budgetEdit = "";
+
+        String womanRadio = "";
+        String manRadio = "";
+        String coupleRadio = "";
+        String noneRadio = "";
+
+        String cityText = "";
+        String preferenceText = "";
+        String budgetText = "";
+        String preferenceTimeText = "";
+
+        if (languageCode.equals("nl")) {
+            budgetEdit = getResources().getString(R.string.seeking_budgetHint);
+
+            womanRadio = getResources().getString(R.string.seeking_preferenceW);
+            manRadio = getResources().getString(R.string.seeking_preferenceM);
+            coupleRadio = getResources().getString(R.string.seeking_preferenceC);
+            noneRadio = getResources().getString(R.string.seeking_preferenceO);
+
+            cityText = getResources().getString(R.string.seeking_cityRoom);
+            preferenceText = getResources().getString(R.string.seeking_preference);
+            budgetText = getResources().getString(R.string.seeking_budget);
+            preferenceTimeText = getResources().getString(R.string.seeking_livingTime);
+        } else if (languageCode.equals("en")) {
+            budgetEdit = getResources().getString(R.string.seeking_budgetHint_en);
+
+            womanRadio = getResources().getString(R.string.seeking_preferenceW_en);
+            manRadio = getResources().getString(R.string.seeking_preferenceM_en);
+            coupleRadio = getResources().getString(R.string.seeking_preferenceC_en);
+            noneRadio = getResources().getString(R.string.seeking_preferenceO_en);
+
+            cityText = getResources().getString(R.string.seeking_cityRoom_en);
+            preferenceText = getResources().getString(R.string.seeking_preference_en);
+            budgetText = getResources().getString(R.string.seeking_budget_en);
+            preferenceTimeText = getResources().getString(R.string.seeking_livingTime_en);
+        }
+
+        editTextBudget.setHint(budgetEdit);
+
+        woman.setText(womanRadio);
+        man.setText(manRadio);
+        couple.setText(coupleRadio);
+        none.setText(noneRadio);
+
+        cityTextView.setText(cityText);
+        preferenceTextView.setText(preferenceText);
+        budgetTextView.setText(budgetText);
+        preferenceTimeTextView.setText(preferenceTimeText);
 
 //        User_Seeking_Form activity = (User_Seeking_Form) getActivity();
 //        ArrayList<String> fragmentDataList = activity.getFragmentDataList();
