@@ -28,4 +28,6 @@ public interface ApiService {
 
     @GET("user/verhuurder/match")
     Call<JsonObject> getVerhuurderMatch();
+
+
 }

@@ -1,6 +1,8 @@
 package com.example.project14.Provider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,11 +20,14 @@ import com.example.project14.ActivitiesScreen;
 import com.example.project14.Login.LoginActivity;
 import com.example.project14.MainActivity;
 import com.example.project14.OptionsActivity;
+import com.example.project14.Profile.ApiInterfaceProfile;
+import com.example.project14.Profile.ProfileUser;
 import com.example.project14.R;
 import com.example.project14.RoleActivity;
 import com.example.project14.Seeking.SeekingOneFragment;
 import com.example.project14.Seeking.SeekingTenFragment;
 import com.example.project14.Seeking.User_Seeking_Form;
+import com.google.gson.JsonObject;
 
 
 import org.json.JSONException;
@@ -30,6 +35,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.Provider;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,9 +48,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class User_Provider_Form extends AppCompatActivity {
-    //TODO Add ProfilePicture + HousePicture
+
+
+    private String idSave = "";
 
     private HashMap<String, String> fragmentDataList;
     private FragmentManager fragmentManager;
@@ -65,6 +77,169 @@ public class User_Provider_Form extends AppCompatActivity {
         setContentView(R.layout.activity_user_provider_form);
 
         fragmentDataList = new HashMap<>();
+        Intent intent = getIntent();
+        //CHECK IF INTENT CONTAINS EXTRAS
+        Bundle extras = intent.getExtras();
+        if (extras != null && extras.containsKey("ID")) {
+            String id = extras.getString("ID");
+            idSave = id;
+            //PAGE1
+            String firstName = extras.getString("FirstName");
+            String middleName = extras.getString("MiddleName");
+            String lastName = extras.getString("LastName");
+            String email = extras.getString("Email");
+            String password = extras.getString("Password");
+            String gender = extras.getString("Salutation");
+            //PAGE2
+            String address = extras.getString("Address");
+            String houseNumber = extras.getString("HouseNumber");
+            String cityPersonal = extras.getString("CityPersonal");
+            String postalCode = extras.getString("PostalCode");
+            String country = extras.getString("Country");
+            String phoneNumber = extras.getString("PhoneNumber");
+            String birthDate = extras.getString("BirthDate");
+            //PAGE3
+            String situation = extras.getString("Situation");
+            String house = extras.getString("House");
+            String found = extras.getString("Found");
+            String providerMotivation = extras.getString("ProviderMotivation");
+            //PAGE4
+            String providerDays = extras.getString("ProviderDays");
+            String providerMonth = extras.getString("ProviderMonth");
+            String typeRoom = extras.getString("TypeRoom");
+//PAGE5
+            String squareMeter = extras.getString("SquareMeter");
+            String furnish = extras.getString("Furnish");
+            String furnished = extras.getString("Furnished");
+            String price = extras.getString("Price");
+            //PAGE6
+            String offer = extras.getString("Offer");
+            String importantNote = extras.getString("ImportantNote");
+            String volunteer = extras.getString("Volunteer");
+            String commentVolunteer = extras.getString("CommentVolunteer");
+            //PAGE7
+            String providerWork = extras.getString("ProviderWork");
+            String petsOwn = extras.getString("PetsOwn");
+            String providerWorkDetails = extras.getString("ProviderWorkDetails");
+            String keyword = extras.getString("Keyword");
+            String hobby = extras.getString("Hobby");
+            String pets = extras.getString("Pets");
+            //PAGE8
+            String belief = extras.getString("Belief");
+            String other = extras.getString("Other");
+//PAGE9
+            String comment = extras.getString("Comment");//8
+            //Code
+            //GENDER
+            if (gender.equals("M")) {
+                gender = "Dhr";
+            } else if (gender.equals("F")) {
+                gender = "Mvr";
+            } else {
+                gender = "Anders";
+            }
+
+            if (house.equals("1")) {
+                house = "Ja";
+            } else {
+                house = "Nee";
+            }
+
+
+            if (furnish.equals("1")) {
+                furnish = "Ja";
+            } else {
+                furnish = "Nee";
+            }
+
+            if (providerDays.equals("1")) {
+                providerDays = providerDays + " dag";
+            } else {
+                providerDays = providerDays + " dagen";
+            }
+
+
+            if (petsOwn.equals("1")) {
+                petsOwn = "Ja";
+            } else {
+                petsOwn = "Nee";
+            }
+
+            if (providerWork.equals("1")) {
+                providerWork = "Ja";
+            }else{
+                providerWork = "Nee";
+            }
+
+            if (volunteer.equals("1")) {
+                volunteer = "Ja";
+            } else {
+                volunteer = "Nee";
+            }
+            //ADD ID
+            fragmentDataList.put("ID", id);
+
+            //PAGE1
+            fragmentDataList.put("FirstName", firstName);
+            fragmentDataList.put("MiddleName", middleName);
+            fragmentDataList.put("LastName", lastName);
+            fragmentDataList.put("Email", email);
+            fragmentDataList.put("Salutation", gender);
+//            fragmentDataList.put("Password", password);
+//            fragmentDataList.put("PasswordAgain", password);
+
+            //PAGE2
+            fragmentDataList.put("Address", address);
+            fragmentDataList.put("HouseNumber", houseNumber);
+            fragmentDataList.put("CityPersonal", cityPersonal);
+            fragmentDataList.put("PostalCode", postalCode);
+            fragmentDataList.put("Country", country);
+            fragmentDataList.put("PhoneNumber", phoneNumber);
+            fragmentDataList.put("BirthDate", convertDate(birthDate));
+
+            //PAGE3
+
+            fragmentDataList.put("Situation", situation);
+            fragmentDataList.put("House", house);
+            fragmentDataList.put("Found", found);
+            fragmentDataList.put("ProviderMotivation", providerMotivation);
+
+            //PAGE4
+
+            fragmentDataList.put("ProviderDays", providerDays);
+            fragmentDataList.put("ProviderMonth", providerMonth + " maand(en)");
+            fragmentDataList.put("TypeRoom", typeRoom);
+
+            //PAGE5
+            fragmentDataList.put("SquareMeter", squareMeter);
+            fragmentDataList.put("Furnish", furnish);
+            fragmentDataList.put("Furnished", furnished);
+            fragmentDataList.put("Price", price);
+
+
+            //PAGE6
+            fragmentDataList.put("Offer", offer);
+            fragmentDataList.put("ImportantNote", importantNote);
+            fragmentDataList.put("Volunteer", volunteer);
+            fragmentDataList.put("CommentVolunteer", commentVolunteer);
+
+
+            //PAGE7
+            fragmentDataList.put("ProviderWork", providerWork);
+            fragmentDataList.put("ProviderWorkDetails", providerWorkDetails);
+            fragmentDataList.put("Keyword", keyword);
+            fragmentDataList.put("Hobby", hobby);
+            fragmentDataList.put("SelfPets", petsOwn);
+            fragmentDataList.put("Pets", pets);
+            //PAGE8
+            fragmentDataList.put("Belief", belief);
+            fragmentDataList.put("Other", other);
+
+            //PAGE9
+            fragmentDataList.put("Comment", comment);
+        } else {
+            Log.d("INTENT EXTRAS NOT FOUND", "Cannot retrieve ID");
+        }
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -145,6 +320,32 @@ public class User_Provider_Form extends AppCompatActivity {
 
             }
         });
+    }
+
+    public String convertDate(String dateString) {
+        // Parse the input date string as an Instant
+        Instant instant = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            instant = Instant.parse(dateString);
+        }
+
+        // Convert the Instant to a LocalDate
+        LocalDate date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = instant.atZone(java.time.ZoneOffset.UTC).toLocalDate();
+        }
+
+        // Format the LocalDate using the desired pattern
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        }
+        String formattedDate = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formattedDate = date.format(formatter);
+        }
+
+        return formattedDate;
     }
 
     private void setCurrentFragment() {
@@ -323,39 +524,105 @@ public class User_Provider_Form extends AppCompatActivity {
     }
 
     public void opsturen(View view) throws JSONException {
-        OkHttpClient client = new OkHttpClient();
+        if (idSave.equals("")) {
+            Log.d("Not editing", "Not editing");
+            OkHttpClient client = new OkHttpClient();
 
-        MediaType mediaType = MediaType.parse("application/json");
-        String json = buildProviderPreferences().toString();
-        Log.d("JSON String", json);
-        RequestBody body = RequestBody.create(json, mediaType);
+            MediaType mediaType = MediaType.parse("application/json");
+            String json = buildProviderPreferences().toString();
+            Log.d("JSON String", json);
+            RequestBody body = RequestBody.create(json, mediaType);
 
-        Request request = new Request.Builder()
-                .url("https://hardy-stream-production.up.railway.app/api/user/verhuurder")
-                .post(body)
-                .build();
+            Request request = new Request.Builder()
+                    .url("https://hardy-stream-production.up.railway.app/api/user/verhuurder")
+                    .post(body)
+                    .build();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                // Handle the request failure
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    // Request successful
-                    String responseBody = response.body().string();
-                    System.out.println("Response: " + responseBody);
-                    Intent intent = new Intent(User_Provider_Form.this, LoginActivity.class);
-                    startActivity(intent);
-                } else {
-                    // Request failed
-                    System.out.println("Request failed with code: " + response.code());
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                    // Handle the request failure
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        // Request successful
+                        String responseBody = response.body().string();
+                        System.out.println("Response: " + responseBody);
+                        Intent intent = new Intent(User_Provider_Form.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Request failed
+                        System.out.println("Request failed with code: " + response.code());
+                    }
+                }
+            });
+        } else {
+            Log.d("idSave", "" + idSave);
+            Log.d("Editing", "Editing");
+            // Create a Retrofit instance and the service interface
+
+            SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+            String token = sharedPreferences.getString("token", "");
+            String completeToken = token.substring(1, token.length() - 1);
+            Log.d("Check token", token);
+
+            OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+            httpClientBuilder.addInterceptor(chain -> {
+                Request originalRequest = chain.request();
+                Request.Builder requestBuilder = originalRequest.newBuilder()
+                        .header("Authorization", "Bearer " + completeToken);
+                Request newRequest = requestBuilder.build();
+                return chain.proceed(newRequest);
+            });
+
+            OkHttpClient httpClient = httpClientBuilder.build();
+
+
+            MediaType mediaType = MediaType.parse("application/json");
+            String json = buildProviderPreferences().toString();
+            Log.d("JSON String", json);
+            RequestBody body = RequestBody.create(json, mediaType);
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://hardy-stream-production.up.railway.app/api/user/")
+                    .client(httpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            ApiInterfaceProfile service = retrofit.create(ApiInterfaceProfile.class);
+
+
+            // Make the request with the extracted userID
+            retrofit2.Call<JsonObject> call = service.updateVerhuurder(idSave, body);
+            call.enqueue(new retrofit2.Callback<JsonObject>() {
+                @Override
+                public void onResponse(retrofit2.Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        JsonObject jsonObject = response.body();
+                        Intent intent = new Intent(User_Provider_Form.this, ProfileUser.class);
+                        startActivity(intent);
+                    } else {
+
+                        Log.d("Error?", response.message());
+
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<JsonObject> call, Throwable t) {
+                    Log.e("ERROR Updating", "" + t.getMessage());
+                }
+
+
+            });
+
+        }
+
+
     }
 
     private Object buildProviderPreferences() throws JSONException {

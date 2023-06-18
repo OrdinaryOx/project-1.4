@@ -168,8 +168,7 @@ public class SeekingOneFragment extends Fragment {
                 !TextUtils.isEmpty(getPassword()) &&
                 !TextUtils.isEmpty(getPasswordAgain()) &&
                 getPassword().equals(getPasswordAgain()) &&
-                verifyEmail(getEmail()) &&
-                base64Image != "0";
+                verifyEmail(getEmail());
 
     }
 
@@ -249,13 +248,13 @@ public class SeekingOneFragment extends Fragment {
         } else {
             editTextEmail.setBackgroundResource(R.drawable.border);
         }
-        if (TextUtils.isEmpty((getImage()))) {
-            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
-            uploadImage.setBackground(borderDrawable);
-        } else {
-            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
-            uploadImage.setBackground(borderDrawable);
-        }
+//        if (TextUtils.isEmpty((getImage()))) {
+//            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
+//            uploadImage.setBackground(borderDrawable);
+//        } else {
+//            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
+//            uploadImage.setBackground(borderDrawable);
+//        }
         if (!arePasswordsMatching()) {
             editTextPassword.setBackgroundResource(R.drawable.border_red);
             editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);

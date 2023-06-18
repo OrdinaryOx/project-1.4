@@ -362,6 +362,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
+        android:onClick="editUser"
         android:backgroundTint="@color/MWG_Dark"
         android:text="Pas profiel aan"
         android:textSize="60px" />

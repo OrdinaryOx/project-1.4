@@ -48,7 +48,7 @@ public class ProviderSixFragment extends Fragment {
         User_Provider_Form activity = (User_Provider_Form) getActivity();
         if (activity != null) {
             HashMap<String, String> fragmentDataList = activity.getFragmentDataList();
-            if (fragmentDataList.containsKey("Situation")) {
+            if (fragmentDataList.containsKey("Offer")) {
                 String offer = fragmentDataList.get("Offer");
                 editTextOffer.setText(offer);
             }

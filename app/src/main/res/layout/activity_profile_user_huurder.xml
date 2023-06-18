@@ -344,7 +344,7 @@
         android:id="@+id/editProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-
+android:onClick="editUser"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
