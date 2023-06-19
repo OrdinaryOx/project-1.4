@@ -290,6 +290,7 @@
                 android:layout_below="@id/Pets"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@id/work"
                 android:maxLines="2"
@@ -303,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/work"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginBottom="10dp"
                 android:maxLines="3"
                 android:text="Hier taken waar hulp voor wordt aangeboden of gevraagd door huurder of verhuurder."

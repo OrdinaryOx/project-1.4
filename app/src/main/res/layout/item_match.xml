@@ -22,7 +22,7 @@
                     android:background="@color/MWG_Basic"
                     android:backgroundTint="@color/MWG_Basic"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
         <RelativeLayout
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/match_info_layout"
                 android:layout_centerHorizontal="true"
-                android:maxLength="13"
+                android:maxLength="11"
                 android:text="City"
                 android:textColor="@color/white"
                 android:textStyle="bold"

@@ -199,16 +199,16 @@ public class ProfileUser extends AppCompatActivity {
 //                        String lastName = profiledata.get("lastName") != null ? profiledata.get("lastName").toString() : "-";
 //                        String gender = profiledata.get("gender") != null ? profiledata.get("gender").toString() : "-";
 //                        String city = profiledata.get("city") != null ? profiledata.get("city").toString() : "-";
-                        String budget = preferenceData.get("budget") != null ? preferenceData.get("budget").toString() : "-";
-//                        String work = (preferenceData.get("work") != null && preferenceData.get("work").getAsInt() == 1) ? "ja" : "nee";
-                        String workDesc = preferenceData.get("workDescription").toString();
+                        String budget = preferenceData.get("budget") != null ? preferenceData.get("budget").toString() : "";
+                        String work = (preferenceData.get("work") != null && preferenceData.get("work").getAsInt() == 1) ? "Ja" : "Nee";
+                        String workDesc = preferenceData.get("workDescription") != null ? preferenceData.get("workDescription").toString() : "";
                         String skill = preferenceData.get("skill").toString();
-                        String pet = (preferenceData.get("ownPet").toString());
-                        String petDescription = preferenceData.get("ownPetDescription").toString();
+                        String pet = (preferenceData.get("ownPet") != null && preferenceData.get("pet").getAsInt() ==1) ? "Ja" : "Nee";
+                        String petDescription = preferenceData.get("ownPetDescription") != null ? preferenceData.get("ownPetDescription").toString() :"";
                         String preference = preferenceData.get("liveWith").toString();
                         String month = preferenceData.get("period").toString();
                         String day = preferenceData.get("nights").toString();
-                        String petYesNo = preferenceData.get("pet").toString();
+                        String petYesNo = preferenceData.get("ownPet").toString();
 
                         String health = preferenceData.get("healthRisk").toString();
                         String healthDesc = preferenceData.get("healthRiskDescription").toString();
@@ -223,6 +223,7 @@ public class ProfileUser extends AppCompatActivity {
 
                         String offer = preferenceData.get("offer").toString();
                         offer = offer.replace("\"", "");
+                        skill = skill.replace("\"", "");
 
                         keywords = keywords.replace("\"", "");
                         description = description.replace("\"", "");
@@ -233,10 +234,13 @@ public class ProfileUser extends AppCompatActivity {
 
                         String firstName = match.getFirstName();
                         String middleName = match.getMiddleName();
+                        if (middleName == null) {
+                            middleName = "";
+                        }
                         String lastName = match.getLastName();
                         String gender = match.getGender();
                         String city = match.getCity();
-                        int work = match.getWork();
+
                         //                String workDesc = match.getWorkDescription();
                         //   String healthRisk = match.getHealthRisk();
                         //String pet = match.getPet();
@@ -279,7 +283,7 @@ public class ProfileUser extends AppCompatActivity {
                         //         workTextView.setText("Werk: " + work);
 
                         String workString = "";
-                        if (work == 0) {
+                        if (work.equals("0")) {
                             workString = "Nee";
                         } else {
                             workString = "Ja - ";
@@ -302,7 +306,7 @@ public class ProfileUser extends AppCompatActivity {
                         Log.d("WORKDESC", workDesc);
 
 
-                        workDescTextView.setText(workString + workDesc);
+                        workDescTextView.setText(work + workDesc);
 
                         skill.replace("\"", "");
                         if (skill.isEmpty() || skill == null || skill.equals("\"\"") || skill.equals("0")) {
@@ -340,7 +344,7 @@ public class ProfileUser extends AppCompatActivity {
 
                         NightsIntent = day;
                         PetIntent = petYesNo;
-                        OwnPetIntent = pet;
+                        OwnPetIntent = petYesNo;
                         OwnPetDescriptionIntent = petDescription;
 
                         String startDate = preferenceData.get("starDate").toString();
@@ -535,8 +539,6 @@ public class ProfileUser extends AppCompatActivity {
                         //                    userKeywordsTextViewverhuurder.setText("Kernwoorden over jezelf: " + keywordsverhuurder);
 
 
-
-
                         workDesc = workDesc.replace("\"", "");
 
                         String houseIntentItem = preferenceData.get("house").toString();
@@ -553,7 +555,7 @@ public class ProfileUser extends AppCompatActivity {
                         String providerWorkDetailsIntentItem = preferenceData.get("workDescription").toString();
                         String hobbyIntentItem = preferenceData.get("hobby").toString();
                         //?
-                        String petsIntentItem = preferenceData.get("petDescription").toString();
+                        String petsIntentItem = preferenceData.get("petDescription")!= null ? preferenceData.get("petDescription").toString():"";
                         String beliefIntentItem = preferenceData.get("religion").toString();
                         String otherIntentItem = preferenceData.get("comment").toString();
                         String overallCommentIntentItem = preferenceData.get("overallcomment").toString();
@@ -562,6 +564,7 @@ public class ProfileUser extends AppCompatActivity {
                         //
                         String providerWorkIntentItem = preferenceData.get("work").toString();
                         String petsOwnIntentItem = preferenceData.get("pet").toString();
+
 
                         houseIntentItem = houseIntentItem.replace("\"", "");
                         foundIntentItem = foundIntentItem.replace("\"", "");
@@ -608,6 +611,7 @@ public class ProfileUser extends AppCompatActivity {
                         overallCommentIntent = overallCommentIntentItem;
 
                         providerWorkIntent = providerWorkIntentItem;
+                        //YESNO
                         petsOwnIntent = petsOwnIntentItem;
 
 
