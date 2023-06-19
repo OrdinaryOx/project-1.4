@@ -13,13 +13,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.project14.Provider.User_Provider_Form;
+
+import java.util.Set;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -69,6 +73,8 @@ public class OptionsActivity extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        Switch switchButton = findViewById(R.id.PrivacySwitch);
 
         languageTextView = findViewById(R.id.languageTextView);
         dutchTextView = findViewById(R.id.languageDutch);
@@ -155,12 +161,25 @@ public class OptionsActivity extends AppCompatActivity {
         linkTextView.setText(linkText);
         logOutBtn.setText(logOutButton);
 
-        // Set click listener for the back button
+        //Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle back button click
                 onBackPressed();
+            }
+        });
+
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Handle the switch state change here
+                if (isChecked) {
+
+                } else {
+                    // Switch is OFF
+                    // Perform some other action
+                }
             }
         });
 
@@ -244,8 +263,6 @@ public class OptionsActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT, "Hallo " + userName + ", \n");
 
         startActivity(intent);
-
-
     }
 
 

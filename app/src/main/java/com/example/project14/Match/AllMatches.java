@@ -91,7 +91,7 @@ public class AllMatches extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LanguageUtils.updateLanguage(this);
+        //LanguageUtils.updateLanguage(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_matches);

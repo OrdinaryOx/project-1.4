@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,6 +83,8 @@ public class ProfileVerhuurder extends AppCompatActivity {
 
         String pet = intent.getStringExtra("pet");
         String petDesc = intent.getStringExtra("petdesc");
+
+        String isVisible = intent.getStringExtra("isVisible");
 
         String keywords = intent.getStringExtra("keywords");
         String help = intent.getStringExtra("help");
@@ -183,16 +187,25 @@ public class ProfileVerhuurder extends AppCompatActivity {
             }
         });
 
-        phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(ProfileVerhuurder.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ProfileVerhuurder.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
-                } else {
-                    makePhoneCall();
+        if (isVisible.equals("1")) {
+            phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (ContextCompat.checkSelfPermission(ProfileVerhuurder.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(ProfileVerhuurder.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
+                    } else {
+                        makePhoneCall();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            // Disable the OnClickListener for the phone ImageView
+            phone.setOnClickListener(null);
+
+            phone.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+            // Show a toast to indicate disabled state
+            Toast.makeText(ProfileVerhuurder.this, "Deze gebruiker heeft telefoon uitgezet", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Handle the permission request result
