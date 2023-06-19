@@ -73,7 +73,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         Button logout = findViewById(R.id.logoutButton);
 
-        if (token.equals("null")) {
+        if (token.length() < 10) {
             logout.setVisibility(View.INVISIBLE);
         }
 

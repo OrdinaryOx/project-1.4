@@ -2,8 +2,10 @@ package com.example.project14.Match;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,6 +74,16 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.username.setText(match.getFirstName());
         holder.age.setText(" (" + age + ")");
         holder.city.setText(match.getCity());
+
+        int matchingScore = Integer.valueOf(match.getMatchingScore());
+        if (matchingScore <= 30) {
+            holder.match.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        } else if (matchingScore >= 31 && matchingScore <= 60) {
+            holder.match.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Orange color
+        } else if (matchingScore >= 61 && matchingScore <= 100) {
+            holder.match.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#32CD32")));
+        }
+
         holder.match.setText(" " + match.getMatchingScore() + "%");
 
 

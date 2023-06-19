@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,9 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView alternativeTextView;
 
 
-
-
-    private Boolean validateEmail(){
+    private Boolean validateEmail() {
         String val = editTextTextEmailAddress.getEditableText().toString();
 
         if (val.isEmpty()) {
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private Boolean validatePassword(){
+    private Boolean validatePassword() {
         String val = editTextTextPassword.getEditableText().toString();
 
         if (val.isEmpty()) {
@@ -116,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
                     JsonObject jsonObject = response.body();
-                   String token = jsonObject.get("token").toString();
+                    String token = jsonObject.get("token").toString();
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("token", token);
@@ -126,15 +125,22 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, ActivitiesScreen.class);
                     startActivity(intent);
                 } else {
-                    emptyPassword.setVisibility(View.INVISIBLE);
-                    emptyEmail.setVisibility(View.INVISIBLE);
-                    wrongCredentials.setVisibility(View.VISIBLE);
-                    wrongCredentials.postDelayed(new Runnable() {
-                        public void run() {
-                            wrongCredentials.setVisibility(View.GONE);
-                        }
-                    }, 3000);
-                    Log.d("TAG", "Request failed with code: " + response.code());
+                    if (response.code() == 403) {
+                        Toast.makeText(LoginActivity.this, "Email is nog niet geverifieerd", Toast.LENGTH_LONG).show();
+
+                    } else {
+
+
+                        emptyPassword.setVisibility(View.INVISIBLE);
+                        emptyEmail.setVisibility(View.INVISIBLE);
+                        wrongCredentials.setVisibility(View.VISIBLE);
+                        wrongCredentials.postDelayed(new Runnable() {
+                            public void run() {
+                                wrongCredentials.setVisibility(View.GONE);
+                            }
+                        }, 3000);
+                        Log.d("TAG", "Request failed with code: " + response.code());
+                    }
                 }
             }
 
@@ -193,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = "";
         String credentials = "";
         String welcome = "";
-        String input= "";
+        String input = "";
         String alternative = "";
 
         if (languageCode.equals("nl")) {
@@ -233,9 +239,6 @@ public class LoginActivity extends AppCompatActivity {
         alternativeTextView.setText(alternative);
 
 
-
-
-
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,7 +272,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent (LoginActivity.this, RoleActivity.class));
+                startActivity(new Intent(LoginActivity.this, RoleActivity.class));
             }
         });
 
@@ -277,7 +280,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validateEmail() == false) {
+                if (validateEmail() == false) {
                     emptyPassword.setVisibility(View.INVISIBLE);
                     wrongCredentials.setVisibility(View.INVISIBLE);
                     emptyEmail.setVisibility(View.VISIBLE);
@@ -286,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
                             emptyEmail.setVisibility(View.GONE);
                         }
                     }, 3000);
-                } else if (validatePassword() == false){
+                } else if (validatePassword() == false) {
                     emptyEmail.setVisibility(View.INVISIBLE);
                     wrongCredentials.setVisibility(View.INVISIBLE);
                     emptyPassword.setVisibility(View.VISIBLE);
@@ -304,7 +307,7 @@ public class LoginActivity extends AppCompatActivity {
                             wrongCredentials.setVisibility(View.GONE);
                         }
                     }, 3000);
-                }else {
+                } else {
                     loginUser();
 
                 }
