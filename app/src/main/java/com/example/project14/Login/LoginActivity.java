@@ -85,10 +85,10 @@ public class LoginActivity extends AppCompatActivity {
         String val = editTextTextPassword.getEditableText().toString();
 
         if (val.isEmpty()) {
-            editTextTextEmailAddress.setError("Wachtwoord is leeg");
+            editTextTextPassword.setError("Wachtwoord is leeg");
             return false;
         } else {
-            editTextTextEmailAddress.setError(null);
+            editTextTextPassword.setError(null);
             return true;
         }
     }
