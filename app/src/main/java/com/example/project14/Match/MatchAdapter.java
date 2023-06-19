@@ -87,15 +87,14 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         holder.match.setText(" " + match.getMatchingScore() + "%");
 
 
-//        byte[] imageData = match.getPicture().getData();
-     //   String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
 
+        String url = match.getPicture();
 
-//        Glide.with(holder.profileImage)
-//                .load(decodeBase64ToBitmap(base64Image))
-//                .centerCrop()
-//                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-//                .into(holder.profileImage);
+        Glide.with(holder.profileImage)
+                .load(url)
+                .centerCrop()
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(holder.profileImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

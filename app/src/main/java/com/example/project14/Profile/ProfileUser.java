@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.Match.Match;
@@ -191,8 +194,26 @@ public class ProfileUser extends AppCompatActivity {
                         TextView userDescriptionTextView = findViewById(R.id.userDescription);
                         TextView userKeywordsTextView = findViewById(R.id.userKeywords);
 
+
                         TextView idealWoonomgeving = findViewById(R.id.idealeDesc);
                         TextView redenWonen = findViewById(R.id.redenDesc);
+
+
+
+
+                        ImageView profile = findViewById(R.id.ProfilePicture);
+                        String picture = profiledata.get("picture").toString();
+                        picture = picture.replace("\"","");
+                        Log.d("pictureurl", "" + picture);
+
+                        Glide.with(profile)
+                                .load(picture)
+                                .centerCrop()
+                                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                .into(profile);
+
+
+
 
 //                        String firstName = profiledata.get("firstName").toString();
 //                        String middleName = profiledata.get("middleName") != null ? profiledata.get("middleName").toString() : "";
@@ -462,6 +483,18 @@ public class ProfileUser extends AppCompatActivity {
                         TextView situationTV = findViewById(R.id.WoonsituatieDesc);
                         TextView furnishedTextTV = findViewById(R.id.meubilairDescDesc);
                         TextView motivationTV = findViewById(R.id.remarks);
+
+                        ImageView profile = findViewById(R.id.ProfilePicture);
+                        String picture = profiledata.get("picture").toString();
+                        picture = picture.replace("\"","");
+                        Log.d("pictureurl", "" + picture);
+
+                        Glide.with(profile)
+                                .load(picture)
+                                .centerCrop()
+                                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                .into(profile);
+
 
 
                         if (furnished.equals("Nee")) {
