@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView moreInformationTextView;
     private TextView clickableTextTextView;
     private Button buttonButton;
+    private String tokenString;
 
 
     @Override
@@ -41,19 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", "null");
-        editor.apply();
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("token", "null");
+//        editor.apply();
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         Log.d("TOKEN MAIN", token);
+        tokenString = token;
 
 
         //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
@@ -141,7 +142,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Continue(View view) {
+        if (tokenString.length() > 10){
+            Log.d("TOKENSTRING", tokenString);
+            Intent intent = new Intent(this, ActivitiesScreen.class);
+            startActivity(intent);
+        } else {
+         Log.d("TOKENSTRING NO", tokenString);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        }
     }
 }

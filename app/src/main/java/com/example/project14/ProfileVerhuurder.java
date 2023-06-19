@@ -31,6 +31,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
     String phoneNumber;
     String emailString;
     String userName;
+    private String phoneNumberVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class ProfileVerhuurder extends AppCompatActivity {
         String help = intent.getStringExtra("help");
         String motivation = intent.getStringExtra("motivation");
         //   String description = intent.getStringExtra("selfDescription");
+
+        String phoneNumberVisible = intent.getStringExtra("phoneNumberVisible");
         String important = intent.getStringExtra("important");
         String roomSize = intent.getStringExtra("roomSize");
         String situation = intent.getStringExtra("situation");
@@ -234,10 +237,11 @@ public class ProfileVerhuurder extends AppCompatActivity {
             }
         });
 
-        if (isVisible.equals("1")) {
+        if (phoneNumberVisible.equals("1")) {
             phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     if (ContextCompat.checkSelfPermission(ProfileVerhuurder.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(ProfileVerhuurder.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
                     } else {
@@ -246,12 +250,18 @@ public class ProfileVerhuurder extends AppCompatActivity {
                 }
             });
         } else {
-            // Disable the OnClickListener for the phone ImageView
-            phone.setOnClickListener(null);
+            phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(ProfileVerhuurder.this, "Deze gebruiker heeft telefoon uitgezet", Toast.LENGTH_SHORT).show();
 
+                }
+            });
+            // Disable the OnClickListener for the phone ImageView
+//            phone.setOnClickListener(null);
             phone.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
             // Show a toast to indicate disabled state
-            Toast.makeText(ProfileVerhuurder.this, "Deze gebruiker heeft telefoon uitgezet", Toast.LENGTH_SHORT).show();
+
         }
     }
 
