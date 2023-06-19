@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Project1.4</string>
+    <string name="app_name">MijnWoongenoot</string>
     <string name="star"> *</string>
     <string name="seeking_type">  Typ hier</string>
 
