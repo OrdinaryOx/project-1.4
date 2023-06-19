@@ -21,9 +21,20 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.project14.Match.ApiService;
 import com.example.project14.Provider.User_Provider_Form;
 
 import java.util.Set;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -175,10 +186,112 @@ public class OptionsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // Handle the switch state change here
                 if (isChecked) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+                    String token = sharedPreferences.getString("token", "");
+                    String completeToken = token.substring(1, token.length() - 1);
+                    Log.d("Check token", token);
+
+                    OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+                    httpClientBuilder.addInterceptor(chain -> {
+                        Request originalRequest = chain.request();
+                        Request.Builder requestBuilder = originalRequest.newBuilder()
+                                .header("Authorization", "Bearer " + completeToken);
+                        Request newRequest = requestBuilder.build();
+                        return chain.proceed(newRequest);
+                    });
+
+                    OkHttpClient httpClient = httpClientBuilder.build();
+
+
+                    MediaType mediaType = MediaType.parse("application/json");
+                    String json = "{\"phoneNumberVisible\": 1}";
+                    Log.d("JSON String", json);
+                    RequestBody body = RequestBody.create(json, mediaType);
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://hardy-stream-production.up.railway.app/api/user/")
+                            .client(httpClient)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+
+                    ApiService apiService = retrofit.create(ApiService.class);
+
+// Making the PUT request
+                    Call<Void> call = apiService.updatePhoneNumberVisibility(body);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                // Handle successful response
+                                Log.d("API", "PUT request successful");
+                            } else {
+                                // Handle error response
+                                Log.e("API", "PUT request failed: " + response.code());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            // Handle network failures or other errors
+                            Log.e("API", "PUT request failed: " + t.getMessage());
+                        }
+                    });
 
                 } else {
-                    // Switch is OFF
-                    // Perform some other action
+                    SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+                    String token = sharedPreferences.getString("token", "");
+                    String completeToken = token.substring(1, token.length() - 1);
+                    Log.d("Check token", token);
+
+                    OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+                    httpClientBuilder.addInterceptor(chain -> {
+                        Request originalRequest = chain.request();
+                        Request.Builder requestBuilder = originalRequest.newBuilder()
+                                .header("Authorization", "Bearer " + completeToken);
+                        Request newRequest = requestBuilder.build();
+                        return chain.proceed(newRequest);
+                    });
+
+                    OkHttpClient httpClient = httpClientBuilder.build();
+
+
+                    MediaType mediaType = MediaType.parse("application/json");
+                    String json = "{\"phoneNumberVisible\": 0}";
+                    Log.d("JSON String", json);
+                    RequestBody body = RequestBody.create(json, mediaType);
+
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://hardy-stream-production.up.railway.app/api/user/")
+                            .client(httpClient)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+
+                    ApiService apiService = retrofit.create(ApiService.class);
+
+// Making the PUT request
+                    Call<Void> call = apiService.updatePhoneNumberVisibility(body);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                // Handle successful response
+                                Log.d("API", "PUT request successful");
+                            } else {
+                                // Handle error response
+                                Log.e("API", "PUT request failed: " + response.code());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            // Handle network failures or other errors
+                            Log.e("API", "PUT request failed: " + t.getMessage());
+                        }
+                    });
                 }
             }
         });

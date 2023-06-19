@@ -28,6 +28,7 @@ public class ProfileHuurder extends AppCompatActivity {
     String phoneNumber;
     String emailString;
     String userName;
+    private String phoneNumberVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,10 @@ public class ProfileHuurder extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+
+        //PUT REQUEST FOR PHONENUMBER
+
 
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +98,8 @@ public class ProfileHuurder extends AppCompatActivity {
         String ideaal = intent.getStringExtra("ideaal");
 
 
+        String phoneNumberVisible = intent.getStringExtra("phoneNumberVisible");
+
         String redenWonen = intent.getStringExtra("reden");
         String ideaalWonen = intent.getStringExtra("ideaal");
 
@@ -139,7 +146,6 @@ public class ProfileHuurder extends AppCompatActivity {
 
 
         TextView workTV = findViewById(R.id.work);
-
 
 
         if (work.equals("1")) {
@@ -205,7 +211,6 @@ public class ProfileHuurder extends AppCompatActivity {
         idealTV.setText(ideaal);
 
 
-
         ImageView profileImageIV = findViewById(R.id.ProfilePicture);
 //        Glide.with(this)
 //                .load(imageURL)
@@ -235,6 +240,7 @@ public class ProfileHuurder extends AppCompatActivity {
             phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     if (ContextCompat.checkSelfPermission(ProfileHuurder.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(ProfileHuurder.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE_PERMISSION);
                     } else {
@@ -243,12 +249,18 @@ public class ProfileHuurder extends AppCompatActivity {
                 }
             });
         } else {
-            // Disable the OnClickListener for the phone ImageView
-            phone.setOnClickListener(null);
+            phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+            Toast.makeText(ProfileHuurder.this, "Deze gebruiker heeft telefoon uitgezet", Toast.LENGTH_SHORT).show();
 
+                }
+            });
+            // Disable the OnClickListener for the phone ImageView
+//            phone.setOnClickListener(null);
             phone.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
             // Show a toast to indicate disabled state
-            Toast.makeText(ProfileHuurder.this, "Deze gebruiker heeft telefoon uitgezet", Toast.LENGTH_SHORT).show();
+
         }
     }
 

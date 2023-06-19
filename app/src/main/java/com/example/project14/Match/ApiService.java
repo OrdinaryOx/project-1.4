@@ -4,8 +4,11 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Url;
 import retrofit2.http.POST;
 
@@ -28,6 +31,9 @@ public interface ApiService {
 
     @GET("user/verhuurder/match")
     Call<JsonObject> getVerhuurderMatch();
+
+    @PUT("profile/phone")
+    Call<Void> updatePhoneNumberVisibility(@Body RequestBody body);
 
 
 }

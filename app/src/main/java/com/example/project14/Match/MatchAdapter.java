@@ -137,6 +137,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
                         intent.putExtra("reden", match.getReason());
                         intent.putExtra("ideaal", match.getIdealSpace());
+                        Log.d("PHONENUMBER", match.getPhoneNumberVisible());
+                        intent.putExtra("phoneNumberVisible", match.getPhoneNumberVisible());
 
                         context.startActivity(intent);
                     }
