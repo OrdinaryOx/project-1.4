@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,14 @@ public class ProfileVerhuurder extends AppCompatActivity {
     String emailString;
     String userName;
     private String phoneNumberVisible;
+    private TextView cityTextView;
+    private TextView situationTextView;
+    private TextView priceTextView;
+    private TextView roomSizeTextView;
+    private TextView furnishedTextView;
+    private TextView petsTextView;
+    private TextView workTextView;
+    private Button editBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,51 @@ public class ProfileVerhuurder extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        cityTextView = findViewById(R.id.placeOfResidence);
+        situationTextView = findViewById(R.id.Woonsituatie);
+        priceTextView = findViewById(R.id.rentalPrice);
+        roomSizeTextView = findViewById(R.id.livingSpace);
+        furnishedTextView = findViewById(R.id.meubilair);
+        workTextView = findViewById(R.id.work);
+        petsTextView = findViewById(R.id.Pets);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(ProfileVerhuurder.this);
+        String cityText = "";
+        String situationText = "";
+        String priceText = "";
+        String roomSizeText = "";
+        String furnishedText = "";
+        String workText = "";
+        String petsText = "";
+
+        if (languageCode.equals("nl")) {
+            cityText = getResources().getString(R.string.profile_providerCity);
+            situationText = getResources().getString(R.string.profile_providerSituation);
+            priceText = getResources().getString(R.string.profile_providerPrice);
+            roomSizeText = getResources().getString(R.string.profile_providerRoomSize);
+            furnishedText  = getResources().getString(R.string.profile_providerFurnished);
+            workText = getResources().getString(R.string.profile_providerWork);
+            petsText = getResources().getString(R.string.profile_providerPets);
+        } else if (languageCode.equals("en")) {
+            cityText = getResources().getString(R.string.profile_providerCity_en);
+            situationText = getResources().getString(R.string.profile_providerSituation_en);
+            priceText = getResources().getString(R.string.profile_providerPrice_en);
+            roomSizeText = getResources().getString(R.string.profile_providerRoomSize_en);
+            furnishedText  = getResources().getString(R.string.profile_providerFurnished_en);
+            workText = getResources().getString(R.string.profile_providerWork_en);
+            petsText = getResources().getString(R.string.profile_providerPets_en);
+        }
+
+        cityTextView.setText(cityText);
+        situationTextView.setText(situationText);
+        priceTextView.setText(priceText);
+        roomSizeTextView.setText(roomSizeText);
+        furnishedTextView.setText(furnishedText);
+        workTextView.setText(workText);
+        petsTextView.setText(petsText);
 
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {

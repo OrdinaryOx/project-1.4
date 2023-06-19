@@ -80,7 +80,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
                 android:layout_marginBottom="10dp"
-                android:text="Woonplaats:"
+                android:text="@string/profile_seekingCity"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:text="Budget:"
+                android:text="@string/profile_seekingBudget"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -146,7 +146,7 @@
                 android:layout_below="@id/budget"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
-                android:text="Reden voor woonruimte:"
+                android:text="@string/profile_seekingReason"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -171,11 +171,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
                 android:layout_marginBottom="5dp"
-                android:text="Mijn ideale woonomgeving:"
+                android:text="@string/profile_seekingIdeal"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
 
             <TextView
                 android:id="@+id/idealeDesc"
@@ -210,7 +209,7 @@
                 android:layout_below="@id/EHBO"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
-                android:text="Werk:"
+                android:text="@string/profile_seekingWork"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -236,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-                android:text="Licenties:"
+                android:text="@string/profile_seekingLicense"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -259,7 +258,7 @@
                 android:layout_below="@id/workDesc"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Huisdieren:"
+                android:text="@string/profile_seekingPets"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,15 @@ public class ProfileHuurder extends AppCompatActivity {
     String emailString;
     String userName;
     private String phoneNumberVisible;
+    private TextView cityTextView;
+    private TextView budgetTextView;
+    private TextView reasonTextView;
+    private TextView idealTextView;
+    private TextView licenseTextView;
+    private TextView workTextView;
+    private TextView petsTextView;
+    private Button editBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +51,53 @@ public class ProfileHuurder extends AppCompatActivity {
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
 
+        cityTextView = findViewById(R.id.placeOfResidence);
+        budgetTextView = findViewById(R.id.budget);
+        reasonTextView = findViewById(R.id.redenWoonruimte);
+        idealTextView = findViewById(R.id.idealeWoonruimte);
+        licenseTextView = findViewById(R.id.EHBO);
+        workTextView = findViewById(R.id.work);
+        petsTextView = findViewById(R.id.Pets);
+
+        LanguageUtils.updateLanguage(this);
+
+        String languageCode = LanguageUtils.getLanguagePreference(ProfileHuurder.this);
+        String cityText = "";
+        String budgetText = "";
+        String reasonText = "";
+        String idealText = "";
+        String licenseText = "";
+        String workText = "";
+        String petsText = "";
+
+
+        if (languageCode.equals("nl")) {
+            cityText = getResources().getString(R.string.profile_seekingCity);
+            budgetText = getResources().getString(R.string.profile_seekingBudget);
+            reasonText = getResources().getString(R.string.profile_seekingReason);
+            idealText = getResources().getString(R.string.profile_seekingIdeal);
+            licenseText  = getResources().getString(R.string.profile_seekingLicense);
+            workText = getResources().getString(R.string.profile_seekingWork);
+            petsText = getResources().getString(R.string.profile_seekingPets);
+        } else if (languageCode.equals("en")) {
+            cityText = getResources().getString(R.string.profile_seekingCity_en);
+            budgetText = getResources().getString(R.string.profile_seekingBudget_en);
+            reasonText = getResources().getString(R.string.profile_seekingReason_en);
+            idealText = getResources().getString(R.string.profile_seekingIdeal_en);
+            licenseText  = getResources().getString(R.string.profile_seekingLicense_en);
+            workText = getResources().getString(R.string.profile_seekingWork_en);
+            petsText = getResources().getString(R.string.profile_seekingPets_en);
+        }
+
+        cityTextView.setText(cityText);
+        budgetTextView.setText(budgetText);
+        reasonTextView.setText(reasonText);
+        idealTextView.setText(idealText);
+        licenseTextView.setText(licenseText);
+        workTextView.setText(workText);
+        petsTextView.setText(petsText);
 
         //PUT REQUEST FOR PHONENUMBER
-
-
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

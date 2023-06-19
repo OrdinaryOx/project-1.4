@@ -256,7 +256,6 @@ public class OptionsActivity extends AppCompatActivity {
 
                     OkHttpClient httpClient = httpClientBuilder.build();
 
-
                     MediaType mediaType = MediaType.parse("application/json");
                     String json = "{\"phoneNumberVisible\": 0}";
                     Log.d("JSON String", json);

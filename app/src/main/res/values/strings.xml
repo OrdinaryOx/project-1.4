@@ -281,6 +281,23 @@
     <string name="allChats_age">90</string>
     <string name="allChats_message">This is a message sent by username</string>
 
+    <string name="profile_providerPets">Huisdieren:</string>
+    <string name="profile_providerWork">Werk:</string>
+    <string name="profile_providerCity">Woonplaats:</string>
+    <string name="profile_providerSituation">Woonsituatie:</string>
+    <string name="profile_providerPrice">Huurprijs:</string>
+    <string name="profile_providerRoomSize">Kamergrootte:</string>
+    <string name="profile_providerFurnished">Gemeubileerd:</string>
+    <string name="profile_providerEdit">Pas profiel aan</string>
+
+    <string name="profile_seekingCity">Woonplaats:</string>
+    <string name="profile_seekingBudget">Budget:</string>
+    <string name="profile_seekingReason">Reden voor woonruimte:</string>
+    <string name="profile_seekingIdeal">Mijn ideale woonruimte:</string>
+    <string name="profile_seekingLicense">Licenties:</string>
+    <string name="profile_seekingWork">Werk:</string>
+    <string name="profile_seekingPets">Huisdieren:</string>
+    <string name="profile_seekingEdit">Pas profiel aan</string>
 
     <string name="hello_en">Hello</string>
     <string name="app_name_en">Project1.4</string>
@@ -566,5 +583,26 @@
     <string name="allChats_userName_en">Username</string>
     <string name="allChats_age_en">90</string>
     <string name="allChats_message_en">This is a message sent by username</string>
+
+    <string name="profile_providerPets_en">Pets:</string>
+    <string name="profile_providerWork_en">Work:</string>
+    <string name="profile_providerCity_en">City of residence:</string>
+    <string name="profile_providerSituation_en">Living situation:</string>
+    <string name="profile_providerPrice_en">Rent price:</string>
+    <string name="profile_providerRoomSize_en">Room size:</string>
+    <string name="profile_providerFurnished_en">Furnished:</string>
+    <string name="profile_providerEdit_en">Edit profile</string>
+
+    <string name="profile_seekingCity_en">City:</string>
+    <string name="profile_seekingBudget_en">Budget:</string>
+    <string name="profile_seekingReason_en">Reason for housing:</string>
+    <string name="profile_seekingIdeal_en">My ideal housing:</string>
+    <string name="profile_seekingLicense_en">Licenses:</string>
+    <string name="profile_seekingWork_en">Work:</string>
+    <string name="profile_seekingPets_en">Pets:</string>
+    <string name="profile_seekingEdit_en">Edit profile</string>
+
+
+
 
 </resources>

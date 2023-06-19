@@ -69,8 +69,7 @@
                 android:layout_below="@id/age"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-
-                android:text="Woonplaats:"
+                android:text="@string/profile_providerCity"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -82,7 +81,6 @@
                 android:layout_below="@id/age"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='10dp'
-
                 android:layout_toRightOf="@id/placeOfResidence"
                 android:text="Test"
                 android:textColor="@color/black"
@@ -95,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/placeOfResidence"
                 android:layout_marginLeft="10dp"
-                android:text="Woonsituatie: "
+                android:text="@string/profile_providerSituation"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -148,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Huurprijs:"
+                android:text="@string/profile_providerPrice"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -172,7 +170,7 @@
                 android:layout_below="@id/rentalPrice"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
-                android:text="Kamergrootte:"
+                android:text="@string/profile_providerRoomSize"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -198,7 +196,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
                 android:layout_marginBottom="10dp"
-                android:text="Gemeubileerd:"
+                android:text="@string/profile_providerRoomSize"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -251,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Huisdieren:"
+                android:text="@string/profile_providerPets"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -277,7 +275,7 @@
                 android:layout_below="@id/Pets"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop='5dp'
-                android:text="Werk:"
+                android:text="@string/profile_providerWork"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
