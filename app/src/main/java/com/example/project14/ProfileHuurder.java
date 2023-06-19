@@ -87,9 +87,14 @@ public class ProfileHuurder extends AppCompatActivity {
         String offer = intent.getStringExtra("offer");
         String description = intent.getStringExtra("description");
         phoneNumber = intent.getStringExtra("phonenumber");
-
         emailString = intent.getStringExtra("email");
 
+        String reason = intent.getStringExtra("reden");
+        String ideaal = intent.getStringExtra("ideaal");
+
+
+        String redenWonen = intent.getStringExtra("reden");
+        String ideaalWonen = intent.getStringExtra("ideaal");
 
         TextView userNameTV = findViewById(R.id.username);
         if (middleName == null) {
@@ -101,54 +106,48 @@ public class ProfileHuurder extends AppCompatActivity {
         TextView ageTV = findViewById(R.id.age);
         ageTV.setText("(" + age + ")");
 
-        TextView cityTV = findViewById(R.id.placeOfResidence);
-        cityTV.setText("Woonplaats: " + city);
+        TextView cityTV = findViewById(R.id.placeOfResidenceDesc);
+        cityTV.setText("" + city);
 
 
         TextView genderTV = findViewById(R.id.gender);
         String genderString = "";
         if (gender.equals("F") || gender.equals("V")) {
-            genderString = "Vrouw";
+            genderString = "-  Vrouw";
         } else if (gender.equals("M")) {
-            genderString = "Man";
+            genderString = "-  Man";
         } else {
-            genderString = "Anders";
+            genderString = "-  Anders";
         }
-        genderTV.setText("Geslacht: " + genderString);
+        genderTV.setText(genderString);
 
 
-        TextView budgetTV = findViewById(R.id.budget);
-        budgetTV.setText("Budget: €" + budget + " p/m");
+        TextView budgetTV = findViewById(R.id.budgetDesc);
+        budgetTV.setText("€" + budget + " p/m");
 
 
-        TextView medicalTV = findViewById(R.id.EHBO);
+        TextView medicalTV = findViewById(R.id.EHBODesc);
         if (medical != null) {
 
             if (medical.equals("") || medical.equals("null")) {
                 medical = "Geen medische vaardigheden";
             }
-            medicalTV.setText("Vaardigheden: " + medical);
+            medicalTV.setText(medical);
         } else {
-            medicalTV.setText("Vaardigheden: Geen medische vaardigheden");
+            medicalTV.setText("Geen medische vaardigheden");
         }
 
 
         TextView workTV = findViewById(R.id.work);
+
+
+
         if (work.equals("1")) {
-            work = "Ja";
+            work = "Ja - ";
         } else {
             work = "Nee";
         }
-        workTV.setText("Werk: " + work);
 
-
-        TextView petTV = findViewById(R.id.Pets);
-        if (pet.equals("1")) {
-            pet = "Ja";
-        } else {
-            pet = "Nee";
-        }
-        petTV.setText("Huisdieren: " + pet);
 
         TextView workDescTV = findViewById(R.id.workDesc);
         if (workDesc != null) {
@@ -156,16 +155,24 @@ public class ProfileHuurder extends AppCompatActivity {
             if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty()) {
                 workDescTV.setText("-");
             } else {
-                workDescTV.setText(workDesc);
+                workDescTV.setText(work + workDesc);
             }
         }
 
 
         if (work == "Nee") {
-            workDescTV.setText("-");
+            workDescTV.setText("Nee");
         }
 
         TextView petDescTV = findViewById(R.id.petDesc);
+
+
+        TextView petTV = findViewById(R.id.Pets);
+        if (pet.equals("1")) {
+            pet = "Ja - ";
+        } else {
+            pet = "Nee";
+        }
 
 
         if (petDesc != null) {
@@ -173,12 +180,12 @@ public class ProfileHuurder extends AppCompatActivity {
             if (petDesc.equals("") || petDesc.equals("null") || petDesc.trim().isEmpty()) {
                 petDesc = "";
             } else {
-                petDescTV.setText(petDesc);
+                petDescTV.setText(pet + petDesc);
             }
 
         }
         if (pet == "Nee") {
-            petDescTV.setText("-");
+            petDescTV.setText("Nee");
         }
 
 
@@ -189,6 +196,14 @@ public class ProfileHuurder extends AppCompatActivity {
         descriptionTV.setText(description);
         keywordsTV.setText(keywords);
         offerTV.setText(offer);
+
+
+        TextView reasonTV = findViewById(R.id.redenDesc);
+        TextView idealTV = findViewById(R.id.idealeDesc);
+
+        reasonTV.setText(reason);
+        idealTV.setText(ideaal);
+
 
 
         ImageView profileImageIV = findViewById(R.id.ProfilePicture);

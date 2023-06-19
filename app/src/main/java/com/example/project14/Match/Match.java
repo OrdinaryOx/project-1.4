@@ -69,6 +69,9 @@ public class Match {
     private String petDescription;
 
 
+
+
+
     public Match(int id, String matchingScore, String emailAddress, String password, String dateOfBirth, String firstName, String middleName, String lastName, Picture picture, String gender, String phoneNumber, String postalCode, String street, String houseNumber, String city, String country, String role, int userId, String seekingCity, String liveWith, String budget, String period, String nights, String pet, String ownPet, String ownPetDescription, String starDate, String endDate, String reason, String schoolFinished, String schoolDoing, String skill, int work, String workDescription, String healthRisk, String healthRiskDescription, String selfDescription, String selfWords, String idealSpace, String offer, String offerYou, String importantNote, String volunteer, String volunteerDescription, String religion, String comment, String overallcomment, String situation, String house, String found, String motivation, Picture housePicture, String roomSize, String roomType, String furniture, String furnitureDescription, String price, String describe, String hobby, String petDescription) {
         this.id = id;
         this.matchingScore = matchingScore;

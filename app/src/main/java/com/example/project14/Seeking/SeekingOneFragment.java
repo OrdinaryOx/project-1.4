@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +14,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +52,7 @@ public class SeekingOneFragment extends Fragment {
     private EditText editTextPasswordAgain;
     private EditText editTextEmail;
     private ImageView imageView;
+    private ImageView buttonPass;
     private Button uploadImage;
     private String base64Image = "0";
     private TextView titleTextView;
@@ -67,6 +72,19 @@ public class SeekingOneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_seeking_one, container, false);
+
+
+        buttonPass= view.findViewById(R.id.passwordVisibilityButton);
+        buttonPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set inputType of password fields to text
+                // Set inputType of password fields to text and adjust font
+                togglePasswordVisibility(editTextPassword);
+                togglePasswordVisibility(editTextPasswordAgain);
+
+            }
+        });
 
 
         //INIT VIEWS
@@ -221,6 +239,16 @@ public class SeekingOneFragment extends Fragment {
         return view;
     }
 
+    private void togglePasswordVisibility(EditText passwordEditText) {
+        if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+
+        // Move the cursor to the end of the text
+        passwordEditText.setSelection(passwordEditText.length());
+    }
 
     //Save data to HashMap
     public void saveData() {
@@ -248,8 +276,7 @@ public class SeekingOneFragment extends Fragment {
                 !TextUtils.isEmpty(getPassword()) &&
                 !TextUtils.isEmpty(getPasswordAgain()) &&
                 getPassword().equals(getPasswordAgain()) &&
-                verifyEmail(getEmail()) &&
-                base64Image != "0";
+                verifyEmail(getEmail());
 
     }
 
@@ -329,13 +356,13 @@ public class SeekingOneFragment extends Fragment {
         } else {
             editTextEmail.setBackgroundResource(R.drawable.border);
         }
-        if (TextUtils.isEmpty((getImage()))) {
-            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
-            uploadImage.setBackground(borderDrawable);
-        } else {
-            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
-            uploadImage.setBackground(borderDrawable);
-        }
+//        if (TextUtils.isEmpty((getImage()))) {
+//            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.button_red);
+//            uploadImage.setBackground(borderDrawable);
+//        } else {
+//            Drawable borderDrawable = ContextCompat.getDrawable(getContext(), R.drawable.border);
+//            uploadImage.setBackground(borderDrawable);
+//        }
         if (!arePasswordsMatching()) {
             editTextPassword.setBackgroundResource(R.drawable.border_red);
             editTextPasswordAgain.setBackgroundResource(R.drawable.border_red);

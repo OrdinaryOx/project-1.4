@@ -25,6 +25,8 @@ import androidx.core.content.ContextCompat;
 
 public class ProfileVerhuurder extends AppCompatActivity {
 
+
+    //TODO: THIS
     private static final int REQUEST_CALL_PHONE_PERMISSION = 1;
     String phoneNumber;
     String emailString;
@@ -82,7 +84,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         String gender = intent.getStringExtra("gender");
 
         String pet = intent.getStringExtra("pet");
-        String petDesc = intent.getStringExtra("petdesc");
+        String petDesc = intent.getStringExtra("petDesc");
 
         String isVisible = intent.getStringExtra("isVisible");
 
@@ -95,23 +97,65 @@ public class ProfileVerhuurder extends AppCompatActivity {
         String situation = intent.getStringExtra("situation");
         String price = intent.getStringExtra("price");
 
+        String furniture = intent.getStringExtra("furniture");
+        String furnitureDesc = intent.getStringExtra("furnitureDesc");
+
+        String work = intent.getStringExtra("work");
+        String workDesc = intent.getStringExtra("workDesc");
 
         TextView ageTV = findViewById(R.id.age);
+        TextView cityTV = findViewById(R.id.placeOfResidenceDesc);
         TextView genderTV = findViewById(R.id.gender);
-        TextView priceTV = findViewById(R.id.rentalPrice);
-        TextView roomSizeTV = findViewById(R.id.livingSpace);
-        TextView situationTV = findViewById(R.id.Woonsituatie);
+        TextView priceTV = findViewById(R.id.rentalPriceDesc);
+        TextView roomSizeTV = findViewById(R.id.livingSpaceDesc);
+        TextView situationTV = findViewById(R.id.WoonsituatieDesc);
         TextView petTV = findViewById(R.id.Pets);
         TextView petDescTV = findViewById(R.id.petDesc);
-        TextView helpTV = findViewById(R.id.remarks);
-        TextView selfDescTV = findViewById(R.id.userDescription);
+        TextView motivationTV = findViewById(R.id.remarks);
+        TextView importantTV = findViewById(R.id.userDescription);
         TextView keywordsTV = findViewById(R.id.userKeywords);
         TextView userNameTV = findViewById(R.id.username);
+        TextView furnitureTV = findViewById(R.id.meubilairDesc);
+        TextView furnitureTextTV = findViewById(R.id.meubilairDescDesc);
+        TextView workDescTV = findViewById(R.id.workDesc);
 
         userName = firstName;
         phoneNumber = intent.getStringExtra("phonenumber");
         emailString = intent.getStringExtra("email");
 
+        if (work.equals("1")) {
+            work = "Ja";
+        } else {
+            work = "Nee";
+        }
+
+        if (workDesc != null) {
+            if (workDesc.equals("") || workDesc.equals("null") || workDesc.trim().isEmpty()) {
+                workDesc = "";
+            } else {
+                workDesc = " - " + workDesc;
+            }
+
+        } else {
+            workDesc = "";
+        }
+        workDescTV.setText(work +  workDesc);
+
+
+
+        cityTV.setText(city);
+
+        if (furniture.equals("1")) {
+            furniture = "Ja";
+        } else {
+            furniture = "Nee";
+        }
+
+        if (furniture.equals("Nee")) {
+            furnitureTextTV.setVisibility(View.GONE);
+        }
+        furnitureTV.setText(furniture);
+        furnitureTextTV.setText(furnitureDesc);
 
         if (middleName == null) {
             userNameTV.setText(firstName + " " + lastName);
@@ -129,35 +173,38 @@ public class ProfileVerhuurder extends AppCompatActivity {
         } else {
             genderString = "Anders";
         }
-        genderTV.setText("Geslacht: " + genderString);
+        genderTV.setText("- " + genderString);
 
-        priceTV.setText("Huurprijs: " + price + " p/m");
-        roomSizeTV.setText("Kamergrootte: " + roomSize + " m2");
-        situationTV.setText("Woonsituatie: " + situation);
+        priceTV.setText("€" + price + " p/m");
+        roomSizeTV.setText(roomSize + " m2");
+        situationTV.setText(situation);
 
         if (pet.equals("1")) {
             pet = "Ja";
         } else {
             pet = "Nee";
         }
-        petTV.setText("Huisdieren: " + pet);
 
         if (petDesc != null) {
 
             if (petDesc.equals("") || petDesc.equals("null") || petDesc.trim().isEmpty()) {
                 petDesc = "";
             } else {
-                petDescTV.setText(petDesc);
+                petDesc = " - " + petDesc;
             }
 
         }
+        petDescTV.setText(pet + petDesc);
+
+
         if (pet == "Nee") {
-            petDescTV.setText("-");
+
+            petDescTV.setText("Nee");
         }
 
 
-        helpTV.setText("Motivatie: " + motivation);
-        selfDescTV.setText(important);
+        motivationTV.setText(motivation);
+        importantTV.setText(important);
         keywordsTV.setText(keywords);
 
 //        ImageView profileImageIV = findViewById(R.id.ProfilePicture);

@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +72,20 @@ public class ProviderOneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_provider_one, container, false);
+
+
+ImageView buttonPass= view.findViewById(R.id.passwordVisibilityButton);
+        buttonPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set inputType of password fields to text
+                // Set inputType of password fields to text and adjust font
+                togglePasswordVisibility(editTextPassword);
+                togglePasswordVisibility(editTextPasswordAgain);
+
+            }
+        });
+
 
         // Initialize the Spinner
         spinnerSalutation = view.findViewById(R.id.spinnerSalutation);
@@ -419,5 +436,19 @@ public class ProviderOneFragment extends Fragment {
 
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+
+
+
+    private void togglePasswordVisibility(EditText passwordEditText) {
+        if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+
+        // Move the cursor to the end of the text
+        passwordEditText.setSelection(passwordEditText.length());
     }
 }

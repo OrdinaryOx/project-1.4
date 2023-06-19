@@ -135,6 +135,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         intent.putExtra("phonenumber", "" + match.getPhoneNumber());
                         intent.putExtra("email", match.getEmailAddress());
 
+                        intent.putExtra("reden", match.getReason());
+                        intent.putExtra("ideaal", match.getIdealSpace());
+
                         context.startActivity(intent);
                     }
                     if (role.equals("Verhuurder")) {
@@ -146,6 +149,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                             intent.putExtra("lastname", match.getLastName());
                         }
                         intent.putExtra("age", "" + age);
+
+                        intent.putExtra("furniture", match.getFurniture());
+                        intent.putExtra("furnitureDesc", match.getFurnitureDescription());
+
 
 
                         String gender = match.getGender();
@@ -169,6 +176,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         intent.putExtra("important", match.getImportantNote());
                         intent.putExtra("selfDescription", match.getSelfDescription());
                         intent.putExtra("keywords", match.getDescribe());
+intent.putExtra("work", "" + match.getWork());
+intent.putExtra("workDesc", match.getWorkDescription());
 
                         intent.putExtra("phonenumber", "" + match.getPhoneNumber());
                         intent.putExtra("email", match.getEmailAddress());
