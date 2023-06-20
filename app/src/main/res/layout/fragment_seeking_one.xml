@@ -57,7 +57,6 @@
         android:id="@+id/passwordVisibilityButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
-
         android:src="@drawable/eye_icon"
         android:background="@color/MWG_Dark"
        />

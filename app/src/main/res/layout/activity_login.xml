@@ -89,7 +89,7 @@
                     android:id="@+id/passwordVisibilityButton"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:background="@color/MWG_Light"
+                    android:background="@color/MWG_Dark"
                     android:padding="3dp"
                     android:src="@drawable/eye_icon" />
             </androidx.cardview.widget.CardView>
