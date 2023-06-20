@@ -683,8 +683,17 @@ public class ProfileUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         LanguageUtils.updateLanguage(this);
 
+
+
+        //SET TOOLBAR
+
+
         getUserProfile();
         super.onCreate(savedInstanceState);
+
+
+
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
@@ -711,12 +720,7 @@ public class ProfileUser extends AppCompatActivity {
         }
 
         //  setContentView(R.layout.activity_profile_user_huurder);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
-
-        ImageView backButton = toolbar.findViewById(R.id.back_button);
-        ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
-        ImageView optionsButton = toolbar.findViewById(R.id.options_button);
 
         try {
             if (payloadJson.getString("role").equals("Huurder")) {
@@ -831,11 +835,17 @@ public class ProfileUser extends AppCompatActivity {
 
 
         // Set click listener for the back button
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+
+        ImageView backButton = toolbar.findViewById(R.id.back_button);
+        ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
+        ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle back button click
-                Log.d("click", "back");
                 onBackPressed();
             }
         });
@@ -851,6 +861,9 @@ public class ProfileUser extends AppCompatActivity {
             }
         });
 
+
+
+
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -858,6 +871,9 @@ public class ProfileUser extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
     }
 
 

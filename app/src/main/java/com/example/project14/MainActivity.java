@@ -61,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
 
+        // Set click listener for the back button
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Handle back button click
+//                onBackPressed();
+//            }
+//        });
+
+        // Set click listener for the logo button
+        logoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start MainActivity when logo button is clicked
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+        optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         headerOneTextView = findViewById(R.id.header1);
         textOneTextView = findViewById(R.id.text1);
@@ -98,26 +128,6 @@ public class MainActivity extends AppCompatActivity {
         buttonButton.setText(button);
 
 
-        // Set click listener for the back button
-//        backButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle back button click
-//                onBackPressed();
-//            }
-//        });
-
-        // Set click listener for the logo button
-        logoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
 
         TextView mainLink = findViewById(R.id.clickableText);
 
@@ -129,16 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        optionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OptionsActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
     }
 
