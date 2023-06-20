@@ -734,6 +734,7 @@ public class ProfileUser extends AppCompatActivity {
                 licenseTextView = findViewById(R.id.EHBO);
                 workTextView = findViewById(R.id.work);
                 petsTextView = findViewById(R.id.Pets);
+                editBtn = findViewById(R.id.editProfileButton);
 
                 LanguageUtils.updateLanguage(this);
 

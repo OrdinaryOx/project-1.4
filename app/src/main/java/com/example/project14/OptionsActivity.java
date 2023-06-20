@@ -22,7 +22,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.project14.Match.ApiService;
+import com.example.project14.Profile.ApiInterfaceProfile;
 import com.example.project14.Provider.User_Provider_Form;
+import com.google.gson.JsonObject;
 
 import java.util.Set;
 
@@ -42,6 +44,7 @@ public class OptionsActivity extends AppCompatActivity {
 
     private String currentLanguageCode;
 
+    private String token;
     private TextView languageTextView;
     private TextView dutchTextView;
     private TextView englishTextView;
@@ -63,13 +66,69 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        Switch switchButton = findViewById(R.id.PrivacySwitch);
+        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+        String completeToken = token.substring(1, token.length() - 1);
+        Log.d("Check token", token);
+
+
+        if (completeToken.length() > 10) {
+
+            OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+            httpClientBuilder.addInterceptor(chain -> {
+                Request originalRequest = chain.request();
+                Request.Builder requestBuilder = originalRequest.newBuilder()
+                        .header("Authorization", "Bearer " + completeToken);
+                Request newRequest = requestBuilder.build();
+                return chain.proceed(newRequest);
+            });
+
+            OkHttpClient httpClient = httpClientBuilder.build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://hardy-stream-production.up.railway.app/api/user/")
+                    .client(httpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ApiInterfaceProfile apiService = retrofit.create(ApiInterfaceProfile.class);
+
+            Call<JsonObject> call = apiService.getProfile();
+
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    JsonObject jsonObject = response.body();
+                    JsonObject profiledata = jsonObject.getAsJsonObject("user");
+
+                    JsonObject preferenceData = jsonObject.getAsJsonObject("user");
+
+                    String visible = (preferenceData.get("phoneNumberVisible") != null && preferenceData.get("phoneNumberVisible").getAsInt() == 1) ? "Ja" : "Nee";
+
+                    if (visible.equals("Ja")) {
+                        switchButton.setChecked(true);
+                    } else {
+                        switchButton.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+
+            });
+        }
+
+
         currentLanguageCode = "nl"; // Default language code
         RadioGroup languageRadioGroup = findViewById(R.id.languageRadioGroup);
 
 
-        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
-        Log.d("TOKEN OPTIONS", token);
+//        sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+//
+//        token = sharedPreferences.getString("token", "");
+//        Log.d("TOKEN OPTIONS", token);
 
         Button logout = findViewById(R.id.logoutButton);
 
@@ -84,22 +143,62 @@ public class OptionsActivity extends AppCompatActivity {
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
 
-        Switch switchButton = findViewById(R.id.PrivacySwitch);
 
-        languageTextView = findViewById(R.id.languageTextView);
-        dutchTextView = findViewById(R.id.languageDutch);
-        englishTextView = findViewById(R.id.languageEnglish);
-        themeTextView = findViewById(R.id.themeTextView);
-        lightTextView = findViewById(R.id.light_radio);
-        darkTextView = findViewById(R.id.dark_radio);
-        contactTextView = findViewById(R.id.contactTextView);
-        phoneNumberTextView = findViewById(R.id.phoneNumberTextView);
-        emailTextView = findViewById(R.id.emailTextView);
-        phoneVisibleTextView = findViewById(R.id.textForSwitchPrivacy);
-        phoneYesTextView = findViewById(R.id.textView39);
-        phoneNoTextView = findViewById(R.id.phone_no);
-        linkTextView = findViewById(R.id.Privacyverklaring);
-        logOutBtn = findViewById(R.id.logoutButton);
+        languageTextView =
+
+                findViewById(R.id.languageTextView);
+
+        dutchTextView =
+
+                findViewById(R.id.languageDutch);
+
+        englishTextView =
+
+                findViewById(R.id.languageEnglish);
+
+        themeTextView =
+
+                findViewById(R.id.themeTextView);
+
+        lightTextView =
+
+                findViewById(R.id.light_radio);
+
+        darkTextView =
+
+                findViewById(R.id.dark_radio);
+
+        contactTextView =
+
+                findViewById(R.id.contactTextView);
+
+        phoneNumberTextView =
+
+                findViewById(R.id.phoneNumberTextView);
+
+        emailTextView =
+
+                findViewById(R.id.emailTextView);
+
+        phoneVisibleTextView =
+
+                findViewById(R.id.textForSwitchPrivacy);
+
+        phoneYesTextView =
+
+                findViewById(R.id.textView39);
+
+        phoneNoTextView =
+
+                findViewById(R.id.phone_no);
+
+        linkTextView =
+
+                findViewById(R.id.Privacyverklaring);
+
+        logOutBtn =
+
+                findViewById(R.id.logoutButton);
 
         LanguageUtils.updateLanguage(this);
 
@@ -185,7 +284,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // Handle the switch state change here
                 if (isChecked) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+                    sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
                     String token = sharedPreferences.getString("token", "");
                     String completeToken = token.substring(1, token.length() - 1);
                     Log.d("Check token", token);
@@ -239,7 +338,7 @@ public class OptionsActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+//                    SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
                     String token = sharedPreferences.getString("token", "");
                     String completeToken = token.substring(1, token.length() - 1);
                     Log.d("Check token", token);
@@ -315,7 +414,9 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-        languageRadioGroup = findViewById(R.id.languageRadioGroup);
+        languageRadioGroup =
+
+                findViewById(R.id.languageRadioGroup);
 
         // Set the initial checked state based on the language preference
         String currentLanguageCode = LanguageUtils.getLanguagePreference(this);
@@ -349,16 +450,18 @@ public class OptionsActivity extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.Privacyverklaring).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = "https://mijnwoongenoot.nl/privacy/";
+        findViewById(R.id.Privacyverklaring).
 
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData((Uri.parse(url)));
-                startActivity(i);
-            }
-        });
+                setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String url = "https://mijnwoongenoot.nl/privacy/";
+
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData((Uri.parse(url)));
+                        startActivity(i);
+                    }
+                });
 
 
     }
