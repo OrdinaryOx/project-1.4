@@ -344,7 +344,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
 
     // Method to initiate the phone call
     private void makePhoneCall() {
-        String phoneNumber = "0616090398";
+
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
