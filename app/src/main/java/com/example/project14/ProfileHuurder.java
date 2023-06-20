@@ -154,6 +154,16 @@ public class ProfileHuurder extends AppCompatActivity {
             work = "Nee";
         }
 
+        ImageView profilePictureIM = findViewById(R.id.ProfilePicture);
+        String picture = intent.getStringExtra("picture");
+
+        Glide.with(profilePictureIM)
+                .load(picture)
+                .centerCrop()
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(profilePictureIM);
+
+
 
         TextView workDescTV = findViewById(R.id.workDesc);
         if (workDesc != null) {

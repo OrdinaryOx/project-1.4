@@ -121,6 +121,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         TextView furnitureTV = findViewById(R.id.meubilairDesc);
         TextView furnitureTextTV = findViewById(R.id.meubilairDescDesc);
         TextView workDescTV = findViewById(R.id.workDesc);
+        ImageView profilePictureIM = findViewById(R.id.ProfilePicture);
 
         userName = firstName;
         phoneNumber = intent.getStringExtra("phonenumber");
@@ -142,8 +143,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         } else {
             workDesc = "";
         }
-        workDescTV.setText(work +  workDesc);
-
+        workDescTV.setText(work + workDesc);
 
 
         cityTV.setText(city);
@@ -209,6 +209,16 @@ public class ProfileVerhuurder extends AppCompatActivity {
         motivationTV.setText(motivation);
         importantTV.setText(important);
         keywordsTV.setText(keywords);
+
+
+        String picture = intent.getStringExtra("picture");
+
+        Glide.with(profilePictureIM)
+                .load(picture)
+                .centerCrop()
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(profilePictureIM);
+
 
 //        ImageView profileImageIV = findViewById(R.id.ProfilePicture);
 //        Glide.with(this)

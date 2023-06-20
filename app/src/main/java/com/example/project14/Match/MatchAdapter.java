@@ -146,6 +146,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
                         intent.putExtra("phonenumber", "" + match.getPhoneNumber());
                         intent.putExtra("email", match.getEmailAddress());
 
+                        intent.putExtra("picture", match.getPicture());
+
                         intent.putExtra("reden", match.getReason());
                         intent.putExtra("ideaal", match.getIdealSpace());
                         Log.d("PHONENUMBER", match.getPhoneNumberVisible());
@@ -195,6 +197,8 @@ intent.putExtra("workDesc", match.getWorkDescription());
 
                         intent.putExtra("phonenumber", "" + match.getPhoneNumber());
                         intent.putExtra("email", match.getEmailAddress());
+
+                        intent.putExtra("picture", match.getPicture());
 
                         context.startActivity(intent);
                     }
