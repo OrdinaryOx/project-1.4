@@ -51,16 +51,14 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textStyle="bold"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/seeking_idealRoom"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextKeyword" />
 
@@ -148,24 +146,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="-60dp"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView17"
-        app:layout_constraintLeft_toRightOf="@id/textView17"
+        android:translationX="-125dp"
         android:translationY="20dp"
-        android:translationX="-125dp"/>
+        app:layout_constraintLeft_toRightOf="@id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        android:translationY="20dp"
-        android:translationX="-338dp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView29"
-        app:layout_constraintLeft_toRightOf="@id/textView29" />
+        app:layout_constraintStart_toEndOf="@+id/textView29"
+        tools:layout_editor_absoluteY="350dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -175,14 +175,16 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView28"
         app:layout_constraintLeft_toRightOf="@id/textView28" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView30"
-        app:layout_constraintLeft_toRightOf="@id/textView30"
+        android:translationX="-311dp"
         android:translationY="20dp"
-        android:translationX="-311dp"/>
+        app:layout_constraintBaseline_toBaselineOf="@id/textView30"
+        app:layout_constraintLeft_toRightOf="@id/textView30" />
 </androidx.constraintlayout.widget.ConstraintLayout>

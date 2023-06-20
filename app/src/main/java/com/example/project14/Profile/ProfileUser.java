@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import com.example.project14.LanguageUtils;
 import com.example.project14.MainActivity;
 import com.example.project14.Match.Match;
 import com.example.project14.OptionsActivity;
+import com.example.project14.ProfileHuurder;
+import com.example.project14.ProfileVerhuurder;
 import com.example.project14.Provider.User_Provider_Form;
 import com.example.project14.R;
 import com.example.project14.Seeking.User_Seeking_Form;
@@ -115,6 +118,19 @@ public class ProfileUser extends AppCompatActivity {
     private String petsIntent;
     private String providerWorkIntent;
     private String petsOwnIntent;
+
+    private TextView cityTextView;
+    private TextView budgetTextView;
+    private TextView reasonTextView;
+    private TextView idealTextView;
+    private TextView licenseTextView;
+    private TextView workTextView;
+    private TextView petsTextView;
+    private TextView situationTextView;
+    private TextView priceTextView;
+    private TextView roomSizeTextView;
+    private TextView furnishedTextView;
+    private Button editBtn;
 
     private void getUserProfile() {
         Toast.makeText(this, "Informatie wordt opgehaald...", Toast.LENGTH_SHORT).show();
@@ -701,11 +717,125 @@ public class ProfileUser extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+        try {
+            if (payloadJson.getString("role").equals("Huurder")) {
+                setContentView(R.layout.activity_profile_user_huurder);
+                LanguageUtils.updateLanguage(this);
+
+                cityTextView = findViewById(R.id.placeOfResidence);
+                budgetTextView = findViewById(R.id.budget);
+                reasonTextView = findViewById(R.id.redenWoonruimte);
+                idealTextView = findViewById(R.id.idealeWoonruimte);
+                licenseTextView = findViewById(R.id.EHBO);
+                workTextView = findViewById(R.id.work);
+                petsTextView = findViewById(R.id.Pets);
+
+                LanguageUtils.updateLanguage(this);
+
+                String languageCode = LanguageUtils.getLanguagePreference(ProfileUser.this);
+                String cityText = "";
+                String budgetText = "";
+                String reasonText = "";
+                String idealText = "";
+                String licenseText = "";
+                String workText = "";
+                String petsText = "";
+                String editButton = "";
+
+
+                if (languageCode.equals("nl")) {
+                    cityText = getResources().getString(R.string.profile_seekingCity);
+                    budgetText = getResources().getString(R.string.profile_seekingBudget);
+                    reasonText = getResources().getString(R.string.profile_seekingReason);
+                    idealText = getResources().getString(R.string.profile_seekingIdeal);
+                    licenseText  = getResources().getString(R.string.profile_seekingLicense);
+                    workText = getResources().getString(R.string.profile_seekingWork);
+                    petsText = getResources().getString(R.string.profile_seekingPets);
+                    editButton = getResources().getString(R.string.profile_providerEdit);
+                } else if (languageCode.equals("en")) {
+                    cityText = getResources().getString(R.string.profile_seekingCity_en);
+                    budgetText = getResources().getString(R.string.profile_seekingBudget_en);
+                    reasonText = getResources().getString(R.string.profile_seekingReason_en);
+                    idealText = getResources().getString(R.string.profile_seekingIdeal_en);
+                    licenseText  = getResources().getString(R.string.profile_seekingLicense_en);
+                    workText = getResources().getString(R.string.profile_seekingWork_en);
+                    petsText = getResources().getString(R.string.profile_seekingPets_en);
+                    editButton = getResources().getString(R.string.profile_providerEdit_en);
+                }
+
+                cityTextView.setText(cityText);
+                budgetTextView.setText(budgetText);
+                reasonTextView.setText(reasonText);
+                idealTextView.setText(idealText);
+                licenseTextView.setText(licenseText);
+                workTextView.setText(workText);
+                petsTextView.setText(petsText);
+                editBtn.setText(editButton);
+
+            } else {
+                setContentView(R.layout.activity_profile_user_verhuurder);
+                cityTextView = findViewById(R.id.placeOfResidence);
+                situationTextView = findViewById(R.id.Woonsituatie);
+                priceTextView = findViewById(R.id.rentalPrice);
+                roomSizeTextView = findViewById(R.id.livingSpace);
+                furnishedTextView = findViewById(R.id.meubilair);
+                workTextView = findViewById(R.id.work);
+                petsTextView = findViewById(R.id.Pets);
+                editBtn = findViewById(R.id.editProfileButton);
+
+                LanguageUtils.updateLanguage(this);
+
+                String languageCode = LanguageUtils.getLanguagePreference(ProfileUser.this);
+                String cityText = "";
+                String situationText = "";
+                String priceText = "";
+                String roomSizeText = "";
+                String furnishedText = "";
+                String workText = "";
+                String petsText = "";
+                String editButton = "";
+
+                if (languageCode.equals("nl")) {
+                    cityText = getResources().getString(R.string.profile_providerCity);
+                    situationText = getResources().getString(R.string.profile_providerSituation);
+                    priceText = getResources().getString(R.string.profile_providerPrice);
+                    roomSizeText = getResources().getString(R.string.profile_providerRoomSize);
+                    furnishedText  = getResources().getString(R.string.profile_providerFurnished);
+                    workText = getResources().getString(R.string.profile_providerWork);
+                    petsText = getResources().getString(R.string.profile_providerPets);
+                    editButton = getResources().getString(R.string.profile_providerEdit);
+                } else if (languageCode.equals("en")) {
+                    cityText = getResources().getString(R.string.profile_providerCity_en);
+                    situationText = getResources().getString(R.string.profile_providerSituation_en);
+                    priceText = getResources().getString(R.string.profile_providerPrice_en);
+                    roomSizeText = getResources().getString(R.string.profile_providerRoomSize_en);
+                    furnishedText  = getResources().getString(R.string.profile_providerFurnished_en);
+                    workText = getResources().getString(R.string.profile_providerWork_en);
+                    petsText = getResources().getString(R.string.profile_providerPets_en);
+                    editButton = getResources().getString(R.string.profile_providerEdit_en);
+                }
+
+                cityTextView.setText(cityText);
+                situationTextView.setText(situationText);
+                priceTextView.setText(priceText);
+                roomSizeTextView.setText(roomSizeText);
+                furnishedTextView.setText(furnishedText);
+                workTextView.setText(workText);
+                petsTextView.setText(petsText);
+                editBtn.setText(editButton);
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
         // Set click listener for the back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle back button click
+                Log.d("click", "back");
                 onBackPressed();
             }
         });

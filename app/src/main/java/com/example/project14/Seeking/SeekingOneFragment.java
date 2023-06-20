@@ -142,7 +142,7 @@ public class SeekingOneFragment extends Fragment {
 
             uploadImageText = getResources().getString(R.string.provider_profilePictureBtn);
 
-            titleText = getResources().getString(R.string.provider_title);
+            titleText = getResources().getString(R.string.seeking_title);
             salutationText = getResources().getString(R.string.provider_salutation);
             firstNameText = getResources().getString(R.string.provider_firstName);
             infixText = getResources().getString(R.string.provider_infix);
@@ -163,7 +163,7 @@ public class SeekingOneFragment extends Fragment {
 
             uploadImageText = getResources().getString(R.string.provider_profilePictureBtn_en);
 
-            titleText = getResources().getString(R.string.provider_title_en);
+            titleText = getResources().getString(R.string.seeking_title_en);
             salutationText = getResources().getString(R.string.provider_salutation_en);
             firstNameText = getResources().getString(R.string.provider_firstName_en);
             infixText = getResources().getString(R.string.provider_infix_en);

@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class SeekingTwoFragment extends Fragment {
-    //TODO phone verification +31 6
     private EditText editTextAddress;
     private EditText editTextCity;
     private EditText editTextPostalCode;

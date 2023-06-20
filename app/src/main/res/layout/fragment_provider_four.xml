@@ -68,15 +68,15 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/provider_roomDays"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerProviderMonth" />
@@ -155,26 +155,25 @@
         />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView16"
-        app:layout_constraintLeft_toRightOf="@id/textView16"
-        android:translationY="20dp"
         android:translationX="-295dp"
-        />
+        android:translationY="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView16"
+        app:layout_constraintLeft_toRightOf="@id/textView16" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView18"
-        app:layout_constraintLeft_toRightOf="@id/textView18"
-        android:translationY="20dp"
         android:translationX="-120dp"
-        />
+        android:translationY="20dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/textView18" />
 </androidx.constraintlayout.widget.ConstraintLayout>

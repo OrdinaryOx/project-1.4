@@ -160,15 +160,15 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="80dp"
         android:text="@string/seeking_profilePicture"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
@@ -176,13 +176,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="@string/seeking_title"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -201,15 +202,16 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="82dp"
         android:text="@string/seeking_infix"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonUploadPicture" />
 
     <TextView
@@ -240,20 +242,21 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="31dp"
-        android:text="@string/seeking_passwordAgain"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="16dp"
-        android:translationX="-16dp"
+        android:text="@string/seeking_passwordAgain"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:translationX="-16dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 
     <TextView
+        android:id="@+id/textView44"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/star"
@@ -268,8 +271,8 @@
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView3"
-        app:layout_constraintLeft_toRightOf="@id/textView3" />
+        app:layout_constraintBaseline_toBaselineOf="@id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"

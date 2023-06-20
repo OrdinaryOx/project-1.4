@@ -75,29 +75,29 @@ public class SeekingEightFragment extends Fragment {
         String volunteerMoreText = "";
 
         if (languageCode.equals("nl")) {
-            offerEdit = getResources().getString(R.string.provider_meanHint);
-            importantNoteEdit = getResources().getString(R.string.provider_noteHint);
-            volunteerEdit = getResources().getString(R.string.provider_type);
+            offerEdit = getResources().getString(R.string.seeking_meanHint);
+            importantNoteEdit = getResources().getString(R.string.seeking_noteHint);
+            volunteerEdit = getResources().getString(R.string.seeking_type);
 
-            volunteerRadioYes = getResources().getString(R.string.provider_volunteerYes);
-            volunteerRadioNo = getResources().getString(R.string.provider_volunteerNo);
+            volunteerRadioYes = getResources().getString(R.string.seeking_volunteerYes);
+            volunteerRadioNo = getResources().getString(R.string.seeking_volunteerNo);
 
-            meanText = getResources().getString(R.string.provider_mean);
-            noteText = getResources().getString(R.string.provider_note);
-            volunteerText = getResources().getString(R.string.provider_volunteer);
-            volunteerMoreText = getResources().getString(R.string.provider_noteComment);
+            meanText = getResources().getString(R.string.seeking_mean);
+            noteText = getResources().getString(R.string.seeking_note);
+            volunteerText = getResources().getString(R.string.seeking_volunteer);
+            volunteerMoreText = getResources().getString(R.string.seeking_volunteerComment);
         } else if (languageCode.equals("en")) {
-            offerEdit = getResources().getString(R.string.provider_meanHint_en);
-            importantNoteEdit = getResources().getString(R.string.provider_noteHint_en);
-            volunteerEdit = getResources().getString(R.string.provider_type_en);
+            offerEdit = getResources().getString(R.string.seeking_meanHint_en);
+            importantNoteEdit = getResources().getString(R.string.seeking_noteHint_en);
+            volunteerEdit = getResources().getString(R.string.seeking_type_en);
 
-            volunteerRadioYes = getResources().getString(R.string.provider_volunteerYes_en);
-            volunteerRadioNo = getResources().getString(R.string.provider_volunteerNo_en);
+            volunteerRadioYes = getResources().getString(R.string.seeking_volunteerYes_en);
+            volunteerRadioNo = getResources().getString(R.string.seeking_volunteerNo_en);
 
-            meanText = getResources().getString(R.string.provider_mean_en);
-            noteText = getResources().getString(R.string.provider_note_en);
-            volunteerText = getResources().getString(R.string.provider_volunteer_en);
-            volunteerMoreText = getResources().getString(R.string.provider_noteComment_en);
+            meanText = getResources().getString(R.string.seeking_mean_en);
+            noteText = getResources().getString(R.string.seeking_note_en);
+            volunteerText = getResources().getString(R.string.seeking_volunteer_en);
+            volunteerMoreText = getResources().getString(R.string.seeking_volunteerComment_en);
         }
 
         editTextOtherOffer.setHint(offerEdit);

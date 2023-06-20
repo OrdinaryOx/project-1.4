@@ -96,9 +96,9 @@ public class ProviderFiveFragment extends Fragment {
             priceText = getResources().getString(R.string.provider_roomPrice_en);
         }
 
-        editTextSquareMeter.setText(squareMeterEdit);
-        editTextFurnished.setText(furnishedEdit);
-        editTextPrice.setText(priceEdit);
+        editTextSquareMeter.setHint(squareMeterEdit);
+        editTextFurnished.setHint(furnishedEdit);
+        editTextPrice.setHint(priceEdit);
 
         furnishYes.setText(furnishedYes);
         furnishNo.setText(furnishedNo);

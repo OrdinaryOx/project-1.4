@@ -139,7 +139,7 @@
     <string name="providerPetsNo">Nee</string>
     <string name="providerPets">Heb je huisdieren?</string>
 
-    <string name="provider_mean">Wat zou een woongenoot voor jou kunnen betekenen/doen?</string>
+    <string name="provider_mean">Wat zou een woongenoot voor jou kunnen doen?</string>
     <string name="provider_note">Waar moeten we zeker rekening mee houden?</string>
     <string name="provider_volunteer">Heb je ervaring met vrijwilligerswerk?</string>
     <string name="provider_noteComment">Zo ja, vertel hier kort over:</string>
@@ -154,7 +154,7 @@
     <string name="provider_boughtYes">Ja</string>
     <string name="provider_boughtNo">Nee</string>
     <string name="provider_foundHint">  Bijvoorbeeld: via vrienden</string>
-    <string name="provider_reasonHint">Bijvoorbeeld: om meer gezelschap te hebben</string>
+    <string name="provider_reasonHint">  Bijvoorbeeld: om meer gezelschap te hebben</string>
     <string name="provider_reason">Wat is uw motivatie om een kamer aan te bieden aan een woningzoekende/student?</string>
 
     <string name="provider_birthHint">  DD-MM-JJJJ</string>
@@ -223,11 +223,11 @@
 
     <string name="seeking_describe">Schets een beeld over je zelf en geef toelichting over je thuissituatie/gezinssituatie:</string>
     <string name="seeking_keyword">Omschrijf jezelf in enkele steekwoorden</string>
-    <string name="seeking_idealRoom">Hoe ziet jouw ideale kamer/woonplek/woonsituatie eruit?</string>
+    <string name="seeking_idealRoom">Hoe ziet jouw ideale kamer eruit?</string>
     <string name="seeking_providerMean">Wat zou jij willen betekenen voor je woongenoot (koppel)?</string>
     <string name="seeking_idealRoomHint">  Bijvoorbeeld: een slaapkamer waar ik kan leren</string>
     <string name="seeking_providerMeanHint">  Bijvoorbeeld: klusjes doen</string>
-    <string name="seeking_keywordHint">Bijvoorbeeld: slim, grappig</string>
+    <string name="seeking_keywordHint">  Bijvoorbeeld: slim, grappig</string>
 
     <string name="seeking_help">Heb je beschikking over:</string>
     <string name="seeking_firstAid">EHBO</string>
@@ -240,7 +240,7 @@
     <string name="seeking_healthComment">Zo ja, wat?</string>
     <string name="seeking_health">Zijn er gezondheidszaken van belang om te weten?</string>
     <string name="seeking_workCommentHint">  Bijvoorbeeld: programmeur</string>
-    <string name="seeking_healthCommentHint">Bijvoorbeeld: asthma</string>
+    <string name="seeking_healthCommentHint">  Bijvoorbeeld: asthma</string>
     <string name="seeking_healthYes">Ja</string>
     <string name="seeking_healthNo">Nee</string>
 
@@ -259,7 +259,7 @@
     <string name="seeking_preferenceM">Man</string>
     <string name="seeking_preferenceC">Koppel</string>
     <string name="seeking_preferenceO">Geen vookeur</string>
-    <string name="seeking_budgetHint">€1000</string>
+    <string name="seeking_budgetHint">  €1000</string>
     <string name="seeking_livingTime">Hoe lang zou je bij voorkeur willen wonen?</string>
 
     <string name="seeking_birthHint">  DD-MM-JJJJ</string>
@@ -281,6 +281,23 @@
     <string name="allChats_age">90</string>
     <string name="allChats_message">This is a message sent by username</string>
 
+    <string name="profile_providerPets">Huisdieren:</string>
+    <string name="profile_providerWork">Werk:</string>
+    <string name="profile_providerCity">Woonplaats:</string>
+    <string name="profile_providerSituation">Woonsituatie:</string>
+    <string name="profile_providerPrice">Huurprijs:</string>
+    <string name="profile_providerRoomSize">Kamergrootte:</string>
+    <string name="profile_providerFurnished">Gemeubileerd:</string>
+    <string name="profile_providerEdit">Pas profiel aan</string>
+
+    <string name="profile_seekingCity">Woonplaats:</string>
+    <string name="profile_seekingBudget">Budget:</string>
+    <string name="profile_seekingReason">Reden voor woonruimte:</string>
+    <string name="profile_seekingIdeal">Mijn ideale woonruimte:</string>
+    <string name="profile_seekingLicense">Licenties:</string>
+    <string name="profile_seekingWork">Werk:</string>
+    <string name="profile_seekingPets">Huisdieren:</string>
+    <string name="profile_seekingEdit">Pas profiel aan</string>
 
     <string name="hello_en">Hello</string>
     <string name="app_name_en">Project1.4</string>
@@ -330,8 +347,8 @@
     <string name="options_phoneTitle_en">Phone number visible:</string>
     <string name="options_phoneYes_en">Yes</string>
     <string name="options_link_en">Click here for the Privacy Policy</string>
-    <string name="role_provider_en">I HAVE ACCOMMODATION AVAILABLE</string>
-    <string name="role_seeking_en">I\'M LOOKING FOR ACCOMMODATION</string>
+    <string name="role_provider_en">PROVIDING ROOM</string>
+    <string name="role_seeking_en">SEEKING ROOM</string>
 
     <string name="form_backBtn_en">Back</string>
     <string name="form_nextBtn_en">Next</string>
@@ -369,21 +386,22 @@
     <string name="provider_otherComment_en">What else would you like to share with us?</string>
 
     <string name="provider_type_en">Type here</string>
-    <string name="provider_roomSizeHint_en">sqm</string>
+    <string name="provider_roomSizeHint_en">  sqm</string>
     <string name="provider_roomSize_en">How big is this space?</string>
     <string name="provider_furnished_en">Is the living space/room furnished?</string>
     <string name="provider_furnishedExtra_en">If yes, please provide details:</string>
     <string name="provider_roomPrice_en">Do you already have a price in mind?</string>
-    <string name="provider_furnishedHint_en">e.g. Bed, sofa</string>
-    <string name="provider_priceHint_en">€1000</string>
+    <string name="provider_furnishedHint_en">  e.g. Bed, sofa</string>
+    <string name="provider_priceHint_en">  €1000</string>
     <string name="provider_furnishedYes_en">Yes</string>
     <string name="provider_furnishedNo_en">No</string>
 
     <string name="provider_PictureRoom_en">Upload a photo of the accommodation:</string>
-    <string name="provider_roomDays_en">How many nights per week do you want to offer the living space?</string>
-    <string name="provider_roomMonths_en">How long would you prefer to offer the living space to the tenant?</string>
-    <string name="provider_roomHint_en">e.g. bedroom</string>
-    <string name="provider_roomType_en">What type of living space do you have available for the tenant\'s private use?</string>
+
+    <string name="provider_roomDays_en">How many nights per week do you want to             offer the space?</string>
+    <string name="provider_roomMonths_en">How long would you prefer to offer the living space to the tenant in months?</string>
+    <string name="provider_roomHint_en">  e.g. bedroom</string>
+    <string name="provider_roomType_en">What type of comfortable living space do you                    have available for the tenant\'s use?</string>
     <string name="provider_addPicture_en">Add Photo</string>
 
     <string name="provider_comment_en">Comments:</string>
@@ -394,43 +412,43 @@
     <string name="privacy_linkCookie_en">Click here for the cookie policy</string>
     <string name="provider_send_en">Send</string>
 
-    <string name="provider_passwordHint_en">********</string>
-    <string name="provider_lastNameHint_en">Last Name</string>
-    <string name="provider_firstNameHint_en">First Name</string>
-    <string name="provider_infixHint_en">Middle Name</string>
+    <string name="provider_passwordHint_en">  ********</string>
+    <string name="provider_lastNameHint_en">  Last Name</string>
+    <string name="provider_firstNameHint_en">  First Name</string>
+    <string name="provider_infixHint_en">  Middle Name</string>
     <string name="provider_profilePictureBtn_en">Upload</string>
     <string name="provider_salutation_en">Salutation:</string>
     <string name="provider_profilePicture_en">Upload your photo:</string>
     <string name="provider_title_en">Registration available living space</string>
     <string name="provider_firstName_en">First Name:</string>
-    <string name="provider_infix_en">Middle Name:</string>
+    <string name="provider_infix_en">Middle Name:  </string>
     <string name="provider_lastName_en">Last Name:</string>
     <string name="provider_password_en">Password:</string>
     <string name="provider_passwordAgain_en">Password again:</string>
     <string name="provider_email_en">Email address:</string>
-    <string name="provider_emailHint_en">Email address</string>
+    <string name="provider_emailHint_en">  Email address</string>
 
-    <string name="provider_keywordHint_en">For example: funny, smart</string>
+    <string name="provider_keywordHint_en">  For example: funny, smart</string>
     <string name="provider_keyword_en">Describe yourself in a few keywords</string>
     <string name="provider_hobby_en">What are your hobbies?</string>
-    <string name="provider_work_en">Do you have a job?</string>
+    <string name="provider_work_en">Do you work?</string>
     <string name="provider_workYes_en">Yes</string>
     <string name="provider_workNo_en">No</string>
-    <string name="provider_workComment_en">If yes, what and how many hours per week?</string>
-    <string name="provider_workCommentHint_en">For example: programmer</string>
-    <string name="provider_hobbyHint_en">For example: hiking</string>
-    <string name="provider_petCommentHint_en">For example: dog</string>
+    <string name="provider_workComment_en">If yes, what and how many hours?</string>
+    <string name="provider_workCommentHint_en">  For example: programmer</string>
+    <string name="provider_hobbyHint_en">  For example: hiking</string>
+    <string name="provider_petCommentHint_en">  For example: dog</string>
     <string name="provider_petComment_en">If yes, which one(s)?</string>
     <string name="providerPetsYes_en">Yes</string>
     <string name="providerPetsNo_en">No</string>
     <string name="providerPets_en">Do you have pets?</string>
 
-    <string name="provider_mean_en">What can a roommate do for you?</string>
+    <string name="provider_mean_en">What can a roommate do for you or mean for you?</string>
     <string name="provider_note_en">What should we definitely take into account?</string>
     <string name="provider_volunteer_en">Do you have experience with volunteering?</string>
     <string name="provider_noteComment_en">If yes, briefly tell us about it:</string>
-    <string name="provider_meanHint_en">For example: doing chores</string>
-    <string name="provider_noteHint_en">For example: nut allergy</string>
+    <string name="provider_meanHint_en">  For example: doing chores</string>
+    <string name="provider_noteHint_en">  For example: nut allergy</string>
     <string name="provider_volunteerYes_en">Yes</string>
     <string name="provider_volunteerNo_en">No</string>
 
@@ -439,18 +457,18 @@
     <string name="provider_bought_en">Do you own a house?</string>
     <string name="provider_boughtYes_en">Yes</string>
     <string name="provider_boughtNo_en">No</string>
-    <string name="provider_foundHint_en">For example: through friends</string>
-    <string name="provider_reasonHint_en">For example: to have more companionship</string>
-    <string name="provider_reason_en">What is your motivation for offering a room to a home seeker/student?</string>
+    <string name="provider_foundHint_en">  For example: through friends</string>
+    <string name="provider_reasonHint_en">  For example: to have more companionship</string>
+    <string name="provider_reason_en">What is your motivation for offering a room to a home seeker or student in need?</string>
 
-    <string name="provider_birthHint_en">DD-MM-YYYY</string>
+    <string name="provider_birthHint_en">  DD-MM-YYYY</string>
     <string name="provider_phoneNumber_en">Phone number:</string>
-    <string name="provider_streetHint_en">Street</string>
-    <string name="provider_cityHint_en">City</string>
-    <string name="provider_codeHint_en">Postal code</string>
-    <string name="provider_houseNumberHint_en">House number</string>
-    <string name="provider_countryHint_en">Country</string>
-    <string name="provider_phoneNumberHint_en">Phone number</string>
+    <string name="provider_streetHint_en">  Street</string>
+    <string name="provider_cityHint_en">  City</string>
+    <string name="provider_codeHint_en">  Postal code</string>
+    <string name="provider_houseNumberHint_en">  House number</string>
+    <string name="provider_countryHint_en">  Country</string>
+    <string name="provider_phoneNumberHint_en">  Phone number</string>
     <string name="provider_street_en">Street:</string>
     <string name="provider_city_en">City:</string>
     <string name="provider_code_en">Postal code:</string>
@@ -462,22 +480,22 @@
     <string name="seeking_note_en">What should we definitely take into account?</string>
     <string name="seeking_volunteer_en">Do you have experience with volunteering?</string>
     <string name="seeking_volunteerComment_en">If yes, briefly tell us about it:</string>
-    <string name="seeking_meanHint_en">For example: providing advice</string>
-    <string name="seeking_noteHint_en">For example: nut allergy</string>
+    <string name="seeking_meanHint_en">  For example: providing advice</string>
+    <string name="seeking_noteHint_en">  For example: nut allergy</string>
     <string name="seeking_volunteerYes_en">Yes</string>
     <string name="seeking_volunteerNo_en">No</string>
 
     <string name="seeking_startDate_en">Desired start date:</string>
     <string name="seeking_endDate_en">Desired end date:</string>
-    <string name="seeking_reason_en">What is the reason you are looking for accommodation?</string>
+    <string name="seeking_reason_en">What is the reason you are looking for a room?</string>
     <string name="seeking_start_en">From:</string>
     <string name="seeking_end_en">To:</string>
-    <string name="seeking_startDateHint_en">DD-MM-YYYY</string>
-    <string name="seeking_endDateHint_en">DD-MM-YYYY</string>
+    <string name="seeking_startDateHint_en">  DD-MM-YYYY</string>
+    <string name="seeking_endDateHint_en">  DD-MM-YYYY</string>
     <string name="seeking_school_en">What education/degrees have you completed?</string>
-    <string name="seeking_schoolFuture_en">What education are you currently pursuing or planning to pursue?</string>
-    <string name="seeking_schoolHint_en">High school</string>
-    <string name="seeking_schoolFutureHint_en">Bachelor\'s in Computer Science</string>
+    <string name="seeking_schoolFuture_en">What education are you currently planning to do or doing?</string>
+    <string name="seeking_schoolHint_en">  High school</string>
+    <string name="seeking_schoolFutureHint_en">  Bachelor\'s in Computer Science</string>
     <string name="seeking_otherPet_en">Do you mind if the landlord has pets?</string>
     <string name="seeking_days_en">How many night(s) would you stay per week?</string>
     <string name="seeking_pets_en">Do you have any pets of your own?</string>
@@ -486,47 +504,47 @@
     <string name="seeking_petsNo_en">No</string>
     <string name="seeking_selfPetsYes_en">Yes</string>
     <string name="seeking_selfPetsNo_en">No</string>
-    <string name="seeking_petsSelfCommentHint_en">For example: a cat</string>
+    <string name="seeking_petsSelfCommentHint_en">  For example: a cat</string>
 
     <string name="seeking_belief_en">What is your religious/life belief?</string>
     <string name="seeking_otherComment_en">Is there anything else you would like to tell us?</string>
 
-    <string name="seeking_passwordHint_en">********</string>
-    <string name="seeking_lastNameHint_en">Last Name</string>
-    <string name="seeking_firstNameHint_en">First Name</string>
-    <string name="seeking_infixHint_en">Middle Name</string>
+    <string name="seeking_passwordHint_en">  ********</string>
+    <string name="seeking_lastNameHint_en">  Last Name</string>
+    <string name="seeking_firstNameHint_en">  First Name</string>
+    <string name="seeking_infixHint_en">  Middle Name</string>
     <string name="seeking_profilePictureBtn_en">Upload</string>
     <string name="seeking_salutation_en">Salutation:</string>
     <string name="seeking_profilePicture_en">Upload your photo:</string>
-    <string name="seeking_title_en">Registration for Accommodation Seeker</string>
+    <string name="seeking_title_en">Registration for Seeker</string>
     <string name="seeking_firstName_en">First Name:</string>
     <string name="seeking_infix_en">Middle Name:</string>
     <string name="seeking_lastName_en">Last Name:</string>
     <string name="seeking_password_en">Password:</string>
     <string name="seeking_passwordAgain_en">Confirm Password:</string>
     <string name="seeking_email_en">Email Address:</string>
-    <string name="seeking_emailHint_en">Email Address</string>
+    <string name="seeking_emailHint_en">  Email Address</string>
 
-    <string name="seeking_describe_en">Describe yourself and provide information about your home/family situation:</string>
+    <string name="seeking_describe_en">Describe yourself and provide information about your home/family situation in detail:</string>
     <string name="seeking_keyword_en">Describe yourself in a few keywords</string>
-    <string name="seeking_idealRoom_en">What does your ideal room/living space/accommodation look like?</string>
+    <string name="seeking_idealRoom_en">What does your ideal room look like?</string>
     <string name="seeking_providerMean_en">What would you like to contribute to your roommate (couple)?</string>
-    <string name="seeking_idealRoomHint_en">For example: a bedroom where I can study</string>
-    <string name="seeking_providerMeanHint_en">For example: doing household chores</string>
-    <string name="seeking_keywordHint_en">For example: smart, funny</string>
+    <string name="seeking_idealRoomHint_en">  For example: a bedroom where I can study</string>
+    <string name="seeking_providerMeanHint_en">  For example: doing household chores</string>
+    <string name="seeking_keywordHint_en">  For example: smart, funny</string>
 
     <string name="seeking_help_en">Do you have access to:</string>
     <string name="seeking_firstAid_en">First Aid</string>
-    <string name="seeking_care_en">Emergency Response</string>
+    <string name="seeking_care_en">ER</string>
     <string name="seeking_reanimation_en">CPR</string>
-    <string name="seeking_work_en">Do you have a job?</string>
+    <string name="seeking_work_en">Do you work?</string>
     <string name="seeking_workYes_en">Yes</string>
     <string name="seeking_workNo_en">No</string>
-    <string name="seeking_workComment_en">If yes, what and how many hours per week?</string>
+    <string name="seeking_workComment_en">If yes, what?</string>
     <string name="seeking_healthComment_en">If yes, what?</string>
-    <string name="seeking_health_en">Are there any health matters of importance to know?</string>
-    <string name="seeking_workCommentHint_en">For example: programmer</string>
-    <string name="seeking_healthCommentHint_en">For example: asthma</string>
+    <string name="seeking_health_en">Are there any health matters to know of?</string>
+    <string name="seeking_workCommentHint_en">  For example: programmer</string>
+    <string name="seeking_healthCommentHint_en">  For example: asthma</string>
     <string name="seeking_healthYes_en">Yes</string>
     <string name="seeking_healthNo_en">No</string>
 
@@ -538,24 +556,24 @@
     <string name="seeking_linkCookie_en">Click here for the cookie policy</string>
     <string name="seeking_send_en">Submit</string>
 
-    <string name="seeking_cityRoom_en">In which city/town are you looking for accommodation?</string>
+    <string name="seeking_cityRoom_en">In which city are you looking for a room?</string>
     <string name="seeking_budget_en">What is your approximate budget per month</string>
     <string name="seeking_preference_en">Do you have a preference to live with?</string>
     <string name="seeking_preferenceW_en">Female</string>
     <string name="seeking_preferenceM_en">Male</string>
     <string name="seeking_preferenceC_en">Couple</string>
     <string name="seeking_preferenceO_en">No preference</string>
-    <string name="seeking_budgetHint_en">€1000</string>
+    <string name="seeking_budgetHint_en">  €1000</string>
     <string name="seeking_livingTime_en">How long would you prefer to live?</string>
 
-    <string name="seeking_birthHint_en">DD-MM-YYYY</string>
+    <string name="seeking_birthHint_en">  DD-MM-YYYY</string>
     <string name="seeking_phoneNumber_en">Phone number:</string>
-    <string name="seeking_streetHint_en">Street</string>
-    <string name="seeking_cityHint_en">City</string>
-    <string name="seeking_codeHint_en">Postal code</string>
-    <string name="seeking_houseNumberHint_en">House number</string>
-    <string name="seeking_countryHint_en">Country</string>
-    <string name="seeking_phoneNumberHint_en">Phone number</string>
+    <string name="seeking_streetHint_en">  Street</string>
+    <string name="seeking_cityHint_en">  City</string>
+    <string name="seeking_codeHint_en">  Postal code</string>
+    <string name="seeking_houseNumberHint_en">  House number</string>
+    <string name="seeking_countryHint_en">  Country</string>
+    <string name="seeking_phoneNumberHint_en">  Phone number</string>
     <string name="seeking_street_en">Street:</string>
     <string name="seeking_city_en">City:</string>
     <string name="seeking_code_en">Postal code:</string>
@@ -566,5 +584,23 @@
     <string name="allChats_userName_en">Username</string>
     <string name="allChats_age_en">90</string>
     <string name="allChats_message_en">This is a message sent by username</string>
+
+    <string name="profile_providerPets_en">Pets:</string>
+    <string name="profile_providerWork_en">Work:</string>
+    <string name="profile_providerCity_en">City of residence:</string>
+    <string name="profile_providerSituation_en">Living situation:</string>
+    <string name="profile_providerPrice_en">Rent price:</string>
+    <string name="profile_providerRoomSize_en">Room size:</string>
+    <string name="profile_providerFurnished_en">Furnished:</string>
+    <string name="profile_providerEdit_en">Edit profile</string>
+
+    <string name="profile_seekingCity_en">City:</string>
+    <string name="profile_seekingBudget_en">Budget:</string>
+    <string name="profile_seekingReason_en">Reason for housing:</string>
+    <string name="profile_seekingIdeal_en">My ideal housing:</string>
+    <string name="profile_seekingLicense_en">Licenses:</string>
+    <string name="profile_seekingWork_en">Work:</string>
+    <string name="profile_seekingPets_en">Pets:</string>
+    <string name="profile_seekingEdit_en">Edit profile</string>
 
 </resources>

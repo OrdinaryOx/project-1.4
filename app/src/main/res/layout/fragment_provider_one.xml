@@ -30,44 +30,43 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:calendarViewShown="false"
-        android:padding="4dp"
         android:hint="@string/provider_passwordHint"
-        app:layout_constraintStart_toStartOf="parent"
         android:inputType="textPassword"
+        android:padding="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_marginTop="16dp"
-
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextPasswordAgain"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
         <ImageView
-            android:padding="3dp"
             android:id="@+id/passwordVisibilityButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-
-            android:src="@drawable/eye_icon"
             android:background="@color/MWG_Dark"
-            />
+
+            android:padding="3dp"
+            android:src="@drawable/eye_icon" />
     </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/editTextPasswordAgain"
         android:layout_width="160dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:calendarViewShown="false"
+        android:hint="@string/provider_passwordHint"
         android:inputType="textPassword"
-        android:layout_marginLeft="20dp"
         android:padding="4dp"
         app:layout_constraintStart_toEndOf="@+id/editTextPassword"
-        android:hint="@string/provider_passwordHint"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Spinner
@@ -91,8 +90,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
-        android:padding="4dp"
         android:hint="@string/provider_lastNameHint"
+        android:padding="4dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -106,8 +105,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
-        android:padding="4dp"
         android:hint="@string/provider_firstNameHint"
+        android:padding="4dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -121,8 +120,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
-        android:padding="4dp"
         android:hint="@string/provider_infixHint"
+        android:padding="4dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -133,8 +132,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:onClick="uploadPicture"
         android:background="@drawable/border"
+        android:onClick="uploadPicture"
         android:text="@string/provider_profilePictureBtn"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -155,15 +154,15 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="80dp"
         android:text="@string/provider_profilePicture"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
@@ -196,15 +195,16 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="82dp"
         android:text="@string/provider_infix"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonUploadPicture" />
 
     <TextView
@@ -225,29 +225,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/provider_password"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginTop="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="31dp"
-        android:text="@string/provider_passwordAgain"
+        android:layout_marginStart="215dp"
         android:layout_marginTop="16dp"
-        android:translationX="-16dp"
+        android:text="@string/provider_passwordAgain"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:translationX="-16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/star"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -259,15 +270,7 @@
         app:layout_constraintLeft_toRightOf="@id/textView3" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/star"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView3"
-        app:layout_constraintLeft_toRightOf="@id/textView3" />
-
-    <TextView
+        android:id="@+id/textView43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/star"
@@ -295,26 +298,24 @@
         app:layout_constraintBaseline_toBaselineOf="@id/textView10"
         app:layout_constraintLeft_toRightOf="@id/textView10" />
 
+
     <TextView
-        android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/star"
         android:textColor="@color/red"
         android:textSize="16sp"
+        android:translationX="-10dp"
         app:layout_constraintBaseline_toBaselineOf="@id/textView13"
         app:layout_constraintLeft_toRightOf="@id/textView13" />
-
-
-
 
     <TextView
         android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/provider_email"
         android:layout_marginTop="16dp"
+        android:text="@string/provider_email"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -330,8 +331,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
-        android:padding="4dp"
         android:hint="@string/provider_emailHint"
+        android:padding="4dp"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
