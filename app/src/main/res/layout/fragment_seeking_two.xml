@@ -187,17 +187,17 @@
 
     <TextView
         android:id="@+id/textViewHuisNummer"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/editTextPostalCode"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="20dp"
         android:text="@string/seeking_houseNumber"
         android:textColor="@color/black"
+
         android:textSize="16sp"
         android:textStyle="bold"
-
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        android:layout_marginTop="20dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <TextView
         android:id="@+id/textView11"
@@ -244,6 +244,7 @@
         app:layout_constraintLeft_toRightOf="@id/textView2" />
 
     <TextView
+        android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/star"
