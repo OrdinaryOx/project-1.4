@@ -215,11 +215,9 @@ public class ProfileUser extends AppCompatActivity {
                         TextView redenWonen = findViewById(R.id.redenDesc);
 
 
-
-
                         ImageView profile = findViewById(R.id.ProfilePicture);
                         String picture = profiledata.get("picture").toString();
-                        picture = picture.replace("\"","");
+                        picture = picture.replace("\"", "");
                         Log.d("pictureurl", "" + picture);
 
                         Glide.with(profile)
@@ -227,8 +225,6 @@ public class ProfileUser extends AppCompatActivity {
                                 .centerCrop()
                                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                                 .into(profile);
-
-
 
 
 //                        String firstName = profiledata.get("firstName").toString();
@@ -240,8 +236,8 @@ public class ProfileUser extends AppCompatActivity {
                         String work = (preferenceData.get("work") != null && preferenceData.get("work").getAsInt() == 1) ? "Ja" : "Nee";
                         String workDesc = preferenceData.get("workDescription") != null ? preferenceData.get("workDescription").toString() : "";
                         String skill = preferenceData.get("skill").toString();
-                        String pet = (preferenceData.get("ownPet") != null && preferenceData.get("pet").getAsInt() ==1) ? "Ja" : "Nee";
-                        String petDescription = preferenceData.get("ownPetDescription") != null ? preferenceData.get("ownPetDescription").toString() :"";
+                        String pet = (preferenceData.get("ownPet") != null && preferenceData.get("ownPet").getAsInt() == 1) ? "Ja" : "Nee";
+                        String petDescription = preferenceData.get("ownPetDescription") != null ? preferenceData.get("ownPetDescription").toString() : "";
                         String preference = preferenceData.get("liveWith").toString();
                         String month = preferenceData.get("period").toString();
                         String day = preferenceData.get("nights").toString();
@@ -352,15 +348,14 @@ public class ProfileUser extends AppCompatActivity {
                         ehboTextView.setText(skill);
                         // petsTextView.setText("Huisdieren: " + pet);
 
-                        if (pet == "0") {
-                            pet = "Nee";
-                        } else {
-                            pet = "Ja - ";
-                        }
 
                         petDescription = petDescription.replace("\"", "");
+                        if (pet.equals("Ja - ")) {
+                            petDescTextView.setText(pet + petDescription);
+                        } else {
+                            petDescTextView.setText("Nee");
+                        }
 
-                        petDescTextView.setText(pet + petDescription);
                         remarksTextView.setText(offer);
                         userDescriptionTextView.setText(description);
                         userKeywordsTextView.setText(keywords);
@@ -469,7 +464,7 @@ public class ProfileUser extends AppCompatActivity {
                         String cityverhuurder = profiledata.get("city") != null ? profiledata.get("city").toString() : "-";
                         String budgetverhuurder = preferenceData.get("price") != null ? preferenceData.get("price").toString() : "-";
                         String healthRiskverhuurder = profiledata.get("healthRisk") != null ? profiledata.get("healthRisk").toString() : "-";
-                        String petverhuurder = profiledata.get("pet") != null && preferenceData.get("pet").getAsInt() == 1 ? "Ja" : "Nee";
+                        String petverhuurder = profiledata.get("pet") != null && preferenceData.get("pet").getAsInt() == 1 ? "Ja - " : "Nee";
                         String petDescriptionverhuurder = profiledata.get("petDescription") != null ? preferenceData.get("PetDescription").toString() : "";
 
                         //                    String overallCommentverhuurder = preferenceData.get("overallcomment") != null ? profiledata.get("overallcomment").toString() : "-";
@@ -502,7 +497,7 @@ public class ProfileUser extends AppCompatActivity {
 
                         ImageView profile = findViewById(R.id.ProfilePicture);
                         String picture = profiledata.get("picture").toString();
-                        picture = picture.replace("\"","");
+                        picture = picture.replace("\"", "");
                         Log.d("pictureurl", "" + picture);
 
                         Glide.with(profile)
@@ -510,7 +505,6 @@ public class ProfileUser extends AppCompatActivity {
                                 .centerCrop()
                                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                                 .into(profile);
-
 
 
                         if (furnished.equals("Nee")) {
@@ -604,7 +598,7 @@ public class ProfileUser extends AppCompatActivity {
                         String providerWorkDetailsIntentItem = preferenceData.get("workDescription").toString();
                         String hobbyIntentItem = preferenceData.get("hobby").toString();
                         //?
-                        String petsIntentItem = preferenceData.get("petDescription")!= null ? preferenceData.get("petDescription").toString():"";
+                        String petsIntentItem = preferenceData.get("petDescription") != null ? preferenceData.get("petDescription").toString() : "";
                         String beliefIntentItem = preferenceData.get("religion").toString();
                         String otherIntentItem = preferenceData.get("comment").toString();
                         String overallCommentIntentItem = preferenceData.get("overallcomment").toString();
@@ -684,15 +678,11 @@ public class ProfileUser extends AppCompatActivity {
         LanguageUtils.updateLanguage(this);
 
 
-
         //SET TOOLBAR
 
 
         getUserProfile();
         super.onCreate(savedInstanceState);
-
-
-
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
@@ -754,7 +744,7 @@ public class ProfileUser extends AppCompatActivity {
                     budgetText = getResources().getString(R.string.profile_seekingBudget);
                     reasonText = getResources().getString(R.string.profile_seekingReason);
                     idealText = getResources().getString(R.string.profile_seekingIdeal);
-                    licenseText  = getResources().getString(R.string.profile_seekingLicense);
+                    licenseText = getResources().getString(R.string.profile_seekingLicense);
                     workText = getResources().getString(R.string.profile_seekingWork);
                     petsText = getResources().getString(R.string.profile_seekingPets);
                     editButton = getResources().getString(R.string.profile_providerEdit);
@@ -763,7 +753,7 @@ public class ProfileUser extends AppCompatActivity {
                     budgetText = getResources().getString(R.string.profile_seekingBudget_en);
                     reasonText = getResources().getString(R.string.profile_seekingReason_en);
                     idealText = getResources().getString(R.string.profile_seekingIdeal_en);
-                    licenseText  = getResources().getString(R.string.profile_seekingLicense_en);
+                    licenseText = getResources().getString(R.string.profile_seekingLicense_en);
                     workText = getResources().getString(R.string.profile_seekingWork_en);
                     petsText = getResources().getString(R.string.profile_seekingPets_en);
                     editButton = getResources().getString(R.string.profile_providerEdit_en);
@@ -806,7 +796,7 @@ public class ProfileUser extends AppCompatActivity {
                     situationText = getResources().getString(R.string.profile_providerSituation);
                     priceText = getResources().getString(R.string.profile_providerPrice);
                     roomSizeText = getResources().getString(R.string.profile_providerRoomSize);
-                    furnishedText  = getResources().getString(R.string.profile_providerFurnished);
+                    furnishedText = getResources().getString(R.string.profile_providerFurnished);
                     workText = getResources().getString(R.string.profile_providerWork);
                     petsText = getResources().getString(R.string.profile_providerPets);
                     editButton = getResources().getString(R.string.profile_providerEdit);
@@ -815,7 +805,7 @@ public class ProfileUser extends AppCompatActivity {
                     situationText = getResources().getString(R.string.profile_providerSituation_en);
                     priceText = getResources().getString(R.string.profile_providerPrice_en);
                     roomSizeText = getResources().getString(R.string.profile_providerRoomSize_en);
-                    furnishedText  = getResources().getString(R.string.profile_providerFurnished_en);
+                    furnishedText = getResources().getString(R.string.profile_providerFurnished_en);
                     workText = getResources().getString(R.string.profile_providerWork_en);
                     petsText = getResources().getString(R.string.profile_providerPets_en);
                     editButton = getResources().getString(R.string.profile_providerEdit_en);
@@ -863,8 +853,6 @@ public class ProfileUser extends AppCompatActivity {
         });
 
 
-
-
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -872,7 +860,6 @@ public class ProfileUser extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
     }
