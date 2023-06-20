@@ -3,7 +3,8 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#00A651">
+    android:background="#00A651"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"

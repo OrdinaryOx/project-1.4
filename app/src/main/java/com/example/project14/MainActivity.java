@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
 
+
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);

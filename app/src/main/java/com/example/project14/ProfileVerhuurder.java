@@ -39,7 +39,7 @@ public class ProfileVerhuurder extends AppCompatActivity {
         setContentView(R.layout.activity_profile_verhuurder);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);

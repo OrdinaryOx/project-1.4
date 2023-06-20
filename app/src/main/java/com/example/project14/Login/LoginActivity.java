@@ -16,10 +16,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView welcomeTextView;
     private TextView inputTextView;
     private TextView alternativeTextView;
+    private ImageView passwordVisibilityButton;
 
 
     private Boolean validateEmail() {
@@ -162,6 +166,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        EditText passwordEditText = findViewById(R.id.editTextTextPassword);
+         passwordVisibilityButton = findViewById(R.id.passwordVisibilityButton);
+
+        passwordVisibilityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibility(passwordEditText);
+            }
+        });
+
+
+
+
+
+
         sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
 
@@ -176,7 +195,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //SET TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
@@ -315,6 +333,20 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    private void togglePasswordVisibility(EditText passwordEditText) {
+        if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            passwordVisibilityButton.setImageResource(R.drawable.eye_icon);
+        } else {
+            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            passwordVisibilityButton.setImageResource(R.drawable.eye_icon);
+        }
+
+        // Move the cursor to the end of the text
+        passwordEditText.setSelection(passwordEditText.length());
+    }
+
 
     public void CreateAccount(View view) {
         Intent intent = new Intent(this, RoleActivity.class);
