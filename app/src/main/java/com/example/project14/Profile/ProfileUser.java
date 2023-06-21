@@ -297,7 +297,7 @@ public class ProfileUser extends AppCompatActivity {
                         name.setText(firstName + " " + middleName + " " + lastName);
                         if (gender.contains("M")) {
                             gender = "Man";
-                        } else if (gender.contains("V")) {
+                        } else if (gender.contains("F")) {
                             gender = "Vrouw";
                         } else {
                             gender = "Anders";
