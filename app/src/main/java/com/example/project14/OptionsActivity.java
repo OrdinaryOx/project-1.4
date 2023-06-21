@@ -61,6 +61,7 @@ public class OptionsActivity extends AppCompatActivity {
     private Button logOutBtn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +143,10 @@ public class OptionsActivity extends AppCompatActivity {
         ImageView backButton = toolbar.findViewById(R.id.back_button);
         ImageView logoButton = toolbar.findViewById(R.id.MWG_logo_IV);
         ImageView optionsButton = toolbar.findViewById(R.id.options_button);
+
+
+        RadioButton lightTheme = findViewById(R.id.light_radio);
+        lightTheme.setChecked(true);
 
 
         languageTextView =
@@ -427,6 +432,8 @@ public class OptionsActivity extends AppCompatActivity {
         }
 
         LanguageUtils.updateLanguage(this);
+
+
 
         languageRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

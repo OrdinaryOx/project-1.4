@@ -220,11 +220,20 @@ public class ProfileUser extends AppCompatActivity {
                         picture = picture.replace("\"", "");
                         Log.d("pictureurl", "" + picture);
 
-                        Glide.with(profile)
-                                .load(picture)
-                                .centerCrop()
-                                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                                .into(profile);
+                        if (picture.equals("0")) {
+                            Glide.with(profile)
+                                    .load(R.drawable.profile)
+                                    .centerCrop()
+                                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                    .into(profile);
+                        } else {
+                            Glide.with(profile)
+                                    .load(picture)
+                                    .centerCrop()
+                                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                    .into(profile);
+                        }
+
 
 
 //                        String firstName = profiledata.get("firstName").toString();
@@ -236,8 +245,8 @@ public class ProfileUser extends AppCompatActivity {
                         String work = (preferenceData.get("work") != null && preferenceData.get("work").getAsInt() == 1) ? "Ja" : "Nee";
                         String workDesc = preferenceData.get("workDescription") != null ? preferenceData.get("workDescription").toString() : "";
                         String skill = preferenceData.get("skill").toString();
-                        String pet = (preferenceData.get("ownPet") != null && preferenceData.get("ownPet").getAsInt() == 1) ? "Ja" : "Nee";
-                        String petDescription = preferenceData.get("ownPetDescription") != null ? preferenceData.get("ownPetDescription").toString() : "";
+                        String pet = (preferenceData.get("ownPet") != null && preferenceData.get("ownPet").getAsInt() ==1) ? "Ja" : "Nee";
+                        String petDescription = preferenceData.get("ownPetDescription") != null ? preferenceData.get("ownPetDescription").toString() :"";
                         String preference = preferenceData.get("liveWith").toString();
                         String month = preferenceData.get("period").toString();
                         String day = preferenceData.get("nights").toString();
@@ -316,11 +325,12 @@ public class ProfileUser extends AppCompatActivity {
                         //         workTextView.setText("Werk: " + work);
 
                         String workString = "";
-                        if (work.equals("0")) {
+                        if (work.equals("Nee") || work.equals("0")) {
                             workString = "Nee";
                         } else {
                             workString = "Ja - ";
                         }
+
 
 
                         workDesc = workDesc.replace("\"", "");
@@ -348,14 +358,18 @@ public class ProfileUser extends AppCompatActivity {
                         ehboTextView.setText(skill);
                         // petsTextView.setText("Huisdieren: " + pet);
 
-
-                        petDescription = petDescription.replace("\"", "");
-                        if (pet.equals("Ja - ")) {
-                            petDescTextView.setText(pet + petDescription);
+                        if (petYesNo.equals("Nee")) {
+                            petYesNo = "Nee";
                         } else {
-                            petDescTextView.setText("Nee");
+                            petYesNo = "Ja - ";
                         }
 
+                        petYesNo = "Ja - ";
+
+
+                        petDescription = petDescription.replace("\"", "");
+
+                        petDescTextView.setText(petYesNo + petDescription);
                         remarksTextView.setText(offer);
                         userDescriptionTextView.setText(description);
                         userKeywordsTextView.setText(keywords);
@@ -464,8 +478,10 @@ public class ProfileUser extends AppCompatActivity {
                         String cityverhuurder = profiledata.get("city") != null ? profiledata.get("city").toString() : "-";
                         String budgetverhuurder = preferenceData.get("price") != null ? preferenceData.get("price").toString() : "-";
                         String healthRiskverhuurder = profiledata.get("healthRisk") != null ? profiledata.get("healthRisk").toString() : "-";
-                        String petverhuurder = profiledata.get("pet") != null && preferenceData.get("pet").getAsInt() == 1 ? "Ja - " : "Nee";
-                        String petDescriptionverhuurder = profiledata.get("petDescription") != null ? preferenceData.get("PetDescription").toString() : "";
+
+
+                        String petverhuurder = preferenceData.get("pet") != null && preferenceData.get("pet").getAsInt() == 1 ? "Ja" : "Nee";
+                        String petDescriptionverhuurder = preferenceData.get("petDescription") != null ? preferenceData.get("petDescription").toString() : "";
 
                         //                    String overallCommentverhuurder = preferenceData.get("overallcomment") != null ? profiledata.get("overallcomment").toString() : "-";
                         //                    String descriptionverhuurder = preferenceData.get("describe") != null ? profiledata.get("description").toString() : "-";
@@ -500,11 +516,22 @@ public class ProfileUser extends AppCompatActivity {
                         picture = picture.replace("\"", "");
                         Log.d("pictureurl", "" + picture);
 
-                        Glide.with(profile)
-                                .load(picture)
-                                .centerCrop()
-                                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                                .into(profile);
+
+
+
+                        if (picture.equals("0")) {
+                            Glide.with(profile)
+                                    .load(R.drawable.profile)
+                                    .centerCrop()
+                                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                    .into(profile);
+                        } else {
+                            Glide.with(profile)
+                                    .load(picture)
+                                    .centerCrop()
+                                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                                    .into(profile);
+                        }
 
 
                         if (furnished.equals("Nee")) {
@@ -519,6 +546,7 @@ public class ProfileUser extends AppCompatActivity {
                         furnishedDesc = furnishedDesc.replace("\"", "");
                         situation = situation.replace("\"", "");
                         motivation = motivation.replace("\"", "");
+                        petDescriptionverhuurder = petDescriptionverhuurder.replace("\"", "");
 
                         situationTV.setText(situation);
                         motivationTV.setText(motivation);
@@ -576,6 +604,16 @@ public class ProfileUser extends AppCompatActivity {
 
                         budgetTextViewverhuurder.setText("€" + budgetverhuurder + " p/m excl");
                         //                ehboTextViewverhuurder.setText("Medische hulp: " + healthRiskverhuurder);
+
+
+
+                        if (petverhuurder.equals("Ja") || petverhuurder.equals("1")) {
+                            petverhuurder = "Ja - ";
+                        } else {
+                            petverhuurder = "Nee";
+                        }
+
+
                         petDescTextViewverhuurder.setText(petverhuurder + petDescriptionverhuurder);
                         remarksTextViewverhuurder.setText(remarksTextViewverhuurder.getText());
                         //                    userDescriptionTextViewverhuurder.setText("Beschrijving van jezelf: " + descriptionverhuurder);

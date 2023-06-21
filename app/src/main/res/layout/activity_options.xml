@@ -269,13 +269,14 @@
                 android:layout_height="54dp"
                 android:layout_below="@id/textForSwitchPrivacy"
                 android:layout_alignParentRight="true"
-                android:layout_gravity="center"
+
                 android:background="@drawable/custom_background_bottom_right"
                 android:backgroundTint="#8acda1"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="@string/options_phoneYes"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:translationX="50dp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

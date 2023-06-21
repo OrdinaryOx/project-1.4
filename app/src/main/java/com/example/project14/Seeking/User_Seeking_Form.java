@@ -185,7 +185,7 @@ public class User_Seeking_Form extends AppCompatActivity {
                 selfPets = "Nee";
             }
 
-            if (pets.equals("1")) {
+            if (pets.equals("Ja")) {
                 pets = "Ja";
             } else {
                 pets = "Nee";
@@ -751,8 +751,29 @@ Log.e("ERROR Updating", "" + t.getMessage());
 
 //        if (fragmentDataList.get("Pets").isEmpty())
 
+//        int pet = 0;
+//        if (fragmentDataList.get("Pets").equals("Ja")){
+//            pet = 1;
+//        } else {
+//            pet = 0;
+//        }
+//
+//        int work = 0;
+//        if (fragmentDataList.get("Work").equals("Ja")) {
+//            work = 1;
+//        } else {
+//            work = 0;
+//        }
+//
 
-        preferences.put("pet", fragmentDataList.get("Pets"));
+        String pet = fragmentDataList.get("Pets");
+        Log.d("PET CREATION", pet);
+
+        String work = fragmentDataList.get("Work");
+        Log.d("WORK DREATION", work);
+
+        preferences.put("pet", pet);
+
         preferences.put("ownPet", fragmentDataList.get("SelfPets"));
         preferences.put("ownPetDescription", fragmentDataList.get("PetsComment"));
         preferences.put("starDate", fragmentDataList.get("StartDate"));
@@ -784,7 +805,7 @@ Log.e("ERROR Updating", "" + t.getMessage());
         }
 
         preferences.put("skill", skillString);
-        preferences.put("work", fragmentDataList.get("SeekingWork"));
+        preferences.put("work", fragmentDataList.get("Work"));
         preferences.put("workDescription", fragmentDataList.get("Work"));
         preferences.put("healthRisk", fragmentDataList.get("Health"));
         preferences.put("healthRiskDescription", fragmentDataList.get("HealthInfo"));

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //        editor.apply();
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+//        SharedPreferences sharedPreferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         Log.d("TOKEN MAIN", token);
         tokenString = token;
@@ -69,17 +69,17 @@ public class MainActivity extends AppCompatActivity {
 //                onBackPressed();
 //            }
 //        });
-
-        // Set click listener for the logo button
-        logoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start MainActivity when logo button is clicked
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//
+//        // Set click listener for the logo button
+//        logoButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Start MainActivity when logo button is clicked
+//                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
 
 
